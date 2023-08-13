@@ -1,0 +1,66 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 24px;
+    background-color: $white;
+    padding: 24px;
+    width: 89vw;
+    max-width: 1272px;
+    height: 96px;
+    .logo {
+        display: flex;
+        align-items: center;      
+        :nth-child(2) {
+            margin-left: 16px;
+            color: $blue-primary;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        :nth-child(3) {
+            color: $green-primary;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+    .navLinks {        
+        a {
+            padding: 0 24px;
+            margin: 0 12px;
+            font-size: 16px;
+            font-weight: 600;
+            .active {
+                border-top: 4px solid $blue-primary;
+                border-bottom: 4px solid $blue-primary;
+                border-radius: 4px 4px 0px 0px; 
+                padding: 35px 0;                
+            }
+        }
+    }
+    .navButtons {
+        a {            
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 24px;
+            border: 1px solid $grey;
+            border-radius: 24px;            
+        }
+        :nth-child(2) {
+            background-color: $green-primary;
+            border: none;
+            margin-left: 16px;
+        }
+
+    }
+
+    @media screen and (min-width: $full_bp) {
+    }
+    @media screen and (max-width: $tablet_bp) {
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+    }
+    @media screen and (max-width: $mobile_bp) {
+    }
+}
