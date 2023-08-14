@@ -13,17 +13,17 @@
     .logo {
         display: flex;
         align-items: center;      
-        :nth-child(2) {
+        p {
             margin-left: 16px;
             color: $blue-primary;
             font-size: 20px;
             font-weight: 500;
-        }
-        :nth-child(3) {
-            color: $green-primary;
-            font-size: 20px;
-            font-weight: 500;
-        }
+            span {
+                color: $green-primary;
+                font-size: 20px;
+                font-weight: 500;
+            }
+        } 
     }
     .navLinks {        
         a {

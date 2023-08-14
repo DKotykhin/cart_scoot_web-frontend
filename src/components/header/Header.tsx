@@ -46,10 +46,8 @@ const Header = () => {
                         alt={'logo'}
                         width={48}
                         height={48}
-                        priority
                     />
-                    <p>Cart</p>
-                    <p>Scoot</p>
+                    <p>Cart<span>Scoot</span></p>
                 </div>
             </Link>
             <div className={styles.navLinks}>
