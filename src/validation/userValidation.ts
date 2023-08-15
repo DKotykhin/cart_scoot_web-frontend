@@ -1,7 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { ref } from "yup";
 
-const name = yup
+const userName = yup
     .string()
     .matches(/^([^0-9]*)$/, "Enter letters!")
     .min(2, "Minimum 2 characters to fill")
@@ -16,13 +17,44 @@ const email = yup
 const password = yup
     .string()
     .required("Required field!")
-    .min(8, "Minimum 8 characters to fill");
+    .min(8, "Minimum 8 characters to fill")
+    .matches(/[A-Z]/, "At least 1 character should be an uppercase letter!")
+    .matches(/[0-9]/, "At least 1 character should be a digit!");
 
+const confirmPassword = yup
+    .string()
+    .required("Please re-type your password")
+    .min(8, "Minimum 8 characters to fill")
+    .oneOf([ref("password")], "Passwords do not match");
+
+const registerSchema = yup.object({
+    userName,
+    email,
+    password,
+    confirmPassword,
+});
 const loginSchema = yup.object({
     email,
     password,
 });
+const resetSchema = yup.object({
+    email,
+});
+const setSchema = yup.object({
+    password: password,
+    confirmPassword,
+});
 
+export const RegisterFormValidation: Object = {
+    defaultValues: {
+        userName: "",
+        password: "",
+        email: "",
+        confirmPassword: "",
+    },
+    resolver: yupResolver(registerSchema),
+    mode: "onChange",
+};
 export const LoginFormValidation: Object = {
     defaultValues: {
         password: "",
@@ -30,5 +62,20 @@ export const LoginFormValidation: Object = {
         rememberMe: false,
     },
     resolver: yupResolver(loginSchema),
+    mode: "onChange",
+};
+export const ResetFormValidation: Object = {
+    defaultValues: {
+        email: "",
+    },
+    resolver: yupResolver(resetSchema),
+    mode: "onChange",
+};
+export const SetFormValidation: Object = {
+    defaultValues: {
+        password: "",
+        confirmPassword: "",
+    },
+    resolver: yupResolver(setSchema),
     mode: "onChange",
 };

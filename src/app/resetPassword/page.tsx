@@ -1,9 +1,10 @@
 import React from 'react';
 
+import ResetCard from './components/ResetCard';
+
 const ResetPage = () => {
-    return (
-        <div>Reset Page</div>
-    );
+    
+    return <ResetCard />;
 };
 
 export default ResetPage;

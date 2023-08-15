@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Card from './components/Card';
+import LoginCard from './components/LoginCard';
 
 const LoginPage = () => {
-    return <Card />;
+    return <LoginCard />;
 };
 
 export default LoginPage;
