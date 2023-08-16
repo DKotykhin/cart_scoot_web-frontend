@@ -6,7 +6,6 @@ import { useForm, Controller } from "react-hook-form";
 
 import { ContactFormValidation } from 'validation/userValidation';
 import { EmailInput, UserNameInput } from 'components/inputs/_index';
-import SendEmail from 'services/send-email';
 
 import styles from './contactForm.module.scss';
 
@@ -16,27 +15,6 @@ interface IContactForm {
     subject: string,
     message: string,
 }
-
-// const sendMail = () => {
-//     sgMail.setApiKey(process.env.NEXT_PUBLIC_EMAIL_PASS as string);
-//     const msg = {
-//         to: 'kotykhin_d@ukr.net',
-//         from: process.env.NEXT_PUBLIC_EMAIL_ADDRESS as string,
-//         subject: 'Sending with Twilio SendGrid is Fun',
-//         text: 'and easy to do anywhere, even with Node.js',
-//         html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-//     };
-
-//     sgMail
-//         .send(msg)
-//         .then((result) => { console.log(result); }, error => {
-//             console.error(error);
-
-//             if (error.response) {
-//                 console.error(error.response.body);
-//             }
-//         });
-// };
 
 const ContactForm = () => {
 
@@ -49,7 +27,17 @@ const ContactForm = () => {
 
     const onSubmit = async (data: IContactForm): Promise<void> => {
         console.log(data);
-        await SendEmail();
+        await fetch('/api/send-email', {
+            method: 'POST',
+            body: JSON.stringify({ data })
+        })
+            .then(response => {
+                console.log('Email successfully sent!');
+                reset();
+            })
+            .catch(err => {
+                console.log(`Can't send email. Check your internet connection`);
+            });
     };
 
     return (
