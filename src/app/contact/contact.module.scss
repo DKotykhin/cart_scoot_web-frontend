@@ -1,0 +1,12 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1320px;
+    height: 808px;
+    background-color: $white;
+    padding: 24px;
+    margin-top: 48px;
+    border-radius: 24px;
+}

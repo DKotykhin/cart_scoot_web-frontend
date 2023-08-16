@@ -46,7 +46,7 @@ const RegisterCard = () => {
                 <p className='subtitle'>Please fill out below form in order to registration</p>
                 <div className={styles.firstInputLine}>
                     <UserNameInput
-                        error={errors.email}
+                        error={errors.userName}
                         control={control}
                     />
                     <EmailInput

@@ -27,6 +27,14 @@ const confirmPassword = yup
     .min(8, "Minimum 8 characters to fill")
     .oneOf([ref("password")], "Passwords do not match");
 
+const subject = yup.string().max(100, "Maximum 100 characters to fill");
+
+const message = yup
+    .string()
+    .min(5, "Minimum 5 characters to fill")
+    .max(500, "Maximum 500 characters to fill")
+    .required("Required field!");
+
 const registerSchema = yup.object({
     userName,
     email,
@@ -41,15 +49,21 @@ const resetSchema = yup.object({
     email,
 });
 const setSchema = yup.object({
-    password: password,
+    password,
     confirmPassword,
+});
+const contactSchema = yup.object({
+    userName,
+    email,
+    subject,
+    message,
 });
 
 export const RegisterFormValidation: Object = {
     defaultValues: {
         userName: "",
-        password: "",
         email: "",
+        password: "",
         confirmPassword: "",
     },
     resolver: yupResolver(registerSchema),
@@ -77,5 +91,16 @@ export const SetFormValidation: Object = {
         confirmPassword: "",
     },
     resolver: yupResolver(setSchema),
+    mode: "onChange",
+};
+
+export const ContactFormValidation: Object = {
+    defaultValues: {
+        userName: "",
+        email: "",
+        subject: "",
+        message: "",
+    },
+    resolver: yupResolver(contactSchema),
     mode: "onChange",
 };
