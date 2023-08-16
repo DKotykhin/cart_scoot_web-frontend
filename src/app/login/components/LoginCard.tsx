@@ -68,7 +68,7 @@ const LoginCard = () => {
                             Remember Me
                         </label>
                     </div>
-                    <Link href={'/reset'}>
+                    <Link href={'/reset-password'}>
                         <p>Reset Password</p>
                     </Link>
                 </div>

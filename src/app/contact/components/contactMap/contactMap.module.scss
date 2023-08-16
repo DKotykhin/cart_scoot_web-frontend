@@ -2,14 +2,14 @@
 
 .map {
     width: 624px;
-    height: 760px;
+    // height: 760px;
     position: relative;
     .contacts {
         position: absolute;
         top: 24px;
         left: 24px;
         width: 576px;
-        height: 276px;
+        // height: 276px;
         background-color: $white;
         padding: 24px;
         background-color: $white;
@@ -44,7 +44,7 @@
             }
         }
         :nth-child(4) {
-            margin: 22px 0;
+            margin: 16px 0;
         }
     }
 }
