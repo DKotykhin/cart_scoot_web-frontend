@@ -1,0 +1,100 @@
+@import "constants/constants.scss";
+
+.container {
+    display: block;
+    margin: 0 auto;
+    max-width: 1320px;
+    .main_box {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin: 91px 0 40px 0;
+        height: 384px;
+        .text_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            h1 {
+                font-size: 64px;
+                font-weight: 800;
+                line-height: 78px;
+                margin-bottom: 24px;
+                background: linear-gradient(
+                    124deg,
+                    $white 0%,
+                    $white-dark 100%
+                );
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                span {
+                    display: flex;
+                    span {
+                        display: flex;
+                        flex-direction: column;
+                        font-style: italic;
+                    }
+                }
+            }
+            h2 {
+                font-size: 20px;
+                color: $white;
+                font-weight: 400;
+                line-height: 28px;
+            }
+        }
+        .form_box {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 536px;
+            height: 336px;
+            border-radius: 24px;
+            background: $white;
+            box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+            padding: 24px;
+            z-index: 3;
+        }
+        .shadow_1 {
+            position: absolute;
+            bottom: 0;
+            right: 48px;
+            width: 440px;
+            height: 384px;
+            border-radius: 24px;
+            background: rgba(244, 247, 254, 0.24);
+            backdrop-filter: blur(450px);
+            z-index: 1;
+        }
+        .shadow_2 {
+            position: absolute;
+            bottom: 0;
+            right: 24px;
+            width: 488px;
+            height: 360px;
+            border-radius: 24px;
+            background: rgba(244, 247, 254, 0.24);
+            box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(450px);
+            z-index: 2;
+        }
+    }
+    .arrow_box {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 71px;
+        .arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 79.065px;
+            height: 80px;
+            transform: rotate(-45.426deg);
+            border-radius: 24px;
+            background: $white;
+            img {
+                transform: rotate(45.426deg);
+            }
+        }
+    }
+}

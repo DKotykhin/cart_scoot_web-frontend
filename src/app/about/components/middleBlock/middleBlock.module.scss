@@ -20,7 +20,7 @@
             margin-bottom: 16px;
             background: var(
                 --gradient-dark-blue,
-                linear-gradient(45deg, #4e7cf6 0%, #0a3cc1 100%)
+                linear-gradient(45deg, $blue-primary 0%, $blue-secondary 100%)
             );
             background-clip: text;
             -webkit-background-clip: text;

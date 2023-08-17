@@ -1,0 +1,72 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $black-quaternary;
+    height: 268px;
+    border-radius: 24px;
+    .main_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 258px;
+        height: 152px;
+        margin-right: 48px;
+        h3 {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 40px;
+            margin-bottom: 8px;
+            background: var(
+                --gradient-dark-blue,
+                linear-gradient(45deg, $blue-primary 0%, $blue-secondary 100%)
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            font-size: 18px;
+            color: $black-secondary;
+            font-weight: 400;
+            line-height: 22px;
+        }
+    }
+    .line {
+        width: 140px;
+        height: 0px;
+        border: 1px solid $grey;
+        transform: rotate(-90deg);
+    }
+    .step_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 258px;
+        height: 152px;
+        padding: 16px;
+        margin-left: 48px;
+        img {
+            width: 48px;
+            height: 48px;
+            padding: 12px;
+            background-color: $white;
+            border-radius: 12px;
+            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+        }
+        :nth-child(2) {
+            font-size: 24px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 28px;
+        }
+        :nth-child(3) {
+            font-size: 16px;
+            color: $black-secondary;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+}
