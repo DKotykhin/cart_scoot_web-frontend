@@ -1,0 +1,82 @@
+@import "constants/constants.scss";
+
+.container {
+    .titleContainer {
+        width: 648px;
+        margin: 0 auto;
+        text-align: center;
+        h4 {
+            margin-top: 80px;
+            font-size: 20px;
+            line-height: 28px;
+            color: $white;
+            font-weight: 400;
+        }
+        h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 78px;
+            margin: 24px 0;
+            background: linear-gradient(124deg, #fff 0%, #eff0f2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: 20px;
+            line-height: 28px;
+            color: $white;
+            margin-bottom: 80px;
+            font-weight: 400;
+        }
+    }
+    .cardContainer {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 160px;
+        .card {
+            width: 536px;
+            height: 240px;
+            margin: 0 12px;
+            padding: 24px;
+            background-color: $white;
+            border-radius: 20px;
+            box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+            .logo {
+                padding: 12px;
+            }
+            h4 {
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 28px;
+                color: $black-primary;
+                margin: 12px 0 8px;
+            }
+            p {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 20px;
+                color: $black-secondary;
+                margin-bottom: 24px;
+            }
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 20px;
+                color: $black-primary;
+                width: 209px;
+                height: 48px;
+                border: 1px solid $grey;
+                border-radius: 20px;
+                background-color: $white;
+                cursor: pointer;
+                img {
+                    margin-left: 12px;
+                }
+            }
+        }
+    }
+}

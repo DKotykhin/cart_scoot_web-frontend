@@ -1,16 +1,16 @@
 import React from 'react';
 
-import Image from 'next/image';
-
-import Header from 'components/header/Header';
-
-import styles from './aboutPage.module.scss';
 import Footer from 'components/footer/Footer';
+import TopBlock from './components/topBlock/TopBlock';
+import MiddleBlock from './components/middleBlock/MiddleBlock';
+import Accordion from './components/accordion/Accordion';
 
 const AboutPage = () => {
     return (
         <>
-            <div>About Page</div>
+            <TopBlock />
+            <MiddleBlock />
+            <Accordion />
             <footer>
                 <Footer />
             </footer>
