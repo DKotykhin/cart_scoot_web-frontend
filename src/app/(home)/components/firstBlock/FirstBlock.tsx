@@ -2,16 +2,16 @@ import React from 'react';
 
 import Image from 'next/image';
 
-import styles from './middleBlock.module.scss';
+import styles from './firstBlock.module.scss';
 
-const MiddleBlock = () => {
+const FirstBlock = () => {
     return (
         <div className={styles.container}>
             <div className={styles.main_box}>
-                <h3>
+                <h3 className='block-title'>
                     How it work?
                 </h3>
-                <p>
+                <p className='block-subtitle'>
                     Discover Effortless Golf Cart Adventures with Car Scoot&apos;s Booking Process.
                 </p>
             </div>
@@ -50,4 +50,4 @@ const MiddleBlock = () => {
     );
 };
 
-export default MiddleBlock;
+export default FirstBlock;

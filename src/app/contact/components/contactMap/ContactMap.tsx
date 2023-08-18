@@ -25,8 +25,12 @@ const ContactMap = () => {
                 />
             </Map>
             <div className={styles.contacts}>
-                <h2>Get in touch with our team</h2>
-                <h4>Reach Out to Us for Inquiries, Reservations, and More</h4>
+                <h2 className='block-title'>
+                    Get in touch with our team
+                </h2>
+                <h4 className='block-subtitle'>
+                    Reach Out to Us for Inquiries, Reservations, and More
+                </h4>
                 <p>
                     <Image
                         src={'/icons/phone.svg'}

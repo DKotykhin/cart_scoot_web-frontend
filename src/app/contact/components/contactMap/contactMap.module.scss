@@ -14,22 +14,9 @@
         padding: 24px;
         background-color: $white;
         h2 {
-            font-size: 32px;
-            font-weight: 600;
-            line-height: 40px;
-            background: var(
-                --gradient-dark-blue,
-                linear-gradient(45deg, $blue-primary 0%, $blue-secondary 100%)
-            );
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
         }
-        h4 {
-            color: $black-secondary;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 28px;
+        h4 {            
             margin: 8px 0 48px;
         }
         p {

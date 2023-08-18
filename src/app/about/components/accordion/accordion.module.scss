@@ -9,25 +9,10 @@
         margin: 0 auto;
         width: 424px;
         h3 {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 600;
-            line-height: 40px;
-            margin-bottom: 16px;
-            background: var(
-                --gradient-dark-blue,
-                linear-gradient(45deg, #4e7cf6 0%, #0a3cc1 100%)
-            );
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            text-align: center;            
         }
         p {
-            text-align: center;
-            font-size: 18px;
-            color: $black-secondary;
-            font-weight: 400;
-            line-height: 22px;
+            text-align: center;           
             margin-bottom: 24px;
         }
     }

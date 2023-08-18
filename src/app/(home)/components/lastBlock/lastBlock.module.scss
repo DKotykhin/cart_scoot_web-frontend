@@ -1,0 +1,33 @@
+@import "constants/constants.scss";
+
+.container {
+    display: block;
+    margin: 0 auto;
+    width: 1320px;
+    height: 352px;
+    margin-bottom: 160px;
+    .block {
+        display: flex;
+        justify-content: center;
+        padding: 60px;
+        .text_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1; 
+        }
+        .card {
+            width: 282px;
+            height: 232px;
+            padding: 24px;
+            .card_title {
+                display: flex;
+                align-items: center;
+                margin-bottom: 16px;
+                img {
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}

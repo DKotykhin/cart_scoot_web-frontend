@@ -26,8 +26,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: 
-    linear-gradient(45deg, #4e7cf6 0%, #0a3cc1 100%) no-repeat;
+    background: linear-gradient(45deg, #4e7cf6 0%, #0a3cc1 100%) no-repeat;
     // url(../../public/background.svg) center center/cover no-repeat;
     width: 100%;
     // height: 1024px;
@@ -63,12 +62,31 @@ main {
     text-align: center;
 }
 .subtitle {
-    color: $black-secondary;    
-    font-size: 18px;    
+    color: $black-secondary;
+    font-size: 18px;
     font-weight: 400;
     line-height: 22px;
     margin-bottom: 48px;
     text-align: center;
+}
+.block-title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    background: var(
+        --gradient-dark-blue,
+        linear-gradient(45deg, $blue-primary 0%, $blue-secondary 100%)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+}
+.block-subtitle {
+    font-size: 18px;
+    color: $black-secondary;
+    font-weight: 400;
+    line-height: 22px;
 }
 .line {
     width: 100%;

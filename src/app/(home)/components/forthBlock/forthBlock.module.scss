@@ -1,0 +1,48 @@
+@import "constants/constants.scss";
+
+.container {
+    text-align: center;
+    margin-bottom: 160px;    
+    p {
+        display: block;
+        margin: 0 auto;
+        width: 424px;        
+        margin-bottom: 24px;
+    }
+    .card_box {
+        display: flex;
+        justify-content: center;
+        .margin {
+            margin: 0 24px;
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            max-width: 424px;
+            padding: 24px;
+            img {
+                width: 64px;
+                height: 64px;
+                margin-right: 16px;
+                padding: 16px;
+            }
+            .text_box {
+                text-align-last: left;
+                h4 {
+                    font-size: 24px;
+                    color: $black-primary;
+                    font-weight: 500;
+                    line-height: 28px;
+                    margin-bottom: 8px;
+                }
+                h5 {
+                    text-align: left;
+                    font-size: 16px;
+                    color: $black-secondary;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+}

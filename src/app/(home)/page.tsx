@@ -1,14 +1,17 @@
 import React from 'react';
 
 import Footer from 'components/footer/Footer';
-import TopBlock from './components/topBlock/TopBlock';
-import MiddleBlock from './components/middleBlock/MiddleBlock';
+import { FirstBlock, ForthBlock, LastBlock, SecondBlock, ThirdBlock, TopBlock } from './components/_index';
 
 const HomePage = () => {
     return (
         <>
             <TopBlock />
-            <MiddleBlock />
+            <FirstBlock />
+            <SecondBlock />
+            <ThirdBlock />
+            <ForthBlock />
+            <LastBlock />
             <footer>
                 <Footer />
             </footer>

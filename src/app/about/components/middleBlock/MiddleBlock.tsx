@@ -2,19 +2,20 @@ import React from 'react';
 
 import Image from "next/image";
 
-import styles from './middleBlock.module.scss';
 import MiniCard from 'components/miniCard/MiniCard';
+
+import styles from './middleBlock.module.scss';
 
 const MiddleBlock = () => {
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.text_box}>
-                    <h3>
+                    <h3 className='block-title'>
                         Your Premier <br />
                         Golf Cart Rental Solution
                     </h3>
-                    <p>
+                    <p className='block-subtitle'>
                         Unlock Unparalleled Convenience and Style on the Fairway <br />
                         with Our Top-of-the-Line Golf Cart Rentals. <br />
                         Discover Luxury and Ease with Our Golf Cart Rental Services. <br />
@@ -60,12 +61,12 @@ const MiddleBlock = () => {
                     </div>
                 </div>
                 <div className={styles.text_box}>
-                    <h3>
+                    <h3 className='block-title'>
                         Our Journey<br />
                         from Fairway Dreams<br />
                         to Car Scoot&apos;s Tee-rrific Vision
                     </h3>
-                    <p>
+                    <p className='block-subtitle'>
                         At Car Scoot, We Pave the Way for Boundless Golfing <br />
                         Excursions, Guided by Passion, Fueled by Precision, and <br />
                         Driven by the Desire to Elevate Every Swing into an <br />

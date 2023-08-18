@@ -1,0 +1,121 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: $black-quaternary;
+    // background: rgba(255, 255, 255, 0.80);
+    max-width: 1440px;
+    padding: 0 60px;
+    margin-bottom: 160px;
+    .text_box {
+        width: 536px;
+        height: 440px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;        
+        .line {
+            width: 100%;
+            border: 1px solid $grey;
+            margin: 12px 0;
+        }
+        .link_box {
+            display: flex;
+            .link {
+                display: flex;
+                align-items: center;
+
+                img {
+                    margin-right: 16px;
+                }
+                span {
+                    font-size: 20px;
+                    color: $black-primary;
+                    font-weight: 500;
+                    line-height: 24px;
+                    min-width: 216px;
+                }
+            }
+        }
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $green-primary;
+            width: 200px;
+            height: 56px;
+            border: 1px solid $green-primary;
+            border-radius: 20px;
+            background-color: $white;
+            margin-top: 24px;
+            cursor: pointer;
+            img {
+                margin-left: 12px;
+            }
+        }
+    }
+    .card_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 536px;
+        height: 536px;
+        padding-top: 48px;
+        background: url(../../../../../public/bg-1.svg) center center/cover
+            no-repeat;
+        .card {
+            display: flex;
+            align-items: center;
+            width: 488px;
+            height: 104px;
+            padding: 24px;
+            background-color: $white;
+            border-radius: 24px;
+            box-shadow: 0px 4px 36px -4px rgba(0, 0, 0, 0.04);
+            :nth-child(1) {
+                z-index: 2;
+            }
+            :nth-child(2) {
+                z-index: 1;
+                margin-left: -25px;
+            }
+            :last-child {
+                transform: rotate(-4deg);
+            }
+            .text {
+                width: 204px;
+                :nth-child(1) {
+                    margin-left: 8px;
+                    font-size: 20px;
+                    color: $black-primary;
+                    font-weight: 500;
+                    line-height: 24px;
+                    transform: rotate(3deg);
+                    margin-bottom: 8px;
+                }
+                :nth-child(2) {
+                    margin-left: 8px;
+                    font-size: 14px;
+                    color: $grey;
+                    font-weight: 400;
+                    line-height: 18px;
+                    transform: rotate(3deg);
+                }
+            }
+        }
+        :nth-child(1) {
+            transform: rotate(-5deg);
+        }
+        :nth-child(2) {
+            transform: rotate(5deg);
+        }
+        :nth-child(3) {
+            transform: rotate(-3deg);
+        }
+    }
+}
