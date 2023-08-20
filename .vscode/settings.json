@@ -3,6 +3,7 @@
         "datepicker",
         "dropoff",
         "geocode",
+        "subadmin",
         "zxcvbn"
     ]
 }

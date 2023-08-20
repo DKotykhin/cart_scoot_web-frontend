@@ -44,6 +44,8 @@
             box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
             .logo {
                 padding: 12px;
+                border-radius: 12px;
+                background: $green-quaternary;
             }
             h4 {
                 font-size: 24px;

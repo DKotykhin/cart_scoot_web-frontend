@@ -47,10 +47,8 @@
             }
         }
         .avatar {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin: 48px 0 24px 0;
+            display: block;
+            margin: 48px auto 24px auto;
         }        
         .box {
             display: flex;

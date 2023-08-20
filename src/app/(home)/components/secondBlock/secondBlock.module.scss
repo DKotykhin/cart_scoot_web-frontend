@@ -14,7 +14,7 @@
         height: 424px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;        
+        justify-content: space-between;
         .line {
             width: 100%;
             border: 1px solid $grey;
@@ -30,6 +30,8 @@
                 img {
                     padding: 12px;
                     margin-right: 16px;
+                    border-radius: 12px;
+                    background: $green-quaternary;
                 }
                 span {
                     font-size: 20px;
@@ -55,7 +57,7 @@
             background-color: $white;
             cursor: pointer;
             img {
-                margin-left: 12px;                
+                margin-left: 12px;
             }
         }
     }

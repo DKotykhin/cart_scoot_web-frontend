@@ -11,6 +11,8 @@
     img {
         margin-top: 12px;
         padding: 12px;
+        border-radius: 12px;
+        background: $green-quaternary;
     }
     :nth-child(2) {
         font-size: 24px;

@@ -3,20 +3,19 @@
 .map {
     width: 624px;
     // height: 760px;
-    position: relative;
+    background: url("../../../../../public/map.png");
     .contacts {
-        position: absolute;
-        top: 24px;
-        left: 24px;
+        margin: 24px;
         width: 576px;
         // height: 276px;
         background-color: $white;
         padding: 24px;
-        background-color: $white;
+        border-radius: 16px;
+        box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
         h2 {
             margin-bottom: 8px;
         }
-        h4 {            
+        h4 {
             margin: 8px 0 48px;
         }
         p {

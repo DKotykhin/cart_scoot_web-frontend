@@ -54,9 +54,8 @@ const TopBlock = () => {
                             <Image
                                 src={'/icons/caretRight.svg'}
                                 alt={'arrow'}
-                                width={48}
-                                height={48}
-                                className={styles.logo}
+                                width={24}
+                                height={24}
                             />
                         </button>
                     </Link>

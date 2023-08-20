@@ -14,8 +14,6 @@ interface IPickupInput {
     isLoaded: boolean;
 }
 
-const libraries: any = ['places'];
-
 const PickupInput: React.FC<IPickupInput> = ({ control, isLoaded }) => {
 
     return (
@@ -46,14 +44,7 @@ const PickupInput: React.FC<IPickupInput> = ({ control, isLoaded }) => {
                 width={24}
                 height={24}
                 className={styles.start_icon}
-            />
-            <Image
-                src={'/icons/bxs-chevron-down.svg'}
-                alt={'arrow icon'}
-                width={24}
-                height={24}
-                className={styles.arrow_icon}
-            />
+            />            
         </div>
     );
 };

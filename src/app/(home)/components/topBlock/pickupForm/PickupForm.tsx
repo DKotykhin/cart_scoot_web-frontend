@@ -52,21 +52,23 @@ const PickupForm = () => {
         const { date, time, pickup, dropoff } = data;
         const [pickupPlace] = pickup.getPlaces();
         const [dropoffPlace] = dropoff.getPlaces();
-        const newData = {
-            date: date?.toJSON(),
-            time: time?.toJSON(),
-            pickup: {
-                address: pickupPlace.formatted_address,
-                lat: pickupPlace.geometry.location.lat(),
-                lon: pickupPlace.geometry.location.lng(),
-            },
-            dropoff: {
-                address: dropoffPlace.formatted_address,
-                lat: dropoffPlace.geometry.location.lat(),
-                lon: dropoffPlace.geometry.location.lng(),
-            },
-        };
-        console.log(newData);
+        if (pickupPlace && dropoffPlace) {
+            const newData = {
+                date: date?.toJSON(),
+                time: time?.toJSON(),
+                pickup: {
+                    address: pickupPlace.formatted_address,
+                    lat: pickupPlace.geometry.location.lat(),
+                    lon: pickupPlace.geometry.location.lng(),
+                },
+                dropoff: {
+                    address: dropoffPlace.formatted_address,
+                    lat: dropoffPlace.geometry.location.lat(),
+                    lon: dropoffPlace.geometry.location.lng(),
+                },
+            };
+            console.log(newData);
+        }
     };
 
     return (

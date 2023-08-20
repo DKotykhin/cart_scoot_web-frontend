@@ -44,14 +44,7 @@ const DropoffInput: React.FC<IDropoffInput> = ({ control, isLoaded }) => {
                 width={24}
                 height={24}
                 className={styles.start_icon}
-            />
-            <Image
-                src={'/icons/bxs-chevron-down.svg'}
-                alt={'arrow icon'}
-                width={24}
-                height={24}
-                className={styles.arrow_icon}
-            />
+            />            
         </div>
     );
 };

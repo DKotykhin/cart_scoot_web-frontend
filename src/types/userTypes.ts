@@ -1,5 +1,12 @@
+export enum userTypes {
+    "rider" = "RIDER",
+    "driver" = "DRIVER",
+    "admin" = "ADMIN",
+    "subadmin" = "SUBADMIN",
+} 
+
 export interface IUserLogin {
-    userType: string;
+    userType: userTypes;
     email: string;
     password: string;
 }

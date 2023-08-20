@@ -1,29 +1,12 @@
-"use client";
-
 import React from 'react';
 
 import Image from "next/image";
-import Map, { Marker } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 
 import styles from './contactMap.module.scss';
 
-const viewport = { latitude: 38.9, longitude: -77.05, zoom: 17 };
-
 const ContactMap = () => {
     return (
-        <div className={styles.map}>
-            <Map
-                mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-                initialViewState={viewport}
-                style={{ width: '100%', height: '100%' }}
-                mapStyle="mapbox://styles/mapbox/streets-v11"
-            >
-                <Marker
-                    longitude={viewport.longitude}
-                    latitude={viewport.latitude}
-                />
-            </Map>
+        <div className={styles.map}>            
             <div className={styles.contacts}>
                 <h2 className='block-title'>
                     Get in touch with our team
