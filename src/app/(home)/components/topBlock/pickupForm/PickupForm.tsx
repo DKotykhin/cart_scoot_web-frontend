@@ -10,11 +10,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { useForm, Controller } from "react-hook-form";
 
+import PickupInput from './locationInput/PickupInput';
+import DropoffInput from './locationInput/DropoffInput';
+
 import styles from './pickupForm.module.scss';
 
 interface IPickupData {
     date: Date,
     time: Date,
+    pickup: string,
+    dropoff: string,
 }
 
 const PickupForm = () => {
@@ -25,37 +30,31 @@ const PickupForm = () => {
         formState: { errors, isValid },
         reset,
     } = useForm<IPickupData>({
-        // defaultValues: {
-        //     date: undefined,
-        //     time: undefined,
-        // }
+        defaultValues: {
+            date: undefined,
+            time: undefined,
+            pickup: '',
+            dropoff: '',
+        }
     });
 
     const onSubmit = (data: IPickupData): void => {
-        console.log(data);
-        // const { date, time } = data;
-        // console.log(date.toJSON());
-        // console.log(time.toJSON());
+        // console.log(data);
+        const { date, time, pickup, dropoff } = data;
+        const newData = {
+            date: date.toJSON(),
+            time: time.toJSON(),
+            pickup,
+            dropoff,
+        };
+        console.log(newData);
     };
 
     return (
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.location_box}>
-                <Image
-                    src={'/icons/mapPin.svg'}
-                    alt={'map pin icon'}
-                    width={24}
-                    height={24}
-                    className={styles.start_icon}
-                />
-                <Image
-                    src={'/icons/bxs-chevron-down.svg'}
-                    alt={'arrow icon'}
-                    width={24}
-                    height={24}
-                    className={styles.arrow_icon}
-                />
-            </div>
+            <PickupInput
+                control={control}
+            />
             <div className={styles.date_time_box}>
                 <div className={styles.picker_box}>
                     <Controller
@@ -122,22 +121,9 @@ const PickupForm = () => {
                     />
                 </div>
             </div>
-            <div className={styles.location_box}>
-                <Image
-                    src={'/icons/flag.svg'}
-                    alt={'flag icon'}
-                    width={24}
-                    height={24}
-                    className={styles.start_icon}
-                />
-                <Image
-                    src={'/icons/bxs-chevron-down.svg'}
-                    alt={'arrow icon'}
-                    width={24}
-                    height={24}
-                    className={styles.arrow_icon}
-                />
-            </div>
+            <DropoffInput
+                control={control}
+            />
             <button
                 type='submit'
                 className={styles.button}
