@@ -29,12 +29,12 @@ const ThirdBlock = () => {
                     <Image
                         src={'/icons/rate.svg'}
                         alt={'rate'}
-                        width={152}
-                        height={46}
+                        width={135}
+                        height={46}                        
                     />
                 </div>
                 <div className={styles.card}>
-                <Image
+                    <Image
                         src={'/avatars/Emily.svg'}
                         alt={'Emily avatar'}
                         width={56}
@@ -53,12 +53,12 @@ const ThirdBlock = () => {
                     <Image
                         src={'/icons/rate.svg'}
                         alt={'rate'}
-                        width={152}
-                        height={46}
+                        width={135}
+                        height={46}                        
                     />
                 </div>
                 <div className={styles.card}>
-                <Image
+                    <Image
                         src={'/avatars/Michael.svg'}
                         alt={'Michael avatar'}
                         width={56}
@@ -77,8 +77,8 @@ const ThirdBlock = () => {
                     <Image
                         src={'/icons/rate.svg'}
                         alt={'rate'}
-                        width={152}
-                        height={46}
+                        width={135}
+                        height={46}                       
                     />
                 </div>
             </div>

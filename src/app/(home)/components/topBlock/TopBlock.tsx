@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import styles from './topBlock.module.scss';
+import PickupForm from './pickupForm/PickupForm';
 
 const TopBlock = () => {
     return (
@@ -31,7 +32,7 @@ const TopBlock = () => {
                     </h2>
                 </div>
                 <div className={styles.form_box}>
-
+                    <PickupForm />
                 </div>
                 <div className={styles.shadow_1}></div>
                 <div className={styles.shadow_2}></div>
