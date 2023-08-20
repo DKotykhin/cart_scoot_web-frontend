@@ -4,62 +4,42 @@ import React from 'react';
 
 import Image from "next/image";
 
-import { GoogleMap, useJsApiLoader, useLoadScript } from '@react-google-maps/api';
+import { StandaloneSearchBox } from '@react-google-maps/api';
 import { Control, Controller } from "react-hook-form";
-
-import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
-} from 'react-places-autocomplete';
 
 import styles from './locationInput.module.scss';
 
 interface IPickupInput {
     control: Control<any>;
+    isLoaded: boolean;
 }
 
-const PickupInput: React.FC<IPickupInput> = ({ control }) => {
+const libraries: any = ['places'];
 
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
-        libraries: ["places"],
-    });
+const PickupInput: React.FC<IPickupInput> = ({ control, isLoaded }) => {
 
-    return isLoaded ? (
+    return (
         <div className={styles.location_box}>
-            <Controller
-                name='pickup'
-                control={control}
-                render={({ field }) => (
-                    <input
-                        {...field}
-                        type='text'
-                        placeholder="Pickup Location"                    
-                    />
-                    // <PlacesAutocomplete
-                    //     onChange={(data) => field.onChange(data)}
-                    // >
-                    //     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    //         <div>
-                    //             <input
-                    //                 {...getInputProps({
-                    //                     placeholder: 'Pickup Location',
-                    //                     className: 'location-search-input',
-                    //                 })}
-                    //             />
-                    //             <div className="autocomplete-dropdown-container">
-                    //                 {loading && <div>Loading...</div>}
-                    //                 {suggestions.map(suggestion => (
-                    //                     <div key={suggestion.id} {...getSuggestionItemProps(suggestion)}>
-                    //                         <span>{suggestion.description}</span>
-                    //                     </div>
-                    //                 ))}
-                    //             </div>
-                    //         </div>
-                    //     )}
-                    // </PlacesAutocomplete>
-                )}
-            />
+            {isLoaded ?
+                <Controller
+                    name='pickup'
+                    control={control}
+                    render={({ field }) => (
+                        <StandaloneSearchBox
+                            onLoad={(data) => field.onChange(data)}
+                        >
+                            <input
+                                type="text"
+                                placeholder="Pickup Location"
+                            />
+                        </StandaloneSearchBox>
+                    )}
+                />
+                : <input
+                    type='text'
+                    placeholder="Pickup Location"
+                />
+            }
             <Image
                 src={'/icons/mapPin.svg'}
                 alt={'map pin icon'}
@@ -75,7 +55,7 @@ const PickupInput: React.FC<IPickupInput> = ({ control }) => {
                 className={styles.arrow_icon}
             />
         </div>
-    ) : null;
+    );
 };
 
 export default PickupInput;

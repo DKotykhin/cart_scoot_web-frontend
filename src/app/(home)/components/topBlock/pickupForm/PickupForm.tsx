@@ -10,6 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { useForm, Controller } from "react-hook-form";
 
+import { useLoadScript } from '@react-google-maps/api';
+
 import PickupInput from './locationInput/PickupInput';
 import DropoffInput from './locationInput/DropoffInput';
 
@@ -18,11 +20,18 @@ import styles from './pickupForm.module.scss';
 interface IPickupData {
     date: Date,
     time: Date,
-    pickup: string,
-    dropoff: string,
+    pickup: any,
+    dropoff: any,
 }
 
+const libraries: any = ['places'];
+
 const PickupForm = () => {
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
+        libraries,
+    });
 
     const {
         control,
@@ -41,11 +50,21 @@ const PickupForm = () => {
     const onSubmit = (data: IPickupData): void => {
         // console.log(data);
         const { date, time, pickup, dropoff } = data;
+        const [pickupPlace] = pickup.getPlaces();
+        const [dropoffPlace] = dropoff.getPlaces();
         const newData = {
-            date: date.toJSON(),
-            time: time.toJSON(),
-            pickup,
-            dropoff,
+            date: date?.toJSON(),
+            time: time?.toJSON(),
+            pickup: {
+                address: pickupPlace.formatted_address,
+                lat: pickupPlace.geometry.location.lat(),
+                lon: pickupPlace.geometry.location.lng(),
+            },
+            dropoff: {
+                address: dropoffPlace.formatted_address,
+                lat: dropoffPlace.geometry.location.lat(),
+                lon: dropoffPlace.geometry.location.lng(),
+            },
         };
         console.log(newData);
     };
@@ -54,6 +73,7 @@ const PickupForm = () => {
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
             <PickupInput
                 control={control}
+                isLoaded={isLoaded}
             />
             <div className={styles.date_time_box}>
                 <div className={styles.picker_box}>
@@ -123,6 +143,7 @@ const PickupForm = () => {
             </div>
             <DropoffInput
                 control={control}
+                isLoaded={isLoaded}
             />
             <button
                 type='submit'

@@ -4,35 +4,40 @@ import React from 'react';
 
 import Image from "next/image";
 
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { StandaloneSearchBox } from '@react-google-maps/api';
 import { Control, Controller } from "react-hook-form";
 
 import styles from './locationInput.module.scss';
 
 interface IDropoffInput {
-    control: Control<any>;    
+    control: Control<any>;
+    isLoaded: boolean;
 }
 
-const DropoffInput: React.FC<IDropoffInput> = ({ control }) => {
-
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
-    });
+const DropoffInput: React.FC<IDropoffInput> = ({ control, isLoaded }) => {
 
     return (
         <div className={styles.location_box}>
-            <Controller
-                name='dropoff'
-                control={control}
-                render={({ field }) => (
-                    <input
-                        {...field}
-                        type='text'
-                        placeholder="Dropoff Location"
-                        className={styles.location_input}
-                    />
-                )}
-            />
+            {isLoaded ?
+                <Controller
+                    name='dropoff'
+                    control={control}
+                    render={({ field }) => (
+                        <StandaloneSearchBox
+                            onLoad={(data) => field.onChange(data)}
+                        >
+                            <input
+                                type="text"
+                                placeholder="Pickup Location"
+                            />
+                        </StandaloneSearchBox>
+                    )}
+                />
+                : <input
+                    type='text'
+                    placeholder="Pickup Location"
+                />
+            }
             <Image
                 src={'/icons/flag.svg'}
                 alt={'flag icon'}
