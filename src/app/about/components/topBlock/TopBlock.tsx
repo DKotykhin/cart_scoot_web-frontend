@@ -18,10 +18,10 @@ const TopBlock = () => {
             <div className={styles.cardContainer}>
                 <div className={styles.card}>
                     <Image
-                        src={'/icons/user.svg'}
+                        src={'/icons/user-green.svg'}
                         alt={'avatar'}
-                        width={48}
-                        height={48}
+                        width={24}
+                        height={24}
                         className={styles.logo}
                     />
                     <h4>Find and book a cart</h4>
@@ -42,8 +42,8 @@ const TopBlock = () => {
                     <Image
                         src={'/icons/driver.svg'}
                         alt={'avatar'}
-                        width={48}
-                        height={48}
+                        width={24}
+                        height={24}
                         className={styles.logo}
                     />
                     <h4>Become a driver</h4>

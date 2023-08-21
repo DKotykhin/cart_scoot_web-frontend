@@ -35,7 +35,7 @@
             .active {
                 border-top: 4px solid $blue-primary;
                 border-bottom: 4px solid $blue-primary;
-                border-radius: 4px 4px 0px 0px;
+                border-radius: 4px;
                 padding: 35px 0;
             }
         }
@@ -165,7 +165,7 @@
             }
         }
         .user_logout {
-            display: flex;            
+            display: flex;
             align-items: center;
             margin: 24px auto 0;
             font-size: 16px;
@@ -176,6 +176,74 @@
             height: 48px;
             :nth-child(1) {
                 margin-right: 12px;
+            }
+            :nth-child(2) {
+                cursor: pointer;
+            }
+        }
+    }
+    .logout_background {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.64);
+        backdrop-filter: blur(2px);
+        z-index: 7;
+    }
+    .logout_menu {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 422px;
+        height: 364px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $white;
+        border-radius: 24px;
+        padding: 24px;
+        z-index: 10;
+        .logout_title {
+            font-size: 32px;
+            color: $black-primary;
+            font-weight: 600;
+            line-height: 40px;
+        }
+        .logout_subtitle {
+            font-size: 18px;
+            color: $black-secondary;
+            font-weight: 400;
+            line-height: 22px;
+        }
+        .logout_buttons {
+            display: flex;
+            button {
+                display: flex;
+                width: 175px;
+                height: 48px;
+                padding: 0px 24px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 20px;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 20px;
+                box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+                cursor: pointer;
+            }
+            :nth-child(1) {
+                border: 1px solid $black-tertiary;
+                background: $white;
+                color: $black-primary;
+                margin-right: 24px;
+            }
+            :nth-child(2) {
+                background: $red-primary;
+                color: $white;
             }
         }
     }

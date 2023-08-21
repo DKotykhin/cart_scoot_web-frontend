@@ -1,55 +1,62 @@
 @import "constants/constants.scss";
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $black-quaternary;
-    height: 268px;
-    border-radius: 24px;
+    display: block;
+    margin: 0 auto;
+    max-width: 1320px;
+    // background: rgba(255, 255, 255, 0.80);
     margin-bottom: 160px;
-    .main_box {
+    .block {
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        width: 258px;
-        height: 152px;
-        margin-right: 48px;
-        h3 {            
-            margin-bottom: 8px;            
-        }        
-    }
-    .line {
-        height: 140px;
-        border: 1px solid $black-tertiary;
-    }
-    .step_box {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 258px;
-        height: 152px;
-        padding: 16px;
-        margin-left: 48px;
-        img {
-            width: 48px;
-            height: 48px;
-            padding: 12px;
-            background-color: $white;
-            border-radius: 12px;
-            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+        align-items: center;
+        background-color: $black-quaternary;
+        height: 268px;
+        border-radius: 24px;
+        padding: 48px;
+        .main_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 258px;
+            height: 152px;
+            margin-right: 48px;
+            h3 {
+                margin-bottom: 8px;
+            }
         }
-        :nth-child(2) {
-            font-size: 24px;
-            color: $black-primary;
-            font-weight: 500;
-            line-height: 28px;
+        .line {
+            height: 140px;
+            border: 1px solid $black-tertiary;
         }
-        :nth-child(3) {
-            font-size: 16px;
-            color: $black-secondary;
-            font-weight: 400;
-            line-height: 20px;
+        .step_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 258px;
+            height: 152px;
+            padding: 16px;
+            margin-left: 48px;
+            img {
+                width: 48px;
+                height: 48px;
+                padding: 12px;
+                background-color: $white;
+                border-radius: 12px;
+                box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+            }
+            :nth-child(2) {
+                font-size: 24px;
+                color: $black-primary;
+                font-weight: 500;
+                line-height: 28px;
+            }
+            :nth-child(3) {
+                font-size: 16px;
+                color: $black-secondary;
+                font-weight: 400;
+                line-height: 20px;
+            }
         }
     }
 }

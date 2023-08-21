@@ -35,21 +35,32 @@ const navButtons = [
 
 const Header = () => {
 
-    const [open, setOpen] = useState(false);
+    const [openUserMenu, setOpenUserMenu] = useState(false);
+    const [openLogoutMenu, setOpenLogoutMenu] = useState(false);
 
     const pathname = usePathname();
 
     const isLogin = true;
 
-    const handleClick = () => setOpen(prev => !prev);
+    const handleUserClick = () => setOpenUserMenu(prev => !prev);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleKeydown = (e: { code: string }) => {
-        if (e.code === 'Escape') setOpen(false);
+        if (e.code === 'Escape') {
+            if (openLogoutMenu) {
+                setOpenLogoutMenu(false);
+            } else setOpenUserMenu(false);
+        };
     };
     useEffect(() => {
         window.addEventListener("keydown", handleKeydown);
 
         return () => window.removeEventListener("keydown", handleKeydown);
-    }, []);
+    }, [handleKeydown]);
+
+    const logoutModalClick = () => setOpenLogoutMenu(true);
+
+    const logoutCancelClick = () => setOpenLogoutMenu(false);
+    const logoutClick = () => setOpenLogoutMenu(false);
 
     return (
         <nav className={styles.container}>
@@ -77,7 +88,7 @@ const Header = () => {
                 <div className={styles.authButtons}>
                     <div
                         className={styles.user_button}
-                        onClick={handleClick}
+                        onClick={handleUserClick}
                     >
                         <div className={styles.badge}>
                             1
@@ -103,7 +114,7 @@ const Header = () => {
                     ))}
                 </div>
             }
-            {open &&
+            {openUserMenu &&
                 <div className={styles.user_panel}>
                     <Image
                         src={'/avatars/John.svg'}
@@ -148,16 +159,47 @@ const Header = () => {
                             />
                         </div>
                     </div>
-                    <div className={styles.user_logout}>
+                    <div
+                        className={styles.user_logout}
+                    >
                         <Image
                             src={'/icons/signOut.svg'}
                             alt={'out'}
                             width={24}
                             height={24}
                         />
-                        <span>Logout</span>
+                        <span onClick={logoutModalClick}>Logout</span>
                     </div>
                 </div>
+            }
+            {openLogoutMenu &&
+                <>
+                    <div className={styles.logout_background}></div>
+                    <div className={styles.logout_menu}>
+                        <Image
+                            src={'/avatars/logoutAvatar.svg'}
+                            alt={'logout'}
+                            width={120}
+                            height={120}
+                            className={styles.logout_avatar}
+                        />
+                        <p className={styles.logout_title}>Logout</p>
+                        <p className={styles.logout_subtitle}>Are you sure to logout?</p>
+                        <div className='line'></div>
+                        <div className={styles.logout_buttons}>
+                            <button
+                                onClick={logoutCancelClick}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={logoutClick}
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </>
             }
         </nav>
     );

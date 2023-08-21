@@ -33,6 +33,10 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
+// .background {
+//     position: absolute;
+//     top: 0;
+// }
 header {
     position: absolute;
     top: 24px;
@@ -52,6 +56,10 @@ header {
 main {
     margin-top: 120px;
     position: absolute;
+    // background: rgba(255, 255, 255, 0.80);
+    // max-width: 1438px;
+    // background: $white;
+    // background: url(../../public/background.svg) center center/cover no-repeat
 }
 .title {
     color: $black-primary;

@@ -33,7 +33,7 @@ const LastBlock = () => {
                         Car Scoot has truly elevated my golfing experiences! As an avid golfer, I appreciate their seamless booking process and the wide selection of golf carts available.
                     </p>
                 </div>
-                <div className={styles.card}>
+                <div className={`${styles.card} ${styles.margin}`}>
                     <div className={styles.card_title}>
                         <Image
                             src={'/avatars/Sarah.svg'}
