@@ -1,6 +1,7 @@
 @import "constants/constants.scss";
 
 .container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,7 +13,7 @@
     height: 96px;
     .logo {
         display: flex;
-        align-items: center;      
+        align-items: center;
         p {
             margin-left: 16px;
             color: $blue-primary;
@@ -23,9 +24,9 @@
                 font-size: 20px;
                 font-weight: 500;
             }
-        } 
+        }
     }
-    .navLinks {        
+    .navLinks {
         a {
             padding: 0 24px;
             margin: 0 12px;
@@ -34,25 +35,149 @@
             .active {
                 border-top: 4px solid $blue-primary;
                 border-bottom: 4px solid $blue-primary;
-                border-radius: 4px 4px 0px 0px; 
-                padding: 35px 0;                
+                border-radius: 4px 4px 0px 0px;
+                padding: 35px 0;
             }
         }
     }
     .navButtons {
-        a {            
+        a {
             font-size: 16px;
             font-weight: 600;
             padding: 14px 24px;
-            border: 1px solid $grey;
-            border-radius: 24px;            
+            border: 1px solid $black-tertiary;
+            border-radius: 24px;
         }
         :nth-child(2) {
             background-color: $green-primary;
             border: none;
             margin-left: 16px;
+            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
         }
-
+    }
+    .authButtons {
+        display: flex;
+        align-items: center;
+        .user_button {
+            position: relative;
+            cursor: pointer;
+            .badge {
+                position: absolute;
+                left: 8px;
+                top: -8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 24px;
+                height: 24px;
+                border-radius: 48px;
+                border: 2px solid $white;
+                background: $red-primary;
+                font-size: 14px;
+                font-weight: 400;
+                color: $white;
+                line-height: 18px;
+            }
+            .user_avatar {
+                width: 48px;
+                height: 48px;
+                padding: 0px 12px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 20px;
+                color: black;
+                border: 1px solid $green-tertiary;
+                background: $green-quaternary;
+            }
+        }
+        :nth-child(2) {
+            background-color: $green-primary;
+            margin-left: 16px;
+            border-radius: 20px;
+            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+            font-size: 16px;
+            color: $black-primary;
+            font-weight: 600;
+            line-height: 20px;
+            padding: 14px 24px;
+        }
+    }
+    .user_panel {
+        position: absolute;
+        top: 96px;
+        right: 0;
+        z-index: 5;
+        width: 312px;
+        height: 545px;
+        background-color: $white;
+        padding: 24px;
+        border-radius: 24px;
+        box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        .user_logo {
+            margin: 49px auto 26px;
+        }
+        .user_title {
+            font-size: 20px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 24px;
+            margin: 0 auto;
+        }
+        .user_subtitle {
+            font-size: 14px;
+            color: $black-tertiary;
+            font-weight: 400;
+            line-height: 18px;
+            margin: 4px auto 24px;
+        }
+        .user_list {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 24px auto;
+            width: 100%;
+            height: 176px;
+            .list_item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 48px;
+                .badge_box {
+                    display: flex;
+                    .list_badge {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 24px;
+                        height: 24px;
+                        margin: 0 8px;
+                        border-radius: 48px;
+                        border: 2px solid $white;
+                        background: $red-primary;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: $white;
+                        line-height: 18px;
+                    }
+                }
+            }
+        }
+        .user_logout {
+            display: flex;            
+            align-items: center;
+            margin: 24px auto 0;
+            font-size: 16px;
+            color: $red-primary;
+            font-weight: 600;
+            line-height: 20px;
+            width: 100%;
+            height: 48px;
+            :nth-child(1) {
+                margin-right: 12px;
+            }
+        }
     }
 
     @media screen and (min-width: $full_bp) {
