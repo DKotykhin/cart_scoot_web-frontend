@@ -78,7 +78,7 @@ const Header = () => {
             <div className={styles.navLinks}>
                 {navLinks.map(item => (
                     <Link href={item.url} key={item.name}>
-                        <span className={(pathname === item.url) ? styles.active : ''}>
+                        <span className={(pathname === item.url) ? `${styles.active} ${styles.active_2}` : ''}>
                             {item.name}
                         </span>
                     </Link>

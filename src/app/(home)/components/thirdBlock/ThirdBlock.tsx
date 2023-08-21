@@ -15,6 +15,7 @@ const ThirdBlock = () => {
                         alt={'John avatar'}
                         width={56}
                         height={56}
+                        className={styles.avatar}
                     />
                     <Image
                         src={'/avatars/car.svg'}
@@ -39,6 +40,7 @@ const ThirdBlock = () => {
                         alt={'Emily avatar'}
                         width={56}
                         height={56}
+                        className={styles.avatar}
                     />
                     <Image
                         src={'/avatars/car.svg'}
@@ -63,6 +65,7 @@ const ThirdBlock = () => {
                         alt={'Michael avatar'}
                         width={56}
                         height={56}
+                        className={styles.avatar}
                     />
                     <Image
                         src={'/avatars/car.svg'}
