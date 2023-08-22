@@ -34,21 +34,21 @@
             font-weight: 600;
             position: relative;
             .active::before {
-                content: '';
+                content: "";
                 position: absolute;
                 top: 54px;
                 left: 0;
-                border-top: 4px solid $blue-primary;                
+                border-top: 4px solid $blue-primary;
                 border-radius: 4px 4px 0 0;
                 width: 100%;
             }
             .active::after {
-                content: '';
+                content: "";
                 position: absolute;
                 bottom: 54px;
-                left: 0;                
+                left: 0;
                 border-bottom: 4px solid $blue-primary;
-                border-radius: 0 0 4px 4px;                
+                border-radius: 0 0 4px 4px;
                 width: 100%;
             }
         }
@@ -113,154 +113,6 @@
             font-weight: 600;
             line-height: 20px;
             padding: 14px 24px;
-        }
-    }
-    .user_panel {
-        position: absolute;
-        top: 96px;
-        right: 0;
-        z-index: 5;
-        width: 312px;
-        height: 545px;
-        background-color: $white;
-        padding: 24px;
-        border-radius: 24px;
-        box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        .user_logo {
-            margin: 49px auto 26px;
-        }
-        .user_title {
-            font-size: 20px;
-            color: $black-primary;
-            font-weight: 500;
-            line-height: 24px;
-            margin: 0 auto;
-        }
-        .user_subtitle {
-            font-size: 14px;
-            color: $black-tertiary;
-            font-weight: 400;
-            line-height: 18px;
-            margin: 4px auto 24px;
-        }
-        .user_list {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin: 24px auto;
-            width: 100%;
-            height: 176px;
-            .list_item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 48px;
-                .badge_box {
-                    display: flex;
-                    .list_badge {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 24px;
-                        height: 24px;
-                        margin: 0 8px;
-                        border-radius: 48px;
-                        border: 2px solid $white;
-                        background: $red-primary;
-                        font-size: 14px;
-                        font-weight: 400;
-                        color: $white;
-                        line-height: 18px;
-                    }
-                }
-            }
-        }
-        .user_logout {
-            display: flex;
-            align-items: center;
-            margin: 24px auto 0;
-            font-size: 16px;
-            color: $red-primary;
-            font-weight: 600;
-            line-height: 20px;
-            width: 100%;
-            height: 48px;
-            :nth-child(1) {
-                margin-right: 12px;
-            }
-            :nth-child(2) {
-                cursor: pointer;
-            }
-        }
-    }
-    .logout_background {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.64);
-        backdrop-filter: blur(2px);
-        z-index: 7;
-    }
-    .logout_menu {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 422px;
-        height: 364px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        background-color: $white;
-        border-radius: 24px;
-        z-index: 10;
-        .logout_avatar {
-            margin-top: 24px;
-        }
-        .logout_title {
-            font-size: 32px;
-            color: $black-primary;
-            font-weight: 600;
-            line-height: 40px;
-        }
-        .logout_subtitle {
-            font-size: 18px;
-            color: $black-secondary;
-            font-weight: 400;
-            line-height: 22px;
-        }
-        .logout_buttons {
-            display: flex;
-            padding-bottom: 24px;
-            button {
-                display: flex;
-                width: 175px;
-                height: 48px;
-                padding: 0px 24px;
-                justify-content: center;
-                align-items: center;
-                border-radius: 20px;
-                font-size: 16px;
-                font-weight: 600;
-                line-height: 20px;
-                box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
-                cursor: pointer;
-            }
-            :nth-child(1) {
-                border: 1px solid $black-tertiary;
-                background: $white;
-                color: $black-primary;
-                margin-right: 24px;
-            }
-            :nth-child(2) {
-                background: $red-primary;
-                color: $white;
-            }
         }
     }
 

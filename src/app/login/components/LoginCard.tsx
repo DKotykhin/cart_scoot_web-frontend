@@ -69,7 +69,7 @@ const LoginCard = () => {
                         </label>
                     </div>
                     <Link href={'/reset-password'}>
-                        <p>Reset Password</p>
+                        <p>Forgot Password?</p>
                     </Link>
                 </div>
             </div>

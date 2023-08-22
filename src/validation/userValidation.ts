@@ -58,6 +58,11 @@ const contactSchema = yup.object({
     subject,
     message,
 });
+const changePasswordSchema = yup.object({
+    currentPassword: password,
+    password,
+    confirmPassword,
+});
 
 export const RegisterFormValidation: Object = {
     defaultValues: {
@@ -91,6 +96,15 @@ export const SetFormValidation: Object = {
         confirmPassword: "",
     },
     resolver: yupResolver(setSchema),
+    mode: "onChange",
+};
+export const ChangePasswordFormValidation: Object = {
+    defaultValues: {
+        currentPassword: "",
+        password: "",
+        confirmPassword: "",
+    },
+    resolver: yupResolver(changePasswordSchema),
     mode: "onChange",
 };
 

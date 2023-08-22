@@ -7,6 +7,9 @@ import Image from "next/image";
 import Link from 'next/link';
 
 import styles from './header.module.scss';
+import UserPanel from 'components/userPanel/UserPanel';
+import LogoutCard from 'components/userPanel/logoutCard/LogoutCard';
+import ChangePasswordCard from 'components/userPanel/changePasswordCard/ChangePasswordCard';
 
 const navLinks = [
     {
@@ -35,20 +38,23 @@ const navButtons = [
 
 const Header = () => {
 
-    const [openUserMenu, setOpenUserMenu] = useState(false);
-    const [openLogoutMenu, setOpenLogoutMenu] = useState(false);
+    const [openUserPanel, setOpenUserPanel] = useState(false);
+    const [openLogoutCard, setOpenLogoutCard] = useState(false);
+    const [openChangePasswordCard, setOpenChangePasswordCard] = useState(false);
 
     const pathname = usePathname();
 
     const isLogin = true;
 
-    const handleUserClick = () => setOpenUserMenu(prev => !prev);
+    const handleUserClick = () => setOpenUserPanel(prev => !prev);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleKeydown = (e: { code: string }) => {
         if (e.code === 'Escape') {
-            if (openLogoutMenu) {
-                setOpenLogoutMenu(false);
-            } else setOpenUserMenu(false);
+            if (openLogoutCard) {
+                setOpenLogoutCard(false);
+            } else if (openChangePasswordCard) {
+                setOpenChangePasswordCard(false);
+            } else setOpenUserPanel(false);
         };
     };
     useEffect(() => {
@@ -57,10 +63,12 @@ const Header = () => {
         return () => window.removeEventListener("keydown", handleKeydown);
     }, [handleKeydown]);
 
-    const logoutModalClick = () => setOpenLogoutMenu(true);
+    const logoutModalClick = () => setOpenLogoutCard(true);
 
-    const logoutCancelClick = () => setOpenLogoutMenu(false);
-    const logoutClick = () => setOpenLogoutMenu(false);
+    const logoutCancelClick = () => setOpenLogoutCard(false);
+    const logoutClick = () => setOpenLogoutCard(false);
+
+    const changePasswordClick = () => setOpenChangePasswordCard(prev => !prev);
 
     return (
         <nav className={styles.container}>
@@ -114,92 +122,22 @@ const Header = () => {
                     ))}
                 </div>
             }
-            {openUserMenu &&
-                <div className={styles.user_panel}>
-                    <Image
-                        src={'/avatars/John.svg'}
-                        alt={'avatar'}
-                        width={56}
-                        height={56}
-                        className={styles.user_logo}
-                    />
-                    <p className={styles.user_title}>Jimmy Dalton</p>
-                    <p className={styles.user_subtitle}>Jimmy@gmail.com</p>
-                    <div className={styles.user_list}>
-                        <div className={styles.list_item}>
-                            <span>Trips & Requests</span>
-                            <Image
-                                src={'/icons/caretRight.svg'}
-                                alt={'right'}
-                                width={24}
-                                height={24}
-                            />
-                        </div>
-                        <div className={styles.list_item}>
-                            <span>Notification</span>
-                            <div className={styles.badge_box}>
-                                <span className={styles.list_badge}>
-                                    1
-                                </span>
-                                <Image
-                                    src={'/icons/caretRight.svg'}
-                                    alt={'right'}
-                                    width={24}
-                                    height={24}
-                                />
-                            </div>
-                        </div>
-                        <div className={styles.list_item}>
-                            <span>Change Password</span>
-                            <Image
-                                src={'/icons/caretRight.svg'}
-                                alt={'right'}
-                                width={24}
-                                height={24}
-                            />
-                        </div>
-                    </div>
-                    <div
-                        className={styles.user_logout}
-                    >
-                        <Image
-                            src={'/icons/signOut.svg'}
-                            alt={'out'}
-                            width={24}
-                            height={24}
-                        />
-                        <span onClick={logoutModalClick}>Logout</span>
-                    </div>
-                </div>
+            {openUserPanel &&
+                <UserPanel
+                    logoutModalClick={logoutModalClick}
+                    changePasswordClick={changePasswordClick}
+                />
             }
-            {openLogoutMenu &&
-                <>
-                    <div className={styles.logout_background}></div>
-                    <div className={styles.logout_menu}>
-                        <Image
-                            src={'/avatars/logoutAvatar.svg'}
-                            alt={'logout'}
-                            width={120}
-                            height={120}
-                            className={styles.logout_avatar}
-                        />
-                        <p className={styles.logout_title}>Logout</p>
-                        <p className={styles.logout_subtitle}>Are you sure to logout?</p>
-                        <div className='line'></div>
-                        <div className={styles.logout_buttons}>
-                            <button
-                                onClick={logoutCancelClick}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={logoutClick}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    </div>
-                </>
+            {openLogoutCard &&
+                <LogoutCard
+                    logoutCancelClick={logoutCancelClick}
+                    logoutClick={logoutClick}
+                />
+            }
+            {openChangePasswordCard &&
+                <ChangePasswordCard
+                    changePasswordClick={changePasswordClick}
+                />
             }
         </nav>
     );
