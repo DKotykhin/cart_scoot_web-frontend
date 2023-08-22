@@ -3,16 +3,17 @@
 .container {
     width: 1320px;
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
+    margin-bottom: 160px;
     .text_box {
         display: block;
         margin: 0 auto;
         width: 424px;
         h3 {
-            text-align: center;            
+            text-align: center;
         }
         p {
-            text-align: center;           
+            text-align: center;
             margin-bottom: 24px;
         }
     }

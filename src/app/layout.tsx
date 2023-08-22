@@ -21,13 +21,13 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body className={inter.className}>
-                <Image
+                {/* <Image
                     src={'/background.svg'}
                     alt={'background'}
                     width={1440}
                     height={806}
                     priority
-                />
+                /> */}
                 <div className='ellipse'></div>
                 <header>
                     <Header />

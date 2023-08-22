@@ -31,6 +31,7 @@ const Footer = () => {
 
     return (
         <div className={styles.footer}>
+            <div className={styles.ellipse}></div>
             <Image
                 src={'/logo.svg'}
                 alt={'logo'}

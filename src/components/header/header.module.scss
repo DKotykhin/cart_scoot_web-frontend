@@ -218,8 +218,10 @@
         align-items: center;
         background-color: $white;
         border-radius: 24px;
-        padding: 24px;
         z-index: 10;
+        .logout_avatar {
+            margin-top: 24px;
+        }
         .logout_title {
             font-size: 32px;
             color: $black-primary;
@@ -234,6 +236,7 @@
         }
         .logout_buttons {
             display: flex;
+            padding-bottom: 24px;
             button {
                 display: flex;
                 width: 175px;

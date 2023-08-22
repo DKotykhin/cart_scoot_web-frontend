@@ -5,10 +5,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: $black-quaternary;
     width: 100vw;
     max-width: 1440px;
     padding: 0 60px;
+    position: relative;
+    .ellipse {
+        position: absolute;
+        top: 0;
+        background-color: $black-quaternary;
+        height: 100%;
+        width: 2190px;
+        min-width: 100vw;
+        z-index: -1;
+        border-radius: 100% / 100%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
     img {
         margin-top: 60px;
     }
