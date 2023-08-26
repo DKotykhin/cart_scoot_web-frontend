@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 import { setHours, setMinutes } from "date-fns";
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 
 import { useForm, Controller } from "react-hook-form";
 

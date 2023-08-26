@@ -14,7 +14,6 @@ const LogoutCard: React.FC<ILogoutCard> = ({ logoutClick, logoutCancelClick }) =
 
     return (
         <div className={styles.container}>
-            <div className={styles.logout_background}></div>
             <div className={styles.logout_menu}>
                 <Image
                     src={'/avatars/logoutAvatar.svg'}

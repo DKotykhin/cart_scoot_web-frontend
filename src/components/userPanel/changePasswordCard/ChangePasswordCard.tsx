@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from 'next/link';
 
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 
 import { PasswordInput } from 'components/inputs/PasswordInput';
 import { ChangePasswordFormValidation } from 'validation/userValidation';
@@ -26,9 +27,17 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
     } = useForm<IPasswordData>(ChangePasswordFormValidation);
 
     const onSubmit = (data: IPasswordData): void => {
-        const { currentPassword, password} = data;
+        const { currentPassword, password } = data;
         if (currentPassword === password) {
-            console.log('The same password!');
+            toast.info('The same password!', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
         } else {
             console.log(data);
         }
@@ -36,7 +45,6 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
 
     return (
         <div className={styles.container}>
-            <div className={styles.card_background}></div>
             <form className={styles.password_form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.upper_box}>
                     <Image

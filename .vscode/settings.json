@@ -4,6 +4,8 @@
         "dropoff",
         "geocode",
         "subadmin",
+        "Swal",
+        "sweetalert",
         "zxcvbn"
     ]
 }

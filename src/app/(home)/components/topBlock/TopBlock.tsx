@@ -31,11 +31,11 @@ const TopBlock = () => {
                         Bookings and Effortless Transportation Services!
                     </h2>
                 </div>
+                <div className={styles.shadow_1}></div>
+                <div className={styles.shadow_2}></div>
                 <div className={styles.form_box}>
                     <PickupForm />
                 </div>
-                <div className={styles.shadow_1}></div>
-                <div className={styles.shadow_2}></div>
             </div>
             <div className={styles.arrow_box}>
                 <div className={styles.arrow}>

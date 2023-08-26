@@ -1,82 +1,86 @@
 @import "constants/constants.scss";
 
-.footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    max-width: 1440px;
-    padding: 0 60px;
-    position: relative;
-    .ellipse {
-        position: absolute;
-        top: 0;
-        background-color: $black-quaternary;
-        height: 100%;
-        width: 2190px;
-        min-width: 100vw;
-        z-index: -1;
-        border-radius: 100% / 100%;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    img {
-        margin-top: 60px;
-    }
-    .logo {
-        font-size: 28px;
-        font-weight: 500;
-        line-height: 34px;
-        color: $blue-primary;
-        margin-top: 16px;
-        span {
-            color: $green-primary;
-        }
-    }
-    .subtitle {
-        font-size: 18px;
-        color: $black-primary;
-        line-height: 22px;
-        margin-top: 8px;
-    }
-    .social {
-        img {
-            width: 56px;
-            height: 56px;
-            padding: 12px;
-            border: 1px solid $white;
-            border-radius: 20px;
-            margin: 24px 16px 0;
-            background-color: $white;
-            box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
-        }
-    }
-    .line {
-        width: 100%;
-        border: 1px solid $black-tertiary;
-        margin: 24px 0;
-    }
-    .navigation {
-        color: $black-primary;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 20px;
-        a {
-            margin: 0 36px;
-        }
-    }
-    .last_block {
+.container {
+display: flex;
+justify-content: center;
+    .footer {
         display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-bottom: 60px;
-        p {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        max-width: 1440px;
+        padding: 0 60px;
+        position: relative;
+        .ellipse {
+            position: absolute;
+            top: 0;
+            background-color: $black-quaternary;
+            height: 100%;
+            width: 2190px;
+            min-width: 100vw;
+            z-index: -1;
+            border-radius: 100% / 100%;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        img {
+            margin-top: 60px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 34px;
+            color: $blue-primary;
+            margin-top: 16px;
+            span {
+                color: $green-primary;
+            }
+        }
+        .subtitle {
             font-size: 18px;
-            line-height: 22px;
             color: $black-primary;
+            line-height: 22px;
+            margin-top: 8px;
+        }
+        .social {
+            img {
+                width: 56px;
+                height: 56px;
+                padding: 12px;
+                border: 1px solid $white;
+                border-radius: 20px;
+                margin: 24px 16px 0;
+                background-color: $white;
+                box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
+            }
+        }
+        .line {
+            width: 100%;
+            border: 1px solid $black-tertiary;
+            margin: 24px 0;
+        }
+        .navigation {
+            color: $black-primary;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
             a {
-                color: $blue-primary;
+                margin: 0 36px;
+            }
+        }
+        .last_block {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 60px;
+            p {
+                font-size: 18px;
+                line-height: 22px;
+                color: $black-primary;
+                a {
+                    color: $blue-primary;
+                }
             }
         }
     }

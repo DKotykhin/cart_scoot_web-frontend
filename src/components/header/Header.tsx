@@ -6,10 +6,11 @@ import { usePathname } from 'next/navigation';
 import Image from "next/image";
 import Link from 'next/link';
 
-import styles from './header.module.scss';
 import UserPanel from 'components/userPanel/UserPanel';
 import LogoutCard from 'components/userPanel/logoutCard/LogoutCard';
 import ChangePasswordCard from 'components/userPanel/changePasswordCard/ChangePasswordCard';
+
+import styles from './header.module.scss';
 
 const navLinks = [
     {
@@ -62,6 +63,18 @@ const Header = () => {
 
         return () => window.removeEventListener("keydown", handleKeydown);
     }, [handleKeydown]);
+
+    useEffect(() => {
+        const offset = window.innerWidth - document.body.offsetWidth + 'px';
+        if (openLogoutCard || openChangePasswordCard) {
+            document.body.style.overflowY = 'hidden';
+            document.body.style.paddingRight = offset;
+        } else {
+            document.body.style.overflowY = 'unset';
+            document.body.style.paddingRight = '0px';
+        }
+
+    }, [openChangePasswordCard, openLogoutCard]);
 
     const logoutModalClick = () => setOpenLogoutCard(true);
 

@@ -52,8 +52,7 @@
             border-radius: 24px;
             background: $white;
             box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
-            padding: 24px;
-            z-index: 3;
+            padding: 24px;            
         }
         .shadow_1 {
             position: absolute;
@@ -63,8 +62,7 @@
             height: 384px;
             border-radius: 24px;
             background: rgba(244, 247, 254, 0.24);
-            backdrop-filter: blur(450px);
-            z-index: 1;
+            backdrop-filter: blur(450px);            
         }
         .shadow_2 {
             position: absolute;
@@ -75,8 +73,7 @@
             border-radius: 24px;
             background: rgba(244, 247, 254, 0.24);
             box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(450px);
-            z-index: 2;
+            backdrop-filter: blur(450px);            
         }
     }
     .arrow_box {
