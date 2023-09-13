@@ -1,0 +1,37 @@
+@import "constants/constants.scss";
+
+.date_box {
+    position: relative;
+    z-index: 1;
+    .date_input {
+        width: 180px;
+        height: 48px;
+        border-radius: 20px;
+        border: 1px solid $black-tertiary;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        color: $black-primary;
+        background-color: transparent;
+        padding-left: 52px;
+    }
+    ::placeholder {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        color: $black-tertiary;
+    }
+    .calendar_icon {
+        position: absolute;
+        left: 16px;
+        top: 12px;
+        z-index: -1;
+    }
+    .arrow_icon {
+        position: absolute;
+        left: 140px;
+        top: 12px;
+        z-index: -1;
+    }
+}

@@ -10,6 +10,7 @@ import Header from 'components/header/Header';
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.scss';
+import ApolloProvider from "apollo/ApolloProvider";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,12 +36,14 @@ export default function RootLayout({
                         draggable
                         pauseOnHover
                     />
-                    <header>
-                        <Header />
-                    </header>
-                    <main>
-                        {children}
-                    </main>
+                    <ApolloProvider>
+                        <header>
+                            <Header />
+                        </header>
+                        <main>
+                            {children}
+                        </main>
+                    </ApolloProvider>
                 </body>
             </html>
         </>
