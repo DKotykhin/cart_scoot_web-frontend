@@ -1,15 +1,14 @@
-"use client";
+// "use client";
 
 import React from 'react';
 
 import Image from "next/image";
 import { format } from "date-fns";
-import { useQuery } from '@apollo/client';
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+
 import { GET_ALL_REQUESTS, GET_NOT_FINISHED_REQUESTS } from 'apollo/queries/request';
+import { getClient } from 'apollo/getClient';
 
 import styles from './requestsTable.module.scss';
-import { getClient } from 'apollo/getClient';
 
 const mockData = [
     {
@@ -82,20 +81,19 @@ const avatarLetters = (name: string) => {
     } else return nameArray[0].charAt(0).toUpperCase();
 };
 
-const RequestsTable = () => {
+const getData = async () => {
+    try {
+        const { data } = await getClient().query({ query: GET_NOT_FINISHED_REQUESTS });
+        return data;
+    } catch (error: any) {
+        console.log(error.message);        
+    }
+};
 
-    const { data, error } = useQuery(GET_NOT_FINISHED_REQUESTS, {
-        onCompleted: (data) => {            
-            console.log(data);            
-        },
-        onError: (err) => {
-            console.log(err.message);
-        }
-    });
-    // const { data, error } = useSuspenseQuery(GET_NOT_FINISHED_REQUESTS);
-    // const { data, error } = await getClient().query({ query: GET_NOT_FINISHED_REQUESTS });
-    data && console.log(data);
-    error && console.log(error);
+const RequestsTable = async () => {
+
+    const data = await getData();
+    console.log(data);
 
     return (
         <table className={styles.container}>

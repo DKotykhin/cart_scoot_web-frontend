@@ -4,7 +4,10 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 
+import Cookies from 'js-cookie';
 import { useForm, Controller } from "react-hook-form";
+import { useMutation } from '@apollo/client';
+import { LOGIN } from 'apollo/mutations/user';
 
 import { EmailInput, PasswordInput, RadioButtons } from 'components/inputs/_index';
 import { LoginFormValidation } from 'validation/userValidation';
@@ -19,6 +22,8 @@ interface IUserData extends IUserLogin {
 
 const LoginCard = () => {
 
+    const [login] = useMutation(LOGIN);
+
     const {
         control,
         handleSubmit,
@@ -26,8 +31,28 @@ const LoginCard = () => {
         reset,
     } = useForm<IUserData>(LoginFormValidation);
 
-    const onSubmit = (data: IUserData): void => {
-        console.log(data);
+    const onSubmit = async (data: IUserData): Promise<void> => {
+        console.log('Login: ', data);
+        const { email, password } = data;
+        try {
+            const { data } = await login({
+                variables: {
+                    email,
+                    password,
+                },
+            });
+
+            if (!data) {
+                return console.log('Something went wrong!');
+            };
+            // Cookies.set('token', data.token, {
+            //     expires: 14,
+            // });
+            console.log('Login success!');
+
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (

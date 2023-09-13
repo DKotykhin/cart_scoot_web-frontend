@@ -17,7 +17,8 @@ import Cookies from 'js-cookie';
 
 const makeClient = () => {
     const authLink = setContext(async (_, { headers }) => {
-        const token = await Cookies.get('token');
+        // const token = await Cookies.get('token');
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGZmN2Y3MjRkYmY0ZTc4ZDFiYjRkNmMiLCJyb2xlIjoiRFJJVkVSIiwiaWF0IjoxNjk0NjE3MzQ0LCJleHAiOjE2OTQ3OTAxNDR9.o8BtlJgI1vqbtUJwOqs_btTGNRYZ7siSuzZQHWxtKD0";
 
         return {
             headers: {

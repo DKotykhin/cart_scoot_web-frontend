@@ -8,7 +8,8 @@ import { setContext } from "@apollo/client/link/context";
 import { cookies } from "next/headers";
 
 const authLink = setContext((_, { headers }) => {
-    const token = cookies().get("token")?.value;
+    // const token = cookies().get("token")?.value;
+     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGZmN2Y3MjRkYmY0ZTc4ZDFiYjRkNmMiLCJyb2xlIjoiRFJJVkVSIiwiaWF0IjoxNjk0NjE3MzQ0LCJleHAiOjE2OTQ3OTAxNDR9.o8BtlJgI1vqbtUJwOqs_btTGNRYZ7siSuzZQHWxtKD0";
 
     return {
         headers: {
