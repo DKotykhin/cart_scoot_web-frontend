@@ -6,6 +6,7 @@ import { ToastContainer, Flip } from 'react-toastify';
 
 import { generalMetaData } from 'metadata/metadata';
 import Header from 'components/header/Header';
+import ApolloProvider from "apollo/ApolloProvider";
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,28 +22,28 @@ export default function RootLayout({
     children: ReactNode
 }) {
     return (
-        <>
-            <html lang="en" suppressHydrationWarning={true}>
-                <body className={inter.className}>
-                    <div className='ellipse'></div>
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={4000}
-                        hideProgressBar
-                        transition={Flip}
-                        closeOnClick
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
+        <html lang="en" suppressHydrationWarning={true}>
+            <body className={inter.className}>
+                <div className='ellipse'></div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={4000}
+                    hideProgressBar
+                    transition={Flip}
+                    closeOnClick
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                <ApolloProvider>
                     <header>
                         <Header />
                     </header>
                     <main>
                         {children}
                     </main>
-                </body>
-            </html>
-        </>
+                </ApolloProvider>
+            </body>
+        </html>
     );
 }
