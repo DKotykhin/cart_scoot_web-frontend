@@ -1,10 +1,15 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm, Controller } from "react-hook-form";
+import { toast } from 'react-toastify';
+
 import Image from "next/image";
 import Link from 'next/link';
 
-import { useForm, Controller } from "react-hook-form";
+import Cookies from 'js-cookie';
+import { useMutation } from '@apollo/client';
+import { REGISTER } from 'apollo/mutations/user';
 
 import { EmailInput, PasswordInput, RadioButtons, UserNameInput } from 'components/inputs/_index';
 import { RegisterFormValidation } from 'validation/userValidation';
@@ -18,6 +23,8 @@ interface IUserData extends IUserRegister {
 
 const RegisterCard = () => {
 
+    const [register] = useMutation(REGISTER);
+
     const {
         control,
         handleSubmit,
@@ -25,8 +32,44 @@ const RegisterCard = () => {
         reset,
     } = useForm<IUserData>(RegisterFormValidation);
 
-    const onSubmit = (data: IUserData): void => {
-        console.log(data);
+    const onSubmit = async (data: IUserData): Promise<void> => {
+        // console.log('Register: ', data);
+        const { email, password, userName, role, terms } = data;
+        if (terms) {
+            try {
+                const { data } = await register({
+                    variables: {
+                        registerUserInput: {
+                            email,
+                            password,
+                            userName,
+                            role,
+                        }
+                    },
+                });
+                Cookies.set('token', data.registerByEmail.token, {
+                    expires: 14,
+                });
+            } catch (err: any) {
+                toast.warn(err.message, {
+                    bodyClassName: "wrong-toast",
+                    icon: <Image
+                        src={'/icons/wrong-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            }
+        } else toast.warn('Please, read and agree with Terms and conditions', {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        });
     };
 
     return (

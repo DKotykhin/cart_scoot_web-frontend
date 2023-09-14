@@ -70,6 +70,7 @@ export const RegisterFormValidation: Object = {
         email: "",
         password: "",
         confirmPassword: "",
+        terms: false,
     },
     resolver: yupResolver(registerSchema),
     mode: "onChange",

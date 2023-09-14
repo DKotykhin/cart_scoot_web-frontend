@@ -1,11 +1,13 @@
 "use client";
 
 import React from 'react';
+import { useForm, Controller } from "react-hook-form";
+import { toast } from 'react-toastify';
+
 import Image from "next/image";
 import Link from 'next/link';
 
 import Cookies from 'js-cookie';
-import { useForm, Controller } from "react-hook-form";
 import { useMutation } from '@apollo/client';
 import { LOGIN } from 'apollo/mutations/user';
 
@@ -32,8 +34,8 @@ const LoginCard = () => {
     } = useForm<IUserData>(LoginFormValidation);
 
     const onSubmit = async (data: IUserData): Promise<void> => {
-        console.log('Login: ', data);
-        const { email, password } = data;
+        // console.log('Login: ', data);
+        const { email, password, rememberMe } = data;
         try {
             const { data } = await login({
                 variables: {
@@ -41,17 +43,21 @@ const LoginCard = () => {
                     password,
                 },
             });
-
-            if (!data) {
-                return console.log('Something went wrong!');
-            };
-            // Cookies.set('token', data.token, {
-            //     expires: 14,
-            // });
-            console.log('Login success!');
-
-        } catch (err) {
-            console.log(err);
+            if (rememberMe) {
+                Cookies.set('token', data.loginByEmail.token, {
+                    expires: 14,
+                });
+            }
+        } catch (err: any) {
+            toast.warn(err.message, {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
         }
     };
 

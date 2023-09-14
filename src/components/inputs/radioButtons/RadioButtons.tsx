@@ -18,14 +18,13 @@ const RadioButtons: React.FC<IRadioButtonsInput> = ({ control }) => {
             <div className={styles.radio} onClick={() => setActive(false)}>
                 <label>
                     <Controller
-                        name="userType"
+                        name="role"
                         control={control}
                         defaultValue={userTypes.rider}
                         render={({ field }) => (
                             <input 
                                 {...field} 
-                                type="radio" 
-                                name="userType" 
+                                type="radio"
                                 value={userTypes.rider} 
                                 className={active ? '' : styles.active} 
                             />
@@ -37,13 +36,12 @@ const RadioButtons: React.FC<IRadioButtonsInput> = ({ control }) => {
             <div className={styles.radio} onClick={() => setActive(true)}>
                 <label>
                     <Controller
-                        name="userType"
+                        name="role"
                         control={control}
                         render={({ field }) => (
                             <input 
                                 {...field} 
                                 type="radio" 
-                                name="userType" 
                                 value={userTypes.driver} 
                                 className={active ? styles.active : ''} 
                             />

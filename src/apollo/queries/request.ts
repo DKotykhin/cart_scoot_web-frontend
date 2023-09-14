@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_REQUEST = gql`
-    query Query($id: ID!) {
-        getRequest(_id: $id) {
+    query GetRequest($id: ID!) {
+        getRequest(id: $id) {
             request {
                 _id
                 createdAt
@@ -36,7 +36,7 @@ export const GET_REQUEST = gql`
 `;
 
 export const GET_ALL_REQUESTS = gql`
-    query Query {
+    query GetAllRequests {
         getAllRequests {
             _id
             createdAt
@@ -64,8 +64,10 @@ export const GET_ALL_REQUESTS = gql`
 `;
 
 export const GET_ALL_REQUESTS_BY_FILTERS = gql`
-    query Query($getAllRequestsByFiltersInput: GetAllRequestsByFiltersInput) {
-        getAllRequests(
+    query GetAllRequestsByFilters(
+        $getAllRequestsByFiltersInput: GetAllRequestsByFiltersInput
+    ) {
+        getAllRequestsByFilters(
             getAllRequestsByFiltersInput: $getAllRequestsByFiltersInput
         ) {
             _id
@@ -98,7 +100,7 @@ export const GET_ALL_REQUESTS_BY_FILTERS = gql`
 `;
 
 export const GET_NOT_FINISHED_REQUESTS = gql`
-    query Query {
+    query GetNotFinishedRequests {
         getNotFinishedRequests {
             _id
             createdAt

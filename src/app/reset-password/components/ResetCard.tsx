@@ -1,12 +1,15 @@
 "use client";
 
 import React from 'react';
+import { toast } from 'react-toastify';
+import { useForm } from "react-hook-form";
 
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Link from 'next/link';
 
-import { useForm } from "react-hook-form";
+import { useMutation } from '@apollo/client';
+import { RESET_PASSWORD } from 'apollo/mutations/user';
 
 import { ResetFormValidation } from 'validation/userValidation';
 import { EmailInput } from 'components/inputs/_index';
@@ -20,6 +23,7 @@ interface IResetData {
 const ResetCard = () => {
 
     const router = useRouter();
+    const [resetPassword] = useMutation(RESET_PASSWORD);
 
     const {
         control,
@@ -28,8 +32,37 @@ const ResetCard = () => {
         reset,
     } = useForm<IResetData>(ResetFormValidation);
 
-    const onSubmit = (data: IResetData): void => {
-        console.log(data);
+    const onSubmit = async (data: IResetData): Promise<void> => {
+        // console.log(data);
+        const { email } = data;
+        try {
+            const { data } = await resetPassword({
+                variables: {
+                    email,
+                },
+            });
+            if (data.resetPassword.status) {
+                toast.success(data.resetPassword.message, {
+                    bodyClassName: "right-toast",
+                    icon: <Image
+                        src={'/icons/right-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            }
+        } catch (err: any) {
+            toast.warn(err.message, {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        }
     };
 
     return (
