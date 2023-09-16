@@ -2,30 +2,22 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from "next/image";
 import Link from 'next/link';
+
+import Cookies from 'js-cookie';
 
 import UserPanel from 'components/userPanel/UserPanel';
 import LogoutCard from 'components/userPanel/logoutCard/LogoutCard';
 import ChangePasswordCard from 'components/userPanel/changePasswordCard/ChangePasswordCard';
 
+import { useUserStore } from 'stores/userStore';
+import { navLinks } from 'constants/navLinks';
+import { IUser } from 'types/userTypes';
+
 import styles from './header.module.scss';
 
-const navLinks = [
-    {
-        name: 'Home',
-        url: '/',
-    },
-    {
-        name: 'About us',
-        url: '/about',
-    },
-    {
-        name: 'Contact us',
-        url: '/contact',
-    },
-];
 const navButtons = [
     {
         name: 'Login',
@@ -37,15 +29,23 @@ const navButtons = [
     },
 ];
 
-const Header = () => {
+interface IHeader {
+    user: IUser;
+}
+
+const Header: React.FC<IHeader> = ({ user }) => {
 
     const [openUserPanel, setOpenUserPanel] = useState(false);
     const [openLogoutCard, setOpenLogoutCard] = useState(false);
     const [openChangePasswordCard, setOpenChangePasswordCard] = useState(false);
 
     const pathname = usePathname();
+    const router = useRouter();
+    const { userData, addUser, setUserEmpty } = useUserStore();
 
-    const isLogin = true;
+    useEffect(() => {
+        if (user?._id) addUser(user);
+    }, [addUser, user]);
 
     const handleUserClick = () => setOpenUserPanel(prev => !prev);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,10 +76,17 @@ const Header = () => {
 
     }, [openChangePasswordCard, openLogoutCard]);
 
-    const logoutModalClick = () => setOpenLogoutCard(true);
+    const handleCloseClick = () => setOpenUserPanel(false);
 
+    const logoutModalClick = () => setOpenLogoutCard(true);
     const logoutCancelClick = () => setOpenLogoutCard(false);
-    const logoutClick = () => setOpenLogoutCard(false);
+    const logoutClick = () => {
+        setOpenLogoutCard(false);
+        setOpenUserPanel(false);
+        Cookies.remove('token');
+        router.push('/login');
+        setUserEmpty();
+    };
 
     const changePasswordClick = () => setOpenChangePasswordCard(prev => !prev);
 
@@ -105,7 +112,7 @@ const Header = () => {
                     </Link>
                 ))}
             </div>
-            {isLogin ?
+            {userData?._id ?
                 <div className={styles.authButtons}>
                     <div
                         className={styles.user_button}
@@ -139,6 +146,8 @@ const Header = () => {
                 <UserPanel
                     logoutModalClick={logoutModalClick}
                     changePasswordClick={changePasswordClick}
+                    user={userData}
+                    handleCloseClick={handleCloseClick}
                 />
             }
             {openLogoutCard &&

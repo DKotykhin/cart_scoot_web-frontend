@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 import Image from "next/image";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import Cookies from 'js-cookie';
 import { useMutation } from '@apollo/client';
@@ -13,6 +14,7 @@ import { LOGIN } from 'apollo/mutations/user';
 
 import { EmailInput, PasswordInput, RadioButtons } from 'components/inputs/_index';
 import { LoginFormValidation } from 'validation/userValidation';
+import { useUserStore } from 'stores/userStore';
 
 import { IUserLogin } from 'types/userTypes';
 
@@ -25,6 +27,8 @@ interface IUserData extends IUserLogin {
 const LoginCard = () => {
 
     const [login] = useMutation(LOGIN);
+    const router = useRouter();
+    const { addUser } = useUserStore();
 
     const {
         control,
@@ -47,7 +51,13 @@ const LoginCard = () => {
                 Cookies.set('token', data.loginByEmail.token, {
                     expires: 14,
                 });
+            } else {
+                Cookies.set('token', data.loginByEmail.token, {
+                    expires: 1,
+                });
             }
+            router.push('/');
+            addUser(data.loginByEmail.user);
         } catch (err: any) {
             toast.warn(err.message, {
                 bodyClassName: "wrong-toast",

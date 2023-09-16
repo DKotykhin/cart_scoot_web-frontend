@@ -1,0 +1,28 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    width: 1320px;
+    height: 120px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 24px;
+    background: $blue-quaternary;
+    margin-top: 48px;
+    .ads {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 40px;
+        background: linear-gradient(
+            76deg,
+            $blue-primary 0%,
+            $blue-secondary 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

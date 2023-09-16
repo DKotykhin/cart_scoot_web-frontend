@@ -6,7 +6,10 @@ import { ToastContainer, Flip } from 'react-toastify';
 
 import { generalMetaData } from 'metadata/metadata';
 import Header from 'components/header/Header';
+
 import ApolloProvider from "apollo/ApolloProvider";
+import { GET_USER_BY_TOKEN } from "apollo/queries/user";
+import { getClient } from "apollo/getClient";
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,11 +19,24 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = generalMetaData;
 
-export default function RootLayout({
+const getUserByToken = async () => {
+    try {
+        const { data } = await getClient().query({
+            query: GET_USER_BY_TOKEN
+        });
+        return data;
+    } catch (error: any) {
+        console.log(error.message);
+    }
+};
+
+export default async function RootLayout({
     children,
 }: {
     children: ReactNode
 }) {
+    const data = await getUserByToken();
+
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body className={inter.className}>
@@ -37,7 +53,7 @@ export default function RootLayout({
                 />
                 <ApolloProvider>
                     <header>
-                        <Header />
+                        <Header user={data?.getUserByToken} />
                     </header>
                     <main>
                         {children}

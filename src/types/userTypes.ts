@@ -29,11 +29,6 @@ export interface IUser {
     createdAt: string;
     userName: string;
     email: string;
-    resetPassword: {
-        token: string;
-        expire: string;
-        changed: string;
-    };
     avatarURL: string;
     license: {
         url: [string];

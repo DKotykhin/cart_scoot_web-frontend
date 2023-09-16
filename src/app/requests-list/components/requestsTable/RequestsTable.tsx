@@ -72,33 +72,11 @@ const avatarLetters = (name: string) => {
     } else return nameArray[0].charAt(0).toUpperCase();
 };
 
-// const getData = async () => {
-//     try {
-//         const { data } = await getClient().query({
-//             query: GET_ALL_REQUESTS_BY_FILTERS, variables: {
-//                 getAllRequestsByFiltersInput: {
-//                     dateFrom: null,
-//                     dateTo: null,
-//                     page: null,
-//                     searchRequestCode: null,
-//                     status: null,
-//                 }
-//             }
-//         });
-//         return data;
-//     } catch (error: any) {
-//         console.log(error.message);
-//     }
-// };
-
 interface IRequestsTable {
     requestData: [IRequestWithPopulatedFields];
 }
 
 const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
-
-    // const data = await getData();
-    // console.log(data.getAllRequestsByFilters);
 
     return (
         <table className={styles.container}>
