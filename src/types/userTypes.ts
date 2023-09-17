@@ -62,3 +62,27 @@ export interface IPasswordResponse {
     status: boolean;
     message: string;
 }
+
+export interface IDriver {
+    _id: string;
+    userName: string;
+    avatarURL: string;
+    phone: {
+        number: string;
+        confirmed: boolean;
+    };
+    workingDays: [number];
+    workingTime: {
+        from: number;
+        to: number;
+    };
+    coordinates: {
+        lat: number;
+        lon: number;
+    };
+}
+
+export interface IDriverWithRating {
+    driver: IDriver;
+    rating: number;
+}

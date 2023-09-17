@@ -5,17 +5,8 @@ export const GET_REQUEST = gql`
         getRequest(id: $id) {
             request {
                 _id
-                createdAt
-                userId
-                driverId {
-                    _id
-                    userName
-                    avatarURL
-                }
-                description
-                status
                 carType
-                requestedTime
+                createdAt
                 coordinates {
                     start {
                         lat
@@ -26,9 +17,22 @@ export const GET_REQUEST = gql`
                         lon
                     }
                 }
-                requestCode
-                pickupLocation
+                description
+                driverId {
+                    _id
+                    userName
+                    avatarURL
+                    phone {
+                        confirmed
+                        number
+                    }
+                }
                 dropoffLocation
+                pickupLocation
+                requestCode
+                requestedTime
+                status
+                userId
             }
             avgRating
         }

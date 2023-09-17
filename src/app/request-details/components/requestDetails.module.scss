@@ -1,0 +1,70 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    gap: 28px;
+    margin-top: 28px;
+    .map {
+        position: relative;
+        width: 100%;
+        background-color: $white;
+        border-radius: 20px;
+        .return_button {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            display: flex;
+            align-items: center;
+            padding: 8px 24px 8px 8px;
+            align-items: center;
+            gap: 12px;
+            border-radius: 20px;
+            background: $white;
+            box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            img {
+                display: flex;
+                width: 48px;
+                height: 48px;
+                padding: 0px 8px;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+            }
+            p {
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 600;
+                line-height: 20px;
+            }
+        }
+        .marker_box {
+            display: flex;
+            align-items: center;
+            position: relative;
+            .marker_badge {
+                position: absolute;
+                top: -21px;
+                left: -10px;
+            }
+            .marker_pin {
+                z-index: 2;
+            }
+            p {
+                z-index: 2;
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 600;
+                line-height: 20px;
+            }
+        }
+    }
+    .details {
+        min-width: 424px;
+        height: 688px;
+        padding: 24px;
+        border-radius: 24px;
+        background-color: $white;
+        box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+    }
+}

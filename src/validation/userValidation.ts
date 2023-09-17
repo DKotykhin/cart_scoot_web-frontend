@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ref } from "yup";
+import "yup-phone-lite";
 
 const userName = yup
     .string()
@@ -35,6 +36,9 @@ const message = yup
     .max(500, "Maximum 500 characters to fill")
     .required("Required field!");
 
+const phone = yup.string().phone(["US", "PL"], "Please enter a valid phone number").required("Required field!");
+const terms = yup.boolean().oneOf([true], "The terms and conditions must be accepted.");
+
 const registerSchema = yup.object({
     userName,
     email,
@@ -62,6 +66,10 @@ const changePasswordSchema = yup.object({
     currentPassword: password,
     password,
     confirmPassword,
+});
+const addMobileSchema = yup.object({
+    phone,
+    terms,
 });
 
 export const RegisterFormValidation: Object = {
@@ -117,5 +125,14 @@ export const ContactFormValidation: Object = {
         message: "",
     },
     resolver: yupResolver(contactSchema),
+    mode: "onChange",
+};
+
+export const AddMobileValidation: Object = {
+    defaultValues: {
+        phone: "",
+        terms: false,
+    },
+    resolver: yupResolver(addMobileSchema),
     mode: "onChange",
 };

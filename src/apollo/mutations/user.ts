@@ -98,3 +98,19 @@ export const SET_NEW_PASSWORD = gql`
         }
     }
 `;
+
+export const ADD_MOBILE_PHONE = gql`
+    mutation AddMobilePhone($phone: String!) {
+        addMobilePhone(phone: $phone) {
+            _id
+        }
+    }
+`;
+
+export const CONFIRM_MOBILE_PHONE = gql`
+    mutation ConfirmMobilePhone($smsCode: String!) {
+        confirmMobilePhone(smsCode: $smsCode) {
+            _id
+        }
+    }
+`;

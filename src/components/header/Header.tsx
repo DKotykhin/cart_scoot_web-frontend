@@ -17,6 +17,7 @@ import { navLinks } from 'constants/navLinks';
 import { IUser } from 'types/userTypes';
 
 import styles from './header.module.scss';
+import AddMobilePhoneCard from 'components/userPanel/addMobilePhoneCard/AddMobilePhoneCard';
 
 const navButtons = [
     {
@@ -38,6 +39,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
     const [openUserPanel, setOpenUserPanel] = useState(false);
     const [openLogoutCard, setOpenLogoutCard] = useState(false);
     const [openChangePasswordCard, setOpenChangePasswordCard] = useState(false);
+    const [openAddMobileCard, setOpenAddMobileCard] = useState(false);
 
     const pathname = usePathname();
     const router = useRouter();
@@ -55,6 +57,8 @@ const Header: React.FC<IHeader> = ({ user }) => {
                 setOpenLogoutCard(false);
             } else if (openChangePasswordCard) {
                 setOpenChangePasswordCard(false);
+            } else if (openAddMobileCard) {
+                setOpenAddMobileCard(false);
             } else setOpenUserPanel(false);
         };
     };
@@ -66,7 +70,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
 
     useEffect(() => {
         const offset = window.innerWidth - document.body.offsetWidth + 'px';
-        if (openLogoutCard || openChangePasswordCard) {
+        if (openLogoutCard || openChangePasswordCard || openAddMobileCard) {
             document.body.style.overflowY = 'hidden';
             document.body.style.paddingRight = offset;
         } else {
@@ -74,11 +78,12 @@ const Header: React.FC<IHeader> = ({ user }) => {
             document.body.style.paddingRight = '0px';
         }
 
-    }, [openChangePasswordCard, openLogoutCard]);
+    }, [openChangePasswordCard, openLogoutCard, openAddMobileCard]);
 
-    const handleCloseClick = () => setOpenUserPanel(false);
-
-    const logoutModalClick = () => setOpenLogoutCard(true);
+    const logoutModalClick = () => {
+        setOpenLogoutCard(true);
+        setOpenUserPanel(false);
+    };
     const logoutCancelClick = () => setOpenLogoutCard(false);
     const logoutClick = () => {
         setOpenLogoutCard(false);
@@ -89,6 +94,9 @@ const Header: React.FC<IHeader> = ({ user }) => {
     };
 
     const changePasswordClick = () => setOpenChangePasswordCard(prev => !prev);
+    const addMobileClick = () => setOpenAddMobileCard(prev => !prev);
+    const handleClose = () => setOpenAddMobileCard(false);
+    const handleCloseClick = () => setOpenUserPanel(false);
 
     return (
         <nav className={styles.container}>
@@ -148,6 +156,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
                     changePasswordClick={changePasswordClick}
                     user={userData}
                     handleCloseClick={handleCloseClick}
+                    addMobileClick={addMobileClick}
                 />
             }
             {openLogoutCard &&
@@ -159,6 +168,11 @@ const Header: React.FC<IHeader> = ({ user }) => {
             {openChangePasswordCard &&
                 <ChangePasswordCard
                     changePasswordClick={changePasswordClick}
+                />
+            }
+            {openAddMobileCard &&
+                <AddMobilePhoneCard
+                    handleClose={handleClose}
                 />
             }
         </nav>

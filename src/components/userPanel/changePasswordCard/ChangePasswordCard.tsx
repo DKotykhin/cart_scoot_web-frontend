@@ -83,8 +83,12 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
     };
 
     return (
-        <div className={styles.container}>
-            <form className={styles.password_form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.container} onClick={changePasswordClick}>
+            <form
+                className={styles.password_form}
+                onSubmit={handleSubmit(onSubmit)}
+                onClick={(e) => e.stopPropagation()}
+            >
                 <div className={styles.upper_box}>
                     <Image
                         src={'/avatars/keyAvatar.svg'}
