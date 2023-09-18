@@ -2,17 +2,13 @@
 
 import React from 'react';
 
-import Image from 'next/image';
-
-import { setHours, setMinutes } from "date-fns";
-import DatePicker from 'react-datepicker';
-
-import { useForm, Controller } from "react-hook-form";
-
+import { useForm } from "react-hook-form";
 import { useLoadScript } from '@react-google-maps/api';
 
-import PickupInput from './locationInput/PickupInput';
-import DropoffInput from './locationInput/DropoffInput';
+import PickupInput from 'components/inputs/locationInput/PickupInput';
+import DropoffInput from 'components/inputs/locationInput/DropoffInput';
+import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
+import TimePickerInput from 'components/inputs/dateTimePickers/TimePickerInput';
 
 import styles from './pickupForm.module.scss';
 
@@ -77,70 +73,15 @@ const PickupForm = () => {
                 isLoaded={isLoaded}
             />
             <div className={styles.date_time_box}>
-                <div className={styles.picker_box}>
-                    <Controller
-                        name="date"
-                        control={control}
-                        render={({ field }) => (
-                            <DatePicker
-                                selected={field.value}
-                                minDate={new Date()}
-                                placeholderText="Pickup Date"
-                                onChange={(date) => field.onChange(date)}
-                                className={styles.date_time_input}
-                            />
-                        )}
-                    />
-                    <Image
-                        src={'/icons/calendarBlank.svg'}
-                        alt={'calendar icon'}
-                        width={24}
-                        height={24}
-                        className={styles.start_icon}
-                    />
-                    <Image
-                        src={'/icons/bxs-chevron-down.svg'}
-                        alt={'arrow icon'}
-                        width={24}
-                        height={24}
-                        className={styles.arrow_icon}
-                    />
-                </div>
-                <div className={styles.picker_box}>
-                    <Controller
-                        name="time"
-                        control={control}
-                        render={({ field }) => (
-                            <DatePicker
-                                selected={field.value}
-                                placeholderText="Pickup Time"
-                                onChange={(date) => field.onChange(date)}
-                                className={styles.date_time_input}
-                                showTimeSelect
-                                showTimeSelectOnly
-                                timeIntervals={15}
-                                timeCaption="Time"
-                                dateFormat="h:mm aa"
-                                minTime={setHours(setMinutes(new Date(), 0), 6)}
-                                maxTime={setHours(setMinutes(new Date(), 0), 23)}
-                            />
-                        )}
-                    />
-                    <Image
-                        src={'/icons/clock.svg'}
-                        alt={'clock icon'}
-                        width={24}
-                        height={24}
-                        className={styles.start_icon}
-                    />
-                    <Image
-                        src={'/icons/bxs-chevron-down.svg'}
-                        alt={'arrow icon'}
-                        width={24}
-                        height={24}
-                        className={styles.arrow_icon}
-                    />
-                </div>
+                <DatePickerInput
+                    control={control}
+                    placeholder='Pickup Date'
+                    name='date'
+                    minDate={true}
+                />
+                <TimePickerInput
+                    control={control}
+                />
             </div>
             <DropoffInput
                 control={control}
