@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 24px;
     flex-shrink: 0;
+    height: 100%;
     .detail_title {
         font-size: 24px;
         color: $black-primary;
@@ -21,102 +22,140 @@
             gap: 4px;
         }
     }
-    .button_box {
+    .details_wrapper {
+        flex-grow: 1;
         display: flex;
-        padding: 4px;
-        border-radius: 20px;
-        background: $black-quaternary;
-        .button_status {
+        flex-direction: column;
+        gap: 24px;
+        .button_box {
             display: flex;
-            height: 48px;
-            padding: 0px 16px;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            flex: 1 0 0;
+            padding: 4px;
             border-radius: 20px;
-            box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
-            p {
-                font-size: 16px;
-                color: $green-primary;
-                font-weight: 600;
-                line-height: 20px;
+            background: $black-quaternary;
+            .button_status {
+                display: flex;
+                height: 48px;
+                padding: 0px 16px;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex: 1 0 0;
+                border-radius: 20px;
+                box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
+                p {
+                    font-size: 16px;
+                    color: $green-primary;
+                    font-weight: 600;
+                    line-height: 20px;
+                }
+            }
+            .button_details {
+                display: flex;
+                height: 48px;
+                padding: 0px 16px;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex: 1 0 0;
+                border-radius: 20px;
+                cursor: pointer;
+                p {
+                    font-size: 16px;
+                    color: $black-secondary;
+                    font-weight: 600;
+                    line-height: 20px;
+                }
             }
         }
-        .button_details {
+        .tip_box {
             display: flex;
-            height: 48px;
-            padding: 0px 16px;
-            justify-content: center;
             align-items: center;
-            gap: 8px;
-            flex: 1 0 0;
-            border-radius: 20px;
-            cursor: pointer;
-            p {
+            justify-content: space-between;
+            .tip_title_box {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 14px;
+                color: $black-secondary;
+                font-weight: 400;
+                line-height: 18px;
+            }
+            .tip_value {
                 font-size: 16px;
                 color: $black-secondary;
                 font-weight: 600;
                 line-height: 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 190px;
+            }
+            > :nth-child(2) {
+                border-radius: 16px;
+                p {
+                    display: flex;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 18px;
+                    height: 40px;
+                    padding: 0px 12px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+            .status_finished {
+                background-color: $black-quaternary;
+                color: $black-primary;
+            }
+            .status_pending {
+                background-color: $orange-secondary;
+                color: $orange-primary;
+            }
+            .status_active {
+                background-color: $blue-quaternary;
+                color: $blue-primary;
+            }
+            .status_approved {
+                background-color: $green-quaternary;
+                color: $green-primary;
+            }
+            .status_rejected {
+                background-color: $red-secondary;
+                color: $red-primary;
             }
         }
     }
-    .tip_box {
+    .trip_finish {
         display: flex;
+        height: 48px;
+        padding: 0px 24px;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
-        .tip_title_box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: $black-secondary;
-            font-weight: 400;
-            line-height: 18px;
-        }
-        .tip_value {
-            font-size: 16px;
-            color: $black-secondary;
-            font-weight: 600;
-            line-height: 20px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            max-width: 190px;
-        }
-        > :nth-child(2) {
-            border-radius: 16px;
-            p {
-                display: flex;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 18px;
-                height: 40px;
-                padding: 0px 12px;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-            }
-        }
-        .status_finished {
-            background-color: $black-quaternary;
-            color: $black-primary;
-        }
-        .status_pending {
-            background-color: $orange-secondary;
-            color: $orange-primary;
-        }
-        .status_active {
-            background-color: $blue-quaternary;
-            color: $blue-primary;
-        }
-        .status_approved {
-            background-color: $green-quaternary;
-            color: $green-primary;
-        }
-        .status_rejected {
-            background-color: $red-secondary;
-            color: $red-primary;
-        }
+        gap: 12px;
+        border-radius: 20px;
+        background: $green-primary;
+        box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+        font-size: 16px;
+        color: $black-primary;
+        font-weight: 600;
+        line-height: 20px;
+        cursor: pointer;
+    }
+    .trip_cancel {
+        display: flex;
+        height: 48px;
+        padding: 0px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        border-radius: 20px;
+        border: 1px solid $black-tertiary;
+        background: $white;
+        font-size: 16px;
+        color: $black-primary;
+        font-weight: 600;
+        line-height: 20px;
+        cursor: pointer;
     }
 }

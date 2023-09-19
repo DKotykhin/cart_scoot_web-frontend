@@ -13,6 +13,7 @@ import { getClient } from "apollo/getClient";
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-toastify/dist/ReactToastify.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import './globals.scss';
 
 const inter = Inter({ subsets: ['latin'] });

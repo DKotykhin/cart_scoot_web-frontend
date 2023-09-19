@@ -21,7 +21,7 @@ interface IUserPanel {
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_REST_API;
 
-const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswordClick,handleCloseClick, addMobileClick }) => {
+const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswordClick, handleCloseClick, addMobileClick }) => {
 
     const { addUser } = useUserStore();
 
@@ -79,15 +79,17 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswor
                         />
                     </div>
                 </Link>
-                <div className={styles.list_item} onClick={addMobileClick}>
-                    <span>Add Mobile Phone</span>
-                    <Image
-                        src={'/icons/caretRight.svg'}
-                        alt={'right'}
-                        width={24}
-                        height={24}
-                    />
-                </div>
+                {!user.phone.number &&
+                    <div className={styles.list_item} onClick={addMobileClick}>
+                        <span>Add Mobile Phone</span>
+                        <Image
+                            src={'/icons/caretRight.svg'}
+                            alt={'right'}
+                            width={24}
+                            height={24}
+                        />
+                    </div>
+                }
                 <div
                     className={styles.list_item}
                     onClick={changePasswordClick}

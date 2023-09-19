@@ -13,6 +13,7 @@ import RequestsTable from '../requestsTable/RequestsTable';
 import { IRequestWithPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestsPanel.module.scss';
+import Link from 'next/link';
 
 const Table = () => {
 
@@ -68,7 +69,9 @@ const Table = () => {
                 />
                 <h3 className={styles.title}>Trips List is Empty!</h3>
                 <p className={styles.empty_p}>You didn&apos;t send a trip request yet. Get started by clicking on “Find a car” button</p>
-                <button className={styles.empty_button}>Find a car</button>
+                <Link href={'/map'}>
+                    <button className={styles.empty_button}>Find a car</button>
+                </Link>
             </div>
         </div>;
 
