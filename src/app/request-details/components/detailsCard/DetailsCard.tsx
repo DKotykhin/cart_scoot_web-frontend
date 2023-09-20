@@ -8,8 +8,9 @@ import { useMutation } from '@apollo/client';
 import { FINISH_REQUEST, RIDER_ANSWER } from 'apollo/mutations/request';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
-
+import DetailsItem from 'components/detailsItem/DetailsItem';
 import { IRouteData } from '../RequestDetails';
+
 import { IRequestWithRating } from 'types/requestTypes';
 
 import styles from './detailsCard.module.scss';
@@ -128,76 +129,31 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                             <p>Trip details</p>
                         </div>
                     </div>
-                    <div className={styles.tip_box}>
-                        <div className={styles.tip_title_box}>
-                            <Image
-                                src={'/icons/mapPin.svg'}
-                                alt={'pin'}
-                                width={24}
-                                height={24}
-                            />
-                            <p>Pickup Location</p>
-                        </div>
-                        <p className={styles.tip_value}>
-                            {pickupLocation}
-                        </p>
-                    </div>
-                    <div className={styles.tip_box}>
-                        <div className={styles.tip_title_box}>
-                            <Image
-                                src={'/icons/calendarBlank.svg'}
-                                alt={'calendar'}
-                                width={24}
-                                height={24}
-                            />
-                            <p>Dropoff Location</p>
-                        </div>
-                        <p className={styles.tip_value}>
-                            {dropoffLocation}
-                        </p>
-                    </div>
-                    <div className={styles.tip_box}>
-                        <div className={styles.tip_title_box}>
-                            <Image
-                                src={'/icons/path.svg'}
-                                alt={'calendar'}
-                                width={24}
-                                height={24}
-                            />
-                            <p>Distance</p>
-                        </div>
-                        <p className={styles.tip_value}>
-                            {Math.round((routeData.distance / 1000) * 10) / 10}{" km"}
-                        </p>
-                    </div>
-                    <div className={styles.tip_box}>
-                        <div className={styles.tip_title_box}>
-                            <Image
-                                src={'/icons/hourglass.svg'}
-                                alt={'calendar'}
-                                width={24}
-                                height={24}
-                            />
-                            <p>Estimated time</p>
-                        </div>
-                        <p className={styles.tip_value}>
-                            {Math.ceil(routeData.duration / 60)}{" min"}
-                        </p>
-                    </div>
-                    <div className={styles.tip_box}>
-                        <div className={styles.tip_title_box}>
-                            <Image
-                                src={'/icons/phone.svg'}
-                                alt={'calendar'}
-                                width={24}
-                                height={24}
-                            />
-                            <p>Phone</p>
-                        </div>
-                        <p className={styles.tip_value}>
-                            <a href={`tel:${driverId.phone.number}`}>{driverId.phone?.number}</a>
-                        </p>
-                    </div>
+                    <DetailsItem
+                        imageURL='/icons/mapPin.svg'
+                        title='Pickup Location'
+                        value={pickupLocation}
+                    />
+                    <DetailsItem
+                        imageURL='/icons/calendarBlank.svg'
+                        title='Dropoff Location'
+                        value={dropoffLocation}
+                    />
+                    <DetailsItem
+                        imageURL='/icons/path.svg'
+                        title='Distance'
+                        value={`${Math.round((routeData.distance / 1000) * 10) / 10} km`}
+                    />
+                    <DetailsItem
+                        imageURL='/icons/hourglass.svg'
+                        title='Estimated time'
+                        value={`${Math.ceil(routeData.duration / 60)} min`}
+                    />
+                    <DetailsItem
+                        imageURL='/icons/phone.svg'
+                        title='Phone'
+                        value={<a href={`tel:${driverId.phone?.number}`}>{driverId.phone?.number}</a>}
+                    />
                 </div>
                 :
                 <div className={styles.details_wrapper}>
@@ -209,34 +165,16 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                             <p>Trip details</p>
                         </div>
                     </div>
-                    <div className={styles.tip_box}>
-                        <div className={styles.tip_title_box}>
-                            <Image
-                                src={'/icons/telegramLogo.svg'}
-                                alt={'telegram'}
-                                width={24}
-                                height={24}
-                            />
-                            <p>Request date & time</p>
-                        </div>
-                        <p className={styles.tip_value}>
-                            {format(new Date(requestedTime), "d LLL H:mm")}
-                        </p>
-                    </div>
-                    <div className={styles.tip_box}>
-                        <div className={styles.tip_title_box}>
-                            <Image
-                                src={'/icons/tagChevron.svg'}
-                                alt={'tag'}
-                                width={24}
-                                height={24}
-                            />
-                            <p>Request Code</p>
-                        </div>
-                        <p className={styles.tip_value}>
-                            {requestCode}
-                        </p>
-                    </div>
+                    <DetailsItem
+                        imageURL='/icons/telegramLogo.svg'
+                        title='Request date & time'
+                        value={format(new Date(requestedTime), "d LLL H:mm")}
+                    />
+                    <DetailsItem
+                        imageURL='/icons/tagChevron.svg'
+                        title='Request Code'
+                        value={requestCode}
+                    />
                     <div className={styles.tip_box}>
                         <div className={styles.tip_title_box}>
                             <Image

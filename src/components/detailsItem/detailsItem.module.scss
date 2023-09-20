@@ -1,0 +1,26 @@
+@import "constants/constants.scss";
+
+.tip_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .tip_title_box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        color: $black-secondary;
+        font-weight: 400;
+        line-height: 18px;
+    }
+    .tip_value {
+        font-size: 16px;
+        color: $black-secondary;
+        font-weight: 600;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 190px;
+    }            
+}
