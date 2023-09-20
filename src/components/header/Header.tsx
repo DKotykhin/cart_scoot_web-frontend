@@ -2,30 +2,23 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from "next/image";
 import Link from 'next/link';
+
+import Cookies from 'js-cookie';
 
 import UserPanel from 'components/userPanel/UserPanel';
 import LogoutCard from 'components/userPanel/logoutCard/LogoutCard';
 import ChangePasswordCard from 'components/userPanel/changePasswordCard/ChangePasswordCard';
 
-import styles from './header.module.scss';
+import { useUserStore } from 'stores/userStore';
+import { navLinks } from 'constants/navLinks';
+import { IUser } from 'types/userTypes';
 
-const navLinks = [
-    {
-        name: 'Home',
-        url: '/',
-    },
-    {
-        name: 'About us',
-        url: '/about',
-    },
-    {
-        name: 'Contact us',
-        url: '/contact',
-    },
-];
+import styles from './header.module.scss';
+import AddMobilePhoneCard from 'components/userPanel/addMobilePhoneCard/AddMobilePhoneCard';
+
 const navButtons = [
     {
         name: 'Login',
@@ -37,15 +30,24 @@ const navButtons = [
     },
 ];
 
-const Header = () => {
+interface IHeader {
+    user: IUser;
+}
+
+const Header: React.FC<IHeader> = ({ user }) => {
 
     const [openUserPanel, setOpenUserPanel] = useState(false);
     const [openLogoutCard, setOpenLogoutCard] = useState(false);
     const [openChangePasswordCard, setOpenChangePasswordCard] = useState(false);
+    const [openAddMobileCard, setOpenAddMobileCard] = useState(false);
 
     const pathname = usePathname();
+    const router = useRouter();
+    const { userData, addUser, setUserEmpty } = useUserStore();
 
-    const isLogin = true;
+    useEffect(() => {
+        if (user?._id) addUser(user);
+    }, [addUser, user]);
 
     const handleUserClick = () => setOpenUserPanel(prev => !prev);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,6 +57,8 @@ const Header = () => {
                 setOpenLogoutCard(false);
             } else if (openChangePasswordCard) {
                 setOpenChangePasswordCard(false);
+            } else if (openAddMobileCard) {
+                setOpenAddMobileCard(false);
             } else setOpenUserPanel(false);
         };
     };
@@ -66,7 +70,7 @@ const Header = () => {
 
     useEffect(() => {
         const offset = window.innerWidth - document.body.offsetWidth + 'px';
-        if (openLogoutCard || openChangePasswordCard) {
+        if (openLogoutCard || openChangePasswordCard || openAddMobileCard) {
             document.body.style.overflowY = 'hidden';
             document.body.style.paddingRight = offset;
         } else {
@@ -74,14 +78,25 @@ const Header = () => {
             document.body.style.paddingRight = '0px';
         }
 
-    }, [openChangePasswordCard, openLogoutCard]);
+    }, [openChangePasswordCard, openLogoutCard, openAddMobileCard]);
 
-    const logoutModalClick = () => setOpenLogoutCard(true);
-
+    const logoutModalClick = () => {
+        setOpenLogoutCard(true);
+        setOpenUserPanel(false);
+    };
     const logoutCancelClick = () => setOpenLogoutCard(false);
-    const logoutClick = () => setOpenLogoutCard(false);
+    const logoutClick = () => {
+        setOpenLogoutCard(false);
+        setOpenUserPanel(false);
+        Cookies.remove('token');
+        router.push('/login');
+        setUserEmpty();
+    };
 
     const changePasswordClick = () => setOpenChangePasswordCard(prev => !prev);
+    const addMobileClick = () => setOpenAddMobileCard(prev => !prev);
+    const handleClose = () => setOpenAddMobileCard(false);
+    const handleCloseClick = () => setOpenUserPanel(false);
 
     return (
         <nav className={styles.container}>
@@ -105,7 +120,7 @@ const Header = () => {
                     </Link>
                 ))}
             </div>
-            {isLogin ?
+            {userData?._id ?
                 <div className={styles.authButtons}>
                     <div
                         className={styles.user_button}
@@ -139,6 +154,9 @@ const Header = () => {
                 <UserPanel
                     logoutModalClick={logoutModalClick}
                     changePasswordClick={changePasswordClick}
+                    user={userData}
+                    handleCloseClick={handleCloseClick}
+                    addMobileClick={addMobileClick}
                 />
             }
             {openLogoutCard &&
@@ -150,6 +168,11 @@ const Header = () => {
             {openChangePasswordCard &&
                 <ChangePasswordCard
                     changePasswordClick={changePasswordClick}
+                />
+            }
+            {openAddMobileCard &&
+                <AddMobilePhoneCard
+                    handleClose={handleClose}
                 />
             }
         </nav>

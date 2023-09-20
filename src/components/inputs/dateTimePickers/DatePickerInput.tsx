@@ -13,11 +13,12 @@ interface IDatePickerInput {
     control: Control<any>;
     placeholder: string;
     name: string;
+    minDate?: boolean;
 }
 
-const DatePickerInput: React.FC<IDatePickerInput> = ({ control, placeholder, name }) => {
+const DatePickerInput: React.FC<IDatePickerInput> = ({ control, placeholder, name, minDate }) => {
     return (
-        <div className={styles.date_box}>
+        <div className={styles.picker_box}>
             <Controller
                 name={name}
                 control={control}
@@ -26,7 +27,8 @@ const DatePickerInput: React.FC<IDatePickerInput> = ({ control, placeholder, nam
                         selected={field.value}
                         placeholderText={placeholder}
                         onChange={(date) => field.onChange(date)}
-                        className={styles.date_input}
+                        minDate={minDate ? new Date() : null}
+                        className={styles.picker_input}
                     />
                 )}
             />
@@ -35,7 +37,7 @@ const DatePickerInput: React.FC<IDatePickerInput> = ({ control, placeholder, nam
                 alt={'calendar icon'}
                 width={24}
                 height={24}
-                className={styles.calendar_icon}
+                className={styles.start_icon}
             />
             <Image
                 src={'/icons/bxs-chevron-down.svg'}

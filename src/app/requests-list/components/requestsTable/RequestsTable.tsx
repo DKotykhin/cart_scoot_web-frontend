@@ -1,95 +1,14 @@
 import React from 'react';
 
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import { format } from "date-fns";
 
 import { IRequestWithPopulatedFields } from 'types/requestTypes';
 
+import DriverAvatar from 'components/driverAvatar/DriverAvatar';
+
 import styles from './requestsTable.module.scss';
-
-const mockData = [
-    {
-        requestCode: '395-9823',
-        avatarURL: '/avatars/Sarah.svg',
-        userName: 'Cody Fisher',
-        pickupLocation: '4140 Parker Rd Parker Rd Parker Rd',
-        dropoffLocation: '2715 Ash Dr.San 2715 Ash Dr.San',
-        requestedTime: new Date('August 19, 1975 23:15:30 UTC').toJSON(),
-        status: 'FINISHED',
-    },
-    {
-        requestCode: '398-5783',
-        avatarURL: '',
-        userName: 'Robert Fox Robert Fox',
-        pickupLocation: '3517 W. Gray Street',
-        dropoffLocation: '2972 Westerner Street Westerner Street',
-        requestedTime: new Date('December 1, 2023 23:15:30 UTC').toJSON(),
-        status: 'PENDING',
-    },
-    {
-        requestCode: '395-9823',
-        avatarURL: '/avatars/Sarah.svg',
-        userName: 'Cody Fisher',
-        pickupLocation: '4140 Parker Rd Parker Rd Parker Rd',
-        dropoffLocation: '2715 Ash Dr.San 2715 Ash Dr.San',
-        requestedTime: new Date('August 29, 1975 7:15:30 UTC').toJSON(),
-        status: 'ACTIVE',
-    },
-    {
-        requestCode: '398-5783',
-        avatarURL: '/avatars/Sarah.svg',
-        userName: 'Robert Fox',
-        pickupLocation: '3517 W. Gray Street',
-        dropoffLocation: '2972 Westerner Street Westerner Street',
-        requestedTime: new Date('March 11, 2023 11:01:30 UTC').toJSON(),
-        status: 'APPROVED',
-    },
-    {
-        requestCode: '395-9823',
-        avatarURL: '/avatars/Sarah.svg',
-        userName: 'Cody Fisher',
-        pickupLocation: '4140 Parker Rd Parker Rd Parker Rd',
-        dropoffLocation: '2715 Ash Dr.San 2715 Ash Dr.San',
-        requestedTime: new Date('August 29, 1975 7:15:30 UTC').toJSON(),
-        status: 'REJECTED',
-    },
-    {
-        requestCode: '398-5783',
-        avatarURL: '/avatars/Sarah.svg',
-        userName: 'Robert Fox',
-        pickupLocation: '3517 W. Gray Street',
-        dropoffLocation: '2972 Westerner Street Westerner Street',
-        requestedTime: new Date('March 11, 2023 11:01:30 UTC').toJSON(),
-        status: 'APPROVED',
-    },
-];
-
-const avatarLetters = (name: string) => {
-    const nameArray = name.split(' ');
-    if (nameArray.length > 1) {
-        const letters = nameArray[0].charAt(0) + nameArray[1].charAt(0);
-        return letters.toUpperCase();
-    } else return nameArray[0].charAt(0).toUpperCase();
-};
-
-// const getData = async () => {
-//     try {
-//         const { data } = await getClient().query({
-//             query: GET_ALL_REQUESTS_BY_FILTERS, variables: {
-//                 getAllRequestsByFiltersInput: {
-//                     dateFrom: null,
-//                     dateTo: null,
-//                     page: null,
-//                     searchRequestCode: null,
-//                     status: null,
-//                 }
-//             }
-//         });
-//         return data;
-//     } catch (error: any) {
-//         console.log(error.message);
-//     }
-// };
 
 interface IRequestsTable {
     requestData: [IRequestWithPopulatedFields];
@@ -97,8 +16,8 @@ interface IRequestsTable {
 
 const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
 
-    // const data = await getData();
-    // console.log(data.getAllRequestsByFilters);
+    const router = useRouter();
+    const handleClick = (_id: string) => router.push(`/request-details/${_id}`);
 
     return (
         <table className={styles.container}>
@@ -120,21 +39,10 @@ const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
                         <td><div>{i + 1}</div></td>
                         <td><div>{item.requestCode}</div></td>
                         <td>
-                            <div className={styles.driver_box}>
-                                {item.driverId.avatarURL ?
-                                    <Image
-                                        src={item.driverId.avatarURL}
-                                        alt={'avatar'}
-                                        width={48}
-                                        height={48}
-                                    />
-                                    :
-                                    <div className={styles.empty_avatar}>
-                                        {avatarLetters(item.driverId.userName || 'C S')}
-                                    </div>
-                                }
-                                <span className={styles.driver_name}>{item.driverId.userName}</span>
-                            </div>
+                            <DriverAvatar
+                                driverAvatarURL={item.driverId.avatarURL}
+                                driverName={item.driverId.userName}
+                            />
                         </td>
                         <td><div>{item.pickupLocation}</div></td>
                         <td><div>{item.dropoffLocation}</div></td>
@@ -153,6 +61,7 @@ const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
                                 alt={'caret'}
                                 width={20}
                                 height={20}
+                                onClick={() => handleClick(item._id)}
                             />
                         </td>
                     </tr>
@@ -163,3 +72,62 @@ const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
 };
 
 export default RequestsTable;
+
+
+
+// const mockData = [
+//     {
+//         requestCode: '395-9823',
+//         avatarURL: '/avatars/Sarah.svg',
+//         userName: 'Cody Fisher',
+//         pickupLocation: '4140 Parker Rd Parker Rd Parker Rd',
+//         dropoffLocation: '2715 Ash Dr.San 2715 Ash Dr.San',
+//         requestedTime: new Date('August 19, 1975 23:15:30 UTC').toJSON(),
+//         status: 'FINISHED',
+//     },
+//     {
+//         requestCode: '398-5783',
+//         avatarURL: '',
+//         userName: 'Robert Fox Robert Fox',
+//         pickupLocation: '3517 W. Gray Street',
+//         dropoffLocation: '2972 Westerner Street Westerner Street',
+//         requestedTime: new Date('December 1, 2023 23:15:30 UTC').toJSON(),
+//         status: 'PENDING',
+//     },
+//     {
+//         requestCode: '395-9823',
+//         avatarURL: '/avatars/Sarah.svg',
+//         userName: 'Cody Fisher',
+//         pickupLocation: '4140 Parker Rd Parker Rd Parker Rd',
+//         dropoffLocation: '2715 Ash Dr.San 2715 Ash Dr.San',
+//         requestedTime: new Date('August 29, 1975 7:15:30 UTC').toJSON(),
+//         status: 'ACTIVE',
+//     },
+//     {
+//         requestCode: '398-5783',
+//         avatarURL: '/avatars/Sarah.svg',
+//         userName: 'Robert Fox',
+//         pickupLocation: '3517 W. Gray Street',
+//         dropoffLocation: '2972 Westerner Street Westerner Street',
+//         requestedTime: new Date('March 11, 2023 11:01:30 UTC').toJSON(),
+//         status: 'APPROVED',
+//     },
+//     {
+//         requestCode: '395-9823',
+//         avatarURL: '/avatars/Sarah.svg',
+//         userName: 'Cody Fisher',
+//         pickupLocation: '4140 Parker Rd Parker Rd Parker Rd',
+//         dropoffLocation: '2715 Ash Dr.San 2715 Ash Dr.San',
+//         requestedTime: new Date('August 29, 1975 7:15:30 UTC').toJSON(),
+//         status: 'REJECTED',
+//     },
+//     {
+//         requestCode: '398-5783',
+//         avatarURL: '/avatars/Sarah.svg',
+//         userName: 'Robert Fox',
+//         pickupLocation: '3517 W. Gray Street',
+//         dropoffLocation: '2972 Westerner Street Westerner Street',
+//         requestedTime: new Date('March 11, 2023 11:01:30 UTC').toJSON(),
+//         status: 'APPROVED',
+//     },
+// ];

@@ -2,9 +2,13 @@ import React from 'react';
 
 import Image from "next/image";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+
+import { useMutation } from '@apollo/client';
+import { CHANGE_PASSWORD } from 'apollo/mutations/user';
 
 import { PasswordInput } from 'components/inputs/PasswordInput';
 import { ChangePasswordFormValidation } from 'validation/userValidation';
@@ -19,6 +23,9 @@ interface IPasswordData {
 
 const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ changePasswordClick }) => {
 
+    const [changePassword] = useMutation(CHANGE_PASSWORD);
+    const router = useRouter();
+
     const {
         control,
         handleSubmit,
@@ -26,10 +33,10 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
         reset,
     } = useForm<IPasswordData>(ChangePasswordFormValidation);
 
-    const onSubmit = (data: IPasswordData): void => {
+    const onSubmit = async (data: IPasswordData): Promise<void> => {
         const { currentPassword, password } = data;
         if (currentPassword === password) {
-            toast.info('The same password!', {
+            toast.error('The same password!', {
                 bodyClassName: "wrong-toast",
                 icon: <Image
                     src={'/icons/wrong-code.svg'}
@@ -39,13 +46,49 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
                 />
             });
         } else {
-            console.log(data);
+            try {
+                const { data } = await changePassword({
+                    variables: {
+                        changePasswordInput: {
+                            password,
+                            currentPassword,
+                        }
+                    },
+                });
+                if (data.changePassword.status) {
+                    toast.success(data.changePassword.message, {
+                        bodyClassName: "right-toast",
+                        icon: <Image
+                            src={'/icons/right-code.svg'}
+                            alt='icon'
+                            width={56}
+                            height={56}
+                        />
+                    });
+                    changePasswordClick();
+                    router.push('/login');
+                }
+            } catch (err: any) {
+                toast.warn(err.message, {
+                    bodyClassName: "wrong-toast",
+                    icon: <Image
+                        src={'/icons/wrong-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            }
         }
     };
 
     return (
-        <div className={styles.container}>
-            <form className={styles.password_form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.container} onClick={changePasswordClick}>
+            <form
+                className={styles.password_form}
+                onSubmit={handleSubmit(onSubmit)}
+                onClick={(e) => e.stopPropagation()}
+            >
                 <div className={styles.upper_box}>
                     <Image
                         src={'/avatars/keyAvatar.svg'}

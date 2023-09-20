@@ -31,3 +31,29 @@ export const GET_USER_BY_TOKEN = gql`
         }
     }
 `;
+
+export const GET_FREE_DRIVERS = gql`
+    query GetFreeDrivers($getFreeDriversInput: GetFreeDriversInput) {
+        getFreeDrivers(getFreeDriversInput: $getFreeDriversInput) {
+            rating
+            driver {
+                _id
+                avatarURL
+                userName
+                workingTime {
+                    from
+                    to
+                }
+                phone {
+                    confirmed
+                    number
+                }
+                coordinates {
+                    lat
+                    lon
+                }
+                workingDays
+            }
+        }
+    }
+`;

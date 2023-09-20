@@ -19,7 +19,7 @@ const UserNameInput: React.FC<IUserNameInput> = ({ control, error }) => {
                 render={({ field }) => (
                     <input
                         {...field}
-                        type='string'
+                        type='text'
                         placeholder='Full Name'
                         className={error ? styles.active : ''}
                     />

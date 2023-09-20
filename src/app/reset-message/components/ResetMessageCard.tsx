@@ -21,7 +21,6 @@ const ResetMessageCard = () => {
             </div>
             <div className='line'></div>
             <div className={styles.lowerBox}>
-                {/* <button type='submit' className='button'>Login</button> */}
                 <Link href={'/login'}>
                     <p className='button'>Login</p>
                 </Link>

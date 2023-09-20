@@ -2,30 +2,9 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 
-import styles from './footer.module.scss';
+import { navLinks } from 'constants/navLinks';
 
-const navLinks = [
-    {
-        name: 'Home',
-        url: '/',
-    },
-    {
-        name: 'About us',
-        url: '/about',
-    },
-    {
-        name: 'Contact us',
-        url: '/contact',
-    },
-    {
-        name: 'User Profile',
-        url: '/contact',
-    },
-    {
-        name: 'Driver Profile',
-        url: '/contact',
-    },
-];
+import styles from './footer.module.scss';
 
 const Footer = () => {
 

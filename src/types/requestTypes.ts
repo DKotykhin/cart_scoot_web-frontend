@@ -40,3 +40,20 @@ export interface IRequestWithPopulatedFields extends IBaseRequest {
         avatarURL: string;
     };
 }
+
+export interface IRequestWithDriverPhone extends IBaseRequest {
+    driverId: {
+        _id: string;
+        userName: string;
+        avatarURL: string;
+        phone: {
+            confirmed: boolean;
+            number: string;
+        };
+    };
+}
+
+export interface IRequestWithRating {
+    request: IRequestWithDriverPhone;
+    avgRating: number;
+}

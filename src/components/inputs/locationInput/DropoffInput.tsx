@@ -28,14 +28,14 @@ const DropoffInput: React.FC<IDropoffInput> = ({ control, isLoaded }) => {
                         >
                             <input
                                 type="text"
-                                placeholder="Pickup Location"
+                                placeholder="Dropoff Location"
                             />
                         </StandaloneSearchBox>
                     )}
                 />
                 : <input
                     type='text'
-                    placeholder="Pickup Location"
+                    placeholder="Dropoff Location"
                 />
             }
             <Image

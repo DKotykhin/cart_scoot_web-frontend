@@ -13,8 +13,8 @@ interface ILogoutCard {
 const LogoutCard: React.FC<ILogoutCard> = ({ logoutClick, logoutCancelClick }) => {
 
     return (
-        <div className={styles.container}>
-            <div className={styles.logout_menu}>
+        <div className={styles.container} onClick={logoutCancelClick}>
+            <div className={styles.logout_menu} onClick={(e) => e.stopPropagation()}>
                 <Image
                     src={'/avatars/logoutAvatar.svg'}
                     alt={'logout'}
