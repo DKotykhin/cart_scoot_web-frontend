@@ -8,47 +8,47 @@ import Image from "next/image";
 import Link from 'next/link';
 
 import { useMutation } from '@apollo/client';
-import { ADD_MOBILE_PHONE } from 'apollo/mutations/user';
+import { REGISTER_BY_PHONE } from 'apollo/mutations/user';
 
 import { PhoneField } from 'components/inputs/_index';
 import { AddMobileValidation } from 'validation/userValidation';
-import ConfirmMobilePhoneCard from '../confirmMobilePhoneCard/ConfirmMobilePhoneCard';
 
-import styles from './addMobilePhoneCard.module.scss';
+import styles from './registerMobilePhone.module.scss';
+import ConfirmCodeCard from '../confirmCodeCard/ConfirmCodeCard';
 
-interface IAddMobileData {
+interface IRegisterMobileData {
     phone: string;
     terms: string;
 }
-interface IAddMobilePhoneCard {
+interface IRegisterMobilePhone {
     handleClose: () => void;
 }
 
-const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
+const RegisterMobilePhone: React.FC<IRegisterMobilePhone> = ({ handleClose }) => {
 
     const [openConfirmCard, setOpenConfirmCard] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
 
-    const [addMobile] = useMutation(ADD_MOBILE_PHONE);
+    const [registerByPhone] = useMutation(REGISTER_BY_PHONE);
 
     const {
         control,
         handleSubmit,
         formState: { errors, isValid },
         reset,
-    } = useForm<IAddMobileData>(AddMobileValidation);
+    } = useForm<IRegisterMobileData>(AddMobileValidation);
 
-    const onSubmit = async (formData: IAddMobileData): Promise<void> => {
-        // console.log('Add Mobile Phone: ', formData);
+    const onSubmit = async (formData: IRegisterMobileData): Promise<void> => {
+        // console.log('Register Mobile Phone: ', formData);
         const phone = `+${formData?.phone}`;
         setPhoneNumber(phone);
         try {
-            const { data } = await addMobile({
+            const { data } = await registerByPhone({
                 variables: {
                     phone,
                 },
             });
-            if (data.addMobilePhone._id) setOpenConfirmCard(true);
+            if (data.registerByPhone.user._id) setOpenConfirmCard(true);
         } catch (err: any) {
             toast.warn(err.message, {
                 bodyClassName: "wrong-toast",
@@ -65,7 +65,7 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
     const resendCode = async () => {
         if (phoneNumber) {
             try {
-                await addMobile({
+                await registerByPhone({
                     variables: {
                         phone: phoneNumber,
                     },
@@ -89,7 +89,11 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
     return (
         <div className={styles.container} onClick={handleClose}>
             {openConfirmCard ?
-                <ConfirmMobilePhoneCard resendCode={resendCode} closeModal={closeModal} /> :
+                <ConfirmCodeCard
+                    resendCode={resendCode}
+                    closeModal={closeModal}
+                    phoneNumber={phoneNumber}
+                /> :
                 <form
                     className={styles.form}
                     onSubmit={handleSubmit(onSubmit)}
@@ -102,7 +106,7 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
                             width={120}
                             height={120}
                         />
-                        <h2 className='title'>Add Mobile Phone</h2>
+                        <h2 className='title'>Welcome to CartScoot!</h2>
                         <p className='subtitle'>Enter your phone number</p>
                         <PhoneField
                             error={errors.phone}
@@ -128,6 +132,12 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
                     <div className='line'></div>
                     <div className={styles.lowerBox}>
                         <button type='submit' className='button-green-filled'>Send a code</button>
+                        <button type='button' className={styles.button_login}>
+                            Already have an email account?
+                            <Link href={'/login'}>
+                                <span>Login</span>
+                            </Link>
+                        </button>
                     </div>
                 </form>
             }
@@ -135,4 +145,4 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
     );
 };
 
-export default AddMobilePhoneCard;
+export default RegisterMobilePhone;

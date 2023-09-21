@@ -1,12 +1,12 @@
 @import "constants/constants.scss";
 
-.form {
+.container {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    width: 648px;
+    width: 422px;
     flex-direction: column;
     justify-content: center;
     border-radius: 24px;
@@ -17,33 +17,27 @@
         padding: 24px 24px 1px 24px;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-between;
         img {
             margin: 0 auto 24px;
         }
-        .smsCode {
-            input {
-                width: 150px;
-                height: 48px;
-                border-radius: 20px;
-                border: 1px solid $green-tertiary;
-                font-size: 16px;
-                font-weight: 600;
-                line-height: 20px;
-                color: $green-primary;
-                margin-bottom: 48px;
-                text-align: center;
-                outline: none;
-            }
-            :focus {
-                border: 1px solid $green-primary;
-            }
-            ::placeholder {
-                font-size: 16px;
-                font-weight: 600;
-                line-height: 20px;
-                color: $green-tertiary;
+        .first_subtitle {
+            color: $black-secondary;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22px;
+            margin-bottom: 16px;
+        }
+        .second_subtitle {
+            color: $black-secondary;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22px;
+            margin-bottom: 48px;
+            span {
+                color: $blue-primary;
             }
         }
     }
@@ -54,5 +48,8 @@
         gap: 24px;
         width: 100%;
         padding: 24px;
+        a {
+            width: 100%;
+        }
     }
 }

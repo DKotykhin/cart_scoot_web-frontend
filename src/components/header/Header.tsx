@@ -137,7 +137,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
                             className={styles.user_avatar}
                         />
                     </div>
-                    <Link href={'/'}>
+                    <Link href={'/map'}>
                         Book a Cart
                     </Link>
                 </div>

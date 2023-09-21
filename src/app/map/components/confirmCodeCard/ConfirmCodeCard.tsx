@@ -3,25 +3,29 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { useForm, Controller } from "react-hook-form";
+import Cookies from 'js-cookie';
 
 import Image from "next/image";
 
 import { useMutation } from '@apollo/client';
-import { CONFIRM_MOBILE_PHONE } from 'apollo/mutations/user';
+import { LOGIN_BY_PHONE } from 'apollo/mutations/user';
+import { useUserStore } from 'stores/userStore';
 
-import styles from './confirmMobilePhoneCard.module.scss';
+import styles from './confirmCodeCard.module.scss';
 
-interface IConfirmMobilePhoneCard {
+interface IConfirmCodeCard {
     resendCode: () => void;
     closeModal: () => void;
+    phoneNumber: string;
 }
 interface IAddCode {
     smsCode: string;
 }
 
-const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode, closeModal }) => {
+const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, phoneNumber }) => {
 
-    const [confirm] = useMutation(CONFIRM_MOBILE_PHONE);
+    const [loginByPhone] = useMutation(LOGIN_BY_PHONE);
+    const { addUser } = useUserStore();
 
     const {
         control,
@@ -35,16 +39,23 @@ const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode,
     });
 
     const onSubmit = async (formData: IAddCode): Promise<void> => {
-        // console.log('Add Code: ', formData);
+        // console.log('Login Code: ', formData);
         const { smsCode } = formData;
         try {
-            const { data } = await confirm({
+            const { data } = await loginByPhone({
                 variables: {
-                    smsCode,
+                    loginByPhoneInput: {
+                        phone: phoneNumber,
+                        smsCode,
+                    }
                 },
             });
-            if (data.confirmMobilePhone._id) {
+            if (data.loginByPhone.user._id) {
                 closeModal();
+                Cookies.set('token', data.loginByPhone.token, {
+                    expires: 2,
+                });
+                addUser(data.loginByPhone.user);
                 toast.success('Code has been verified successfully', {
                     bodyClassName: "right-toast",
                     icon: <Image
@@ -105,7 +116,7 @@ const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode,
             </div>
             <div className='line'></div>
             <div className={styles.lowerBox}>
-                <button type='submit' className='button-green-filled'>Add phone</button>
+                <button type='submit' className='button-green-filled'>Login</button>
                 <button
                     type='button'
                     className='button-green-outlined'
@@ -118,4 +129,4 @@ const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode,
     );
 };
 
-export default ConfirmMobilePhoneCard;
+export default ConfirmCodeCard;

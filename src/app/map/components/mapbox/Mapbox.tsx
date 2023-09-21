@@ -11,13 +11,15 @@ import { GET_FREE_DRIVERS } from 'apollo/queries/user';
 
 import SendRequestButton from '../sendRequestButton/SendRequestButton';
 import FindCarForm, { IFormData } from '../findCarForm/FindCarForm';
+import RequestDetailedCard from '../requestDetailedCard/RequestDetailedCard';
+import AskLoginCard from '../askLoginCard/AskLoginCard';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
+import RegisterMobilePhone from 'app/map/components/registerMobilePhone/RegisterMobilePhone';
 
 import { viewport } from 'constants/mapViewport';
 import { IDriverWithRating } from 'types/userTypes';
 
 import styles from './mapbox.module.scss';
-import RequestDetailedCard from '../requestDetailedCard/RequestDetailedCard';
 
 export interface IMarkerClickData {
     driver: IDriverWithRating,
@@ -29,6 +31,8 @@ const Mapbox = () => {
     const [savedFormData, setSavedFormData] = useState<IFormData>();
     const [markerData, setMarkerData] = useState<IMarkerClickData>();
     const [openDriverDetails, setOpenDriverDetails] = useState(false);
+    const [openLoginMobileCard, setOpenLoginMobileCard] = useState(false);
+    const [openAddMobileCard, setOpenAddMobileCard] = useState(false);
 
     const { data }: { data: { getFreeDrivers: [IDriverWithRating] } } = useSuspenseQuery(GET_FREE_DRIVERS, {
         variables: {
@@ -64,13 +68,24 @@ const Mapbox = () => {
 
     }, [data?.getFreeDrivers.length]);
     // console.log(data?.getFreeDrivers);
-    const openLoginModal = () => console.log('openLoginModal');
+
+    const openLoginModal = () => setOpenLoginMobileCard(true);
+    const closeLoginModal = () => setOpenLoginMobileCard(false);
+
     const formData = (data: IFormData) => setSavedFormData(data);
     const markerClick = (data: IMarkerClickData) => {
         setMarkerData(data);
         setOpenDriverDetails(true);
     };
     const closeDriverDetails = () => setOpenDriverDetails(false);
+
+    const openPhoneCard = () => {
+        console.log('open Card');
+        setOpenLoginMobileCard(false);
+        setOpenAddMobileCard(true);
+    };
+
+    const closeMobileCard = () => setOpenAddMobileCard(false);
 
     return (
         <div className={styles.container}>
@@ -105,6 +120,15 @@ const Mapbox = () => {
                 }
             </div>
             {markerData && openDriverDetails && <RequestDetailedCard markerData={markerData} />}
+            {openLoginMobileCard &&
+                <AskLoginCard
+                    closeLoginModal={closeLoginModal}
+                    openPhoneCard={openPhoneCard}
+                />
+            }
+            {openAddMobileCard &&
+                <RegisterMobilePhone handleClose={closeMobileCard} />
+            }
         </div>
     );
 };

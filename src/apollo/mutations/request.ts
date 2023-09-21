@@ -26,6 +26,7 @@ export const ONE_DRIVER_REQUEST = gql`
             request {
                 _id
                 status
+                requestCode
             }
         }
     }
@@ -41,6 +42,7 @@ export const ALL_DRIVERS_REQUEST = gql`
             request {
                 _id
                 status
+                requestCode
             }
         }
     }

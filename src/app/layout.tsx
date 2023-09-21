@@ -27,7 +27,8 @@ const getUserByToken = async () => {
         });
         return data;
     } catch (error: any) {
-        console.log(error.message);
+        console.log('Layout error message: ', error.message);
+        // window.location.href = "/login";
     }
 };
 

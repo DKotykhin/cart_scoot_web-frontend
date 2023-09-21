@@ -22,6 +22,18 @@
         color: $black-primary;
         font-weight: 500;
         line-height: 24px;
+        margin-left: 8px;
+    }
+    .review_name {
+        font-size: 16px;
+        color: $black-primary;
+        font-weight: 500;
+        line-height: 20px;
+        margin-left: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 200px;
     }
     .empty_avatar {
         display: flex;

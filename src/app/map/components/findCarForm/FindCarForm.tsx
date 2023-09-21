@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useLoadScript } from '@react-google-maps/api';
-import { formatISO } from 'date-fns';
+import { Libraries, useLoadScript } from '@react-google-maps/api';
 
 import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
 import TimePickerInput from 'components/inputs/dateTimePickers/TimePickerInput';
@@ -45,7 +44,7 @@ export interface IFormData {
     };
 }
 
-const libraries: any = ['places'];
+const libraries: Libraries = ['places'];
 
 const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, formData, closeDriverDetails }) => {
 
@@ -75,7 +74,7 @@ const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, formData, closeDr
         const { date, time, pickup, dropoff } = data;
         const timeData = {
             date: date?.toJSON(),
-            time: time.toLocaleString(),
+            time: time?.toJSON(),
         };
         // console.log(timeData);
         let locationData;

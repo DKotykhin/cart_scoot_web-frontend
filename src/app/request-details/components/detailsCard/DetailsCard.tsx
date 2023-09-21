@@ -168,7 +168,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                     <DetailsItem
                         imageURL='/icons/telegramLogo.svg'
                         title='Request date & time'
-                        value={format(new Date(requestedTime), "d LLL H:mm")}
+                        value={requestedTime ? format(new Date(requestedTime), "d LLL h:mm a") : ""}
                     />
                     <DetailsItem
                         imageURL='/icons/tagChevron.svg'

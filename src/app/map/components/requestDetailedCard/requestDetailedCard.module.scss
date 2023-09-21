@@ -72,37 +72,21 @@
                 }
             }
         }
-    }
-    .request_button {
-        display: flex;
-        height: 48px;
-        padding: 0px 24px;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        border-radius: 20px;
-        background: $green-primary;
-        box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
-        font-size: 16px;
-        color: $black-primary;
-        font-weight: 600;
-        line-height: 20px;
-        cursor: pointer;
-    }
-    .all_request_button {
-        display: flex;
-        height: 48px;
-        padding: 0px 24px;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        border-radius: 20px;
-        border: 1px solid $green-primary;
-        background: $white;
-        font-size: 16px;
-        color: $green-primary;
-        font-weight: 600;
-        line-height: 20px;
-        cursor: pointer;
+        .review_box {
+            width: 100%;
+            height: 260px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .review_box_long {
+            width: 100%;
+            height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
     }
 }

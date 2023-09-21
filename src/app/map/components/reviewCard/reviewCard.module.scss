@@ -1,0 +1,33 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    gap: 8px;
+    border-radius: 24px;
+    background: $black-quaternary;
+    .user_box {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        gap: 8px;
+        >:first-child {
+            flex-grow: 1;
+        }
+        .rating {
+            font-size: 16px;
+            color: $green-primary;
+            font-weight: 600;
+            line-height: 20px;
+        }
+    }
+    .text {
+        font-size: 16px;
+        color: $black-secondary;
+        font-weight: 400;
+        line-height: 20px;
+    }
+}

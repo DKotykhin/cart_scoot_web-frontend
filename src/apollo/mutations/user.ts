@@ -99,6 +99,48 @@ export const SET_NEW_PASSWORD = gql`
     }
 `;
 
+export const REGISTER_BY_PHONE = gql`
+    mutation RegisterByPhone($phone: String!) {
+        registerByPhone(phone: $phone) {
+            message
+            user {
+                _id
+            }
+        }
+    }
+`;
+
+export const LOGIN_BY_PHONE = gql`
+    mutation LoginByPhone($loginByPhoneInput: LoginByPhoneInput) {
+        loginByPhone(loginByPhoneInput: $loginByPhoneInput) {
+            message
+            token
+            user {
+                _id
+                avatarURL
+                coordinates {
+                    lat
+                    lon
+                }
+                createdAt
+                driverRequests
+                email
+                phone {
+                    confirmed
+                    number
+                }
+                role
+                userName
+                workingDays
+                workingTime {
+                    from
+                    to
+                }
+            }
+        }
+    }
+`;
+
 export const ADD_MOBILE_PHONE = gql`
     mutation AddMobilePhone($phone: String!) {
         addMobilePhone(phone: $phone) {

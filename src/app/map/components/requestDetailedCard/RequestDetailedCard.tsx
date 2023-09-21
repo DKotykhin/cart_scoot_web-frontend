@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import axios from 'axios';
 
+import { useRouter } from 'next/navigation';
+
 import { useMutation } from '@apollo/client';
 import { ONE_DRIVER_REQUEST, ALL_DRIVERS_REQUEST } from 'apollo/mutations/request';
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
@@ -13,9 +15,11 @@ import { GET_REVIEW_BY_ID } from 'apollo/queries/review';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
 import { IMarkerClickData } from '../mapbox/Mapbox';
+import ReviewCard from '../reviewCard/ReviewCard';
+
+import { IReview } from 'types/reviewTypes';
 
 import styles from './requestDetailedCard.module.scss';
-import { IReview } from 'types/reviewTypes';
 
 const starArray = [1, 2, 3, 4, 5];
 
@@ -50,12 +54,14 @@ const dayOfWeek = (data: [number]) => {
 const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => {
 
     const { driver: { driver, rating }, savedFormData } = markerData;
+    const router = useRouter();
 
     const [buttonIndex, setButtonIndex] = useState(0);
     const [routeData, setRouteData] = useState({
         distance: 0,
         duration: 0,
     });
+    const [requestedTime, setRequestedTime] = useState("");
 
     const { data }: { data: { getReviewsById: [IReview] } } = useSuspenseQuery(GET_REVIEW_BY_ID, {
         variables: {
@@ -67,9 +73,15 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
     const [oneDriverRequest] = useMutation(ONE_DRIVER_REQUEST);
     const [allDriversRequest] = useMutation(ALL_DRIVERS_REQUEST);
 
-    const requestHours = new Date(savedFormData?.timeData.time || "").getHours();
-    const requestMinutes = new Date(savedFormData?.timeData.time || "").getMinutes();
-    const requestedTime = new Date(new Date(savedFormData?.timeData.date || "").setHours(requestHours, requestMinutes)).toLocaleString();
+    useEffect(() => {
+        if (savedFormData?.timeData.time && savedFormData?.timeData.date) {
+            const requestHours = new Date(savedFormData?.timeData.time).getHours();
+            const requestMinutes = new Date(savedFormData?.timeData.time).getMinutes();
+            const requestedTime = new Date(new Date(savedFormData?.timeData.date).setHours(requestHours, requestMinutes)).toJSON();
+            setRequestedTime(requestedTime);
+        }
+    }, [savedFormData?.timeData.date, savedFormData?.timeData.time]);
+
 
     useEffect(() => {
         const startPoint = `${savedFormData?.locationData?.pickup.lat},${savedFormData?.locationData?.pickup.lon}`;
@@ -112,6 +124,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
                 },
             });
             if (data.createOneDriverRequest.request._id) {
+                router.push(`/request-sent-message/${data.createOneDriverRequest.request.requestCode}`);
                 toast.success('Request sent successfully', {
                     bodyClassName: "right-toast",
                     icon: <Image
@@ -179,7 +192,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
         }
     };
 
-    return data ? (
+    return markerData ? (
         <div className={styles.container}>
             <p className={styles.detail_title}>Details</p>
             <div className={styles.driver_box}>
@@ -259,7 +272,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
                         <DetailsItem
                             imageURL='/icons/telegramLogo.svg'
                             title='Request date & time'
-                            value={format(new Date(requestedTime), "d LLL H:mm")}
+                            value={requestedTime ? format(new Date(requestedTime), "d LLL h:mm a") : ""}
                         />
                         <DetailsItem
                             imageURL='/icons/calendarBlank.svg'
@@ -290,20 +303,31 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
                                 <p>Reviews</p>
                             </div>
                         </div>
+                        <div className={savedFormData ? styles.review_box : styles.review_box_long}>
+                            {data.getReviewsById.map(review => (
+                                <div key={review._id}>
+                                    <ReviewCard reviewData={review} />
+                                </div>
+                            ))}
+                        </div>
                     </div>
             }
-            <button
-                className={styles.request_button}
-                onClick={requestClick}
-            >
-                Send Request
-            </button>
-            <button
-                className={styles.all_request_button}
-                onClick={allRequestClick}
-            >
-                Send Request to all
-            </button>
+            {savedFormData &&
+                <button
+                    className='button-green-filled'
+                    onClick={requestClick}
+                >
+                    Send Request
+                </button>
+            }
+            {savedFormData &&
+                <button
+                    className='button-green-outlined'
+                    onClick={allRequestClick}
+                >
+                    Send Request to all
+                </button>
+            }
         </div>
     ) : null;
 };
