@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { format } from "date-fns";
 
-import { IRequestWithPopulatedFields } from 'types/requestTypes';
+import { IRequestWithPopulatedFields, statusTypes } from 'types/requestTypes';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 
@@ -40,17 +40,17 @@ const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
                         <td><div>{item.requestCode}</div></td>
                         <td>
                             <DriverAvatar
-                                driverAvatarURL={item.driverId.avatarURL}
-                                driverName={item.driverId.userName}
+                                driverAvatarURL={item.driverId?.avatarURL}
+                                driverName={item.driverId?.userName}
                             />
                         </td>
                         <td><div>{item.pickupLocation}</div></td>
                         <td><div>{item.dropoffLocation}</div></td>
                         <td><div>{format(new Date(item.requestedTime), "d LLL H:mm")}</div></td>
-                        <td className={item.status === 'PENDING' ? styles.status_pending
-                            : item.status === 'REJECTED' ? styles.status_rejected
-                                : item.status === 'ACTIVE' ? styles.status_active
-                                    : item.status === 'APPROVED' ? styles.status_approved
+                        <td className={item.status === statusTypes.pending ? styles.status_pending
+                            : item.status === statusTypes.rejected ? styles.status_rejected
+                                : item.status === statusTypes.active ? styles.status_active
+                                    : item.status === statusTypes.approved ? styles.status_approved
                                         : styles.status_finished
                         }>
                             <span>{item.status.charAt(0) + item.status.slice(1).toLowerCase()}</span>

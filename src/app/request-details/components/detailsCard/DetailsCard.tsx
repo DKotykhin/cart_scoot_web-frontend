@@ -5,13 +5,13 @@ import { format } from "date-fns";
 import { toast } from 'react-toastify';
 
 import { useMutation } from '@apollo/client';
-import { FINISH_REQUEST, RIDER_ANSWER } from 'apollo/mutations/request';
+import { FINISH_REQUEST, CANCEL_REQUEST, RIDER_MULTI_CALL_ANSWER } from 'apollo/mutations/request';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
 import { IRouteData } from '../RequestDetails';
 
-import { IRequestWithRating } from 'types/requestTypes';
+import { IRequestWithRating, statusTypes } from 'types/requestTypes';
 
 import styles from './detailsCard.module.scss';
 
@@ -30,7 +30,8 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
     const [openDetails, setOpenDetails] = useState(false);
 
     const [finish] = useMutation(FINISH_REQUEST);
-    const [cancel] = useMutation(RIDER_ANSWER);
+    const [cancel] = useMutation(CANCEL_REQUEST);
+    const [riderAnswer] = useMutation(RIDER_MULTI_CALL_ANSWER);
 
     const handleStatusClick = () => setOpenDetails(false);
     const handleDetailsClick = () => setOpenDetails(true);
@@ -39,7 +40,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
         try {
             const { data } = await finish({
                 variables: {
-                    id: _id,
+                    requestId: _id,
                 },
             });
             if (data.finishRequest._id) OpenFinishedCardFn(driverId._id, requestCode);
@@ -59,14 +60,55 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
         try {
             const { data } = await cancel({
                 variables: {
-                    riderAnswerInput: {
-                        id: _id,
-                        answer: false
-                    }
+                    requestId: _id,
                 },
             });
-            if (data.riderAnswer._id) {
-                toast.success('Trip finished successfully', {
+            if (data.cancelRequest._id) {
+                toast.success('Your trip cancelled', {
+                    bodyClassName: "right-toast",
+                    icon: <Image
+                        src={'/icons/right-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            }
+        } catch (err: any) {
+            toast.warn(err.message, {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        }
+    };
+
+    const RiderMultiCallAnswer = async (answer: boolean) => {
+        try {
+            const { data } = await riderAnswer({
+                variables: {
+                    riderMultiCallAnswerInput: {
+                        requestId: _id,
+                        answer,
+                    },
+                },
+            });
+            if (data.riderMultiCallAnswer.status === statusTypes.active) {
+                toast.success('You approved driver request', {
+                    bodyClassName: "right-toast",
+                    icon: <Image
+                        src={'/icons/right-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            } else if (data.riderMultiCallAnswer.status === statusTypes.pending) {
+                toast.success('You rejected driver request', {
                     bodyClassName: "right-toast",
                     icon: <Image
                         src={'/icons/right-code.svg'}
@@ -185,10 +227,10 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                             />
                             <p>Status</p>
                         </div>
-                        <div className={status === 'PENDING' ? styles.status_pending
-                            : status === 'REJECTED' ? styles.status_rejected
-                                : status === 'ACTIVE' ? styles.status_active
-                                    : status === 'APPROVED' ? styles.status_approved
+                        <div className={status === statusTypes.pending ? styles.status_pending
+                            : status === statusTypes.rejected ? styles.status_rejected
+                                : status === statusTypes.active ? styles.status_active
+                                    : status === statusTypes.approved ? styles.status_approved
                                         : styles.status_finished
                         }>
                             <p>{status.charAt(0) + status.slice(1).toLowerCase()}</p>
@@ -196,28 +238,54 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                     </div>
                 </div>
             }
-            {status === 'ACTIVE' ?
-                <button
-                    className={styles.trip_finish}
-                    onClick={finishClick}
-                >
-                    Finish trip
-                </button>
-                :
-                status === 'FINISHED' ?
+            {status === statusTypes.active ?
+                <>
                     <button
-                        className={styles.trip_finish}
+                        className='button-green-filled'
+                        onClick={finishClick}
+                    >
+                        Finish trip
+                    </button>
+                    <button
+                        className='button-grey-outlined'
+                        onClick={cancelClick}
+                    >
+                        Cancel trip
+                    </button>
+                </>
+                :
+                status === statusTypes.finished ?
+                    <button
+                        className='button-green-filled'
                         onClick={() => OpenFinishedCardFn(driverId._id, requestCode)}
                     >
                         Add Review
                     </button>
                     :
-                    <button
-                        className={styles.trip_cancel}
-                        onClick={cancelClick}
-                    >
-                        Cancel trip
-                    </button>
+                    status === statusTypes.approved ?
+                        <>
+                            <button
+                                className='button-green-filled'
+                                onClick={() => RiderMultiCallAnswer(true)}
+                            >
+                                Approve driver request
+                            </button>
+                            <button
+                                className='button-grey-outlined'
+                                onClick={() => RiderMultiCallAnswer(false)}
+                            >
+                                Cancel driver request
+                            </button>
+                        </>
+                        :
+                        status === statusTypes.pending ?
+                            <button
+                                className='button-grey-outlined'
+                                onClick={cancelClick}
+                            >
+                                Cancel trip
+                            </button>
+                            : null
             }
         </div>
     ) : null;

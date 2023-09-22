@@ -4,14 +4,13 @@
     position: absolute;
     top: 24px;
     left: 50%;
-    // width: 95%;
-    max-width: 1272px;
-    width: 100%;
     transform: translate(-50%);
+    max-width: 1272px;
+    width: 95vw;
     display: flex;
     padding: 24px;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;
     gap: 24px;
     border-radius: 20px;
     background: $white;
@@ -22,8 +21,7 @@
         gap: 24px;
         flex-wrap: wrap;
         .pickup_input_box {
-            max-width: 328px;
-            // width: 100%;
+            flex-grow: 1;
         }
         .date_input_box {
             max-width: 200px;
@@ -32,15 +30,13 @@
             max-width: 200px;
         }
         .dropoff_input_box {
-            max-width: 552px;
-            // width: 100%;
+            flex-grow: 1;
         }
     }
     .submit_button {
         display: flex;
-        // width: 200px;
         width: 160px;
-        max-width: 200px;
+        flex-grow: 1;
         height: 48px;
         padding: 0px 24px;
         justify-content: center;

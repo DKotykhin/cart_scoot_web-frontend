@@ -126,36 +126,4 @@
             }
         }
     }
-    .trip_finish {
-        display: flex;
-        height: 48px;
-        padding: 0px 24px;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        border-radius: 20px;
-        background: $green-primary;
-        box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
-        font-size: 16px;
-        color: $black-primary;
-        font-weight: 600;
-        line-height: 20px;
-        cursor: pointer;
-    }
-    .trip_cancel {
-        display: flex;
-        height: 48px;
-        padding: 0px 24px;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        border-radius: 20px;
-        border: 1px solid $black-tertiary;
-        background: $white;
-        font-size: 16px;
-        color: $black-primary;
-        font-weight: 600;
-        line-height: 20px;
-        cursor: pointer;
-    }
 }

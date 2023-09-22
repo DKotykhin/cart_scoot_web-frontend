@@ -304,7 +304,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
                             </div>
                         </div>
                         <div className={savedFormData ? styles.review_box : styles.review_box_long}>
-                            {data.getReviewsById.map(review => (
+                            {data.getReviewsById?.map(review => (
                                 <div key={review._id}>
                                     <ReviewCard reviewData={review} />
                                 </div>

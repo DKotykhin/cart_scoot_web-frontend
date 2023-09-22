@@ -119,7 +119,7 @@ const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, p
                 <button type='submit' className='button-green-filled'>Login</button>
                 <button
                     type='button'
-                    className='button-green-outlined'
+                    className='button-grey-outlined'
                     onClick={resendClick}
                 >
                     Resend

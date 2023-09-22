@@ -108,7 +108,7 @@ const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode,
                 <button type='submit' className='button-green-filled'>Add phone</button>
                 <button
                     type='button'
-                    className='button-green-outlined'
+                    className='button-grey-outlined'
                     onClick={resendClick}
                 >
                     Resend
