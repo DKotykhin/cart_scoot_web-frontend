@@ -83,7 +83,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
             .catch(err => console.log(err.message));
 
     }, [savedFormData?.locationData?.dropoff.lat, savedFormData?.locationData?.dropoff.lon, savedFormData?.locationData?.pickup.lat, savedFormData?.locationData?.pickup.lon]);
- 
+
     return markerData ? (
         <div className={styles.container}>
             <div className={styles.title_box}>
@@ -205,11 +205,22 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
                             </div>
                         </div>
                         <div className={savedFormData ? styles.review_box : styles.review_box_long}>
-                            {data.getReviewsById?.map(review => (
-                                <div key={review._id}>
-                                    <ReviewCard reviewData={review} />
+                            {data.getReviewsById?.length > 0 ?
+                                data.getReviewsById?.map(review => (
+                                    <div key={review._id}>
+                                        <ReviewCard reviewData={review} />
+                                    </div>
+                                )) :
+                                <div className={styles.empty_review}>
+                                    <Image
+                                        src={'/emptyList.svg'}
+                                        alt={'empty'}
+                                        width={98}
+                                        height={96}
+                                    />
+                                    <p>This driver doesn&apos;t have any reviews yet</p>
                                 </div>
-                            ))}
+                            }
                         </div>
                     </div>
             }

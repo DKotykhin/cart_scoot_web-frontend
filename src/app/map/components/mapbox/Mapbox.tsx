@@ -16,7 +16,7 @@ import SendRequestButton from '../sendRequestButton/SendRequestButton';
 import FindCarForm, { IFormData } from '../findCarForm/FindCarForm';
 import RequestDetailedCard from '../requestDetailedCard/RequestDetailedCard';
 import AskLoginCard from '../askLoginCard/AskLoginCard';
-import DriverAvatar from 'components/driverAvatar/DriverAvatar';
+import DriverAvatarGreen from 'components/driverAvatarGreen/DriverAvatarGreen';
 import RegisterMobilePhone from 'app/map/components/registerMobilePhone/RegisterMobilePhone';
 
 import { viewport } from 'constants/mapViewport';
@@ -202,11 +202,18 @@ const Mapbox = () => {
                             key={driver.driver._id}
                             onClick={() => markerClick({ driver, savedFormData })}
                         >
-                            <DriverAvatar
-                                driverAvatarURL={driver.driver.avatarURL}
-                                driverName={driver.driver.userName}
-                                hideName={true}
-                            />
+                            {markerData?.driver.driver._id === driver.driver._id ?
+                                <DriverAvatarGreen
+                                    driverAvatarURL={driver.driver.avatarURL}
+                                    driverName={driver.driver.userName}
+                                />
+                                :
+                                <DriverAvatarGreen
+                                    driverAvatarURL={driver.driver.avatarURL}
+                                    driverName={driver.driver.userName}
+                                    hideName={true}
+                                />
+                            }
                         </Marker>
                     ))}
                 </Map>
@@ -219,7 +226,7 @@ const Mapbox = () => {
             </div>
             {markerData && openDriverDetails &&
                 <RequestDetailedCard
-                    markerData={markerData} 
+                    markerData={markerData}
                     closeDriverDetails={closeDriverDetails}
                     sendAllRequestClick={sendAllRequestClick}
                     sendOneRequestClick={sendOneRequestClick}
