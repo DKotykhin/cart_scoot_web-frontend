@@ -11,11 +11,19 @@
     margin-top: 28px;
     border-radius: 20px;
     padding: 24px;
-    .detail_title {
-        font-size: 24px;
-        color: $black-primary;
-        font-weight: 500;
-        line-height: 28px;
+    .title_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .detail_title {
+            font-size: 24px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 28px;
+        }
+        img {
+            cursor: pointer;
+        }
     }
     .driver_box {
         display: flex;

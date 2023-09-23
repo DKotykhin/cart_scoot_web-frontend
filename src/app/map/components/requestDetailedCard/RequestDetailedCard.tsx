@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import Image from "next/image";
-import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import axios from 'axios';
 
-import { useRouter } from 'next/navigation';
-
-import { useMutation } from '@apollo/client';
-import { ONE_DRIVER_REQUEST, ALL_DRIVERS_REQUEST } from 'apollo/mutations/request';
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REVIEW_BY_ID } from 'apollo/queries/review';
 
@@ -25,6 +20,9 @@ const starArray = [1, 2, 3, 4, 5];
 
 interface IRequestDetailedCard {
     markerData: IMarkerClickData;
+    closeDriverDetails: () => void;
+    sendAllRequestClick: () => void;
+    sendOneRequestClick: () => void;
 }
 
 const dayOfWeek = (data: [number]) => {
@@ -51,17 +49,15 @@ const dayOfWeek = (data: [number]) => {
     });
 };
 
-const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => {
+const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, closeDriverDetails, sendAllRequestClick, sendOneRequestClick }) => {
 
     const { driver: { driver, rating }, savedFormData } = markerData;
-    const router = useRouter();
 
     const [buttonIndex, setButtonIndex] = useState(0);
     const [routeData, setRouteData] = useState({
         distance: 0,
         duration: 0,
     });
-    const [requestedTime, setRequestedTime] = useState("");
 
     const { data }: { data: { getReviewsById: [IReview] } } = useSuspenseQuery(GET_REVIEW_BY_ID, {
         variables: {
@@ -69,19 +65,6 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
         }
     });
     // console.log(data.getReviewsById);
-
-    const [oneDriverRequest] = useMutation(ONE_DRIVER_REQUEST);
-    const [allDriversRequest] = useMutation(ALL_DRIVERS_REQUEST);
-
-    useEffect(() => {
-        if (savedFormData?.timeData.time && savedFormData?.timeData.date) {
-            const requestHours = new Date(savedFormData?.timeData.time).getHours();
-            const requestMinutes = new Date(savedFormData?.timeData.time).getMinutes();
-            const requestedTime = new Date(new Date(savedFormData?.timeData.date).setHours(requestHours, requestMinutes)).toJSON();
-            setRequestedTime(requestedTime);
-        }
-    }, [savedFormData?.timeData.date, savedFormData?.timeData.time]);
-
 
     useEffect(() => {
         const startPoint = `${savedFormData?.locationData?.pickup.lat},${savedFormData?.locationData?.pickup.lon}`;
@@ -100,101 +83,19 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
             .catch(err => console.log(err.message));
 
     }, [savedFormData?.locationData?.dropoff.lat, savedFormData?.locationData?.dropoff.lon, savedFormData?.locationData?.pickup.lat, savedFormData?.locationData?.pickup.lon]);
-
-    const requestClick = async () => {
-        try {
-            const { data } = await oneDriverRequest({
-                variables: {
-                    createOneDriverRequestInput: {
-                        id: driver._id,
-                        requestedTime,
-                        coordinates: {
-                            start: {
-                                lat: savedFormData?.locationData?.pickup.lat,
-                                lon: savedFormData?.locationData?.pickup.lon,
-                            },
-                            end: {
-                                lat: savedFormData?.locationData?.dropoff.lat,
-                                lon: savedFormData?.locationData?.dropoff.lon,
-                            },
-                        },
-                        pickupLocation: savedFormData?.locationData?.pickup.address,
-                        dropoffLocation: savedFormData?.locationData?.dropoff.address,
-                    }
-                },
-            });
-            if (data.createOneDriverRequest.request._id) {
-                router.push(`/request-sent-message/${data.createOneDriverRequest.request.requestCode}`);
-                toast.success('Request sent successfully', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
-    };
-    const allRequestClick = async () => {
-        try {
-            const { data } = await allDriversRequest({
-                variables: {
-                    createDriversRequestInput: {
-                        requestedTime,
-                        coordinates: {
-                            start: {
-                                lat: savedFormData?.locationData?.pickup.lat,
-                                lon: savedFormData?.locationData?.pickup.lon,
-                            },
-                            end: {
-                                lat: savedFormData?.locationData?.dropoff.lat,
-                                lon: savedFormData?.locationData?.dropoff.lon,
-                            },
-                        },
-                        pickupLocation: savedFormData?.locationData?.pickup.address,
-                        dropoffLocation: savedFormData?.locationData?.dropoff.address,
-                    }
-                },
-            });
-            if (data.createDriversRequest.request._id) {
-                toast.success('Requests sent successfully to all drivers', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
-    };
-
+ 
     return markerData ? (
         <div className={styles.container}>
-            <p className={styles.detail_title}>Details</p>
+            <div className={styles.title_box}>
+                <p className={styles.detail_title}>Details</p>
+                <Image
+                    src={'/icons/close.svg'}
+                    alt={'close'}
+                    width={24}
+                    height={24}
+                    onClick={closeDriverDetails}
+                />
+            </div>
             <div className={styles.driver_box}>
                 <DriverAvatar
                     driverAvatarURL={driver.avatarURL}
@@ -272,7 +173,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
                         <DetailsItem
                             imageURL='/icons/telegramLogo.svg'
                             title='Request date & time'
-                            value={requestedTime ? format(new Date(requestedTime), "d LLL h:mm a") : ""}
+                            value={savedFormData?.requestedTime ? format(new Date(savedFormData?.requestedTime), "d LLL h:mm a") : ""}
                         />
                         <DetailsItem
                             imageURL='/icons/calendarBlank.svg'
@@ -312,18 +213,18 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData }) => 
                         </div>
                     </div>
             }
-            {savedFormData &&
+            {savedFormData?.locationData && savedFormData?.requestedTime &&
                 <button
                     className='button-green-filled'
-                    onClick={requestClick}
+                    onClick={sendOneRequestClick}
                 >
                     Send Request
                 </button>
             }
-            {savedFormData &&
+            {savedFormData?.locationData && savedFormData?.requestedTime &&
                 <button
                     className='button-green-outlined'
-                    onClick={allRequestClick}
+                    onClick={sendAllRequestClick}
                 >
                     Send Request to all
                 </button>

@@ -5,7 +5,10 @@ import Map, { Marker } from "react-map-gl";
 import { toast } from 'react-toastify';
 
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
+import { useMutation } from '@apollo/client';
+import { ONE_DRIVER_REQUEST, ALL_DRIVERS_REQUEST } from 'apollo/mutations/request';
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_FREE_DRIVERS } from 'apollo/queries/user';
 
@@ -34,14 +37,18 @@ const Mapbox = () => {
     const [openLoginMobileCard, setOpenLoginMobileCard] = useState(false);
     const [openAddMobileCard, setOpenAddMobileCard] = useState(false);
 
+    const router = useRouter();
+
     const { data }: { data: { getFreeDrivers: [IDriverWithRating] } } = useSuspenseQuery(GET_FREE_DRIVERS, {
         variables: {
             getFreeDriversInput: {
-                requestedDate: savedFormData?.timeData.date,
-                requestedTime: savedFormData?.timeData.time,
+                requestedTime: savedFormData?.requestedTime,
             }
         }
     });
+    const [allDriversRequest] = useMutation(ALL_DRIVERS_REQUEST);
+    const [oneDriverRequest] = useMutation(ONE_DRIVER_REQUEST);
+
     useEffect(() => {
         const driverAmount = data?.getFreeDrivers.length;
         if (driverAmount > 0) {
@@ -67,7 +74,6 @@ const Mapbox = () => {
         }
 
     }, [data?.getFreeDrivers.length]);
-    // console.log(data?.getFreeDrivers);
 
     const openLoginModal = () => setOpenLoginMobileCard(true);
     const closeLoginModal = () => setOpenLoginMobileCard(false);
@@ -86,6 +92,99 @@ const Mapbox = () => {
     };
 
     const closeMobileCard = () => setOpenAddMobileCard(false);
+
+    const sendOneRequestClick = async () => {
+        try {
+            const { data } = await oneDriverRequest({
+                variables: {
+                    createOneDriverRequestInput: {
+                        id: markerData?.driver.driver._id,
+                        requestedTime: savedFormData?.requestedTime,
+                        coordinates: {
+                            start: {
+                                lat: savedFormData?.locationData?.pickup.lat,
+                                lon: savedFormData?.locationData?.pickup.lon,
+                            },
+                            end: {
+                                lat: savedFormData?.locationData?.dropoff.lat,
+                                lon: savedFormData?.locationData?.dropoff.lon,
+                            },
+                        },
+                        pickupLocation: savedFormData?.locationData?.pickup.address,
+                        dropoffLocation: savedFormData?.locationData?.dropoff.address,
+                    }
+                },
+            });
+            if (data.createOneDriverRequest.request._id) {
+                router.push(`/request-sent-message/${data.createOneDriverRequest.request.requestCode}`);
+                toast.success('Request sent successfully', {
+                    bodyClassName: "right-toast",
+                    icon: <Image
+                        src={'/icons/right-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            }
+        } catch (err: any) {
+            toast.warn(err.message, {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        }
+    };
+
+    const sendAllRequestClick = async () => {
+        // console.log('sendAllRequestClick');
+        try {
+            const { data } = await allDriversRequest({
+                variables: {
+                    createDriversRequestInput: {
+                        requestedTime: savedFormData?.requestedTime,
+                        coordinates: {
+                            start: {
+                                lat: savedFormData?.locationData?.pickup.lat,
+                                lon: savedFormData?.locationData?.pickup.lon,
+                            },
+                            end: {
+                                lat: savedFormData?.locationData?.dropoff.lat,
+                                lon: savedFormData?.locationData?.dropoff.lon,
+                            },
+                        },
+                        pickupLocation: savedFormData?.locationData?.pickup.address,
+                        dropoffLocation: savedFormData?.locationData?.dropoff.address,
+                    }
+                },
+            });
+            if (data.createDriversRequest.request._id) {
+                toast.success('Requests sent successfully to all drivers', {
+                    bodyClassName: "right-toast",
+                    icon: <Image
+                        src={'/icons/right-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            }
+        } catch (err: any) {
+            toast.warn(err.message, {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -113,13 +212,18 @@ const Mapbox = () => {
                 </Map>
                 <FindCarForm openLoginModal={openLoginModal} formData={formData} closeDriverDetails={closeDriverDetails} />
                 {savedFormData?.locationData &&
-                    savedFormData.timeData.time &&
-                    savedFormData.timeData.date &&
+                    savedFormData.requestedTime &&
                     data.getFreeDrivers.length &&
-                    <SendRequestButton />
+                    <SendRequestButton sendAllRequestClick={sendAllRequestClick} />
                 }
             </div>
-            {markerData && openDriverDetails && <RequestDetailedCard markerData={markerData} />}
+            {markerData && openDriverDetails &&
+                <RequestDetailedCard
+                    markerData={markerData} 
+                    closeDriverDetails={closeDriverDetails}
+                    sendAllRequestClick={sendAllRequestClick}
+                    sendOneRequestClick={sendOneRequestClick}
+                />}
             {openLoginMobileCard &&
                 <AskLoginCard
                     closeLoginModal={closeLoginModal}

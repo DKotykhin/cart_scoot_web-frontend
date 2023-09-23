@@ -3,6 +3,9 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { Libraries, useLoadScript } from '@react-google-maps/api';
+import { toast } from 'react-toastify';
+
+import Image from "next/image";
 
 import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
 import TimePickerInput from 'components/inputs/dateTimePickers/TimePickerInput';
@@ -26,10 +29,7 @@ interface IFindCarForm {
     formData: (arg0: IFormData) => void;
 }
 export interface IFormData {
-    timeData: {
-        date?: string,
-        time?: string,
-    },
+    requestedTime?: string,
     locationData?: {
         pickup: {
             address: string,
@@ -70,16 +70,29 @@ const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, formData, closeDr
     });
 
     const onSubmit = async (data: ISearchData): Promise<void> => {
-        // console.log(data);
+        // console.log('data: ', data);
         const { date, time, pickup, dropoff } = data;
-        const timeData = {
-            date: date?.toJSON(),
-            time: time?.toJSON(),
+
+        let requestedTime;
+        if (date && time) {
+            const requestHours = new Date(time).getHours();
+            const requestMinutes = new Date(time).getMinutes();
+            requestedTime = new Date(new Date(date).setHours(requestHours, requestMinutes)).toJSON();
+        } else {
+            toast.warn("Please, put pickup date and time!", {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
         };
-        // console.log(timeData);
+        // console.log('requestedTime: ', requestedTime);
+
         let locationData;
-        if (pickup.gm_accessors_.places.Hi.formattedPrediction &&
-            dropoff.gm_accessors_.places.Hi.formattedPrediction) {
+        if (pickup.getPlaces() && dropoff.getPlaces()) {
             const [pickupPlace] = pickup.getPlaces();
             const [dropoffPlace] = dropoff.getPlaces();
             locationData = {
@@ -94,14 +107,29 @@ const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, formData, closeDr
                     lon: dropoffPlace.geometry.location.lng(),
                 },
             };
-            // console.log(locationData);
-        }
+        } else {
+            toast.warn("Please, put pickup and dropoff location!", {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        };
+        // console.log('locationData: ', locationData);
         if (userData._id) {
-            formData({ timeData, locationData });
-            closeDriverDetails();
+            if (requestedTime && locationData) {
+                formData({ requestedTime, locationData });
+                closeDriverDetails();
+            }
         } else {
             openLoginModal();
-            formData({ timeData, locationData });
+            if (requestedTime && locationData) {
+                formData({ requestedTime, locationData });
+                closeDriverDetails();
+            }
         }
     };
 
