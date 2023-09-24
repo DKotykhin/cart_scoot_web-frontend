@@ -5,6 +5,8 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useLoadScript } from '@react-google-maps/api';
 
+import { useRouter } from 'next/navigation';
+
 import PickupInput from 'components/inputs/locationInput/PickupInput';
 import DropoffInput from 'components/inputs/locationInput/DropoffInput';
 import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
@@ -22,6 +24,8 @@ interface IPickupData {
 const libraries: any = ['places'];
 
 const PickupForm = () => {
+
+    const router = useRouter();
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
@@ -43,14 +47,20 @@ const PickupForm = () => {
     });
 
     const onSubmit = (data: IPickupData): void => {
-        // console.log(data);
+        console.log(data);
         const { date, time, pickup, dropoff } = data;
-        const [pickupPlace] = pickup.getPlaces();
-        const [dropoffPlace] = dropoff.getPlaces();
-        if (pickupPlace && dropoffPlace) {
-            const newData = {
-                date: date?.toJSON(),
-                time: time?.toJSON(),
+
+        let requestedTime;
+        if (date && time) {
+            const requestHours = new Date(time).getHours();
+            const requestMinutes = new Date(time).getMinutes();
+            requestedTime = new Date(new Date(date).setHours(requestHours, requestMinutes)).toJSON();
+        }
+        let locationData;
+        if (pickup.getPlaces() && dropoff.getPlaces()) {
+            const [pickupPlace] = pickup.getPlaces();
+            const [dropoffPlace] = dropoff.getPlaces();
+            locationData = {
                 pickup: {
                     address: pickupPlace.formatted_address,
                     lat: pickupPlace.geometry.location.lat(),
@@ -62,8 +72,10 @@ const PickupForm = () => {
                     lon: dropoffPlace.geometry.location.lng(),
                 },
             };
-            console.log(newData);
         }
+        console.log('requestedTime: ', requestedTime);
+        console.log('locationData: ', locationData);
+        router.push('/map');
     };
 
     return (
@@ -91,7 +103,7 @@ const PickupForm = () => {
                 type='submit'
                 className={styles.button}
             >
-                Find Car
+                Go to the Map
             </button>
         </form>
     );

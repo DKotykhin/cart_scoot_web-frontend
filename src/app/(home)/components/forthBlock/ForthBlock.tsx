@@ -24,7 +24,7 @@ const ForthBlock = () => {
                         <h5>Your Golf Companion, Always Free to Use</h5>
                     </div>
                 </div>
-                <div className={`${styles.card} ${styles.margin}`}>
+                <div className={styles.card}>
                     <Image
                         src={'/icons/headset.svg'}
                         alt={'money'}

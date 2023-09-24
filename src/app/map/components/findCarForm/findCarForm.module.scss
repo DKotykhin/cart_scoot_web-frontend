@@ -6,7 +6,7 @@
     left: 50%;
     transform: translate(-50%);
     max-width: 1272px;
-    width: 97%;
+    width: calc(100% - 48px);
     display: flex;
     padding: 24px;
     justify-content: space-between;

@@ -39,12 +39,14 @@ header {
 }
 .ellipse {
     position: absolute;
-    top: 664px;
-    width: 2190px;
-    min-width: 100vw;
-    height: 240px;
+    top: 743px;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: 2190px;
+    width: 100vw;
+    height: 280px;
     background: $white;
-    border-radius: 50% / 100%;
+    border-radius: 100% / 100%;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     z-index: -1;
