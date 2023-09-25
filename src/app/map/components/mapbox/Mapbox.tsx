@@ -13,11 +13,13 @@ import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_FREE_DRIVERS } from 'apollo/queries/user';
 
 import SendRequestButton from '../sendRequestButton/SendRequestButton';
-import FindCarForm, { IFormData } from '../findCarForm/FindCarForm';
+import FindCarForm from '../findCarForm/FindCarForm';
 import RequestDetailedCard from '../requestDetailedCard/RequestDetailedCard';
 import AskLoginCard from '../askLoginCard/AskLoginCard';
 import DriverAvatarGreen from 'components/driverAvatarGreen/DriverAvatarGreen';
 import RegisterMobilePhone from 'app/map/components/registerMobilePhone/RegisterMobilePhone';
+
+import { IFindCarFormData, useFormDataStore } from 'stores/findCarFormStore';
 
 import { viewport } from 'constants/mapViewport';
 import { IDriverWithRating } from 'types/userTypes';
@@ -26,23 +28,25 @@ import styles from './mapbox.module.scss';
 
 export interface IMarkerClickData {
     driver: IDriverWithRating,
-    savedFormData?: IFormData,
+    findCarFormData?: IFindCarFormData,
 }
 
 const Mapbox = () => {
 
-    const [savedFormData, setSavedFormData] = useState<IFormData>();
-    const [markerData, setMarkerData] = useState<IMarkerClickData>();
+    const [detailedCardData, setDetailedCardData] = useState<IMarkerClickData>();
     const [openDriverDetails, setOpenDriverDetails] = useState(false);
     const [openLoginMobileCard, setOpenLoginMobileCard] = useState(false);
     const [openAddMobileCard, setOpenAddMobileCard] = useState(false);
+
+    const { findCarFormData } = useFormDataStore();
+    // console.log('findCarFormData: ', findCarFormData);
 
     const router = useRouter();
 
     const { data }: { data: { getFreeDrivers: [IDriverWithRating] } } = useSuspenseQuery(GET_FREE_DRIVERS, {
         variables: {
             getFreeDriversInput: {
-                requestedTime: savedFormData?.requestedTime,
+                requestedTime: findCarFormData?.requestedTime,
             }
         }
     });
@@ -78,9 +82,12 @@ const Mapbox = () => {
     const openLoginModal = () => setOpenLoginMobileCard(true);
     const closeLoginModal = () => setOpenLoginMobileCard(false);
 
-    const formData = (data: IFormData) => setSavedFormData(data);
-    const markerClick = (data: IMarkerClickData) => {
-        setMarkerData(data);
+    // const formData = (data: IFormData) => setSavedFormData(data);
+    const markerClick = (driver: IDriverWithRating) => {
+        setDetailedCardData({ 
+            driver, 
+            findCarFormData 
+        });
         setOpenDriverDetails(true);
     };
     const closeDriverDetails = () => setOpenDriverDetails(false);
@@ -98,20 +105,20 @@ const Mapbox = () => {
             const { data } = await oneDriverRequest({
                 variables: {
                     createOneDriverRequestInput: {
-                        id: markerData?.driver.driver._id,
-                        requestedTime: savedFormData?.requestedTime,
+                        id: detailedCardData?.driver.driver._id,
+                        requestedTime: findCarFormData?.requestedTime,
                         coordinates: {
                             start: {
-                                lat: savedFormData?.locationData?.pickup.lat,
-                                lon: savedFormData?.locationData?.pickup.lon,
+                                lat: findCarFormData?.locationData?.pickup.lat,
+                                lon: findCarFormData?.locationData?.pickup.lon,
                             },
                             end: {
-                                lat: savedFormData?.locationData?.dropoff.lat,
-                                lon: savedFormData?.locationData?.dropoff.lon,
+                                lat: findCarFormData?.locationData?.dropoff.lat,
+                                lon: findCarFormData?.locationData?.dropoff.lon,
                             },
                         },
-                        pickupLocation: savedFormData?.locationData?.pickup.address,
-                        dropoffLocation: savedFormData?.locationData?.dropoff.address,
+                        pickupLocation: findCarFormData?.locationData?.pickup.address,
+                        dropoffLocation: findCarFormData?.locationData?.dropoff.address,
                     }
                 },
             });
@@ -146,19 +153,19 @@ const Mapbox = () => {
             const { data } = await allDriversRequest({
                 variables: {
                     createDriversRequestInput: {
-                        requestedTime: savedFormData?.requestedTime,
+                        requestedTime: findCarFormData?.requestedTime,
                         coordinates: {
                             start: {
-                                lat: savedFormData?.locationData?.pickup.lat,
-                                lon: savedFormData?.locationData?.pickup.lon,
+                                lat: findCarFormData?.locationData?.pickup.lat,
+                                lon: findCarFormData?.locationData?.pickup.lon,
                             },
                             end: {
-                                lat: savedFormData?.locationData?.dropoff.lat,
-                                lon: savedFormData?.locationData?.dropoff.lon,
+                                lat: findCarFormData?.locationData?.dropoff.lat,
+                                lon: findCarFormData?.locationData?.dropoff.lon,
                             },
                         },
-                        pickupLocation: savedFormData?.locationData?.pickup.address,
-                        dropoffLocation: savedFormData?.locationData?.dropoff.address,
+                        pickupLocation: findCarFormData?.locationData?.pickup.address,
+                        dropoffLocation: findCarFormData?.locationData?.dropoff.address,
                     }
                 },
             });
@@ -200,9 +207,9 @@ const Mapbox = () => {
                             latitude={driver.driver.coordinates?.lat}
                             longitude={driver.driver.coordinates?.lon}
                             key={driver.driver._id}
-                            onClick={() => markerClick({ driver, savedFormData })}
+                            onClick={() => markerClick(driver)}
                         >
-                            {markerData?.driver.driver._id === driver.driver._id ?
+                            {detailedCardData?.driver.driver._id === driver.driver._id ?
                                 <DriverAvatarGreen
                                     driverAvatarURL={driver.driver.avatarURL}
                                     driverName={driver.driver.userName}
@@ -217,16 +224,16 @@ const Mapbox = () => {
                         </Marker>
                     ))}
                 </Map>
-                <FindCarForm openLoginModal={openLoginModal} formData={formData} closeDriverDetails={closeDriverDetails} />
-                {savedFormData?.locationData &&
-                    savedFormData.requestedTime &&
+                <FindCarForm openLoginModal={openLoginModal} closeDriverDetails={closeDriverDetails} />
+                {findCarFormData?.locationData &&
+                    findCarFormData.requestedTime &&
                     data.getFreeDrivers.length &&
                     <SendRequestButton sendAllRequestClick={sendAllRequestClick} />
                 }
             </div>
-            {markerData && openDriverDetails &&
+            {detailedCardData && openDriverDetails &&
                 <RequestDetailedCard
-                    markerData={markerData}
+                detailedCardData={detailedCardData}
                     closeDriverDetails={closeDriverDetails}
                     sendAllRequestClick={sendAllRequestClick}
                     sendOneRequestClick={sendOneRequestClick}

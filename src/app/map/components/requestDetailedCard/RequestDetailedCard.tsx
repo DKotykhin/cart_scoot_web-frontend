@@ -19,7 +19,7 @@ import styles from './requestDetailedCard.module.scss';
 const starArray = [1, 2, 3, 4, 5];
 
 interface IRequestDetailedCard {
-    markerData: IMarkerClickData;
+    detailedCardData: IMarkerClickData;
     closeDriverDetails: () => void;
     sendAllRequestClick: () => void;
     sendOneRequestClick: () => void;
@@ -49,9 +49,9 @@ const dayOfWeek = (data: [number]) => {
     });
 };
 
-const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, closeDriverDetails, sendAllRequestClick, sendOneRequestClick }) => {
+const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData, closeDriverDetails, sendAllRequestClick, sendOneRequestClick }) => {
 
-    const { driver: { driver, rating }, savedFormData } = markerData;
+    const { driver: { driver, rating }, findCarFormData } = detailedCardData;
 
     const [buttonIndex, setButtonIndex] = useState(0);
     const [routeData, setRouteData] = useState({
@@ -67,8 +67,8 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
     // console.log(data.getReviewsById);
 
     useEffect(() => {
-        const startPoint = `${savedFormData?.locationData?.pickup.lat},${savedFormData?.locationData?.pickup.lon}`;
-        const endPoint = `${savedFormData?.locationData?.dropoff.lat},${savedFormData?.locationData?.dropoff.lon}`;
+        const startPoint = `${findCarFormData?.locationData?.pickup.lat},${findCarFormData?.locationData?.pickup.lon}`;
+        const endPoint = `${findCarFormData?.locationData?.dropoff.lat},${findCarFormData?.locationData?.dropoff.lon}`;
         const mapboxApiUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${startPoint};${endPoint}?geometries=geojson&access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`;
 
         const config = {
@@ -82,9 +82,9 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
             })
             .catch(err => console.log(err.message));
 
-    }, [savedFormData?.locationData?.dropoff.lat, savedFormData?.locationData?.dropoff.lon, savedFormData?.locationData?.pickup.lat, savedFormData?.locationData?.pickup.lon]);
+    }, [findCarFormData?.locationData?.dropoff.lat, findCarFormData?.locationData?.dropoff.lon, findCarFormData?.locationData?.pickup.lat, findCarFormData?.locationData?.pickup.lon]);
 
-    return markerData ? (
+    return detailedCardData ? (
         <div className={styles.container}>
             <div className={styles.title_box}>
                 <p className={styles.detail_title}>Details</p>
@@ -168,27 +168,27 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
                         <DetailsItem
                             imageURL='/icons/mapPin.svg'
                             title='Pickup Location'
-                            value={savedFormData?.locationData?.pickup.address}
+                            value={findCarFormData?.locationData?.pickup.address}
                         />
                         <DetailsItem
                             imageURL='/icons/telegramLogo.svg'
                             title='Request date & time'
-                            value={savedFormData?.requestedTime ? format(new Date(savedFormData?.requestedTime), "d LLL h:mm a") : ""}
+                            value={findCarFormData?.requestedTime ? format(new Date(findCarFormData?.requestedTime), "d LLL h:mm a") : ""}
                         />
                         <DetailsItem
                             imageURL='/icons/calendarBlank.svg'
                             title='Dropoff Location'
-                            value={savedFormData?.locationData?.dropoff.address}
+                            value={findCarFormData?.locationData?.dropoff.address}
                         />
                         <DetailsItem
                             imageURL='/icons/path.svg'
                             title='Distance'
-                            value={`${Math.round((routeData.distance / 1000) * 10) / 10} km`}
+                            value={routeData ? `${Math.round((routeData.distance / 1000) * 10) / 10} km` : '0 km'}
                         />
                         <DetailsItem
                             imageURL='/icons/hourglass.svg'
                             title='Estimated time'
-                            value={`${Math.ceil(routeData.duration / 60)} min`}
+                            value={routeData ? `${Math.ceil(routeData.duration / 60)} min` : '0 min'}
                         />
                     </div>
                     :
@@ -204,7 +204,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
                                 <p>Reviews</p>
                             </div>
                         </div>
-                        <div className={savedFormData ? styles.review_box : styles.review_box_long}>
+                        <div className={findCarFormData ? styles.review_box : styles.review_box_long}>
                             {data.getReviewsById?.length > 0 ?
                                 data.getReviewsById?.map(review => (
                                     <div key={review._id}>
@@ -224,7 +224,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
                         </div>
                     </div>
             }
-            {savedFormData?.locationData && savedFormData?.requestedTime &&
+            {findCarFormData?.locationData && findCarFormData?.requestedTime &&
                 <button
                     className='button-green-filled'
                     onClick={sendOneRequestClick}
@@ -232,7 +232,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ markerData, close
                     Send Request
                 </button>
             }
-            {savedFormData?.locationData && savedFormData?.requestedTime &&
+            {findCarFormData?.locationData && findCarFormData?.requestedTime &&
                 <button
                     className='button-green-outlined'
                     onClick={sendAllRequestClick}

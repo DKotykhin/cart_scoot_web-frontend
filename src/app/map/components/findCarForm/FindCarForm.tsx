@@ -13,6 +13,7 @@ import PickupInput from 'components/inputs/locationInput/PickupInput';
 import DropoffInput from 'components/inputs/locationInput/DropoffInput';
 
 import { useUserStore } from 'stores/userStore';
+import { useFormDataStore } from 'stores/findCarFormStore';
 
 import styles from './findCarForm.module.scss';
 
@@ -26,29 +27,14 @@ interface ISearchData {
 interface IFindCarForm {
     openLoginModal: () => void;
     closeDriverDetails: () => void;
-    formData: (arg0: IFormData) => void;
-}
-export interface IFormData {
-    requestedTime?: string,
-    locationData?: {
-        pickup: {
-            address: string,
-            lat: number,
-            lon: number,
-        },
-        dropoff: {
-            address: string,
-            lat: number,
-            lon: number,
-        },
-    };
 }
 
 const libraries: Libraries = ['places'];
 
-const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, formData, closeDriverDetails }) => {
+const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, closeDriverDetails }) => {
 
     const { userData } = useUserStore();
+    const { addFindCarFormData } = useFormDataStore();
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
@@ -62,10 +48,10 @@ const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, formData, closeDr
         reset,
     } = useForm<ISearchData>({
         defaultValues: {
-            pickup: '',
+            pickup: {},
             date: undefined,
             time: undefined,
-            dropoff: '',
+            dropoff: {},
         }
     });
 
@@ -119,18 +105,11 @@ const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, formData, closeDr
             });
         };
         // console.log('locationData: ', locationData);
-        if (userData._id) {
-            if (requestedTime && locationData) {
-                formData({ requestedTime, locationData });
-                closeDriverDetails();
-            }
-        } else {
-            openLoginModal();
-            if (requestedTime && locationData) {
-                formData({ requestedTime, locationData });
-                closeDriverDetails();
-            }
+        if (requestedTime && locationData) {
+            addFindCarFormData({ requestedTime, locationData });
+            closeDriverDetails();
         }
+        if (!userData._id) openLoginModal();
     };
 
     return (
