@@ -12,7 +12,6 @@ import TimePickerInput from 'components/inputs/dateTimePickers/TimePickerInput';
 import PickupInput from 'components/inputs/locationInput/PickupInput';
 import DropoffInput from 'components/inputs/locationInput/DropoffInput';
 
-import { useUserStore } from 'stores/userStore';
 import { useFormDataStore } from 'stores/findCarFormStore';
 
 import styles from './findCarForm.module.scss';
@@ -25,15 +24,13 @@ interface ISearchData {
 }
 
 interface IFindCarForm {
-    openLoginModal: () => void;
     closeDriverDetails: () => void;
 }
 
 const libraries: Libraries = ['places'];
 
-const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, closeDriverDetails }) => {
+const FindCarForm: React.FC<IFindCarForm> = ({ closeDriverDetails }) => {
 
-    const { userData } = useUserStore();
     const { addFindCarFormData } = useFormDataStore();
 
     const { isLoaded } = useLoadScript({
@@ -109,7 +106,6 @@ const FindCarForm: React.FC<IFindCarForm> = ({ openLoginModal, closeDriverDetail
             addFindCarFormData({ requestedTime, locationData });
             closeDriverDetails();
         }
-        if (!userData._id) openLoginModal();
     };
 
     return (

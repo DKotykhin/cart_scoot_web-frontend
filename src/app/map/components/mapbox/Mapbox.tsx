@@ -20,6 +20,7 @@ import DriverAvatarGreen from 'components/driverAvatarGreen/DriverAvatarGreen';
 import RegisterMobilePhone from 'app/map/components/registerMobilePhone/RegisterMobilePhone';
 
 import { IFindCarFormData, useFormDataStore } from 'stores/findCarFormStore';
+import { useUserStore } from 'stores/userStore';
 
 import { viewport } from 'constants/mapViewport';
 import { IDriverWithRating } from 'types/userTypes';
@@ -38,6 +39,7 @@ const Mapbox = () => {
     const [openLoginMobileCard, setOpenLoginMobileCard] = useState(false);
     const [openAddMobileCard, setOpenAddMobileCard] = useState(false);
 
+    const { userData } = useUserStore();
     const { findCarFormData } = useFormDataStore();
     // console.log('findCarFormData: ', findCarFormData);
 
@@ -101,6 +103,10 @@ const Mapbox = () => {
     const closeMobileCard = () => setOpenAddMobileCard(false);
 
     const sendOneRequestClick = async () => {
+        if (!userData._id) {
+            setOpenLoginMobileCard(true);
+            return;
+        };
         try {
             const { data } = await oneDriverRequest({
                 variables: {
@@ -148,7 +154,10 @@ const Mapbox = () => {
     };
 
     const sendAllRequestClick = async () => {
-        // console.log('sendAllRequestClick');
+        if (!userData._id) {
+            setOpenLoginMobileCard(true);
+            return;
+        };
         try {
             const { data } = await allDriversRequest({
                 variables: {
@@ -170,6 +179,7 @@ const Mapbox = () => {
                 },
             });
             if (data.createDriversRequest.request._id) {
+                router.push(`/request-sent-message/${data.createDriversRequest.request.requestCode}`);
                 toast.success('Requests sent successfully to all drivers', {
                     bodyClassName: "right-toast",
                     icon: <Image
@@ -224,7 +234,7 @@ const Mapbox = () => {
                         </Marker>
                     ))}
                 </Map>
-                <FindCarForm openLoginModal={openLoginModal} closeDriverDetails={closeDriverDetails} />
+                <FindCarForm closeDriverDetails={closeDriverDetails} />
                 {findCarFormData?.locationData &&
                     findCarFormData.requestedTime &&
                     data.getFreeDrivers.length &&
