@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Image from "next/image";
 import { format } from 'date-fns';
-import axios from 'axios';
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REVIEW_BY_ID } from 'apollo/queries/review';
+
+import { useMapboxApi } from 'hooks/useMapboxApi';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
@@ -54,10 +55,6 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
     const { driver: { driver, rating }, findCarFormData } = detailedCardData;
 
     const [buttonIndex, setButtonIndex] = useState(0);
-    const [routeData, setRouteData] = useState({
-        distance: 0,
-        duration: 0,
-    });
 
     const { data }: { data: { getReviewsById: [IReview] } } = useSuspenseQuery(GET_REVIEW_BY_ID, {
         variables: {
@@ -66,23 +63,12 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
     });
     // console.log(data.getReviewsById);
 
-    useEffect(() => {
-        const startPoint = `${findCarFormData?.locationData?.pickup.lat},${findCarFormData?.locationData?.pickup.lon}`;
-        const endPoint = `${findCarFormData?.locationData?.dropoff.lat},${findCarFormData?.locationData?.dropoff.lon}`;
-        const mapboxApiUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${startPoint};${endPoint}?geometries=geojson&access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`;
-
-        const config = {
-            method: "GET",
-            url: mapboxApiUrl,
-        };
-        axios(config)
-            .then(response => {
-                // console.log(response.data?.routes[0]);
-                setRouteData(response.data?.routes[0]);
-            })
-            .catch(err => console.log(err.message));
-
-    }, [findCarFormData?.locationData?.dropoff.lat, findCarFormData?.locationData?.dropoff.lon, findCarFormData?.locationData?.pickup.lat, findCarFormData?.locationData?.pickup.lon]);
+    const routeData = useMapboxApi(
+        findCarFormData?.locationData?.pickup.lat,
+        findCarFormData?.locationData?.pickup.lon,
+        findCarFormData?.locationData?.dropoff.lat,
+        findCarFormData?.locationData?.dropoff.lon
+    );
 
     return detailedCardData ? (
         <div className={styles.container}>

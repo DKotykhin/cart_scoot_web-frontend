@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 import Image from "next/image";
+import Link from 'next/link';
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_ALL_REQUESTS_BY_FILTERS } from 'apollo/queries/request';
@@ -13,7 +14,6 @@ import RequestsTable from '../requestsTable/RequestsTable';
 import { IRequestWithPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestsPanel.module.scss';
-import Link from 'next/link';
 
 const Table = () => {
 

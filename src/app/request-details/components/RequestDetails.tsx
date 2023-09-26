@@ -1,48 +1,35 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 
 import ReactMapGl, { Marker, Source, Layer, FullscreenControl, GeolocateControl, NavigationControl } from "react-map-gl";
 import type { LineLayer } from 'react-map-gl';
-import type { FeatureCollection, LineString } from 'geojson';
+import type { FeatureCollection } from 'geojson';
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REQUEST } from 'apollo/queries/request';
+
 import DetailsCard from './detailsCard/DetailsCard';
+import FinishedCard from './finishedCard/FinishedCard';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 
+import { useMapboxApi } from 'hooks/useMapboxApi';
 import { viewport } from 'constants/mapViewport';
 import { IRequestWithRating } from 'types/requestTypes';
 
 import styles from './requestDetails.module.scss';
-import FinishedCard from './finishedCard/FinishedCard';
-
-export interface IRouteData {
-    distance: number;
-    duration: number;
-    geometry: LineString;
-}
 
 const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
 
     const router = useRouter();
+    
     const [openFinishedCard, setOpenFinishedCard] = useState(false);
     const [finishedCardData, setFinishedCardData] = useState({
         driverId: "",
         requestCode: "",
-    });
-
-    const [routeData, setRouteData] = useState<IRouteData>({
-        distance: 0,
-        duration: 0,
-        geometry: {
-            type: 'LineString',
-            coordinates: [],
-        }
     });
 
     const { data }: { data: { getRequest: IRequestWithRating } } = useSuspenseQuery(GET_REQUEST, {
@@ -50,27 +37,10 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
             id: _id
         }
     });
-    console.log(data?.getRequest.request);
+    // console.log(data?.getRequest.request);
     const { coordinates: { start, end } } = data.getRequest.request;
 
-    useEffect(() => {
-        const startPoint = `${start.lat},${start.lon}`;
-        const endPoint = `${end.lat},${end.lon}`;
-        const mapboxApiUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${startPoint};${endPoint}?geometries=geojson&access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`;
-
-        const config = {
-            method: "GET",
-            url: mapboxApiUrl,
-        };
-        axios(config)
-            .then(response => {
-                // console.log(response.data);
-                setRouteData(response.data?.routes[0]);
-            })
-            .catch(err => console.log(err.message));
-
-    }, [end.lat, end.lon, start.lat, start.lon]);
-    // console.log('routeData.geometry: ', routeData.geometry);
+    const routeData = useMapboxApi(start.lat, start.lon, end.lat, end.lon);
 
     const geojson: FeatureCollection = {
         type: "FeatureCollection",
@@ -107,7 +77,7 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
 
     return (
         <>
-            {openFinishedCard && <FinishedCard handleClose={handleClose} finishedCardData={finishedCardData}/>}
+            {openFinishedCard && <FinishedCard handleClose={handleClose} finishedCardData={finishedCardData} />}
             <div className={styles.container}>
                 {data &&
                     <div className={styles.map}>

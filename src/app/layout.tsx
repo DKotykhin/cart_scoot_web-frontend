@@ -2,14 +2,14 @@ import { ReactNode } from "react";
 
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+
 import { ToastContainer, Flip } from 'react-toastify';
 
 import { generalMetaData } from 'metadata/metadata';
 import Header from 'components/header/Header';
 
 import ApolloProvider from "apollo/ApolloProvider";
-import { GET_USER_BY_TOKEN } from "apollo/queries/user";
-import { getClient } from "apollo/getClient";
+import { getUserByToken } from "apollo/services/getUserByToken";
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,18 +19,6 @@ import './globals.scss';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = generalMetaData;
-
-const getUserByToken = async () => {
-    try {
-        const { data } = await getClient().query({
-            query: GET_USER_BY_TOKEN
-        });
-        return data;
-    } catch (error: any) {
-        console.log('Layout error message: ', error.message);
-        // window.location.href = "/login";
-    }
-};
 
 export default async function RootLayout({
     children,
