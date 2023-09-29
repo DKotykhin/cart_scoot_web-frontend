@@ -24,7 +24,7 @@ const LogoutCard: React.FC<ILogoutCard> = ({ logoutClick, logoutCancelClick }) =
                 />
                 <p className={styles.logout_title}>Logout</p>
                 <p className={styles.logout_subtitle}>Are you sure to logout?</p>
-                <div className='line'></div>
+                <div className='line'/>
                 <div className={styles.logout_buttons}>
                     <button
                         onClick={logoutCancelClick}

@@ -1,8 +1,12 @@
 import { gql } from "@apollo/client";
 
-export const GET_REVIEW_BY_ID = gql`
-    query GetReviewsById($driverId: ID!) {
-        getReviewsById(driverId: $driverId) {
+export const GET_REVIEWS_BY_DRIVER_ID = gql`
+    query GetReviewsByDriverId(
+        $getReviewsByDriverIdInput: GetReviewsByDriverIdInput
+    ) {
+        getReviewsByDriverId(
+            getReviewsByDriverIdInput: $getReviewsByDriverIdInput
+        ) {
             _id
             createdAt
             createdBy {
@@ -18,6 +22,15 @@ export const GET_REVIEW_BY_ID = gql`
             rating
             requestCode
             text
+        }
+    }
+`;
+
+export const GET_DRIVER_RATING = gql`
+    query GetDriverRating {
+        getDriverRating {
+            avgRating
+            totalCount
         }
     }
 `;

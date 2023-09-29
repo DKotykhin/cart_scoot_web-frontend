@@ -14,7 +14,7 @@ import ChangePasswordCard from 'components/userPanel/changePasswordCard/ChangePa
 
 import { useUserStore } from 'stores/userStore';
 import { navLinks } from 'constants/navLinks';
-import { IUser } from 'types/userTypes';
+import { IUser, userTypes } from 'types/userTypes';
 
 import styles from './header.module.scss';
 import AddMobilePhoneCard from 'components/userPanel/addMobilePhoneCard/AddMobilePhoneCard';
@@ -31,7 +31,7 @@ const navButtons = [
 ];
 
 interface IHeader {
-    user: IUser;
+    user?: IUser;
 }
 
 const Header: React.FC<IHeader> = ({ user }) => {
@@ -49,7 +49,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
         if (user?._id) addUser(user);
     }, [addUser, user]);
 
-    const handleUserClick = () => setOpenUserPanel(prev => !prev);
+    const userPanelClick = () => setOpenUserPanel(prev => !prev);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleKeydown = (e: { code: string }) => {
         if (e.code === 'Escape') {
@@ -121,26 +121,38 @@ const Header: React.FC<IHeader> = ({ user }) => {
                 ))}
             </div>
             {userData?._id ?
-                <div className={styles.authButtons}>
-                    <div
-                        className={styles.user_button}
-                        onClick={handleUserClick}
-                    >
-                        <div className={styles.badge}>
-                            1
+                userData.role === userTypes.rider ?
+                    <div className={styles.authButtons}>
+                        <div
+                            className={styles.user_button}
+                            onClick={userPanelClick}
+                        >
+                            <div className={styles.badge}>
+                                1
+                            </div>
+                            <Image
+                                src={'/icons/user-black.svg'}
+                                alt={'user'}
+                                width={24}
+                                height={24}
+                                className={styles.user_avatar}
+                            />
                         </div>
-                        <Image
-                            src={'/icons/user-black.svg'}
-                            alt={'user'}
-                            width={24}
-                            height={24}
-                            className={styles.user_avatar}
-                        />
+                        <Link href={'/map'}>
+                            Book a Cart
+                        </Link>
                     </div>
-                    <Link href={'/map'}>
-                        Book a Cart
-                    </Link>
-                </div>
+                    : userData.role === userTypes.driver ?
+                        <div className={styles.driver_button} onClick={userPanelClick}>
+                            <p>Dashboard</p>
+                            <Image
+                                src={'/icons/caretDown-bold.svg'}
+                                alt={'down'}
+                                width={24}
+                                height={24}
+                            />
+                        </div>
+                        : null
                 :
                 <div className={styles.navButtons}>
                     {navButtons.map(item => (

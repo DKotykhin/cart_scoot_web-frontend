@@ -30,7 +30,7 @@ const AskLoginCard: React.FC<IAskLoginCard> = ({ closeLoginModal, openPhoneCard 
                     <h2 className='title'>Login</h2>
                     <p className='subtitle'>Dear user, Please login to your account or sign up for free in order to use CartScoot services.</p>
                 </div>
-                <div className='line'></div>
+                <div className='line'/>
                 <div className={styles.lowerBox}>
                     <Link href={'/login'}>
                         <button className='button-green-filled'>Login with email</button>

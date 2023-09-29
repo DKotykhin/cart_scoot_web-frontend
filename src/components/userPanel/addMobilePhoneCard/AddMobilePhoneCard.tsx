@@ -125,7 +125,7 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
                             <p className={styles.checkbox_error}>{errors.terms?.message}</p>
                         </div>
                     </div>
-                    <div className='line'></div>
+                    <div className='line'/>
                     <div className={styles.lowerBox}>
                         <button type='submit' className='button-green-filled'>Send a code</button>
                     </div>

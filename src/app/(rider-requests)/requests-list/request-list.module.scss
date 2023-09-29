@@ -1,0 +1,17 @@
+@import "constants/constants.scss";
+
+.container {
+    width: 1320px;
+    text-align: left;
+    margin-bottom: 50px;
+    h2 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 40px;
+        margin: 48px 0 24px;
+        background: linear-gradient(76deg, $white 0%, $white-dark 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

@@ -114,7 +114,7 @@ const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, p
                     />
                 </div>
             </div>
-            <div className='line'></div>
+            <div className='line'/>
             <div className={styles.lowerBox}>
                 <button type='submit' className='button-green-filled'>Login</button>
                 <button

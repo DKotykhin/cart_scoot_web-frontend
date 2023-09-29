@@ -4,7 +4,7 @@ import Image from "next/image";
 import { format } from 'date-fns';
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
-import { GET_REVIEW_BY_ID } from 'apollo/queries/review';
+import { GET_REVIEWS_BY_DRIVER_ID } from 'apollo/queries/review';
 
 import { useMapboxApi } from 'hooks/useMapboxApi';
 
@@ -56,12 +56,14 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
 
     const [buttonIndex, setButtonIndex] = useState(0);
 
-    const { data }: { data: { getReviewsById: [IReview] } } = useSuspenseQuery(GET_REVIEW_BY_ID, {
+    const { data }: { data: { getReviewsByDriverId: [IReview] } } = useSuspenseQuery(GET_REVIEWS_BY_DRIVER_ID, {
         variables: {
-            driverId: driver._id
+            getReviewsByDriverIdInput: {
+                driverId: driver._id
+            }
         }
     });
-    // console.log(data.getReviewsById);
+    // console.log(data.getReviewsByDriverId);
 
     const routeData = useMapboxApi(
         findCarFormData?.locationData?.pickup.lat,
@@ -191,8 +193,8 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
                             </div>
                         </div>
                         <div className={findCarFormData ? styles.review_box : styles.review_box_long}>
-                            {data.getReviewsById?.length > 0 ?
-                                data.getReviewsById?.map(review => (
+                            {data.getReviewsByDriverId?.length > 0 ?
+                                data.getReviewsByDriverId?.map(review => (
                                     <div key={review._id}>
                                         <ReviewCard reviewData={review} />
                                     </div>

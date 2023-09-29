@@ -129,7 +129,7 @@ const RegisterMobilePhone: React.FC<IRegisterMobilePhone> = ({ handleClose }) =>
                             <p className={styles.checkbox_error}>{errors.terms?.message}</p>
                         </div>
                     </div>
-                    <div className='line'></div>
+                    <div className='line'/>
                     <div className={styles.lowerBox}>
                         <button type='submit' className='button-green-filled'>Send a code</button>
                         <button type='button' className={styles.button_login}>

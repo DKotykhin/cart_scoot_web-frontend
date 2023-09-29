@@ -24,6 +24,16 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 16px;
+            color: $black-secondary;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .label_active {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
             color: $green-primary;
             font-weight: 600;
             cursor: pointer;

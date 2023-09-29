@@ -103,7 +103,7 @@ const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode,
                     />
                 </div>
             </div>
-            <div className='line'></div>
+            <div className='line'/>
             <div className={styles.lowerBox}>
                 <button type='submit' className='button-green-filled'>Add phone</button>
                 <button

@@ -67,12 +67,12 @@ export const GET_ALL_REQUESTS = gql`
     }
 `;
 
-export const GET_ALL_REQUESTS_BY_FILTERS = gql`
-    query GetAllRequestsByFilters(
-        $getAllRequestsByFiltersInput: GetAllRequestsByFiltersInput
+export const GET_REQUESTS_BY_RIDER = gql`
+    query GetRequestsByRider(
+        $getRequestsByFiltersInput: GetRequestsByFiltersInput
     ) {
-        getAllRequestsByFilters(
-            getAllRequestsByFiltersInput: $getAllRequestsByFiltersInput
+        getRequestsByRider(
+            getRequestsByFiltersInput: $getRequestsByFiltersInput
         ) {
             _id
             createdAt
@@ -81,6 +81,10 @@ export const GET_ALL_REQUESTS_BY_FILTERS = gql`
                 _id
                 userName
                 avatarURL
+                phone {
+                    confirmed
+                    number
+                }
             }
             description
             status
@@ -103,12 +107,24 @@ export const GET_ALL_REQUESTS_BY_FILTERS = gql`
     }
 `;
 
-export const GET_NOT_FINISHED_REQUESTS = gql`
-    query GetNotFinishedRequests {
-        getNotFinishedRequests {
+export const GET_REQUESTS_BY_DRIVER = gql`
+    query GetRequestsByDriver(
+        $getRequestsByFiltersInput: GetRequestsByFiltersInput
+    ) {
+        getRequestsByDriver(
+            getRequestsByFiltersInput: $getRequestsByFiltersInput
+        ) {
             _id
             createdAt
-            userId
+            userId {
+                _id
+                userName
+                avatarURL
+                phone {
+                    confirmed
+                    number
+                }
+            }
             driverId
             description
             status
@@ -130,9 +146,3 @@ export const GET_NOT_FINISHED_REQUESTS = gql`
         }
     }
 `;
-
-// getAllRequestsByFilters(getAllRequestsByFiltersInput: GetAllRequestsByFiltersInput): [RequestWithPopulatedFields]
-// getAllActiveRequests: [Request]
-// getAllFinishedRequests: [Request]
-// getNotFinishedRequests: [Request]
-// getFinishedRequestsByDriver(id: ID!): [Request]

@@ -3,7 +3,13 @@ import { redirect } from "next/navigation";
 import { GET_USER_BY_TOKEN } from "apollo/queries/user";
 import { getClient } from "apollo/getClient";
 
-export const getUserByToken = async () => {
+import { IUser } from "types/userTypes";
+
+interface IGetUserByToken {
+    getUserByToken: IUser;
+}
+
+export const getUserByToken = async (): Promise<IGetUserByToken | undefined> => {
     try {
         const { data } = await getClient().query({
             query: GET_USER_BY_TOKEN,
@@ -14,7 +20,7 @@ export const getUserByToken = async () => {
     }
 };
 
-export const getUserByTokenRedirect = async (url: string) => {
+export const getUserByTokenRedirect = async (url: string): Promise<IGetUserByToken | undefined> => {
     try {
         const { data } = await getClient().query({
             query: GET_USER_BY_TOKEN,

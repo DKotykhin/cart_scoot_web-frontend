@@ -27,8 +27,8 @@ body {
     flex-direction: column;
     align-items: center;
     background: url(../../public/background.svg) top center no-repeat,
-        linear-gradient(45deg, $blue-primary 0%, $blue-secondary 100%) center / cover
-            no-repeat;
+        linear-gradient(45deg, $blue-primary 0%, $blue-secondary 100%) center /
+            cover no-repeat;
     width: 100%;
     height: 900px;
     // min-height: 100vh;
@@ -46,18 +46,13 @@ header {
     width: 100vw;
     height: 280px;
     background: $white;
+    // background: $black-quaternary;
     border-radius: 100% / 100%;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     z-index: -1;
 }
 // main {
-//     // margin-top: 120px;
-//     // position: absolute;
-//     // background: rgba(255, 255, 255, 0.80);
-//     // max-width: 1438px;
-//     // background: $white;
-//     // background: url(../../public/background.svg) center center/cover no-repeat
 // }
 .title {
     color: $black-primary;
@@ -83,8 +78,8 @@ header {
         --gradient-dark-blue,
         linear-gradient(45deg, $blue-primary 0%, $blue-secondary 100%)
     );
-    background-clip: text;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 16px;
 }
@@ -133,7 +128,7 @@ header {
     font-weight: 600;
     line-height: 20px;
     padding: 0px 24px;
-    border: 1px solid $green-primary; 
+    border: 1px solid $green-primary;
     cursor: pointer;
 }
 .button-grey-outlined {
@@ -146,7 +141,7 @@ header {
     font-weight: 600;
     line-height: 20px;
     padding: 0px 24px;
-    border: 1px solid $black-tertiary; 
+    border: 1px solid $black-tertiary;
     cursor: pointer;
 }
 .link {
@@ -167,21 +162,25 @@ header {
         color: $green-primary;
     }
 }
-
-.wrong-toast {    
-    font-size: 20px;
-    color: $red-primary;    
-    font-weight: 500;  
+.driver-pages-container {
+    display: flex;
+    margin-top: 48px;
+    box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
 }
-.right-toast {    
+
+.wrong-toast {
     font-size: 20px;
-    color: $green-primary;    
-    font-weight: 500;  
+    color: $red-primary;
+    font-weight: 500;
+}
+.right-toast {
+    font-size: 20px;
+    color: $green-primary;
+    font-weight: 500;
 }
 .Toastify__toast-icon {
     margin-right: 50px !important;
 }
-
 
 @media screen and (min-width: $full_bp) {
 }
