@@ -1,0 +1,46 @@
+@import "constants/constants.scss";
+
+.driver_box {
+    display: flex;
+    align-items: center;
+    img {
+        border-radius: 50%;
+    }
+    .driver_bigName {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 190px;
+        font-size: 20px;
+        color: $black-primary;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 0 16px 0 8px;
+    }
+    .empty_avatar {
+        display: flex;
+        width: 48px;
+        height: 48px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 80px;
+        background-color: $green-quaternary;
+        border: 1px solid $green-primary;
+        box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+        font-size: 16px;
+        color: $green-primary;
+        font-weight: 600;
+        line-height: 20px;
+    }
+}
+.driver_green_box {
+    border-radius: 80px;
+    border: 2px solid $white;
+    background: $green-primary;
+    box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+    height: 56px;
+    .empty_avatar {
+        margin-left: 2px;
+    }
+}

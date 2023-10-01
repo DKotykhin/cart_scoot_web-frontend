@@ -120,7 +120,7 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
                         <p className={styles.reset}>Forgot Password?</p>
                     </Link>
                 </div>
-                <div className='line'></div>
+                <div className='line'/>
                 <div className={styles.lower_box}>
                     <button onClick={changePasswordClick}>Cancel</button>
                     <button type='submit'>Change Password</button>

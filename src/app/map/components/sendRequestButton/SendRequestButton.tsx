@@ -2,12 +2,10 @@ import React from 'react';
 
 import styles from './sendRequestButton.module.scss';
 
-const SendRequestButton = () => {
-
-    const sendClick = () => console.log('send');
+const SendRequestButton: React.FC<{ sendAllRequestClick: () => void }> = ({ sendAllRequestClick }) => {
 
     return (
-        <div className={styles.wrapper} onClick={sendClick}>
+        <div className={styles.wrapper} onClick={sendAllRequestClick}>
             <p className={styles.text}>Send Request to all</p>
         </div>
     );

@@ -9,7 +9,6 @@ export enum statusTypes {
 interface IBaseRequest {
     _id: string;
     createdAt: string;
-    userId: string;
     description: string;
     status: statusTypes;
     carType: number;
@@ -30,18 +29,12 @@ interface IBaseRequest {
 }
 
 export interface IRequest extends IBaseRequest {
+    userId: string;
     driverId: string;
 }
 
-export interface IRequestWithPopulatedFields extends IBaseRequest {
-    driverId: {
-        _id: string;
-        userName: string;
-        avatarURL: string;
-    };
-}
-
-export interface IRequestWithDriverPhone extends IBaseRequest {
+export interface IRequestWithDriverPopulatedFields extends IBaseRequest {
+    userId: string;
     driverId: {
         _id: string;
         userName: string;
@@ -53,7 +46,20 @@ export interface IRequestWithDriverPhone extends IBaseRequest {
     };
 }
 
+export interface IRequestWithRiderPopulatedFields extends IBaseRequest {
+    userId: {
+        _id: string;
+        userName: string;
+        avatarURL: string;
+        phone: {
+            confirmed: boolean;
+            number: string;
+        };
+        driverId: string;
+    };
+}
+
 export interface IRequestWithRating {
-    request: IRequestWithDriverPhone;
+    request: IRequestWithDriverPopulatedFields;
     avgRating: number;
 }

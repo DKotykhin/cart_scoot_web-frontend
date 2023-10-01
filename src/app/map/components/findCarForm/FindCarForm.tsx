@@ -2,14 +2,19 @@
 
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useLoadScript } from '@react-google-maps/api';
+import { Libraries, useLoadScript } from '@react-google-maps/api';
+import { toast } from 'react-toastify';
+
+import Image from "next/image";
 
 import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
 import TimePickerInput from 'components/inputs/dateTimePickers/TimePickerInput';
 import PickupInput from 'components/inputs/locationInput/PickupInput';
+import DropoffInput from 'components/inputs/locationInput/DropoffInput';
+
+import { useFormDataStore } from 'stores/findCarFormStore';
 
 import styles from './findCarForm.module.scss';
-import DropoffInput from 'components/inputs/locationInput/DropoffInput';
 
 interface ISearchData {
     pickup: any,
@@ -18,9 +23,15 @@ interface ISearchData {
     dropoff: any,
 }
 
-const libraries: any = ['places'];
+interface IFindCarForm {
+    closeDriverDetails: () => void;
+}
 
-const FindCarForm = () => {
+const libraries: Libraries = ['places'];
+
+const FindCarForm: React.FC<IFindCarForm> = ({ closeDriverDetails }) => {
+
+    const { addFindCarFormData } = useFormDataStore();
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
@@ -34,22 +45,40 @@ const FindCarForm = () => {
         reset,
     } = useForm<ISearchData>({
         defaultValues: {
-            pickup: '',
+            pickup: {},
             date: undefined,
             time: undefined,
-            dropoff: '',
+            dropoff: {},
         }
     });
 
     const onSubmit = async (data: ISearchData): Promise<void> => {
-        // console.log(data);
+        // console.log('data: ', data);
         const { date, time, pickup, dropoff } = data;
-        const [pickupPlace] = pickup.getPlaces();
-        const [dropoffPlace] = dropoff.getPlaces();
-        if (pickupPlace && dropoffPlace) {
-            const newData = {
-                date: date?.toJSON(),
-                time: time?.toJSON(),
+
+        let requestedTime;
+        if (date && time) {
+            const requestHours = new Date(time).getHours();
+            const requestMinutes = new Date(time).getMinutes();
+            requestedTime = new Date(new Date(date).setHours(requestHours, requestMinutes)).toJSON();
+        } else {
+            toast.warn("Please, put pickup date and time!", {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        };
+        // console.log('requestedTime: ', requestedTime);
+
+        let locationData;
+        if (pickup.getPlaces() && dropoff.getPlaces()) {
+            const [pickupPlace] = pickup.getPlaces();
+            const [dropoffPlace] = dropoff.getPlaces();
+            locationData = {
                 pickup: {
                     address: pickupPlace.formatted_address,
                     lat: pickupPlace.geometry.location.lat(),
@@ -61,30 +90,52 @@ const FindCarForm = () => {
                     lon: dropoffPlace.geometry.location.lng(),
                 },
             };
-            console.log(newData);
+        } else {
+            toast.warn("Please, put pickup and dropoff location!", {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        };
+        // console.log('locationData: ', locationData);
+        if (requestedTime && locationData) {
+            addFindCarFormData({ requestedTime, locationData });
+            closeDriverDetails();
         }
     };
 
     return (
         <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.form_box}>
-                <PickupInput
-                    control={control}
-                    isLoaded={isLoaded}
-                />
-                <DatePickerInput
-                    name='date'
-                    placeholder='Pickup Date'
-                    control={control}
-                    minDate={true}
-                />
-                <TimePickerInput
-                    control={control}
-                />
-                <DropoffInput
-                    control={control}
-                    isLoaded={isLoaded}
-                />
+                <div className={styles.pickup_input_box}>
+                    <PickupInput
+                        control={control}
+                        isLoaded={isLoaded}
+                    />
+                </div>
+                <div className={styles.date_input_box}>
+                    <DatePickerInput
+                        name='date'
+                        placeholder='Pickup Date'
+                        control={control}
+                        minDate={true}
+                    />
+                </div>
+                <div className={styles.time_input_box}>
+                    <TimePickerInput
+                        control={control}
+                    />
+                </div>
+                <div className={styles.dropoff_input_box}>
+                    <DropoffInput
+                        control={control}
+                        isLoaded={isLoaded}
+                    />
+                </div>
                 <button
                     type='submit'
                     className={styles.submit_button}

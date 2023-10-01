@@ -17,10 +17,10 @@ justify-content: center;
             top: 0;
             background-color: $black-quaternary;
             height: 100%;
-            width: 2190px;
-            min-width: 100vw;
+            max-width: 2190px;
+            width: 100vw;
             z-index: -1;
-            border-radius: 100% / 100%;
+            border-radius: 100% / 50%;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }

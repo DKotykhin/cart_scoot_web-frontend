@@ -10,7 +10,8 @@
     padding: 0 60px;
     margin-bottom: 160px;
     .text_box {
-        width: 536px;
+        max-width: 536px;
+        width: 100%;
         height: 424px;
         display: flex;
         flex-direction: column;
@@ -25,7 +26,8 @@
             .link {
                 display: flex;
                 align-items: center;
-                width: 256px;
+                max-width: 256px;
+                width: 100%;
                 height: 48px;
                 img {
                     padding: 12px;
@@ -67,7 +69,8 @@
     .miniCard_box {
         display: flex;
         justify-content: center;
-        width: 536px;
+        max-width: 536px;
+        width: 100%;
         height: 536px;
         padding-top: 72px;
         background: url(../../../../../public/bg-2.svg) center center/cover

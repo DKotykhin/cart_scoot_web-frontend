@@ -18,8 +18,8 @@
             line-height: 78px;
             margin: 24px 0;
             background: linear-gradient(124deg, $white 0%, $white-dark 100%);
-            background-clip: text;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         h2 {

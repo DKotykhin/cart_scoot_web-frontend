@@ -30,7 +30,7 @@ const RadioButtons: React.FC<IRadioButtonsInput> = ({ control }) => {
                             />
                         )}
                     />
-                    <span className={styles.label}>Rider</span>
+                    <span className={active ? styles.label : styles.label_active}>Rider</span>
                 </label>
             </div>
             <div className={styles.radio} onClick={() => setActive(true)}>
@@ -47,7 +47,7 @@ const RadioButtons: React.FC<IRadioButtonsInput> = ({ control }) => {
                             />
                         )}
                     />
-                    <span className={styles.label}>Driver</span>
+                    <span className={active ? styles.label_active : styles.label}>Driver</span>
                 </label>
             </div>
         </div>

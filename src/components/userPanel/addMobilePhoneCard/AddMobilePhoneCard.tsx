@@ -12,9 +12,9 @@ import { ADD_MOBILE_PHONE } from 'apollo/mutations/user';
 
 import { PhoneField } from 'components/inputs/_index';
 import { AddMobileValidation } from 'validation/userValidation';
+import ConfirmMobilePhoneCard from '../confirmMobilePhoneCard/ConfirmMobilePhoneCard';
 
 import styles from './addMobilePhoneCard.module.scss';
-import ConfirmMobilePhoneCard from '../confirmMobilePhoneCard/ConfirmMobilePhoneCard';
 
 interface IAddMobileData {
     phone: string;
@@ -28,7 +28,6 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
 
     const [openConfirmCard, setOpenConfirmCard] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
-    // const openConfirmCard = true;
 
     const [addMobile] = useMutation(ADD_MOBILE_PHONE);
 
@@ -64,7 +63,6 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
     };
 
     const resendCode = async () => {
-        // console.log('resend');
         if (phoneNumber) {
             try {
                 await addMobile({
@@ -127,9 +125,9 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
                             <p className={styles.checkbox_error}>{errors.terms?.message}</p>
                         </div>
                     </div>
-                    <div className='line'></div>
+                    <div className='line'/>
                     <div className={styles.lowerBox}>
-                        <button type='submit' className='button'>Send a code</button>
+                        <button type='submit' className='button-green-filled'>Send a code</button>
                     </div>
                 </form>
             }

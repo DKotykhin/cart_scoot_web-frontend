@@ -31,7 +31,7 @@ const ThirdBlock = () => {
                         src={'/icons/rate.svg'}
                         alt={'rate'}
                         width={135}
-                        height={46}                        
+                        height={46}
                     />
                 </div>
                 <div className={styles.card}>
@@ -56,7 +56,7 @@ const ThirdBlock = () => {
                         src={'/icons/rate.svg'}
                         alt={'rate'}
                         width={135}
-                        height={46}                        
+                        height={46}
                     />
                 </div>
                 <div className={styles.card}>
@@ -81,7 +81,7 @@ const ThirdBlock = () => {
                         src={'/icons/rate.svg'}
                         alt={'rate'}
                         width={135}
-                        height={46}                       
+                        height={46}
                     />
                 </div>
             </div>
@@ -98,44 +98,46 @@ const ThirdBlock = () => {
                     Unforgettable Experience on the Green.
                 </p>
                 <div className={styles.line}></div>
-                <div className={styles.link_box}>
-                    <div className={styles.link}>
-                        <Image
-                            src={'/icons/checkCircle-green.svg'}
-                            alt={'check circle'}
-                            width={24}
-                            height={24}
-                        />
-                        <span>Safe Cars</span>
+                <div className={styles.link_wrapper}>
+                    <div className={styles.link_box}>
+                        <div className={styles.link}>
+                            <Image
+                                src={'/icons/checkCircle-green.svg'}
+                                alt={'check circle'}
+                                width={24}
+                                height={24}
+                            />
+                            <span>Safe Cars</span>
+                        </div>
+                        <div className={styles.link}>
+                            <Image
+                                src={'/icons/checkCircle-green.svg'}
+                                alt={'check circle'}
+                                width={24}
+                                height={24}
+                            />
+                            <span>Modern Cars</span>
+                        </div>
                     </div>
-                    <div className={styles.link}>
-                        <Image
-                            src={'/icons/checkCircle-green.svg'}
-                            alt={'check circle'}
-                            width={24}
-                            height={24}
-                        />
-                        <span>Trusted Drivers</span>
-                    </div>
-                </div>
-                <div className={styles.link_box}>
-                    <div className={styles.link}>
-                        <Image
-                            src={'/icons/checkCircle-green.svg'}
-                            alt={'check circle'}
-                            width={24}
-                            height={24}
-                        />
-                        <span>Modern Cars</span>
-                    </div>
-                    <div className={styles.link}>
-                        <Image
-                            src={'/icons/checkCircle-green.svg'}
-                            alt={'check circle'}
-                            width={24}
-                            height={24}
-                        />
-                        <span>Suitable for all need</span>
+                    <div className={styles.link_box}>
+                        <div className={styles.link}>
+                            <Image
+                                src={'/icons/checkCircle-green.svg'}
+                                alt={'check circle'}
+                                width={24}
+                                height={24}
+                            />
+                            <span>Trusted Drivers</span>
+                        </div>
+                        <div className={styles.link}>
+                            <Image
+                                src={'/icons/checkCircle-green.svg'}
+                                alt={'check circle'}
+                                width={24}
+                                height={24}
+                            />
+                            <span>Suitable for all need</span>
+                        </div>
                     </div>
                 </div>
                 <Link href={'/about'}>
