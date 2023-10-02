@@ -10,11 +10,11 @@ import Link from 'next/link';
 import { useMutation } from '@apollo/client';
 import { REGISTER_BY_PHONE } from 'apollo/mutations/user';
 
+import ConfirmCodeCard from 'components/confirmCodeCard/ConfirmCodeCard';
 import { PhoneField } from 'components/inputs/_index';
 import { AddMobileValidation } from 'validation/userValidation';
 
 import styles from './registerMobilePhone.module.scss';
-import ConfirmCodeCard from '../confirmCodeCard/ConfirmCodeCard';
 
 interface IRegisterMobileData {
     phone: string;
@@ -45,7 +45,10 @@ const RegisterMobilePhone: React.FC<IRegisterMobilePhone> = ({ handleClose }) =>
         try {
             const { data } = await registerByPhone({
                 variables: {
-                    phone,
+                    registerByPhoneInput: {
+                        phone,
+                        userName: "",
+                    }
                 },
             });
             if (data.registerByPhone.user._id) setOpenConfirmCard(true);

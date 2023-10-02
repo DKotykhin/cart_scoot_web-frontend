@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REVIEWS_BY_DRIVER_ID } from 'apollo/queries/review';
 
-import LoadMore from '../loadMore/LoadMore';
+import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
 import ReviewTable from '../reviewTable/ReviewTable';
 import SearchForm, { ISearchData } from '../searchForm/SearchForm';
 
@@ -53,7 +53,7 @@ const ReviewPanel: React.FC<{ user?: IUser }> = ({ user }) => {
             <div className={styles.review_panel}>
                 <SearchForm formData={formData} />
                 <ReviewTable reviews={data?.getReviewsByDriverId} />
-                {data?.getReviewsByDriverId.length > 6 && <LoadMore loadMoreClick={loadMoreClick} />}
+                {data?.getReviewsByDriverId.length > 6 && <LoadMoreButton loadMoreClick={loadMoreClick} />}
             </div>
         </div>
         :
@@ -67,7 +67,7 @@ const ReviewPanel: React.FC<{ user?: IUser }> = ({ user }) => {
                     height={192}
                     className={styles.empty_image}
                 />
-                <h3 className={styles.title}>Comments List is Empty!</h3>
+                <h3 className={styles.empty_title}>Comments List is Empty!</h3>
                 <p className={styles.empty_p}>
                     You didn&apos;t get any comment yet.
                 </p>

@@ -8,7 +8,8 @@ import Link from 'next/link';
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REQUESTS_BY_RIDER } from 'apollo/queries/request';
 
-import SearchForm, { ISearchData } from '../searchForm/SearchForm';
+import SearchForm, { ISearchData } from 'components/searchForm/SearchForm';
+import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
 import RequestsTable from '../requestsTable/RequestsTable';
 
 import { IRequestWithDriverPopulatedFields } from 'types/requestTypes';
@@ -42,20 +43,14 @@ const Table = () => {
         });
     };
 
+    const loadMoreClick = () => setPage(page + 1);
+
     return data?.getRequestsByRider.length ?
         <div className={styles.container}>
             <SearchForm formData={formData} />
             <RequestsTable requestData={data?.getRequestsByRider} />
             {data?.getRequestsByRider.length > 6 &&
-                <button className={styles.find_button} onClick={() => setPage(page + 1)}>
-                    Load More
-                    <Image
-                        src={'/icons/caretDown-green.svg'}
-                        alt={'caret'}
-                        width={24}
-                        height={24}
-                    />
-                </button>
+                <LoadMoreButton loadMoreClick={loadMoreClick}/>
             }
         </div>
         :

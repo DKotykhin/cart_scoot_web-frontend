@@ -1,8 +1,9 @@
+"use client";
+
 import React from 'react';
 
 import Image from "next/image";
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
@@ -21,10 +22,15 @@ interface IPasswordData {
     confirmPassword: string,
 }
 
-const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ changePasswordClick }) => {
+interface IChangePasswordCard {
+    openChangePasswordClick: () => void;
+    changePasswordClick: () => void;
+
+}
+
+const ChangePasswordCard: React.FC<IChangePasswordCard> = ({ changePasswordClick, openChangePasswordClick }) => {
 
     const [changePassword] = useMutation(CHANGE_PASSWORD);
-    const router = useRouter();
 
     const {
         control,
@@ -66,7 +72,6 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
                         />
                     });
                     changePasswordClick();
-                    router.push('/login');
                 }
             } catch (err: any) {
                 toast.warn(err.message, {
@@ -83,7 +88,7 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
     };
 
     return (
-        <div className={styles.container} onClick={changePasswordClick}>
+        <div className={styles.container} onClick={openChangePasswordClick}>
             <form
                 className={styles.password_form}
                 onSubmit={handleSubmit(onSubmit)}
@@ -120,9 +125,9 @@ const ChangePasswordCard: React.FC<{ changePasswordClick: () => void }> = ({ cha
                         <p className={styles.reset}>Forgot Password?</p>
                     </Link>
                 </div>
-                <div className='line'/>
+                <div className='line' />
                 <div className={styles.lower_box}>
-                    <button onClick={changePasswordClick}>Cancel</button>
+                    <button onClick={openChangePasswordClick}>Cancel</button>
                     <button type='submit'>Change Password</button>
                 </div>
             </form>

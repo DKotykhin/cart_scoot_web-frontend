@@ -32,7 +32,15 @@ export const GET_REQUEST = gql`
                 requestCode
                 requestedTime
                 status
-                userId
+                userId {
+                    _id
+                    userName
+                    avatarURL
+                    phone {
+                        confirmed
+                        number
+                    }
+                }
             }
             avgRating
         }
@@ -115,21 +123,7 @@ export const GET_REQUESTS_BY_DRIVER = gql`
             getRequestsByFiltersInput: $getRequestsByFiltersInput
         ) {
             _id
-            createdAt
-            userId {
-                _id
-                userName
-                avatarURL
-                phone {
-                    confirmed
-                    number
-                }
-            }
-            driverId
-            description
-            status
             carType
-            requestedTime
             coordinates {
                 start {
                     lat
@@ -140,9 +134,59 @@ export const GET_REQUESTS_BY_DRIVER = gql`
                     lon
                 }
             }
-            requestCode
-            pickupLocation
+            createdAt
+            description
+            driverId
             dropoffLocation
+            pickupLocation
+            requestCode
+            requestedTime
+            status
+            userId {
+                _id
+                userName
+                avatarURL
+                phone {
+                    confirmed
+                    number
+                }
+            }
+        }
+    }
+`;
+
+export const GET_PENDING_REQUESTS = gql`
+    query GetPendingRequests {
+        getPendingRequests {
+            _id
+            carType
+            coordinates {
+                end {
+                    lon
+                    lat
+                }
+                start {
+                    lat
+                    lon
+                }
+            }
+            createdAt
+            description
+            driverId
+            dropoffLocation
+            pickupLocation
+            requestCode
+            requestedTime
+            status
+            userId {
+                _id
+                userName
+                avatarURL
+                phone {
+                    confirmed
+                    number
+                }
+            }
         }
     }
 `;

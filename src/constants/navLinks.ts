@@ -42,10 +42,4 @@ export const profileNavLinks = [
         icon: '/icons/star-black.svg',
         activeIcon: '/icons/star-green-bold.svg',
     },
-    {
-        name: "Change Password",
-        url: "/driver-change-password",
-        icon: '/icons/key-black.svg',
-        activeIcon: '/icons/key-green.svg',
-    },
 ];

@@ -4,9 +4,9 @@ import React from 'react';
 
 import Image from "next/image";
 
-import styles from './loadMore.module.scss';
+import styles from './loadMoreButton.module.scss';
 
-const LoadMore: React.FC<{ loadMoreClick: () => void }> = ({ loadMoreClick }) => {
+const LoadMoreButton: React.FC<{ loadMoreClick: () => void }> = ({ loadMoreClick }) => {
     return (
         <button className={styles.find_button} onClick={loadMoreClick}>
             Load More
@@ -20,4 +20,4 @@ const LoadMore: React.FC<{ loadMoreClick: () => void }> = ({ loadMoreClick }) =>
     );
 };
 
-export default LoadMore;
+export default LoadMoreButton;

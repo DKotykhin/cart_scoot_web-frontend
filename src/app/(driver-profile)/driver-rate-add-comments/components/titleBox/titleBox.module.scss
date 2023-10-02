@@ -1,17 +1,38 @@
 @import "constants/constants.scss";
 
-.title_box {
+.title_container {
     display: flex;
     justify-content: space-between;
     padding: 24px;
     border-bottom: 1px solid $black-tertiary;
     background: $black-quaternary;
     border-top-right-radius: 24px;
-    .profile_title {
-        color: $black-primary;
-        font-size: 32px;
-        font-weight: 600;
-        line-height: 40px;
-        text-align: center;
+    .title_box {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        .profile_title {
+            color: $black-primary;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 40px;
+            text-align: center;
+        }
+        .review_amount {
+            display: flex;
+            width: 36px;
+            height: 36px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 48px;
+            border: 2px solid $white;
+            background: $black-tertiary;
+            font-size: 16px;
+            color: $black-primary;
+            font-weight: 600;
+            line-height: 20px;
+        }
     }
 }

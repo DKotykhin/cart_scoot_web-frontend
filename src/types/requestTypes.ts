@@ -59,7 +59,27 @@ export interface IRequestWithRiderPopulatedFields extends IBaseRequest {
     };
 }
 
+export interface IRequestWithAllUsersPopulatedFields extends IBaseRequest {
+    userId: {
+        _id: string;
+        userName: string;
+        avatarURL: string;
+        phone: {
+            confirmed: boolean;
+            number: string;
+        };
+    };
+    driverId: {
+        _id: string;
+        userName: string;
+        avatarURL: string;
+        phone: {
+            confirmed: boolean;
+            number: string;
+        };
+    };
+}
 export interface IRequestWithRating {
-    request: IRequestWithDriverPopulatedFields;
+    request: IRequestWithAllUsersPopulatedFields;
     avgRating: number;
 }

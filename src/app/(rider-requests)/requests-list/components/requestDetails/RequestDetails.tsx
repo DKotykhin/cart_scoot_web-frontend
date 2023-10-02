@@ -12,12 +12,12 @@ import type { FeatureCollection } from 'geojson';
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REQUEST } from 'apollo/queries/request';
 
-import DetailsCard from './detailsCard/DetailsCard';
-import FinishedCard from './finishedCard/FinishedCard';
+import FinishedCard from '../finishedCard/FinishedCard';
+import DetailsCard from '../detailsCard/DetailsCard';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 
 import { useMapboxApi } from 'hooks/useMapboxApi';
-import { viewport } from 'constants/mapViewport';
+import { mapStyle, viewport } from 'constants/mapStyle';
 import { IRequestWithRating } from 'types/requestTypes';
 
 import styles from './requestDetails.module.scss';
@@ -85,7 +85,7 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
                             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
                             initialViewState={viewport}
                             style={{ borderRadius: 20 }}
-                            mapStyle="mapbox://styles/mapbox/streets-v11"
+                            mapStyle={mapStyle}
                         >
                             <Marker
                                 latitude={data.getRequest.request.coordinates?.start?.lat}

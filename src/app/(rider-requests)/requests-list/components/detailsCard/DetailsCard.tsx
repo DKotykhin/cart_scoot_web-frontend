@@ -29,8 +29,8 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
 
     const [openDetails, setOpenDetails] = useState(false);
 
-    const [finish] = useMutation(FINISH_REQUEST);
-    const [cancel] = useMutation(CANCEL_REQUEST);
+    const [finishTrip] = useMutation(FINISH_REQUEST);
+    const [cancelTrip] = useMutation(CANCEL_REQUEST);
     const [riderAnswer] = useMutation(RIDER_MULTI_CALL_ANSWER);
 
     const handleStatusClick = () => setOpenDetails(false);
@@ -38,7 +38,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
 
     const finishClick = async () => {
         try {
-            const { data } = await finish({
+            const { data } = await finishTrip({
                 variables: {
                     requestId: _id,
                 },
@@ -58,7 +58,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
     };
     const cancelClick = async () => {
         try {
-            const { data } = await cancel({
+            const { data } = await cancelTrip({
                 variables: {
                     requestId: _id,
                 },

@@ -13,7 +13,7 @@ const DriverCommentsPage = async () => {
 
     return (
         <div className={styles.wrapper}>
-            <TitleBox/>
+            <TitleBox user={data?.getUserByToken} />
             <ReviewPanel user={data?.getUserByToken} />
         </div>
     );
