@@ -1,15 +1,22 @@
 import React from 'react';
 
-import styles from './requests.module.scss';
+import { getPendingRequests } from 'apollo/services/getPendingRequests';
 
-const DriverRequestsPage = () => {
+import styles from './requests.module.scss';
+import RequestPanel from './components/requestPanel/RequestPanel';
+
+const DriverRequestsPage = async () => {
+
+    const data = await getPendingRequests();
+  
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.title_box}>
                 <h2 className={styles.profile_title}>Requests</h2>
+                <div className={styles.request_amount}>{data?.getPendingRequests.length}</div>
             </div>
-
+            <RequestPanel requests={data?.getPendingRequests}/>
         </div>
     );
 };

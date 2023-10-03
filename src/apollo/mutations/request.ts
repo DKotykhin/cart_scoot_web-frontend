@@ -63,3 +63,27 @@ export const ALL_DRIVERS_REQUEST = gql`
         }
     }
 `;
+
+export const DRIVER_ONE_CALL_ANSWER = gql`
+    mutation DriverOneCallAnswer($driverOneCallAnswerInput: AnswerInput) {
+        driverOneCallAnswer(
+            driverOneCallAnswerInput: $driverOneCallAnswerInput
+        ) {
+            _id
+            status
+            requestCode
+        }
+    }
+`;
+
+export const DRIVER_MULTI_CALL_ANSWER = gql`
+    mutation DriverMultiCallAnswer($driverMultiCallAnswerInput: AnswerInput) {
+        driverMultiCallAnswer(
+            driverMultiCallAnswerInput: $driverMultiCallAnswerInput
+        ) {
+            _id
+            status
+            requestCode
+        }
+    }
+`;

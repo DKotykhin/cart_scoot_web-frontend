@@ -1,22 +1,22 @@
 @import "constants/constants.scss";
 
-.card_container {
-    position: absolute;
-    top: 32px;
-    left: 32px;
+.request_details {
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 679px;
-    padding: 24px;
+    justify-content: space-between;
+    height: 100%;
     gap: 24px;
-    border-radius: 16px;
-    background: $black-quaternary;
-    .card_title {
-        font-size: 28px;
-        color: $black-primary;
-        font-weight: 500;
-        line-height: 34px;
+    .title_box {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+        .request_detail_title {
+            font-size: 28px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 34px;
+        }
     }
     .user_details_wrapper {
         flex-grow: 1;
@@ -27,6 +27,12 @@
         gap: 16px;
         background: $white;
         box-shadow: 0px 4px 36px -4px rgba(0, 0, 0, 0.04);
+        .user_details_personal {
+            font-size: 16px;
+            color: $green-primary;
+            font-weight: 500;
+            line-height: 20px;
+        }
         .addition_details_box {
             display: flex;
             gap: 24px;
@@ -53,5 +59,9 @@
                 }
             }
         }
+    }
+    .request_buttons {
+        display: flex;
+        gap: 24px;
     }
 }

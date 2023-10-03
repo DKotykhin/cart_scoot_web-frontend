@@ -55,8 +55,8 @@ export interface IRequestWithRiderPopulatedFields extends IBaseRequest {
             confirmed: boolean;
             number: string;
         };
-        driverId: string;
     };
+    driverId: string;
 }
 
 export interface IRequestWithAllUsersPopulatedFields extends IBaseRequest {

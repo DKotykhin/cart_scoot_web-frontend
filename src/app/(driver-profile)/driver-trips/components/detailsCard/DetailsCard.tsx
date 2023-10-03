@@ -7,12 +7,13 @@ import { toast } from 'react-toastify';
 import { useMutation } from '@apollo/client';
 import { CANCEL_REQUEST } from 'apollo/mutations/request';
 
+import LocationCard from 'app/(driver-profile)/components/locationCard/LocationCard';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
 import CancelTripCard from '../cancelTripCard/CancelTripCard';
 import { useMapboxApi } from 'hooks/useMapboxApi';
 
-import { IRequestWithAllUsersPopulatedFields } from 'types/requestTypes';
+import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestTypes';
 
 import styles from './detailsCard.module.scss';
 
@@ -20,7 +21,7 @@ const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = 
 
     const [openCancelTripCard, setOpenCancelTripCard] = useState(false);
 
-    const { _id, pickupLocation, dropoffLocation, requestedTime, coordinates: { start, end } } = request;
+    const { _id, pickupLocation, dropoffLocation, requestedTime, coordinates: { start, end }, status } = request;
     const routeData = useMapboxApi(start.lat, start.lon, end.lat, end.lon);
 
     const [cancelTrip] = useMutation(CANCEL_REQUEST);
@@ -61,40 +62,7 @@ const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = 
         <>
             <div className={styles.card_container}>
                 <p className={styles.card_title}>Trip Details</p>
-                <div className={styles.location_wrapper}>
-                    <div className={styles.location_box}>
-                        <Image
-                            src={'/icons/mapPin-green.svg'}
-                            alt={'pin'}
-                            width={40}
-                            height={40}
-                            className={styles.location_image}
-                        />
-                        <div className={styles.text_box}>
-                            <p className={styles.location_title}>Pickup Location</p>
-                            <p className={styles.location_value}>{pickupLocation}</p>
-                        </div>
-                    </div>
-                    <Image
-                        src={'/icons/line-green.svg'}
-                        alt={'line'}
-                        width={40}
-                        height={40}
-                    />
-                    <div className={styles.location_box}>
-                        <Image
-                            src={'/icons/flag-green.svg'}
-                            alt={'flag'}
-                            width={40}
-                            height={40}
-                            className={styles.location_image}
-                        />
-                        <div className={styles.text_box}>
-                            <p className={styles.location_title}>Dropoff</p>
-                            <p className={styles.location_value}>{dropoffLocation}</p>
-                        </div>
-                    </div>
-                </div>
+                <LocationCard pickupLocation={pickupLocation} dropoffLocation={dropoffLocation} />
                 <div className={styles.user_details_wrapper}>
                     <DriverAvatar
                         driverAvatarURL={request.userId.avatarURL}
@@ -131,12 +99,14 @@ const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = 
                         </div>
                     </div>
                 </div>
-                <button
-                    className='button-grey-outlined'
-                    onClick={() => setOpenCancelTripCard(true)}
-                >
-                    Cancel Trip
-                </button>
+                {(status === statusTypes.pending || status === statusTypes.approved) &&
+                    <button
+                        className='button-grey-outlined'
+                        onClick={() => setOpenCancelTripCard(true)}
+                    >
+                        Cancel Trip
+                    </button>
+                }
             </div>
             {openCancelTripCard &&
                 <CancelTripCard
