@@ -3,7 +3,7 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 
-import { uploadImage } from 'apollo/services/uploadImage';
+import { uploadAvatar } from 'apollo/services/uploadAvatar';
 import { useUserStore } from 'stores/userStore';
 import { avatarLetters } from 'utils/avatarLetters';
 
@@ -28,7 +28,7 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePas
         // console.log(e.target.files[0]);
         const formData = new FormData();
         formData.append("avatar", e.target.files[0], e.target.files[0].name);
-        const newUser = await uploadImage(formData);
+        const newUser = await uploadAvatar(formData);
         addUser(newUser);
     };
 

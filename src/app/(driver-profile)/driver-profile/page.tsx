@@ -9,6 +9,8 @@ import UploadService from './components/uploadService/UploadService';
 import { licenseStatusTypes } from 'types/userTypes';
 
 import styles from './profile.module.scss';
+import UserInfo from './components/userInfo/UserInfo';
+import UpdateInfoForm from './components/updateInfoForm/UpdateInfoForm';
 
 const DriverProfilePage = async () => {
 
@@ -28,15 +30,18 @@ const DriverProfilePage = async () => {
             <div className={styles.line_box}>
                 <div className={styles.line} />
             </div>
-            {data?.getUserByToken.license.status !== licenseStatusTypes.approved ?
+            {(data?.getUserByToken.license.status === licenseStatusTypes.pending || data?.getUserByToken.license.status === licenseStatusTypes.rejected) ?
                 <div className={styles.document_box}>
                     <p className={styles.document_title}>Your Documents</p>
                     <UploadGuide />
-                    <UploadService />
+                    <UploadService user={data?.getUserByToken} />
                 </div>
                 :
                 <div className={styles.document_box}>
                     <p className={styles.document_title}>Your Information</p>
+                    <UserInfo user={data?.getUserByToken} />
+                    <UploadService user={data?.getUserByToken} />
+                    <UpdateInfoForm user={data?.getUserByToken} />
                 </div>
             }
         </div>
