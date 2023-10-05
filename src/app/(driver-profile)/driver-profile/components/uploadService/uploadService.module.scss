@@ -79,6 +79,9 @@
         .upload_card_warning {
             background-color: $red-secondary;
         }
+        .upload_card_success {
+            background-color: $green-quaternary;
+        }
     }
     .upload_button {
         display: flex;

@@ -79,7 +79,7 @@ const Mapbox = () => {
             });
         }
 
-    }, [data?.getFreeDrivers.length]);
+    }, [data?.getFreeDrivers.length, findCarFormData.requestedTime]);
 
     const openLoginModal = () => setOpenLoginMobileCard(true);
     const closeLoginModal = () => setOpenLoginMobileCard(false);
@@ -95,7 +95,6 @@ const Mapbox = () => {
     const closeDriverDetails = () => setOpenDriverDetails(false);
 
     const openPhoneCard = () => {
-        console.log('open Card');
         setOpenLoginMobileCard(false);
         setOpenAddMobileCard(true);
     };

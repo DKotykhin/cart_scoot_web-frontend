@@ -1,1 +1,63 @@
 @import "constants/constants.scss";
+
+.info_form {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    .line {
+        background-color: $black-tertiary;
+        height: 1px;
+    }
+    .form_title {
+        font-size: 28px;
+        color: $black-primary;
+        font-weight: 500;
+        line-height: 34px;
+    }
+    .checkbox_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 48px;
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            input[type="checkbox"] {
+                width: 24px;
+                height: 24px;
+                accent-color: $green-primary;
+                cursor: pointer;
+                :hover {
+                    border-color: $green-primary;
+                }
+            }
+            label {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 20px;
+                color: $black-primary;
+            }
+        }
+    }
+    .hours_box {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        .form_hour_title {
+            flex-grow: 1;
+            font-size: 28px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 34px;
+        }
+    }
+    .button_box {
+        display: flex;
+        justify-content: center;
+        button {
+            width: fit-content;
+        }
+    }
+}

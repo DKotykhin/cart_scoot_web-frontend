@@ -208,3 +208,37 @@ export const CHANGE_USER_NAME = gql`
         }
     }
 `;
+
+export const UPDATE_WORKING_TIME = gql`
+    mutation UpdateWorkingTime(
+        $updateWorkingTimeInput: UpdateWorkingTimeInput
+    ) {
+        updateWorkingTime(updateWorkingTimeInput: $updateWorkingTimeInput) {
+            _id
+            avatarURL
+            coordinates {
+                lat
+                lon
+            }
+            createdAt
+            driverRequests
+            email
+            license {
+                message
+                status
+                url
+            }
+            phone {
+                confirmed
+                number
+            }
+            role
+            userName
+            workingDays
+            workingTime {
+                from
+                to
+            }
+        }
+    }
+`;

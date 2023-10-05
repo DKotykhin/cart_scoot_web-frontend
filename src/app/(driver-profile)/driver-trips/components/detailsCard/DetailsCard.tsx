@@ -10,7 +10,8 @@ import { CANCEL_REQUEST } from 'apollo/mutations/request';
 import LocationCard from 'app/(driver-profile)/components/locationCard/LocationCard';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
-import CancelTripCard from '../cancelTripCard/CancelTripCard';
+import ModalCard from 'components/modalCard/ModalCard';
+
 import { useMapboxApi } from 'hooks/useMapboxApi';
 
 import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestTypes';
@@ -109,7 +110,13 @@ const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = 
                 }
             </div>
             {openCancelTripCard &&
-                <CancelTripCard
+                <ModalCard
+                    title='Cancel the trip'
+                    subtitle='Are you sure to cancel the trip?'
+                    button_1='Back'
+                    button_2='Cancel Trip'
+                    imageURL='/avatars/warningAvatar.svg'
+                    greenButton={false}
                     cancelClick={() => setOpenCancelTripCard(false)}
                     confirmClick={confirmClick}
                 />

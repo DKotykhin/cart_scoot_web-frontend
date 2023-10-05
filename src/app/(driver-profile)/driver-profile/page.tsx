@@ -38,7 +38,6 @@ const DriverProfilePage = async () => {
                 </div>
                 :
                 <div className={styles.document_box}>
-                    <p className={styles.document_title}>Your Information</p>
                     <UserInfo user={data?.getUserByToken} />
                     <UploadService user={data?.getUserByToken} />
                     <UpdateInfoForm user={data?.getUserByToken} />
