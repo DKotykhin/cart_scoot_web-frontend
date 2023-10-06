@@ -48,6 +48,7 @@ export const GET_FREE_DRIVERS = gql`
                     confirmed
                     number
                 }
+                role
                 coordinates {
                     lat
                     lon

@@ -71,6 +71,7 @@ export interface IDriver {
         number: string;
         confirmed: boolean;
     };
+    role: userTypes;
     workingDays: [number];
     workingTime: {
         from: number;
@@ -80,6 +81,19 @@ export interface IDriver {
         lat: number;
         lon: number;
     };
+}
+
+export interface IRider {
+    _id: string;
+    avatarURL: string;
+    driverRequests: [string];
+    email: string;
+    phone: {
+        number: string;
+        confirmed: boolean;
+    };
+    role: userTypes;
+    userName: string;
 }
 
 export interface IDriverWithRating {
