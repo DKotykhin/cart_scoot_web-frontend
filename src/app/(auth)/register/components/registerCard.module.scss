@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 648px;
+    width: 655px;
     // height: 871px;
     background-color: $white;
     margin-top: 48px;
@@ -14,6 +14,47 @@
     .upperBox {
         width: 100%;
         padding: 24px 24px 0 24px;
+        .user_box {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 4px;
+            border-radius: 20px;
+            background-color: $black-quaternary;
+            .user_button {
+                display: flex;
+                height: 48px;
+                padding: 0px 16px;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex: 1 0 0;
+                border-radius: 20px;
+                background: $black-quaternary;
+                font-size: 16px;
+                color: $black-secondary;
+                font-weight: 600;
+                line-height: 20px;
+                cursor: pointer;
+            }
+            .user_button_active {
+                display: flex;
+                height: 48px;
+                padding: 0px 16px;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex: 1 0 0;
+                border-radius: 20px;
+                background: $white;
+                font-size: 16px;
+                color: $green-primary;
+                font-weight: 600;
+                line-height: 20px;
+                box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
+                cursor: pointer;
+            }
+        }
         .avatar {
             display: flex;
             justify-content: center;            
@@ -72,5 +113,11 @@
     .lowerBox {
         width: 100%;
         padding: 0 24px;
+        .login_button_box {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin: 24px 0;
+        }
     }
 }

@@ -3,23 +3,24 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 
+import { uploadAvatar } from 'apollo/services/uploadAvatar';
 import { useUserStore } from 'stores/userStore';
 import { avatarLetters } from 'utils/avatarLetters';
 
 import { IUser, userTypes } from 'types/userTypes';
 
 import styles from './userPanel.module.scss';
-import { uploadImage } from 'apollo/services/uploadImage';
 
 interface IUserPanel {
-    changePasswordClick: () => void;
-    logoutModalClick: () => void;
     user: IUser;
+    openChangePasswordClick: () => void;
+    logoutModalClick: () => void;
     handleCloseClick: () => void;
     addMobileClick: () => void;
+    changeNameClick: () => void;
 }
 
-const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswordClick, handleCloseClick, addMobileClick }) => {
+const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePasswordClick, handleCloseClick, addMobileClick, changeNameClick }) => {
 
     const { addUser } = useUserStore();
 
@@ -27,7 +28,7 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswor
         // console.log(e.target.files[0]);
         const formData = new FormData();
         formData.append("avatar", e.target.files[0], e.target.files[0].name);
-        const newUser = await uploadImage(formData);
+        const newUser = await uploadAvatar(formData);
         addUser(newUser);
     };
 
@@ -86,9 +87,9 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswor
                                 />
                             </div>
                         </Link>
-                        <Link href={'/driver-trips'}>
-                            <div className={styles.list_item}>
-                                <span>Trips</span>
+                        {!user.phone.number &&
+                            <div className={styles.list_item} onClick={addMobileClick}>
+                                <span>Add Mobile Phone</span>
                                 <Image
                                     src={'/icons/caretRight.svg'}
                                     alt={'right'}
@@ -96,10 +97,10 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswor
                                     height={24}
                                 />
                             </div>
-                        </Link>
-                        <Link href={'/driver-change-password'}>
-                            <div className={styles.list_item}>
-                                <span>Change Password</span>
+                        }
+                        {user.userName ?
+                            <div className={styles.list_item} onClick={changeNameClick}>
+                                <span>Change Your Name</span>
                                 <Image
                                     src={'/icons/caretRight.svg'}
                                     alt={'right'}
@@ -107,7 +108,29 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswor
                                     height={24}
                                 />
                             </div>
-                        </Link>
+                            :
+                            <div className={styles.list_item} onClick={changeNameClick}>
+                                <span>Add Your Name</span>
+                                <Image
+                                    src={'/icons/caretRight.svg'}
+                                    alt={'right'}
+                                    width={24}
+                                    height={24}
+                                />
+                            </div>
+                        }
+                        <div
+                            className={styles.list_item}
+                            onClick={openChangePasswordClick}
+                        >
+                            <span>Change Password</span>
+                            <Image
+                                src={'/icons/caretRight.svg'}
+                                alt={'right'}
+                                width={24}
+                                height={24}
+                            />
+                        </div>
                     </>
                     :
                     <>
@@ -133,9 +156,30 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, changePasswor
                                 />
                             </div>
                         }
+                        {user.userName ?
+                            <div className={styles.list_item} onClick={changeNameClick}>
+                                <span>Change Your Name</span>
+                                <Image
+                                    src={'/icons/caretRight.svg'}
+                                    alt={'right'}
+                                    width={24}
+                                    height={24}
+                                />
+                            </div>
+                            :
+                            <div className={styles.list_item} onClick={changeNameClick}>
+                                <span>Add Your Name</span>
+                                <Image
+                                    src={'/icons/caretRight.svg'}
+                                    alt={'right'}
+                                    width={24}
+                                    height={24}
+                                />
+                            </div>
+                        }
                         <div
                             className={styles.list_item}
-                            onClick={changePasswordClick}
+                            onClick={openChangePasswordClick}
                         >
                             <span>Change Password</span>
                             <Image

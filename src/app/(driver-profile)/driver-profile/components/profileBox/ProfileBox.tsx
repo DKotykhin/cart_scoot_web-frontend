@@ -5,7 +5,7 @@ import React from 'react';
 import Image from "next/image";
 
 import { useUserStore } from 'stores/userStore';
-import { uploadImage } from 'apollo/services/uploadImage';
+import { uploadAvatar } from 'apollo/services/uploadAvatar';
 import { avatarLetters } from 'utils/avatarLetters';
 import StarsBox from 'app/(driver-profile)/components/starsBox/StarsBox';
 
@@ -21,7 +21,7 @@ const ProfileBox: React.FC<{ user?: IUser }> = ({ user }) => {
         // console.log(e.target.files[0]);
         const formData = new FormData();
         formData.append("avatar", e.target.files[0], e.target.files[0].name);
-        const newUser = await uploadImage(formData);
+        const newUser = await uploadAvatar(formData);
         addUser(newUser);
     };
 
@@ -55,14 +55,14 @@ const ProfileBox: React.FC<{ user?: IUser }> = ({ user }) => {
             </div>
             <div className={styles.name_wrapper}>
                 <p className={styles.name_title}>{user?.userName}</p>
-                {user?.license.status === licenseStatusTypes.approved ?
-                    <div className={styles.verified}>
-                        Verified
-                    </div>
-                    :
-                    <div className={styles.unverified}>
-                        Unverified
-                    </div>
+                {(user?.license.status === licenseStatusTypes.approved) ?
+                    <p className={`${styles.status} ${styles.approved}`}>Verified</p>
+                    : (user?.license.status === licenseStatusTypes.waiting) ?
+                        <p className={`${styles.status} ${styles.waiting}`}>Waiting For Approve</p>
+                        : (user?.license.status === licenseStatusTypes.rejected) ?
+                            <p className={`${styles.status} ${styles.rejected}`}>Invalid Documents</p>
+                            :
+                            <p className={`${styles.status} ${styles.pending}`}>Unverified</p>
                 }
             </div>
             <StarsBox />

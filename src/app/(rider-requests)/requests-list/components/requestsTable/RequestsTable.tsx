@@ -17,7 +17,7 @@ interface IRequestsTable {
 const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
 
     const router = useRouter();
-    const handleClick = (_id: string) => router.push(`/request-details/${_id}`);
+    const handleClick = (_id: string) => router.push(`/requests-list/${_id}`);
 
     return (
         <table className={styles.container}>

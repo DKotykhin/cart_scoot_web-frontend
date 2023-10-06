@@ -56,34 +56,34 @@
             line-height: 28px;
             margin-bottom: 8px;
         }
-        .verified {
+        .status {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
             height: 40px;
             width: fit-content;
             padding: 0px 24px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
             border-radius: 16px;
-            background: $green-quaternary;
             font-size: 14px;
-            color: $green-primary;
             font-weight: 400;
             line-height: 18px;
         }
-        .unverified {
-            display: flex;
-            height: 40px;
-            padding: 0px 24px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            border-radius: 16px;
+        .approved {   
+            background: $green-quaternary;    
+            color: $green-primary;
+        }
+        .waiting {
+            background: $orange-secondary;
+            color: $orange-primary;
+        }
+        .rejected {
+            background: $red-secondary;
+            color: $red-primary;
+        }
+        .pending {
             background: $black-quaternary;
-            font-size: 14px;
             color: $black-primary;
-            font-weight: 400;
-            line-height: 18px;
         }
     }
     .star_box {

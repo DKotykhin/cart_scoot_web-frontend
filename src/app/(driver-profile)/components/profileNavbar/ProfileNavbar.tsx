@@ -60,7 +60,7 @@ const ProfileNavbar = () => {
                 <div className={styles.navLinks}>
                     {profileNavLinks.map(item => (
                         <Link href={item.url} key={item.name}>
-                            {pathname === item.url ?
+                            {`/${pathname.split('/')[1]}` === item.url ?
                                 <Image
                                     src={'/icons/navbarLine-green.svg'}
                                     alt={'line'}
@@ -76,12 +76,12 @@ const ProfileNavbar = () => {
                                 />
                             }
                             <Image
-                                src={pathname === item.url ? item.activeIcon : item.icon}
+                                src={`/${pathname.split('/')[1]}` === item.url ? item.activeIcon : item.icon}
                                 alt={'icon'}
                                 width={24}
                                 height={24}
                             />
-                            <span className={(pathname === item.url) ? styles.active : ''}>
+                            <span className={(`/${pathname.split('/')[1]}` === item.url) ? styles.active : ''}>
                                 {item.name}
                             </span>
                         </Link>

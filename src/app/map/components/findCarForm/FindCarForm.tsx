@@ -128,6 +128,8 @@ const FindCarForm: React.FC<IFindCarForm> = ({ closeDriverDetails }) => {
                 <div className={styles.time_input_box}>
                     <TimePickerInput
                         control={control}
+                        name='time'
+                        placeholder='Pickup Time'
                     />
                 </div>
                 <div className={styles.dropoff_input_box}>

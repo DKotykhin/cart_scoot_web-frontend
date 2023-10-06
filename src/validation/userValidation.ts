@@ -71,6 +71,16 @@ const addMobileSchema = yup.object({
     phone,
     terms,
 });
+const registerMobileSchema = yup.object({
+    userName,
+    phone,
+});
+const loginMobileSchema = yup.object({
+    phone,
+});
+const changeUserNameSchema = yup.object({
+    userName,
+});
 
 export const RegisterFormValidation: Object = {
     defaultValues: {
@@ -136,3 +146,31 @@ export const AddMobileValidation: Object = {
     resolver: yupResolver(addMobileSchema),
     mode: "onChange",
 };
+
+export const LoginMobileValidation: Object = {
+    defaultValues: {
+        phone: "",
+        rememberMe: false,
+    },
+    resolver: yupResolver(loginMobileSchema),
+    mode: "onChange",
+};
+
+export const RegisterMobileValidation: Object = {
+    defaultValues: {
+        userName: "",
+        phone: "",
+        terms: false,
+    },
+    resolver: yupResolver(registerMobileSchema),
+    mode: "onChange",
+};
+
+export const UserNameValidation: Object = {
+    defaultValues: {
+        userName: "",
+    },
+    resolver: yupResolver(changeUserNameSchema),
+    mode: "onChange",
+};
+

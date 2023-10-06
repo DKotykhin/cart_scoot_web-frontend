@@ -18,6 +18,7 @@ import { IUser, userTypes } from 'types/userTypes';
 
 import styles from './header.module.scss';
 import AddMobilePhoneCard from 'components/userPanel/addMobilePhoneCard/AddMobilePhoneCard';
+import ChangeNameCard from 'components/userPanel/changeNameCard/ChangeNameCard';
 
 const navButtons = [
     {
@@ -39,6 +40,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
     const [openUserPanel, setOpenUserPanel] = useState(false);
     const [openLogoutCard, setOpenLogoutCard] = useState(false);
     const [openChangePasswordCard, setOpenChangePasswordCard] = useState(false);
+    const [openChangeNameCard, setOpenChangeNameCard] = useState(false);
     const [openAddMobileCard, setOpenAddMobileCard] = useState(false);
 
     const pathname = usePathname();
@@ -93,10 +95,17 @@ const Header: React.FC<IHeader> = ({ user }) => {
         setUserEmpty();
     };
 
-    const changePasswordClick = () => setOpenChangePasswordCard(prev => !prev);
+    const openChangePasswordClick = () => setOpenChangePasswordCard(prev => !prev);
+    const changePasswordClick = () => {
+        setOpenChangePasswordCard(prev => !prev);
+        Cookies.remove('token');
+        router.push('/login');
+        setUserEmpty();
+    };
     const addMobileClick = () => setOpenAddMobileCard(prev => !prev);
     const handleClose = () => setOpenAddMobileCard(false);
     const handleCloseClick = () => setOpenUserPanel(false);
+    const changeNameClick = () => setOpenChangeNameCard(prev => !prev);
 
     return (
         <nav className={styles.container}>
@@ -165,10 +174,11 @@ const Header: React.FC<IHeader> = ({ user }) => {
             {openUserPanel &&
                 <UserPanel
                     logoutModalClick={logoutModalClick}
-                    changePasswordClick={changePasswordClick}
+                    openChangePasswordClick={openChangePasswordClick}
                     user={userData}
                     handleCloseClick={handleCloseClick}
                     addMobileClick={addMobileClick}
+                    changeNameClick={changeNameClick}
                 />
             }
             {openLogoutCard &&
@@ -180,11 +190,17 @@ const Header: React.FC<IHeader> = ({ user }) => {
             {openChangePasswordCard &&
                 <ChangePasswordCard
                     changePasswordClick={changePasswordClick}
+                    openChangePasswordClick={openChangePasswordClick}
                 />
             }
             {openAddMobileCard &&
                 <AddMobilePhoneCard
                     handleClose={handleClose}
+                />
+            }
+            {openChangeNameCard &&
+                <ChangeNameCard
+                    changeNameClick={changeNameClick}
                 />
             }
         </nav>

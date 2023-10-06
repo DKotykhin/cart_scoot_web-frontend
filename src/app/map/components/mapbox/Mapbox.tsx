@@ -22,7 +22,7 @@ import RegisterMobilePhone from 'app/map/components/registerMobilePhone/Register
 import { IFindCarFormData, useFormDataStore } from 'stores/findCarFormStore';
 import { useUserStore } from 'stores/userStore';
 
-import { viewport } from 'constants/mapViewport';
+import { mapStyle, viewport } from 'constants/mapStyle';
 import { IDriverWithRating } from 'types/userTypes';
 
 import styles from './mapbox.module.scss';
@@ -79,7 +79,7 @@ const Mapbox = () => {
             });
         }
 
-    }, [data?.getFreeDrivers.length]);
+    }, [data?.getFreeDrivers.length, findCarFormData.requestedTime]);
 
     const openLoginModal = () => setOpenLoginMobileCard(true);
     const closeLoginModal = () => setOpenLoginMobileCard(false);
@@ -95,7 +95,6 @@ const Mapbox = () => {
     const closeDriverDetails = () => setOpenDriverDetails(false);
 
     const openPhoneCard = () => {
-        console.log('open Card');
         setOpenLoginMobileCard(false);
         setOpenAddMobileCard(true);
     };
@@ -210,7 +209,7 @@ const Mapbox = () => {
                     mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
                     initialViewState={viewport}
                     style={{ borderRadius: 20 }}
-                    mapStyle="mapbox://styles/mapbox/streets-v11"
+                    mapStyle={mapStyle}
                 >
                     {data?.getFreeDrivers.map(driver => (
                         <Marker

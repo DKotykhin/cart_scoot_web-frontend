@@ -7,8 +7,8 @@ import { avatarLetters } from 'utils/avatarLetters';
 import styles from './driverAvatar.module.scss';
 
 interface IDriverAvatar {
-    driverAvatarURL: string;
-    driverName: string;
+    driverAvatarURL?: string;
+    driverName?: string;
     bigName?: boolean;
     hideName?: boolean;
     reviewName?: boolean;

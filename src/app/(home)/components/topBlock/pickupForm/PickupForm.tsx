@@ -122,6 +122,8 @@ const PickupForm = () => {
                 />
                 <TimePickerInput
                     control={control}
+                    name='time'
+                    placeholder='Pickup Time'
                 />
             </div>
             <DropoffInput

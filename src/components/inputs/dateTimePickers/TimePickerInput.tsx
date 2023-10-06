@@ -10,18 +10,20 @@ import styles from './datePickerInput.module.scss';
 
 interface IDatePickerInput {
     control: Control<any>;
+    name: string;
+    placeholder: string;
 }
 
-const TimePickerInput: React.FC<IDatePickerInput> = ({ control }) => {
+const TimePickerInput: React.FC<IDatePickerInput> = ({ control, name, placeholder }) => {
     return (
         <div className={styles.picker_box}>
             <Controller
-                name="time"
+                name={name}
                 control={control}
                 render={({ field }) => (
                     <DatePicker
                         selected={field.value}
-                        placeholderText="Pickup Time"
+                        placeholderText={placeholder}
                         onChange={(date) => field.onChange(date)}
                         className={styles.picker_input}
                         showTimeSelect
@@ -30,7 +32,7 @@ const TimePickerInput: React.FC<IDatePickerInput> = ({ control }) => {
                         timeCaption="Time"
                         dateFormat="h:mm aa"
                         minTime={setHours(setMinutes(new Date(), 0), 6)}
-                        maxTime={setHours(setMinutes(new Date(), 0), 23)}
+                        maxTime={setHours(setMinutes(new Date(), 59), 23)}
                     />
                 )}
             />
