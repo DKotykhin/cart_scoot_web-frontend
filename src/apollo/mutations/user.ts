@@ -9,6 +9,7 @@ export const REGISTER_BY_EMAIL = gql`
                 _id
                 email
                 role
+                banned
                 phone {
                     confirmed
                     number
@@ -45,6 +46,7 @@ export const LOGIN_BY_EMAIL = gql`
                 _id
                 email
                 role
+                banned
                 phone {
                     confirmed
                     number
@@ -150,6 +152,7 @@ export const LOGIN_BY_PHONE = gql`
                     number
                 }
                 role
+                banned
                 userName
                 workingDays
                 workingTime {
@@ -199,6 +202,7 @@ export const CHANGE_USER_NAME = gql`
                 number
             }
             role
+            banned
             userName
             workingDays
             workingTime {
@@ -233,6 +237,40 @@ export const UPDATE_WORKING_TIME = gql`
                 number
             }
             role
+            banned
+            userName
+            workingDays
+            workingTime {
+                from
+                to
+            }
+        }
+    }
+`;
+
+export const UPDATE_COORDINATES = gql`
+    mutation AddCoordinates($updateCoordinatesInput: UpdateCoordinatesInput) {
+        addCoordinates(updateCoordinatesInput: $updateCoordinatesInput) {
+            _id
+            avatarURL
+            coordinates {
+                lat
+                lon
+            }
+            createdAt
+            driverRequests
+            email
+            license {
+                message
+                status
+                url
+            }
+            phone {
+                confirmed
+                number
+            }
+            role
+            banned
             userName
             workingDays
             workingTime {

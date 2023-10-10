@@ -4,7 +4,7 @@ import { GET_ALL_RIDERS } from "apollo/queries/admin";
 import { IRider } from "types/userTypes";
 
 export const getAllRiders = async (): Promise<
-    { getAllRiders: [IRider] } | undefined
+    { getAllRiders: { users: [IRider]; totalCount: number } } | undefined
 > => {
     try {
         const { data } = await getClient().query({

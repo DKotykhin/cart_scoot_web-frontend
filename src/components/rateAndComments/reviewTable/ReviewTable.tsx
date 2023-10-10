@@ -28,7 +28,7 @@ const ReviewTable: React.FC<{ reviews?: [IReview] }> = ({ reviews }) => {
                 </tr>
             </thead>
             <tbody>
-                {reviews?.filter(item => Boolean(item.text)).map((item: IReview, i: number) => (
+                {reviews?.map((item: IReview, i: number) => (
                     <tr key={i}>
                         <td><div>{i + 1}</div></td>
                         <td><div>{item.requestCode}</div></td>

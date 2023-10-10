@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REQUESTS_BY_RIDER } from 'apollo/queries/request';
 
-import SearchForm, { ISearchData } from 'components/searchForm/SearchForm';
+import SearchForm, { ISearchData } from 'components/requests/searchForm/SearchForm';
 import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
 import RequestsTable from '../requestsTable/RequestsTable';
 
@@ -26,7 +26,7 @@ const Table = () => {
         status: null,
     });
 
-    const { data }: { data: { getRequestsByRider: [IRequestWithDriverPopulatedFields] } } = useSuspenseQuery(GET_REQUESTS_BY_RIDER, {
+    const { data }: { data: { getRequestsByRider: { requests: [IRequestWithDriverPopulatedFields], totalCount: number } } } = useSuspenseQuery(GET_REQUESTS_BY_RIDER, {
         variables: {
             getRequestsByFiltersInput: { ...searchData, page }
         }
@@ -45,13 +45,12 @@ const Table = () => {
 
     const loadMoreClick = () => setPage(page + 1);
 
-    return data?.getRequestsByRider.length ?
+    return data?.getRequestsByRider.totalCount ?
         <div className={styles.container}>
             <SearchForm formData={formData} />
-            <RequestsTable requestData={data?.getRequestsByRider} />
-            {data?.getRequestsByRider.length > 6 &&
-                <LoadMoreButton loadMoreClick={loadMoreClick}/>
-            }
+            <RequestsTable requestData={data?.getRequestsByRider.requests} />
+            {(data?.getRequestsByRider.totalCount > 6 && data?.getRequestsByRider.totalCount !== data?.getRequestsByRider.requests.length) &&
+                <LoadMoreButton loadMoreClick={loadMoreClick} />}
         </div>
         :
         <div className={styles.empty_container}>

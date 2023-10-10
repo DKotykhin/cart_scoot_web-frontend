@@ -6,6 +6,7 @@ export const GET_USER_BY_TOKEN = gql`
             _id
             email
             role
+            banned
             phone {
                 confirmed
                 number

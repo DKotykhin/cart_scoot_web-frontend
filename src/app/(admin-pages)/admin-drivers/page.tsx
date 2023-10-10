@@ -12,7 +12,7 @@ const AdminDriversPage = async () => {
 
     return (
         <div className={styles.wrapper}>
-            <TitleWithAmount title='Drivers' amount={data?.getAllDrivers.length} />
+            <TitleWithAmount title='Drivers' amount={data?.getAllDrivers.totalCount} />
 
         </div>
     );

@@ -15,3 +15,10 @@ export interface IReview {
     rating: number;
     requestCode: string;
 }
+
+export interface IReviewData {
+    getReviewsByDriverId: {
+        reviews: [IReview];
+        totalCount: number;
+    };
+}

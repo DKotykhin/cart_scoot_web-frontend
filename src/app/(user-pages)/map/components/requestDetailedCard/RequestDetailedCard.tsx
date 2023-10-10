@@ -13,7 +13,7 @@ import DetailsItem from 'components/detailsItem/DetailsItem';
 import { IMarkerClickData } from '../mapbox/Mapbox';
 import ReviewCard from '../reviewCard/ReviewCard';
 
-import { IReview } from 'types/reviewTypes';
+import { IReviewData } from 'types/reviewTypes';
 
 import styles from './requestDetailedCard.module.scss';
 
@@ -56,7 +56,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
 
     const [buttonIndex, setButtonIndex] = useState(0);
 
-    const { data }: { data: { getReviewsByDriverId: [IReview] } } = useSuspenseQuery(GET_REVIEWS_BY_DRIVER_ID, {
+    const { data }: { data: IReviewData } = useSuspenseQuery(GET_REVIEWS_BY_DRIVER_ID, {
         variables: {
             getReviewsByDriverIdInput: {
                 driverId: driver._id
@@ -193,8 +193,8 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
                             </div>
                         </div>
                         <div className={findCarFormData ? styles.review_box : styles.review_box_long}>
-                            {data.getReviewsByDriverId?.length > 0 ?
-                                data.getReviewsByDriverId?.map(review => (
+                            {data.getReviewsByDriverId?.totalCount > 0 ?
+                                data.getReviewsByDriverId?.reviews?.map(review => (
                                     <div key={review._id}>
                                         <ReviewCard reviewData={review} />
                                     </div>

@@ -3,7 +3,6 @@ export enum userTypes {
     "driver" = "DRIVER",
     "admin" = "ADMIN",
     "subadmin" = "SUBADMIN",
-    "banned" = "BANNED",
 }
 
 export enum licenseStatusTypes {
@@ -36,6 +35,7 @@ export interface IUser {
         status: licenseStatusTypes;
     };
     role: userTypes;
+    banned: boolean;
     driverRequests: [string];
     workingDays: [number];
     workingTime: {
@@ -72,6 +72,7 @@ export interface IDriver {
         confirmed: boolean;
     };
     role: userTypes;
+    banned: boolean;
     workingDays: [number];
     workingTime: {
         from: number;
@@ -93,6 +94,7 @@ export interface IRider {
         confirmed: boolean;
     };
     role: userTypes;
+    banned: boolean;
     userName: string;
 }
 

@@ -1,0 +1,12 @@
+@import "constants/constants.scss";
+
+.trips_list {
+    padding: 24px 0;
+    .trips_list_title {
+        padding: 0 24px;
+        font-size: 28px;
+        color: $black-primary;
+        font-weight: 500;
+        line-height: 34px;
+    }
+}

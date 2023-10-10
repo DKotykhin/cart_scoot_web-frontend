@@ -4,7 +4,7 @@ import { GET_ALL_REQUESTS } from "apollo/queries/admin";
 import { IRequest } from "types/requestTypes";
 
 export const getAllRequests = async (): Promise<
-    { getAllRequests: [IRequest] } | undefined
+    { getAllRequests: { requests: [IRequest]; totalCount: number } } | undefined
 > => {
     try {
         const { data } = await getClient().query({

@@ -3,6 +3,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
+    gap: 48px;
     max-width: 1056px;
     width: 100vw;
     background-color: $white;
@@ -10,6 +11,7 @@
     border-bottom-right-radius: 24px;
     .title_box {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         gap: 16px;
         padding: 24px;
@@ -22,6 +24,14 @@
             font-weight: 600;
             line-height: 40px;
             text-align: center;
+        }
+    }
+    .dashboard_box {
+        display: flex;
+        gap: 24px;
+        padding: 0 24px;
+        .statistic_wrapper {
+            flex-grow: 1;
         }
     }
 }

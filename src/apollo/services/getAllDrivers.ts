@@ -4,7 +4,7 @@ import { GET_ALL_DRIVERS } from "apollo/queries/admin";
 import { IUser } from "types/userTypes";
 
 export const getAllDrivers = async (): Promise<
-    { getAllDrivers: [IUser] } | undefined
+    { getAllDrivers: { users: [IUser], totalCount: number } } | undefined
 > => {
     try {
         const { data } = await getClient().query({

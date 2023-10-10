@@ -1,0 +1,23 @@
+@import "constants/constants.scss";
+
+.licenses_list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 300px;
+    padding: 24px;
+    max-height: 808px;
+    overflow-y: auto;
+    .licenses_list_title {
+        font-size: 28px;
+        color: $black-primary;
+        font-weight: 500;
+        line-height: 34px;
+    }
+    .licenses_list_item_box {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 16px;
+    }
+}

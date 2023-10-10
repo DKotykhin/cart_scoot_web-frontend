@@ -12,7 +12,7 @@ const AdminRidersPage = async () => {
 
     return (
         <div className={styles.wrapper}>
-            <TitleWithAmount title='Riders' amount={data?.getAllRiders.length} />
+            <TitleWithAmount title='Riders' amount={data?.getAllRiders.totalCount} />
 
         </div>
     );

@@ -7,21 +7,24 @@ export const GET_REVIEWS_BY_DRIVER_ID = gql`
         getReviewsByDriverId(
             getReviewsByDriverIdInput: $getReviewsByDriverIdInput
         ) {
-            _id
-            createdAt
-            createdBy {
+            totalCount
+            reviews {
                 _id
-                avatarURL
-                userName
+                createdAt
+                createdBy {
+                    _id
+                    avatarURL
+                    userName
+                }
+                driverId {
+                    _id
+                    avatarURL
+                    userName
+                }
+                rating
+                requestCode
+                text
             }
-            driverId {
-                _id
-                avatarURL
-                userName
-            }
-            rating
-            requestCode
-            text
         }
     }
 `;

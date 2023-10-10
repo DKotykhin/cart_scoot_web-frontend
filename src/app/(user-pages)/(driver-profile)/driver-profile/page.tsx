@@ -11,6 +11,7 @@ import UpdateInfoForm from './components/updateInfoForm/UpdateInfoForm';
 import { licenseStatusTypes } from 'types/userTypes';
 
 import styles from './profile.module.scss';
+import AddCoordinates from './components/addCoordinates/AddCoordinates';
 
 const DriverProfilePage = async () => {
 
@@ -40,6 +41,7 @@ const DriverProfilePage = async () => {
                 <div className={styles.document_box}>
                     <UserInfo user={data?.getUserByToken} />
                     <UploadService user={data?.getUserByToken} />
+                    <AddCoordinates />
                     <UpdateInfoForm user={data?.getUserByToken} />
                 </div>
             }

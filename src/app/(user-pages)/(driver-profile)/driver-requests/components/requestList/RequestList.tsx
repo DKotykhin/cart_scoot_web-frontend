@@ -8,6 +8,7 @@ import RequestDetailsCard from '../requestDetailsCard/RequestDetailsCard';
 import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestList.module.scss';
+import EmptyList from 'components/emptyList/EmptyList';
 
 interface IRequestList {
     requests?: [IRequestWithRiderPopulatedFields];
@@ -46,7 +47,7 @@ const RequestList: React.FC<IRequestList> = ({ requests, markerCoordinates }) =>
         <div className={styles.request_list}>
             {requests?.length ?
                 showRequestDetails ?
-                    <RequestDetailsCard 
+                    <RequestDetailsCard
                         closeDetailsCard={closeDetailsCard}
                         requestDetailsData={requestDetailsData}
                     />
@@ -67,19 +68,10 @@ const RequestList: React.FC<IRequestList> = ({ requests, markerCoordinates }) =>
                         ))}
                     </>
                 :
-                <div className={styles.empty_wrapper}>
-                    <Image
-                        src={'/emptyList.svg'}
-                        alt={'empty'}
-                        width={196}
-                        height={192}
-                        className={styles.empty_image}
-                    />
-                    <h3 className={styles.empty_title}>Request List is Empty!</h3>
-                    <p className={styles.empty_p}>
-                        You didn&apos;t get any request yet.
-                    </p>
-                </div>
+                <EmptyList
+                    title='Request List is Empty!'
+                    subtitle='You didn&apos;t get any request yet.'
+                />
             }
         </div>
     );
