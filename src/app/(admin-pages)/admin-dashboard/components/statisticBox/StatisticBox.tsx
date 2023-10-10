@@ -2,15 +2,17 @@ import React from 'react';
 
 import Image from "next/image";
 
-import { getAllDrivers } from 'apollo/services/getAllDrivers';
-import { getAllRiders } from 'apollo/services/getAllRiders';
-
 import styles from './statisticBox.module.scss';
 
-const StatisticBox: React.FC<{totalCount?: number}> = async ({totalCount}) => {
+interface IStatisticBox {
+    statisticData?: {
+        totalDrivers: number,
+        totalRiders: number,
+        totalTrips: number,
+    }
+}
 
-    const driverData = await getAllDrivers();
-    const riderData = await getAllRiders();
+const StatisticBox: React.FC<IStatisticBox> = async ({ statisticData }) => {
 
     return (
         <div className={styles.statistic_wrapper}>
@@ -21,7 +23,7 @@ const StatisticBox: React.FC<{totalCount?: number}> = async ({totalCount}) => {
                     width={64}
                     height={64}
                 />
-                <p className={styles.statistic_amount}>{driverData?.getAllDrivers.totalCount}</p>
+                <p className={styles.statistic_amount}>{statisticData?.totalDrivers}</p>
                 <p className={styles.statistic_text}>Total Drivers</p>
             </div>
             <div className={`${styles.statistic_box} ${styles.green_back}`}>
@@ -31,7 +33,7 @@ const StatisticBox: React.FC<{totalCount?: number}> = async ({totalCount}) => {
                     width={64}
                     height={64}
                 />
-                <p className={styles.statistic_amount}>{riderData?.getAllRiders.totalCount}</p>
+                <p className={styles.statistic_amount}>{statisticData?.totalRiders}</p>
                 <p className={styles.statistic_text}>Total Riders</p>
             </div>
             <div className={`${styles.statistic_box} ${styles.orange_back}`}>
@@ -41,7 +43,7 @@ const StatisticBox: React.FC<{totalCount?: number}> = async ({totalCount}) => {
                     width={64}
                     height={64}
                 />
-                <p className={styles.statistic_amount}>{totalCount}</p>
+                <p className={styles.statistic_amount}>{statisticData?.totalTrips}</p>
                 <p className={styles.statistic_text}>Total Trips</p>
             </div>
         </div>

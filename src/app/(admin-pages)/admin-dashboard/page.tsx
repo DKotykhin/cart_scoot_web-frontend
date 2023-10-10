@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getUserByToken } from 'apollo/services/getUserByToken';
 import { getWaitingLicenses } from 'apollo/services/getWaitingLicenses';
-import { getAllRequests } from 'apollo/services/getAllRequests';
+import { getStatistic } from 'apollo/services/getStatistic';
 
 import UserBox from './components/userBox/UserBox';
 import StatisticBox from './components/statisticBox/StatisticBox';
@@ -15,7 +15,7 @@ const AdminDashboardPage = async () => {
 
     const userData = await getUserByToken();
     const licensesData = await getWaitingLicenses();
-    const requestsData = await getAllRequests();
+    const statisticData = await getStatistic();
 
     return (
         <div className={styles.wrapper}>
@@ -25,8 +25,8 @@ const AdminDashboardPage = async () => {
             </div>
             <div className={styles.dashboard_box}>
                 <div className={styles.statistic_wrapper}>
-                    <StatisticBox totalCount={requestsData?.getAllRequests.totalCount}/>
-                    <TripsList requests={requestsData?.getAllRequests.requests}/>
+                    <StatisticBox statisticData={statisticData?.getStatistic}/>
+                    <TripsList totalTrips={statisticData?.getStatistic.totalTrips}/>
                 </div>
                 {licensesData?.getWaitingLicenses.length &&
                     <LicensesList users={licensesData.getWaitingLicenses} />

@@ -13,7 +13,7 @@ import { IRequest, statusTypes } from 'types/requestTypes';
 
 import styles from './tripsTable.module.scss';
 
-const itemsOnPage = 4; 
+const itemsOnPage = 4;
 
 const TripsTable = () => {
 
@@ -22,8 +22,10 @@ const TripsTable = () => {
     const { data }: { data: { getAllRequests: { requests: [IRequest]; totalCount: number } } } = useSuspenseQuery(GET_ALL_REQUESTS,
         {
             variables: {
-                pageNumber: page,
-                itemsOnPage,
+                getAllRequestsInput: {
+                    pageNumber: page,
+                    itemsOnPage,
+                }
             }
         });
 

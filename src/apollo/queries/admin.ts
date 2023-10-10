@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_DRIVERS = gql`
-    query GetAllDrivers($pageNumber: Int) {
-        getAllDrivers(pageNumber: $pageNumber) {
+    query GetAllDrivers($getAllUsersInput: GetAllUsersInput) {
+        getAllDrivers(getAllUsersInput: $getAllUsersInput) {
             totalCount
             users {
                 _id
@@ -37,8 +37,8 @@ export const GET_ALL_DRIVERS = gql`
 `;
 
 export const GET_ALL_RIDERS = gql`
-    query GetAllRiders($pageNumber: Int) {
-        getAllRiders(pageNumber: $pageNumber) {
+    query GetAllRiders($getAllUsersInput: GetAllUsersInput) {
+        getAllRiders(getAllUsersInput: $getAllUsersInput) {
             totalCount
             users {
                 _id
@@ -58,8 +58,8 @@ export const GET_ALL_RIDERS = gql`
 `;
 
 export const GET_ALL_REQUESTS = gql`
-    query GetAllRequests($pageNumber: Int, $itemsOnPage: Int) {
-        getAllRequests(pageNumber: $pageNumber, itemsOnPage: $itemsOnPage) {
+    query GetAllRequests($getAllRequestsInput: GetAllRequestsInput) {
+        getAllRequests(getAllRequestsInput: $getAllRequestsInput) {
             requests {
                 _id
                 coordinates {
@@ -132,6 +132,16 @@ export const GET_WAITING_LICENSES = gql`
                 from
                 to
             }
+        }
+    }
+`;
+
+export const GET_STATISTIC = gql`
+    query GetStatistic {
+        getStatistic {
+            totalDrivers
+            totalRiders
+            totalTrips
         }
     }
 `;

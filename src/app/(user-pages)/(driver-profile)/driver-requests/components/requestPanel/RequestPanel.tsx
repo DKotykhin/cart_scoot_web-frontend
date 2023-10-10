@@ -7,13 +7,20 @@ import Image from "next/image";
 import ReactMapGl, { Marker, FullscreenControl, GeolocateControl, NavigationControl } from "react-map-gl";
 import { viewport, mapStyle } from 'constants/mapStyle';
 
+import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import RequestList, { ICoordinates } from '../requestList/RequestList';
 
 import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
+import { IUser } from 'types/userTypes';
 
 import styles from './requestPanel.module.scss';
 
-const RequestPanel: React.FC<{ requests?: [IRequestWithRiderPopulatedFields] }> = ({ requests }) => {
+interface IRequestPanel {
+    requests?: [IRequestWithRiderPopulatedFields],
+    driver?: IUser
+}
+
+const RequestPanel: React.FC<IRequestPanel> = ({ requests, driver }) => {
 
     const [coordinates, setCoordinates] = useState<ICoordinates>();
     const markerCoordinates = (coord?: ICoordinates) => setCoordinates(coord);
@@ -70,11 +77,21 @@ const RequestPanel: React.FC<{ requests?: [IRequestWithRiderPopulatedFields] }> 
                         />
                     </div>
                 </Marker>
+                <Marker
+                    latitude={driver?.coordinates.lat || 0}
+                    longitude={driver?.coordinates.lon || 0}
+                >
+                    <DriverAvatar
+                        driverName={driver?.userName}
+                        driverAvatarURL={driver?.avatarURL}
+                        hideName={true}
+                    />
+                </Marker>
                 <FullscreenControl />
                 <GeolocateControl />
                 <NavigationControl />
             </ReactMapGl>
-            <RequestList requests={requests} markerCoordinates={markerCoordinates}/>
+            <RequestList requests={requests} markerCoordinates={markerCoordinates} />
         </div>
     );
 };
