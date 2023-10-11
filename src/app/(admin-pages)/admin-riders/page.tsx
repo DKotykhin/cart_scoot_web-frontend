@@ -1,17 +1,10 @@
 import React from 'react';
 
-import TitleWithAmount from 'components/titleWithAmount/TitleWithAmount';
-
-import styles from './adminRiders.module.scss';
+import RidersPanel from './components/ridersPanel/RidersPanel';
 
 const AdminRidersPage = async () => {
 
-    return (
-        <div className={styles.wrapper}>
-            <TitleWithAmount title='Riders' amount={10} />
-
-        </div>
-    );
+    return <RidersPanel />;
 };
 
 export default AdminRidersPage;

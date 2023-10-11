@@ -62,6 +62,7 @@ export const GET_ALL_REQUESTS = gql`
         getAllRequests(getAllRequestsInput: $getAllRequestsInput) {
             requests {
                 _id
+                carType
                 coordinates {
                     end {
                         lat

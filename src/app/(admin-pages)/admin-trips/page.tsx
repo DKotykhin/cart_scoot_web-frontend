@@ -1,17 +1,10 @@
 import React from 'react';
 
-import TitleWithAmount from 'components/titleWithAmount/TitleWithAmount';
-
-import styles from './adminTrips.module.scss';
+import TripsPanel from './components/tripsPanel/TripsPanel';
 
 const AdminTripsPage = async () => {
 
-    return (
-        <div className={styles.wrapper}>
-            <TitleWithAmount title='Trips' amount={10} />
-
-        </div>
-    );
+    return <TripsPanel />;
 };
 
 export default AdminTripsPage;

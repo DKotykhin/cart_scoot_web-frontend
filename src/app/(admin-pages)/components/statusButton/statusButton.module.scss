@@ -1,0 +1,55 @@
+@import "constants/constants.scss";
+
+.status_button_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .status_text {
+        font-size: 16px;
+        color: $black-primary;
+        font-weight: 400;
+        line-height: 20px;
+    }
+    .status_button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 72px;
+        height: 40px;
+        padding: 4px;
+        border-radius: 40px;
+        background: $black-tertiary;
+        cursor: pointer;
+        .status_button_round {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 32px;
+            height: 32px;
+            border-radius: 40px;
+            background: $white;
+        }
+    }
+    .status_button_active {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 72px;
+        height: 40px;
+        padding: 4px;
+        border-radius: 40px;
+        background: $green-primary;
+        cursor: pointer;
+        .status_button_round {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 32px;
+            height: 32px;
+            border-radius: 40px;
+            background: $white;
+        }
+    }
+}

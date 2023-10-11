@@ -6,29 +6,25 @@ import Select from 'react-select';
 
 import Image from 'next/image';
 
-import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
-import { statusTypes } from 'types/requestTypes';
+import { licenseStatusTypes } from 'types/userTypes';
 
-import styles from './searchForm.module.scss';
+import styles from './driverSearchForm.module.scss';
 
-export interface ISearchData {
-    searchRequestCode: string,
-    dateFrom?: Date,
-    dateTo?: Date,
-    status: statusTypes | null,
+export interface IDriverSearchData {
+    searchUserName?: string,
+    status?: licenseStatusTypes | null,
 }
 
-interface ISearchForm {
-    formData: (arg: ISearchData) => void;
+interface IDriverSearchForm {
+    formData: (arg: IDriverSearchData) => void;
 }
 
 const options = [
     { value: null, label: '-- All --' },
-    { value: 'PENDING', label: 'Pending', color: '#ffa74d', backgroundColor: '#fffaf4' },
+    { value: 'PENDING', label: 'Pending', color: '#15161a', backgroundColor: '#f7f8fa' },
+    { value: 'WAITING', label: 'Waiting', color: '#ffa74d', backgroundColor: '#fffaf4' },
     { value: 'APPROVED', label: 'Approved', color: '#42da6e', backgroundColor: '#f3fdf6' },
-    { value: 'ACTIVE', label: 'Active', color: '#4e7cf6', backgroundColor: '#f4f7fe' },
     { value: 'REJECTED', label: 'Rejected', color: '#f6584e', backgroundColor: '#fef5f4' },
-    { value: 'FINISHED', label: 'Finished', color: '#15161a', backgroundColor: '#f7f8fa' },
 ];
 
 const stylesOptions = {
@@ -46,36 +42,33 @@ const stylesOptions = {
 
 };
 
-const SearchForm: React.FC<ISearchForm> = ({ formData }) => {
+const DriverSearchForm: React.FC<IDriverSearchForm> = ({ formData }) => {
 
     const {
         control,
         handleSubmit,
-        formState: { errors, isValid },
         reset,
-    } = useForm<ISearchData>({
+    } = useForm<IDriverSearchData>({
         defaultValues: {
-            searchRequestCode: '',
-            dateFrom: undefined,
-            dateTo: undefined,
+            searchUserName: '',
             status: null,
         }
     });
 
-    const onSubmit = async (data: ISearchData): Promise<void> => formData(data);
+    const onSubmit = async (data: IDriverSearchData): Promise<void> => formData(data);
 
     return (
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.form_box}>
-                <div className={styles.search_code_box}>
+                <div className={styles.search_name_box}>
                     <Controller
-                        name="searchRequestCode"
+                        name="searchUserName"
                         control={control}
                         render={({ field }) => (
                             <input
                                 {...field}
                                 type='string'
-                                placeholder='Search Request Code'
+                                placeholder='Search driver name'
                                 className={styles.search_input}
                             />
                         )}
@@ -88,16 +81,6 @@ const SearchForm: React.FC<ISearchForm> = ({ formData }) => {
                         className={styles.search_icon}
                     />
                 </div>
-                <DatePickerInput
-                    control={control}
-                    placeholder='From'
-                    name='dateFrom'
-                />
-                <DatePickerInput
-                    control={control}
-                    placeholder='To'
-                    name='dateTo'
-                />
                 <div className={styles.select_box}>
                     <Controller
                         name="status"
@@ -135,4 +118,4 @@ const SearchForm: React.FC<ISearchForm> = ({ formData }) => {
     );
 };
 
-export default SearchForm;
+export default DriverSearchForm;

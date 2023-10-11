@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import UserBox from '../userBox/UserBox';
 import { IUser } from 'types/userTypes';
 
@@ -9,9 +11,8 @@ import styles from './licensesList.module.scss';
 
 const LicensesList: React.FC<{ users: [IUser] }> = ({ users }) => {
 
-    const detailsClick = (user: IUser) => {
-        console.log(user);
-    };
+    const router = useRouter();
+    const detailsClick = (_id: string) => router.push(`/admin-drivers/${_id}`);
 
     return (
         <div className={styles.licenses_list}>
@@ -21,7 +22,7 @@ const LicensesList: React.FC<{ users: [IUser] }> = ({ users }) => {
                     <UserBox user={user} />
                     <button
                         className='button-green-outlined'
-                        onClick={() => detailsClick(user)}
+                        onClick={() => detailsClick(user._id)}
                     >
                         Details
                     </button>

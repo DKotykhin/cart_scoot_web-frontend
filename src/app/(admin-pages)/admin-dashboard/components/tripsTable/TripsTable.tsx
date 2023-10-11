@@ -30,7 +30,7 @@ const TripsTable = () => {
         });
 
     const router = useRouter();
-    const handleClick = (_id: string) => router.push(`/driver-trips/${_id}`);
+    const handleClick = (_id: string) => router.push(`/admin-trips/${_id}`);
 
     const loadMoreClick = () => setPage(page + 1);
 

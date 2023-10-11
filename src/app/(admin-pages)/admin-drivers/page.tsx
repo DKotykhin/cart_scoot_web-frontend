@@ -1,17 +1,10 @@
 import React from 'react';
 
-import TitleWithAmount from 'components/titleWithAmount/TitleWithAmount';
-
-import styles from './adminDrivers.module.scss';
+import DriversPanel from './components/driversPanel/DriversPanel';
 
 const AdminDriversPage = async () => {
 
-    return (
-        <div className={styles.wrapper}>
-            <TitleWithAmount title='Drivers' amount={10} />
-
-        </div>
-    );
+    return <DriversPanel />;
 };
 
 export default AdminDriversPage;
