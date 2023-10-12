@@ -25,8 +25,8 @@ const StarsBox = () => {
             <div className={styles.star_box}>
                 {starArray.map(star => (
                     <div key={star}>
-                        {data?.getDriverRating.avgRating !== 0 ?
-                            Math.round(data?.getDriverRating.avgRating) >= star ?
+                        {data?.getDriverRating?.avgRating !== 0 ?
+                            Math.round(data?.getDriverRating?.avgRating) >= star ?
                                 <Image
                                     src={'/icons/star-green.svg'}
                                     alt={'star'}

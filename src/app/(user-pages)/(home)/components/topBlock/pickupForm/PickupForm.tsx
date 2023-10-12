@@ -60,17 +60,7 @@ const PickupForm = () => {
             const requestHours = new Date(time).getHours();
             const requestMinutes = new Date(time).getMinutes();
             requestedTime = new Date(new Date(date).setHours(requestHours, requestMinutes)).toJSON();
-        } else {
-            toast.warn("Please, put pickup date and time!", {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        };
+        }
 
         let locationData;
         if (pickup.getPlaces() && dropoff.getPlaces()) {
@@ -88,8 +78,14 @@ const PickupForm = () => {
                     lon: dropoffPlace.geometry.location.lng(),
                 },
             };
+        }
+        // console.log('requestedTime: ', requestedTime);
+        // console.log('locationData: ', locationData);
+        if (requestedTime && locationData) {
+            addFindCarFormData({ requestedTime, locationData });
+            router.push('/map');
         } else {
-            toast.warn("Please, put pickup and dropoff location!", {
+            toast.warn("Please fill out this form!", {
                 bodyClassName: "wrong-toast",
                 icon: <Image
                     src={'/icons/wrong-code.svg'}
@@ -99,12 +95,6 @@ const PickupForm = () => {
                 />
             });
         };
-        // console.log('requestedTime: ', requestedTime);
-        // console.log('locationData: ', locationData);
-        if (requestedTime && locationData) {
-            addFindCarFormData({ requestedTime, locationData });
-            router.push('/map');
-        }
     };
 
     return (

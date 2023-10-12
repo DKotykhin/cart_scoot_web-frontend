@@ -12,7 +12,7 @@ interface IGetUserByToken {
 export const getUserByToken = async (): Promise<IGetUserByToken | undefined> => {
     try {
         const { data } = await getClient().query({
-            query: GET_USER_BY_TOKEN,
+            query: GET_USER_BY_TOKEN, 
         });
         return data;
     } catch (error: any) {

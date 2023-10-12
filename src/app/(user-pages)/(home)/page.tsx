@@ -17,9 +17,7 @@ const HomePage = () => {
             <ThirdBlock />
             <ForthBlock />
             <LastBlock />
-            <footer>
-                <Footer />
-            </footer>
+            <Footer />
         </>
     );
 };

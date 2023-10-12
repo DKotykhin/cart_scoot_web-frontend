@@ -17,9 +17,7 @@ const AboutPage = () => {
             <TopBlock />
             <MiddleBlock />
             <Accordion />
-            <footer>
-                <Footer />
-            </footer>
+            <Footer />
         </>
     );
 };

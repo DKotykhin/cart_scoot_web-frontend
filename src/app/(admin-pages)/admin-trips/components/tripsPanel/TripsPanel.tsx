@@ -11,7 +11,7 @@ import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
 import SearchForm, { ISearchData } from 'components/requests/searchForm/SearchForm';
 import TripsTable from '../tripsTable/TripsTable';
 
-import { IRequest } from 'types/requestTypes';
+import { IRequest, IRequestWithAllUsersPopulatedFields } from 'types/requestTypes';
 
 import styles from './tripsPanel.module.scss';
 
@@ -25,7 +25,7 @@ const TripsPanel = () => {
         status: null,
     });
 
-    const { data }: { data?: { getAllRequests: { requests: [IRequest]; totalCount: number } } } = useSuspenseQuery(GET_ALL_REQUESTS, {
+    const { data }: { data?: { getAllRequests: { requests: [IRequestWithAllUsersPopulatedFields]; totalCount: number } } } = useSuspenseQuery(GET_ALL_REQUESTS, {
         variables: {
             getAllRequestsInput: {
                 pageNumber: page,

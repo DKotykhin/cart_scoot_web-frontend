@@ -65,6 +65,7 @@ const RidersTable: React.FC<{ riders?: [IRider] }> = ({ riders }) => {
                     <th><div>Rider</div></th>
                     <th><div>Active / Deactivate</div></th>
                     <th><div>Email</div></th>
+                    <th><div>Phone</div></th>
                     <th></th>
                 </tr>
             </thead>
@@ -79,7 +80,8 @@ const RidersTable: React.FC<{ riders?: [IRider] }> = ({ riders }) => {
                             />
                         </td>
                         <td><div><StatusButton banned={item.banned} banStatusClick={() => banStatusClick(item._id, item.banned)} /></div></td>
-                        <td><div>{item.email}</div></td>
+                        <td><div>{item?.email}</div></td>
+                        <td><div>{item?.phone?.number}</div></td>
                         <td className={styles.image_box}>
                             <Image
                                 src={'/icons/caretRight-grey.svg'}

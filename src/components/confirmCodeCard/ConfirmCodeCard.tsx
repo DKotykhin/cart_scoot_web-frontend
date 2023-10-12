@@ -6,12 +6,14 @@ import { useForm, Controller } from "react-hook-form";
 import Cookies from 'js-cookie';
 
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 import { useMutation } from '@apollo/client';
 import { LOGIN_BY_PHONE } from 'apollo/mutations/user';
 import { useUserStore } from 'stores/userStore';
 
 import styles from './confirmCodeCard.module.scss';
+import { userTypes } from 'types/userTypes';
 
 interface IConfirmCodeCard {
     resendCode: () => void;
@@ -26,6 +28,8 @@ const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, p
 
     const [loginByPhone] = useMutation(LOGIN_BY_PHONE);
     const { addUser } = useUserStore();
+
+    const router = useRouter();
 
     const {
         control,
@@ -56,6 +60,7 @@ const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, p
                     expires: 2,
                 });
                 addUser(data.loginByPhone.user);
+                if (data.loginByPhone.user.role === userTypes.driver) router.push('/driver-profile');
                 toast.success('Code has been verified successfully', {
                     bodyClassName: "right-toast",
                     icon: <Image

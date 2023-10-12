@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
-import Header from 'components/header/Header';
 
+import Header from 'components/header/Header';
 import { getUserByToken } from "apollo/services/getUserByToken";
+
 import { userTypes } from "types/userTypes";
 
 export default async function RootLayout({

@@ -20,6 +20,10 @@ const DriverAvatarGreen: React.FC<IDriverAvatar> = ({ driverAvatarURL, driverNam
                     alt={'avatar'}
                     width={48}
                     height={48}
+                    loader={({ src, width: w, quality }) => {
+                        const q = quality || 75;
+                        return `${src}?w=${w}&q=${q}`;
+                    }}
                 />
                 :
                 <div className={styles.empty_avatar}>

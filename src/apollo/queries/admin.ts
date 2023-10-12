@@ -74,13 +74,29 @@ export const GET_ALL_REQUESTS = gql`
                     }
                 }
                 createdAt
-                driverId
+                driverId {
+                    _id
+                    userName
+                    avatarURL
+                    phone {
+                        confirmed
+                        number
+                    }
+                }
                 dropoffLocation
                 pickupLocation
                 requestCode
                 requestedTime
                 status
-                userId
+                userId {
+                    _id
+                    userName
+                    avatarURL
+                    phone {
+                        confirmed
+                        number
+                    }
+                }
             }
             totalCount
         }

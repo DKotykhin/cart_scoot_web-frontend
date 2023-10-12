@@ -6,7 +6,7 @@
     left: 32px;
     display: flex;
     width: 400px;
-    height: 679px;
+    height: calc(100% - 64px);
     padding: 24px;
     flex-direction: column;
     gap: 24px;

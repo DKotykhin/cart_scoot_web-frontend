@@ -17,7 +17,12 @@ import { useUserStore } from 'stores/userStore';
 
 import styles from './changeName.module.scss';
 
-const ChangeNameCard: React.FC<{ changeNameClick: () => void }> = ({ changeNameClick }) => {
+interface IChangeNameCard {
+    changeNameClick: () => void,
+    userName?: string,
+}
+
+const ChangeNameCard: React.FC<IChangeNameCard> = ({ changeNameClick, userName }) => {
 
     const [changeName] = useMutation(CHANGE_USER_NAME);
     const { addUser } = useUserStore();
@@ -27,7 +32,12 @@ const ChangeNameCard: React.FC<{ changeNameClick: () => void }> = ({ changeNameC
         handleSubmit,
         formState: { errors, isValid },
         reset,
-    } = useForm<{ userName: string }>(UserNameValidation);
+    } = useForm<{ userName: string }>({
+        ...UserNameValidation,
+        defaultValues: {
+            userName: userName || "",
+        },
+    });
 
     const onSubmit = async (data: { userName: string }): Promise<void> => {
         const { userName } = data;

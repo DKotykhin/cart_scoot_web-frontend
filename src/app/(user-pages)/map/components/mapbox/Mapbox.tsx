@@ -41,7 +41,6 @@ const Mapbox = () => {
 
     const { userData } = useUserStore();
     const { findCarFormData } = useFormDataStore();
-    // console.log('findCarFormData: ', findCarFormData);
 
     const router = useRouter();
 
@@ -50,8 +49,9 @@ const Mapbox = () => {
             getFreeDriversInput: {
                 requestedTime: findCarFormData?.requestedTime,
             }
-        }
+        },
     });
+
     const [allDriversRequest] = useMutation(ALL_DRIVERS_REQUEST);
     const [oneDriverRequest] = useMutation(ONE_DRIVER_REQUEST);
 
@@ -81,7 +81,6 @@ const Mapbox = () => {
 
     }, [data?.getFreeDrivers.length, findCarFormData.requestedTime]);
 
-    const openLoginModal = () => setOpenLoginMobileCard(true);
     const closeLoginModal = () => setOpenLoginMobileCard(false);
 
     // const formData = (data: IFormData) => setSavedFormData(data);
@@ -177,7 +176,7 @@ const Mapbox = () => {
                     }
                 },
             });
-            if (data.createDriversRequest.request._id) {
+            if (data?.createDriversRequest.request._id) {
                 router.push(`/request-sent-message/${data.createDriversRequest.request.requestCode}`);
                 toast.success('Requests sent successfully to all drivers', {
                     bodyClassName: "right-toast",
@@ -236,7 +235,7 @@ const Mapbox = () => {
                 <FindCarForm closeDriverDetails={closeDriverDetails} />
                 {findCarFormData?.locationData &&
                     findCarFormData.requestedTime &&
-                    data.getFreeDrivers.length &&
+                    data?.getFreeDrivers.length &&
                     <SendRequestButton sendAllRequestClick={sendAllRequestClick} />
                 }
             </div>

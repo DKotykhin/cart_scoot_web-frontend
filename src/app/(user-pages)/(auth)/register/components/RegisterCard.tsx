@@ -40,6 +40,7 @@ const RegisterCard = () => {
     const [registerByEmail] = useMutation(REGISTER_BY_EMAIL);
     const [registerByPhone] = useMutation(REGISTER_BY_PHONE);
     const [fullRegisterByPhone] = useMutation(FULL_REGISTER_BY_PHONE);
+    
     const router = useRouter();
     const { addUser } = useUserStore();
 
@@ -74,7 +75,8 @@ const RegisterCard = () => {
                     expires: 2,
                 });
                 addUser(data.registerByEmail.user);
-                router.push('/');
+                if (data.registerByEmail.user.role === userTypes.driver) router.push('/driver-profile');
+                else router.push('/');
             } catch (err: any) {
                 toast.warn(err.message, {
                     bodyClassName: "wrong-toast",

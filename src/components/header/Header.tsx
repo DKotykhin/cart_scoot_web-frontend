@@ -11,14 +11,14 @@ import Cookies from 'js-cookie';
 import UserPanel from 'components/userPanel/UserPanel';
 import LogoutCard from 'components/userPanel/logoutCard/LogoutCard';
 import ChangePasswordCard from 'components/userPanel/changePasswordCard/ChangePasswordCard';
+import AddMobilePhoneCard from 'components/userPanel/addMobilePhoneCard/AddMobilePhoneCard';
+import ChangeNameCard from 'components/userPanel/changeNameCard/ChangeNameCard';
 
 import { useUserStore } from 'stores/userStore';
 import { navLinks } from 'constants/navLinks';
 import { IUser, userTypes } from 'types/userTypes';
 
 import styles from './header.module.scss';
-import AddMobilePhoneCard from 'components/userPanel/addMobilePhoneCard/AddMobilePhoneCard';
-import ChangeNameCard from 'components/userPanel/changeNameCard/ChangeNameCard';
 
 const navButtons = [
     {
@@ -116,6 +116,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
                         alt={'logo'}
                         width={48}
                         height={48}
+                        priority
                     />
                     <p>Cart<span>Scoot</span></p>
                 </div>
@@ -201,6 +202,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
             {openChangeNameCard &&
                 <ChangeNameCard
                     changeNameClick={changeNameClick}
+                    userName={user?.userName}
                 />
             }
         </nav>

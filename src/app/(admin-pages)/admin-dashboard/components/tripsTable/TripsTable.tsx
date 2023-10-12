@@ -9,7 +9,7 @@ import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_ALL_REQUESTS } from 'apollo/queries/admin';
 
 import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
-import { IRequest, statusTypes } from 'types/requestTypes';
+import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestTypes';
 
 import styles from './tripsTable.module.scss';
 
@@ -19,7 +19,7 @@ const TripsTable = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data }: { data: { getAllRequests: { requests: [IRequest]; totalCount: number } } } = useSuspenseQuery(GET_ALL_REQUESTS,
+    const { data }: { data: { getAllRequests: { requests: [IRequestWithAllUsersPopulatedFields]; totalCount: number } } } = useSuspenseQuery(GET_ALL_REQUESTS,
         {
             variables: {
                 getAllRequestsInput: {
@@ -47,7 +47,7 @@ const TripsTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.getAllRequests.requests?.map((item: IRequest, i: number) => (
+                    {data?.getAllRequests.requests?.map((item: IRequestWithAllUsersPopulatedFields, i: number) => (
                         <tr key={i}>
                             <td><div>{item.requestCode}</div></td>
                             <td><div>{item.pickupLocation}</div></td>
