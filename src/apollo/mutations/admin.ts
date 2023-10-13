@@ -32,3 +32,36 @@ export const CHANGE_USER_STATUS = gql`
         }
     }
 `;
+
+export const ANSWER_DRIVER_LICENSE = gql`
+    mutation AnswerDriverLicense($answerDriverLicenseInput: AnswerDriverLicenseInput) {
+        answerDriverLicense(answerDriverLicenseInput: $answerDriverLicenseInput) {
+            _id
+            avatarURL
+            banned
+            createdAt
+            coordinates {
+                lat
+                lon
+            }
+            driverRequests
+            email
+            license {
+                message
+                status
+                url
+            }
+            phone {
+                confirmed
+                number
+            }
+            role
+            userName
+            workingDays
+            workingTime {
+                from
+                to
+            }
+        }
+    }
+`;

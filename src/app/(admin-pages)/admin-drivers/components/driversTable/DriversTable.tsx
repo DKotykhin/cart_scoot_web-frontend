@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, useState } from 'react';
 
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
@@ -7,33 +7,42 @@ import { toast } from 'react-toastify';
 
 import { useMutation } from '@apollo/client';
 import { CHANGE_USER_STATUS } from 'apollo/mutations/admin';
-import { useUserStore } from 'stores/userStore';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
+import ModalCard from 'components/modalCard/ModalCard';
 import StatusButton from '../../../components/statusButton/StatusButton';
 
 import { IUser, licenseStatusTypes } from 'types/userTypes';
 
 import styles from './driversTable.module.scss';
 
-const DriversTable: React.FC<{ drivers: [IUser] }> = ({ drivers }) => {
+const DriversTable: FC<{ drivers: IUser[] }> = ({ drivers }) => {
+
+    const [openUnBanModalCard, setOpenUnBanModalCard] = useState(false);
+    const [openBanModalCard, setOpenBanModalCard] = useState(false);
+    const [driverId, setDriverId] = useState("");
 
     const router = useRouter();
-    const { addUser } = useUserStore();
     const [changeUserStatus] = useMutation(CHANGE_USER_STATUS);
 
     const handleClick = (_id: string) => router.push(`/admin-drivers/${_id}`);
 
     const banStatusClick = async (id: string, status: boolean) => {
+        setDriverId(id);
+        status ? setOpenUnBanModalCard(true) : setOpenBanModalCard(true);
+    };
+
+    const confirmUnBanClick = async () => {
+        setOpenUnBanModalCard(false);
         try {
             const { data } = await changeUserStatus({
                 variables: {
-                    id,
-                    status: !status,
+                    id: driverId,
+                    status: false,
                 },
             });
             if (data.changeUserStatus._id) {
-                toast.success('User status changed successfully', {
+                toast.success('User activated successfully', {
                     bodyClassName: "right-toast",
                     icon: <Image
                         src={'/icons/right-code.svg'}
@@ -42,7 +51,39 @@ const DriversTable: React.FC<{ drivers: [IUser] }> = ({ drivers }) => {
                         height={56}
                     />
                 });
-                addUser(data?.changeUserStatus!);
+            }
+        } catch (err: any) {
+            toast.warn(err.message, {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        }
+    };
+
+    const confirmBanClick = async () => {
+        setOpenBanModalCard(false);
+        try {
+            const { data } = await changeUserStatus({
+                variables: {
+                    id: driverId,
+                    status: true,
+                },
+            });
+            if (data.changeUserStatus._id) {
+                toast.success('User has been banned', {
+                    bodyClassName: "warn-toast",
+                    icon: <Image
+                        src={'/icons/warn-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
             }
         } catch (err: any) {
             toast.warn(err.message, {
@@ -58,57 +99,83 @@ const DriversTable: React.FC<{ drivers: [IUser] }> = ({ drivers }) => {
     };
 
     return (
-        <table className={styles.container}>
-            <thead>
-                <tr>
-                    <th><div>#</div></th>
-                    <th><div>Driver</div></th>
-                    <th><div>Active / Deactivate</div></th>
-                    <th><div>Email</div></th>
-                    <th><div>Status</div></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {drivers.map((item: IUser, i: number) => (
-                    <tr key={i}>
-                        <td><div>{i + 1}</div></td>
-                        <td>
-                            <DriverAvatar
-                                driverAvatarURL={item?.avatarURL}
-                                driverName={item?.userName}
-                            />
-                        </td>
-                        <td><div><StatusButton banned={item.banned} banStatusClick={() => banStatusClick(item._id, item.banned)} /></div></td>
-                        <td><div>{item.email}</div></td>
-                        <td className={item.license.status === licenseStatusTypes.waiting ? styles.status_waiting
-                            : item.license.status === licenseStatusTypes.rejected ? styles.status_rejected
-                                : item.license.status === licenseStatusTypes.approved ? styles.status_approved
-                                    : styles.status_pending}
-                        >
-                            {item.license.status === licenseStatusTypes.waiting ?
-                                <span>Wait for Approve</span>
-                                : item.license.status === licenseStatusTypes.rejected ?
-                                    <span>Rejected</span>
-                                    : item.license.status === licenseStatusTypes.approved ?
-                                        <span>Verified</span>
-                                        :
-                                        <span>Unverified</span>
-                            }
-                        </td>
-                        <td className={styles.image_box}>
-                            <Image
-                                src={'/icons/caretRight-grey.svg'}
-                                alt={'caret'}
-                                width={20}
-                                height={20}
-                                onClick={() => handleClick(item._id)}
-                            />
-                        </td>
+        <>
+            <table className={styles.container}>
+                <thead>
+                    <tr>
+                        <th><div>#</div></th>
+                        <th><div>Driver</div></th>
+                        <th><div>Active / Deactivate</div></th>
+                        <th><div>Email</div></th>
+                        <th><div>Status</div></th>
+                        <th></th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {drivers?.map((item: IUser, i: number) => (
+                        <tr key={i}>
+                            <td><div>{i + 1}</div></td>
+                            <td>
+                                <DriverAvatar
+                                    driverAvatarURL={item?.avatarURL}
+                                    driverName={item?.userName}
+                                />
+                            </td>
+                            <td><div><StatusButton banned={item.banned} banStatusClick={() => banStatusClick(item._id, item.banned)} /></div></td>
+                            <td><div>{item.email}</div></td>
+                            <td className={item.license.status === licenseStatusTypes.waiting ? styles.status_waiting
+                                : item.license.status === licenseStatusTypes.rejected ? styles.status_rejected
+                                    : item.license.status === licenseStatusTypes.approved ? styles.status_approved
+                                        : styles.status_pending}
+                            >
+                                {item.license.status === licenseStatusTypes.waiting ?
+                                    <span>Wait for Approve</span>
+                                    : item.license.status === licenseStatusTypes.rejected ?
+                                        <span>Rejected</span>
+                                        : item.license.status === licenseStatusTypes.approved ?
+                                            <span>Verified</span>
+                                            :
+                                            <span>Unverified</span>
+                                }
+                            </td>
+                            <td className={styles.image_box}>
+                                <Image
+                                    src={'/icons/caretRight-grey.svg'}
+                                    alt={'caret'}
+                                    width={20}
+                                    height={20}
+                                    onClick={() => handleClick(item._id)}
+                                />
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            {openUnBanModalCard &&
+                <ModalCard
+                    title='Activate driver'
+                    subtitle='Are you sure to activate this driver?'
+                    button_1='Cancel'
+                    button_2='Activate'
+                    imageURL='/avatars/activeAvatar.svg'
+                    greenButton={true}
+                    cancelClick={() => setOpenUnBanModalCard(false)}
+                    confirmClick={confirmUnBanClick}
+                />
+            }
+            {openBanModalCard &&
+                <ModalCard
+                    title='Deactivate driver'
+                    subtitle='Are you sure to Deactivate this driver?'
+                    button_1='Cancel'
+                    button_2='Deactivate'
+                    imageURL='/avatars/warningAvatar.svg'
+                    greenButton={false}
+                    cancelClick={() => setOpenBanModalCard(false)}
+                    confirmClick={confirmBanClick}
+                />
+            }
+        </>
     );
 };
 

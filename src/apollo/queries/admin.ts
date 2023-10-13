@@ -1,5 +1,42 @@
 import { gql } from "@apollo/client";
 
+export const GET_DRIVER_WITH_RATING = gql`
+    query GetDriverWithRating($driverId: ID!) {
+        getDriverWithRating(driverId: $driverId) {
+            rating
+            totalCount
+            driver {
+                _id
+                avatarURL
+                banned
+                coordinates {
+                    lat
+                    lon
+                }
+                createdAt
+                driverRequests
+                email
+                license {
+                    message
+                    status
+                    url
+                }
+                phone {
+                    confirmed
+                    number
+                }
+                role
+                userName
+                workingDays
+                workingTime {
+                    from
+                    to
+                }
+            }
+        }
+    }
+`;
+
 export const GET_ALL_DRIVERS = gql`
     query GetAllDrivers($getAllUsersInput: GetAllUsersInput) {
         getAllDrivers(getAllUsersInput: $getAllUsersInput) {

@@ -18,7 +18,7 @@ export interface IReview {
 
 export interface IReviewData {
     getReviewsByDriverId: {
-        reviews: [IReview];
+        reviews: IReview[];
         totalCount: number;
     };
 }

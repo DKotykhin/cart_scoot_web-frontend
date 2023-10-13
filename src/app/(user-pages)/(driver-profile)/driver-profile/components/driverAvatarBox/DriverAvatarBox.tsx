@@ -4,18 +4,23 @@ import React from 'react';
 
 import Image from "next/image";
 
-import StarsBox from '../../../components/starsBox/StarsBox';
+import StarsBox from '../../../../../../components/starsBox/StarsBox';
 import { useUserStore } from 'stores/userStore';
 import { uploadAvatar } from 'apollo/services/uploadAvatar';
 import { avatarLetters } from 'utils/avatarLetters';
 
+import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
+import { GET_DRIVER_RATING } from 'apollo/queries/review';
+
 import { licenseStatusTypes } from 'types/userTypes';
 
-import styles from './profileBox.module.scss';
+import styles from './driverAvatarBox.module.scss';
 
-const ProfileBox: React.FC = () => {
+const DriverAvatarBox: React.FC = () => {
 
     const { addUser, userData } = useUserStore();
+
+    const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING);
 
     const onChange = async (e: any) => {
         const formData = new FormData();
@@ -34,10 +39,6 @@ const ProfileBox: React.FC = () => {
                             alt={'avatar'}
                             width={80}
                             height={80}
-                            loader={({ src, width: w, quality }) => {
-                                const q = quality || 75;
-                                return `${src}?w=${w}&q=${q}`;
-                            }}
                         />
                         :
                         <div className={styles.empty_avatar}>
@@ -68,9 +69,9 @@ const ProfileBox: React.FC = () => {
                             <p className={`${styles.status} ${styles.pending}`}>Unverified</p>
                 }
             </div>
-            <StarsBox />
+            <StarsBox avgRating={data?.getDriverRating.avgRating} totalCount={data?.getDriverRating.totalCount}/>
         </div>
     );
 };
 
-export default ProfileBox;
+export default DriverAvatarBox;

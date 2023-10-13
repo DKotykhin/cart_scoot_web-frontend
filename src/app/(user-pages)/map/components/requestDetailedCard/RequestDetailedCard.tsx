@@ -93,7 +93,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
                 <div className={styles.star_box}>
                     {starArray.map(star => (
                         <div key={star}>
-                            {Math.round(rating) >= star ?
+                            {Math.round(rating || 0) >= star ?
                                 <Image
                                     src={'/icons/star-green.svg'}
                                     alt={'star'}

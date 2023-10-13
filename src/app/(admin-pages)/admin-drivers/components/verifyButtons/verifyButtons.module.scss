@@ -1,0 +1,20 @@
+@import "constants/constants.scss";
+
+.verify_buttons {
+    .line_box {
+        padding: 0 24px;
+        .line {
+            background-color: $black-tertiary;
+            height: 1px;
+        }
+    }
+    .verify_buttons_box {
+        display: flex;
+        justify-content: flex-end;
+        gap: 24px;
+        padding: 48px 24px 24px;
+        button {
+            width: fit-content;
+        }
+    }
+}

@@ -30,14 +30,14 @@ export interface IUser {
     email: string;
     avatarURL: string;
     license: {
-        url: [string];
+        url: string[];
         message: string;
         status: licenseStatusTypes;
     };
     role: userTypes;
     banned: boolean;
-    driverRequests: [string];
-    workingDays: [number];
+    driverRequests: string[];
+    workingDays: number[];
     workingTime: {
         from: number;
         to: number;
@@ -73,7 +73,7 @@ export interface IDriver {
     };
     role: userTypes;
     banned: boolean;
-    workingDays: [number];
+    workingDays: number[];
     workingTime: {
         from: number;
         to: number;
@@ -87,7 +87,7 @@ export interface IDriver {
 export interface IRider {
     _id: string;
     avatarURL: string;
-    driverRequests: [string];
+    driverRequests: string[];
     email: string;
     phone: {
         number: string;

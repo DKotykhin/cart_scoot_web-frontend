@@ -6,11 +6,11 @@ import { IUser } from 'types/userTypes';
 
 import styles from './userInfo.module.scss';
 
-const UserInfo: React.FC<{ user?: IUser }> = ({ user }) => {
+const UserInfo: React.FC<{ user?: IUser, title: string }> = ({ user, title }) => {
 
     return (
         <div className={styles.userInfo}>
-            <p className={styles.userInfo_title}>Your Information</p>
+            <p className={styles.userInfo_title}>{title}</p>
             <div className={styles.info_box}>
                 <div className={styles.info_item}>
                     <Image

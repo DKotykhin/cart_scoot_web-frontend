@@ -28,7 +28,7 @@ const RidersPanel = () => {
                 pageNumber: page,
                 ...searchData,
             }
-        }
+        },
     });
 
     const formData = (data: IRiderSearchData) => {

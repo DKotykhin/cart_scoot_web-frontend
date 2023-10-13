@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import StarsBox from '../../../components/starsBox/StarsBox';
+import StarsBox from '../../../../../../components/starsBox/StarsBox';
 
 import styles from './titleBox.module.scss';
 

@@ -184,6 +184,11 @@ header {
     color: $green-primary;
     font-weight: 500;
 }
+.warn-toast {
+    font-size: 20px;
+    color: $orange-primary;
+    font-weight: 500;
+}
 .Toastify__toast-icon {
     margin-right: 50px !important;
 }

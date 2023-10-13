@@ -42,10 +42,6 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePas
                             alt={'avatar'}
                             width={56}
                             height={56}
-                            loader={({ src, width: w, quality }) => {
-                                const q = quality || 75;
-                                return `${src}?w=${w}&q=${q}`;
-                            }}
                         />
                         :
                         <div className={styles.empty_avatar}>
