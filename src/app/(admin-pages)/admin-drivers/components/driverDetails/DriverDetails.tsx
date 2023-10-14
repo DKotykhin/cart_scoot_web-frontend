@@ -4,6 +4,7 @@ import TitleWithBackButton from 'components/titleWithBackButton/TitleWithBackBut
 import DriverAvatarBox from '../driverAvatarBox/DriverAvatarBox';
 import DriverInfoBox from '../driverInfoBox/DriverInfoBox';
 import VerifyButtons from '../verifyButtons/VerifyButtons';
+import DriverScheduleInfo from '../driverScheduleInfo/DriverScheduleInfo';
 
 import { getDriverWithRating } from 'apollo/services/getDriverWithRating';
 import { licenseStatusTypes } from 'types/userTypes';
@@ -22,6 +23,10 @@ const DriverDetails: React.FC<{ _id: string }> = async ({ _id }) => {
                 <div className={styles.line} />
             </div>
             <DriverInfoBox driver={driver?.getDriverWithRating.driver} />
+            {driver?.getDriverWithRating.driver.license.status === licenseStatusTypes.approved ?
+                <DriverScheduleInfo driver={driver?.getDriverWithRating.driver} />
+                : null
+            }
             {driver?.getDriverWithRating.driver.license.status === licenseStatusTypes.waiting ?
                 <VerifyButtons driverId={driver?.getDriverWithRating.driver._id} />
                 : null

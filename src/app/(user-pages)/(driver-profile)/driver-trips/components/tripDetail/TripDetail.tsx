@@ -4,7 +4,6 @@ import React from 'react';
 import ReactMapGl, { Marker, FullscreenControl, GeolocateControl, NavigationControl } from "react-map-gl";
 
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REQUEST } from 'apollo/queries/request';
@@ -18,8 +17,6 @@ import { IRequestWithRating } from 'types/requestTypes';
 import styles from './tripDetail.module.scss';
 
 const TripDetail: React.FC<{ _id: string }> = ({ _id }) => {
-
-    const router = useRouter();
 
     const { data }: { data: { getRequest: IRequestWithRating } } = useSuspenseQuery(GET_REQUEST, {
         variables: {

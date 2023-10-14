@@ -146,7 +146,11 @@ export const GET_ALL_REVIEWS = gql`
             reviews {
                 _id
                 createdAt
-                createdBy
+                createdBy {
+                    _id
+                    userName
+                    avatarURL
+                }
                 driverId
                 rating
                 requestCode
@@ -196,6 +200,28 @@ export const GET_STATISTIC = gql`
             totalDrivers
             totalRiders
             totalTrips
+        }
+    }
+`;
+
+export const GET_REVIEW_BY_REQUEST_CODE = gql`
+    query GetReviewByRequestCode($requestCode: String) {
+        getReviewByRequestCode(requestCode: $requestCode) {
+            _id
+            createdAt
+            createdBy {
+                _id
+                avatarURL
+                userName
+            }
+            driverId {
+                _id
+                avatarURL
+                userName
+            }
+            rating
+            requestCode
+            text
         }
     }
 `;

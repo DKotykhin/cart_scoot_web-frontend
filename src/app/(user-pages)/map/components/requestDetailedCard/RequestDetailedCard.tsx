@@ -26,7 +26,7 @@ interface IRequestDetailedCard {
     sendOneRequestClick: () => void;
 }
 
-const dayOfWeek = (data: [number]) => {
+const dayOfWeek = (data: number[]) => {
     return data.map(day => {
         let dayOfWeek = "";
         switch (day) {

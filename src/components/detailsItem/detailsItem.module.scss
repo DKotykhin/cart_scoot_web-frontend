@@ -14,6 +14,8 @@
         line-height: 18px;
     }
     .tip_value {
+        display: flex;
+        gap: 4px;
         font-size: 16px;
         color: $black-secondary;
         font-weight: 600;
