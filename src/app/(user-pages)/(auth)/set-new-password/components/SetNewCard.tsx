@@ -36,7 +36,6 @@ const SetNewCard: React.FC<{ token: string }> = ({ token }) => {
         const { password, confirmPassword } = data;
         if (password === confirmPassword) {
             const newData = { password, token };
-            console.log(newData);
             try {
                 const { data } = await setNewPassword({
                     variables: {

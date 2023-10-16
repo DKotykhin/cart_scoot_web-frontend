@@ -53,7 +53,6 @@ const FindCarForm: React.FC<IFindCarForm> = ({ closeDriverDetails }) => {
     });
 
     const onSubmit = async (data: ISearchData): Promise<void> => {
-        // console.log('data: ', data);
         const { date, time, pickup, dropoff } = data;
 
         let requestedTime;

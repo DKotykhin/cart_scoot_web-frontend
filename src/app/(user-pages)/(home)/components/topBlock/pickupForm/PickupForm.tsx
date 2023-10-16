@@ -52,7 +52,6 @@ const PickupForm = () => {
     });
 
     const onSubmit = (data: IPickupData): void => {
-        // console.log(data);
         const { date, time, pickup, dropoff } = data;
 
         let requestedTime;

@@ -35,7 +35,6 @@ const CommentsPanel = () => {
         });
 
     const formData = (data: ISearchData) => {
-        // console.log(data);
         const { searchRequestCode, dateFrom, dateTo } = data;
         setSearchData({
             searchRequestCode,

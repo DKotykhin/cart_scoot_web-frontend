@@ -3,6 +3,9 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 
+import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
+import { GET_DRIVER_RATING } from 'apollo/queries/review';
+
 import { uploadAvatar } from 'apollo/services/uploadAvatar';
 import { useUserStore } from 'stores/userStore';
 import { avatarLetters } from 'utils/avatarLetters';
@@ -22,10 +25,11 @@ interface IUserPanel {
 
 const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePasswordClick, handleCloseClick, addMobileClick, changeNameClick }) => {
 
+    const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING);
+
     const { addUser } = useUserStore();
 
     const onChange = async (e: any) => {
-        // console.log(e.target.files[0]);
         const formData = new FormData();
         formData.append("avatar", e.target.files[0], e.target.files[0].name);
         const newUser = await uploadAvatar(formData);
@@ -34,6 +38,19 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePas
 
     return (
         <div className={styles.user_panel}>
+            <div className={styles.rating_wrapper}>
+                {user.role === userTypes.driver && data.getDriverRating.avgRating > 0 &&
+                    <div className={styles.rating_box}>
+                        <Image
+                            src={'/icons/star-green.svg'}
+                            alt={'star'}
+                            width={20}
+                            height={20}
+                        />
+                        <p className={styles.rating_value}>{data.getDriverRating.avgRating}</p>
+                    </div>
+                }
+            </div>
             <div className={styles.user_logo_wrapper}>
                 <div className={styles.logo_box}>
                     {user?.avatarURL ?

@@ -133,9 +133,9 @@ export const GET_REQUESTS_BY_DRIVER = gql`
     }
 `;
 
-export const GET_PENDING_REQUESTS = gql`
-    query GetPendingRequests {
-        getPendingRequests {
+export const GET_PENDING_REQUESTS_BY_DRIVER = gql`
+    query GetPendingRequestsByDriver {
+        getPendingRequestsByDriver {
             _id
             carType
             coordinates {

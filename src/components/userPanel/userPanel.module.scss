@@ -4,7 +4,7 @@
     position: absolute;
     top: 96px;
     right: 0;
-    z-index: 2;
+    z-index: 3;
     width: 312px;
     background-color: $white;
     padding: 24px;
@@ -12,9 +12,26 @@
     box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
+    .rating_wrapper {
+        display: flex;
+        padding: 16px;
+        height: 49px;
+        .rating_box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            .rating_value {
+                font-size: 14px;
+                color: $green-primary;
+                font-weight: 400;
+                line-height: 18px;
+            }
+        }
+    }
     .user_logo_wrapper {
         position: relative;
-        margin: 49px auto 26px;
+        margin: 0 auto 26px;
         .user_logo_upload {
             display: flex;
             width: 32px;

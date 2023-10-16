@@ -1,8 +1,9 @@
 "use client";
 
-import React from 'react';
-
 import { useForm, Controller } from "react-hook-form";
+import { toast } from 'react-toastify';
+
+import Image from "next/image";
 
 import { ContactFormValidation } from 'validation/userValidation';
 import { EmailInput, UserNameInput } from 'components/inputs/_index';
@@ -26,17 +27,32 @@ const ContactForm = () => {
     } = useForm<IContactForm>(ContactFormValidation);
 
     const onSubmit = async (data: IContactForm): Promise<void> => {
-        console.log(data);
         await fetch('/api/send-email', {
             method: 'POST',
             body: JSON.stringify({ data })
         })
             .then(response => {
-                console.log('Email successfully sent!');
+                toast.success('Email successfully sent!', {
+                    bodyClassName: "right-toast",
+                    icon: <Image
+                        src={'/icons/right-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
                 reset();
             })
             .catch(err => {
-                console.log(`Can't send email. Check your internet connection`);
+                toast.warn(err.message, {
+                    bodyClassName: "wrong-toast",
+                    icon: <Image
+                        src={'/icons/wrong-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
             });
     };
 

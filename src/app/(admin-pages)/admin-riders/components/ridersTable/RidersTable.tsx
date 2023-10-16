@@ -75,7 +75,7 @@ const RidersTable: FC<{ riders?: IRider[] }> = ({ riders }) => {
                 },
             });
             if (data.changeUserStatus._id) {
-                toast.success('User has been banned', {
+                toast.success('User was blocked', {
                     bodyClassName: "warn-toast",
                     icon: <Image
                         src={'/icons/warn-code.svg'}

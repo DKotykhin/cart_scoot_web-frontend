@@ -36,7 +36,6 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
     const { addUser } = useUserStore();
 
     const onChangeSelfie = async (e: any) => {
-        // console.log(e.target.files[0]);
         if (e.target.files[0].size > 2097152) {
             setSelfieFile({ warning: true, fileName: "", fileSize: 0 });
             toast.warn('File is too big', {
@@ -54,7 +53,6 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
         }
     };
     const onChangeInsurance = async (e: any) => {
-        // console.log(e.target.files[0]);
         if (e.target.files[0].size > 2097152) {
             setInsuranceFile({ warning: true, fileName: "", fileSize: 0 });
             toast.warn('File is too big', {
@@ -72,7 +70,6 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
         }
     };
     const onChangeGolfCard = async (e: any) => {
-        // console.log(e.target.files[0]);
         if (e.target.files[0].size > 2097152) {
             setGolfCartFile({ warning: true, fileName: "", fileSize: 0 });
             toast.warn('File is too big', {

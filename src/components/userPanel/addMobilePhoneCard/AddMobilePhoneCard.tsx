@@ -29,12 +29,12 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
     const [openConfirmCard, setOpenConfirmCard] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
 
-    const [addMobile] = useMutation(ADD_MOBILE_PHONE);
+    const [addMobile, { loading }] = useMutation(ADD_MOBILE_PHONE);
 
     const {
         control,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: { errors },
         reset,
     } = useForm<IAddMobileData>(AddMobileValidation);
 
@@ -125,9 +125,19 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
                             <p className={styles.checkbox_error}>{errors.terms?.message}</p>
                         </div>
                     </div>
-                    <div className='line'/>
+                    <div className='line' />
                     <div className={styles.lowerBox}>
-                        <button type='submit' className='button-green-filled'>Send a code</button>
+                        <button type='submit' className='button-green-filled'>
+                            {loading ?
+                                <Image
+                                    src={'/spinner.svg'}
+                                    alt={'spinner'}
+                                    width={48}
+                                    height={48}
+                                />
+                                : 'Send a code'
+                            }
+                        </button>
                     </div>
                 </form>
             }

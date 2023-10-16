@@ -19,7 +19,6 @@ const ChangePasswordButton = () => {
     const { setUserEmpty } = useUserStore();
 
     const changePasswordClick = () => {
-        console.log('change');
         setOpenChangePasswordCard(prev => !prev);
         Cookies.remove('token');
         router.push('/login');

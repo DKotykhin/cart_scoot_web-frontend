@@ -29,7 +29,7 @@ interface IFormData {
 
 const UpdateInfoForm: React.FC<{ user?: IUser }> = ({ user }) => {
 
-    const [updateWorkingTime] = useMutation(UPDATE_WORKING_TIME);
+    const [updateWorkingTime, { loading }] = useMutation(UPDATE_WORKING_TIME);
     const { addUser } = useUserStore();
 
     const {
@@ -193,8 +193,17 @@ const UpdateInfoForm: React.FC<{ user?: IUser }> = ({ user }) => {
             </div>
             <div className={styles.line} />
             <div className={styles.button_box}>
-                {/* <button type='button' className='button-grey-outlined'>Discard</button> */}
-                <button type='submit' className='button-green-filled'>Save Changes</button>
+                <button type='submit' className='button-green-filled'>
+                    {loading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Save Changes'
+                    }
+                </button>
             </div>
         </form>
     );

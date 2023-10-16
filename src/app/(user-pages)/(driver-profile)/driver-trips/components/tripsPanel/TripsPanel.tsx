@@ -32,10 +32,8 @@ const TripsPanel = () => {
             getRequestsByFiltersInput: { ...searchData, page }
         }
     });
-    // console.log(data?.getRequestsByDriver);
 
     const formData = (data: ISearchData) => {
-        // console.log(data);
         const { searchRequestCode, dateFrom, dateTo, status } = data;
         setSearchData({
             searchRequestCode,

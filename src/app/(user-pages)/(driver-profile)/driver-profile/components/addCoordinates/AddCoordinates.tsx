@@ -17,7 +17,7 @@ const AddCoordinates = () => {
 
     const [location, setLocation] = useState<{ latitude: number, longitude: number }>();
 
-    const [updateCoordinates] = useMutation(UPDATE_COORDINATES);
+    const [updateCoordinates, { loading }] = useMutation(UPDATE_COORDINATES);
     const { addUser } = useUserStore();
 
     useEffect(() => {
@@ -86,7 +86,15 @@ const AddCoordinates = () => {
                     className='button-green-outlined'
                     onClick={addCoordinatesClick}
                 >
-                    Add Coordinates
+                    {loading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Add Coordinates'
+                    }
                 </button>
             </div>
         </div>

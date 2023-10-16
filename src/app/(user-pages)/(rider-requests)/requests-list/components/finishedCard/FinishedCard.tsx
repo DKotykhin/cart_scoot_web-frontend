@@ -28,7 +28,7 @@ const starArray = [1, 2, 3, 4, 5];
 const FinishedCard: React.FC<IFinishedCard> = ({ handleClose, finishedCardData }) => {
 
     const { driverId, requestCode } = finishedCardData;
-    const [addReview] = useMutation(ADD_REVIEW);
+    const [addReview, { loading }] = useMutation(ADD_REVIEW);
     const [reviewStars, setReviewStars] = useState(0);
 
     const {
@@ -151,9 +151,19 @@ const FinishedCard: React.FC<IFinishedCard> = ({ handleClose, finishedCardData }
                         />
                     </div>
                 </div>
-                <div className='line'/>
+                <div className='line' />
                 <div className={styles.lowerBox}>
-                    <button type='submit' className='button'>Send review</button>
+                    <button type='submit' className='button'>
+                        {loading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Send review'
+                        }
+                    </button>
                 </div>
             </form>
         </div>

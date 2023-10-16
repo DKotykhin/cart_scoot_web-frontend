@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
-import Image from "next/image";
-
 import LocationCard from '../../../components/locationCard/LocationCard';
 import RequestDetailsCard from '../requestDetailsCard/RequestDetailsCard';
+import EmptyList from 'components/emptyList/EmptyList';
 
 import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestList.module.scss';
-import EmptyList from 'components/emptyList/EmptyList';
 
 interface IRequestList {
     requests?: [IRequestWithRiderPopulatedFields];

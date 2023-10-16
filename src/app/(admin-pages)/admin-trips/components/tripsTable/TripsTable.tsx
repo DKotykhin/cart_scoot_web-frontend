@@ -22,10 +22,10 @@ const TripsTable: React.FC<{ trips: [IRequestWithAllUsersPopulatedFields] }> = (
             <thead>
                 <tr>
                     <th><div>#</div></th>
-                    <th><div>Request Code</div></th>
+                    <th><div style={{ minWidth: '142px' }}>Request Code</div></th>
                     <th><div>Rider</div></th>
                     <th><div>Driver</div></th>
-                    <th><div>Req Date & Time</div></th>
+                    <th><div style={{ minWidth: '161px' }}>Req Date & Time</div></th>
                     <th><div>Status</div></th>
                     <th></th>
                 </tr>

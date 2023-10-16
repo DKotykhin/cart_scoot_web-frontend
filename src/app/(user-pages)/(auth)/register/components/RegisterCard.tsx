@@ -56,7 +56,6 @@ const RegisterCard = () => {
     } = useForm<IFullRegisterMobileData>(RegisterMobileValidation);
 
     const onEmailSubmit = async (data: IUserData): Promise<void> => {
-        // console.log('Register: ', data);
         const { email, password, userName, terms } = data;
         if (terms) {
             try {
@@ -99,7 +98,6 @@ const RegisterCard = () => {
     };
 
     const onPhoneSubmit = async (formData: IFullRegisterMobileData): Promise<void> => {
-        // console.log('Phone register: ', formData);
         const { userName, terms } = formData;
         const phone = `+${formData?.phone}`;
         if (terms) {

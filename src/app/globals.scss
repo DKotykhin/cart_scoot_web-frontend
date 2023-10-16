@@ -105,6 +105,11 @@ header {
     margin: 24px 0;
     padding: 0px 24px;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $green-secondary;
+        transition: all 0.3s ease-out;
+    }
 }
 .button-green-filled {
     background-color: $green-primary;
@@ -117,6 +122,11 @@ header {
     line-height: 20px;
     padding: 0px 24px;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $green-secondary;
+        transition: all 0.3s ease-out;
+    }
 }
 .button-green-outlined {
     background-color: $white;
@@ -130,6 +140,11 @@ header {
     padding: 0px 24px;
     border: 1px solid $green-primary;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $green-quaternary;
+        transition: all 0.3s ease-out;
+    }
 }
 .button-grey-outlined {
     background-color: $white;
@@ -143,6 +158,11 @@ header {
     padding: 0px 24px;
     border: 1px solid $black-tertiary;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $black-quaternary;
+        transition: all 0.3s ease-out;
+    }
 }
 .link {
     display: flex;

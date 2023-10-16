@@ -30,7 +30,7 @@ interface IChangePasswordCard {
 
 const ChangePasswordCard: React.FC<IChangePasswordCard> = ({ changePasswordClick, openChangePasswordClick }) => {
 
-    const [changePassword] = useMutation(CHANGE_PASSWORD);
+    const [changePassword, { loading }] = useMutation(CHANGE_PASSWORD);
 
     const {
         control,
@@ -127,8 +127,27 @@ const ChangePasswordCard: React.FC<IChangePasswordCard> = ({ changePasswordClick
                 </div>
                 <div className='line' />
                 <div className={styles.lower_box}>
-                    <button onClick={openChangePasswordClick}>Cancel</button>
-                    <button type='submit'>Change Password</button>
+                    <button
+                        type='button'
+                        onClick={openChangePasswordClick}
+                        className='button-grey-outlined'
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type='submit'
+                        className='button-green-filled'
+                    >
+                        {loading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Change Password'
+                        }
+                    </button>
                 </div>
             </form>
         </div>

@@ -24,7 +24,7 @@ interface IChangeNameCard {
 
 const ChangeNameCard: React.FC<IChangeNameCard> = ({ changeNameClick, userName }) => {
 
-    const [changeName] = useMutation(CHANGE_USER_NAME);
+    const [changeName, { loading }] = useMutation(CHANGE_USER_NAME);
     const { addUser } = useUserStore();
 
     const {
@@ -98,8 +98,27 @@ const ChangeNameCard: React.FC<IChangeNameCard> = ({ changeNameClick, userName }
                 </div>
                 <div className='line' />
                 <div className={styles.lower_box}>
-                    <button onClick={changeNameClick}>Cancel</button>
-                    <button type='submit'>Change Name</button>
+                    <button
+                        type='button'
+                        onClick={changeNameClick}
+                        className='button-grey-outlined'
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type='submit'
+                        className='button-green-filled'
+                    >
+                        {loading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Change Name'
+                        }
+                    </button>
                 </div>
             </form>
         </div>

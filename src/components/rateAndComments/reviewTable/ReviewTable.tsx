@@ -12,7 +12,7 @@ import styles from './reviewTable.module.scss';
 
 const starArray = [1, 2, 3, 4, 5];
 
-const ReviewTable: React.FC<{ reviews?: [IReview] }> = ({ reviews }) => {
+const ReviewTable: React.FC<{ reviews?: IReview[] }> = ({ reviews }) => {
 
     return (
         <table className={styles.container}>
@@ -38,7 +38,7 @@ const ReviewTable: React.FC<{ reviews?: [IReview] }> = ({ reviews }) => {
                                 driverName={item.createdBy?.userName}
                             />
                         </td>
-                        <td><div>{item.text}</div></td>
+                        <td><div className={styles.comment_text}>{item.text}</div></td>
                         <td><div>{format(new Date(item.createdAt), "d LLL H:mm")}</div></td>
                         <td>
                             <div className={styles.star_box}>

@@ -37,7 +37,7 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
             id: _id
         }
     });
-    // console.log(data?.getRequest.request);
+    
     const { coordinates: { start, end } } = data.getRequest.request;
 
     const routeData = useMapboxApi(start.lat, start.lon, end.lat, end.lon);

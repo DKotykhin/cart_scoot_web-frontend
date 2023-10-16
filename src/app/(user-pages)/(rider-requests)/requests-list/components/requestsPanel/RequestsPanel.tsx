@@ -33,7 +33,6 @@ const Table = () => {
     });
 
     const formData = (data: ISearchData) => {
-        console.log(data);
         const { searchRequestCode, dateFrom, dateTo, status } = data;
         setSearchData({
             searchRequestCode,

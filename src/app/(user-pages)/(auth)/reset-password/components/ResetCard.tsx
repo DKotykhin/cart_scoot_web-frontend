@@ -33,7 +33,6 @@ const ResetCard = () => {
     } = useForm<IResetData>(ResetFormValidation);
 
     const onSubmit = async (data: IResetData): Promise<void> => {
-        // console.log(data);
         const { email } = data;
         try {
             const { data } = await resetPassword({

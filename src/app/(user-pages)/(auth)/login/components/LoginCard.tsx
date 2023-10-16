@@ -54,7 +54,6 @@ const LoginCard = () => {
     } = useForm<IRegisterMobileData>(LoginMobileValidation);
 
     const onEmailSubmit = async (data: IUserData): Promise<void> => {
-        // console.log('Email login: ', data);
         const { email, password, rememberMe } = data;
         try {
             const { data }: { data?: { loginByEmail: IUserWithToken } } = await loginByEmail({
@@ -90,7 +89,6 @@ const LoginCard = () => {
     };
 
     const onPhoneSubmit = async (data: IRegisterMobileData): Promise<void> => {
-        // console.log('Phone login: ', data);
         const phone = `+${data?.phone}`;
         setPhoneNumber(phone);
         try {

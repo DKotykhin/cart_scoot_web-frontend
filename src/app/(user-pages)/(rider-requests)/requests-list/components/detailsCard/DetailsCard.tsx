@@ -29,9 +29,9 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
 
     const [openDetails, setOpenDetails] = useState(false);
 
-    const [finishTrip] = useMutation(FINISH_REQUEST);
-    const [cancelTrip] = useMutation(CANCEL_REQUEST);
-    const [riderAnswer] = useMutation(RIDER_MULTI_CALL_ANSWER);
+    const [finishTrip, { loading: finishLoading }] = useMutation(FINISH_REQUEST);
+    const [cancelTrip, { loading: cancelLoading }] = useMutation(CANCEL_REQUEST);
+    const [riderAnswer, { loading: answerLoading }] = useMutation(RIDER_MULTI_CALL_ANSWER);
 
     const handleStatusClick = () => setOpenDetails(false);
     const handleDetailsClick = () => setOpenDetails(true);
@@ -136,8 +136,8 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
             <p className={styles.detail_title}>Details</p>
             <div className={styles.driver_box}>
                 <DriverAvatar
-                    driverAvatarURL={driverId.avatarURL}
-                    driverName={driverId.userName}
+                    driverAvatarURL={driverId?.avatarURL}
+                    driverName={driverId?.userName}
                     bigName={true}
                 />
                 <div className={styles.star_box}>
@@ -184,7 +184,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                     <DetailsItem
                         imageURL='/icons/path.svg'
                         title='Distance'
-                        value={`${Math.round((routeData.distance / 1000) * 10) / 10} km`}
+                        value={routeData ? `${Math.round((routeData.distance / 1000) * 10) / 10} km` : '0 km'}
                     />
                     <DetailsItem
                         imageURL='/icons/hourglass.svg'
@@ -244,13 +244,29 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                         className='button-green-filled'
                         onClick={finishClick}
                     >
-                        Finish trip
+                        {finishLoading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Finish trip'
+                        }
                     </button>
                     <button
                         className='button-grey-outlined'
                         onClick={cancelClick}
                     >
-                        Cancel trip
+                        {cancelLoading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Cancel trip'
+                        }
                     </button>
                 </>
                 :
@@ -268,13 +284,29 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                                 className='button-green-filled'
                                 onClick={() => RiderMultiCallAnswer(true)}
                             >
-                                Approve driver request
+                                {answerLoading ?
+                                    <Image
+                                        src={'/spinner.svg'}
+                                        alt={'spinner'}
+                                        width={48}
+                                        height={48}
+                                    />
+                                    : 'Approve driver request'
+                                }
                             </button>
                             <button
                                 className='button-grey-outlined'
                                 onClick={() => RiderMultiCallAnswer(false)}
                             >
-                                Cancel driver request
+                                {answerLoading ?
+                                    <Image
+                                        src={'/spinner.svg'}
+                                        alt={'spinner'}
+                                        width={48}
+                                        height={48}
+                                    />
+                                    : 'Cancel driver request'
+                                }
                             </button>
                         </>
                         :
@@ -283,7 +315,15 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                                 className='button-grey-outlined'
                                 onClick={cancelClick}
                             >
-                                Cancel trip
+                                {cancelLoading ?
+                                    <Image
+                                        src={'/spinner.svg'}
+                                        alt={'spinner'}
+                                        width={48}
+                                        height={48}
+                                    />
+                                    : 'Cancel trip'
+                                }
                             </button>
                             : null
             }

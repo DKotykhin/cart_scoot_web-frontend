@@ -22,7 +22,7 @@ const DriverInfoBox: React.FC<{ driver?: IUser }> = ({ driver }) => {
                                 download
                                 className={styles.driver_fileBox_link}
                             >
-                                Download
+                                Open
                             </a>
                         </>
                         :
@@ -40,7 +40,7 @@ const DriverInfoBox: React.FC<{ driver?: IUser }> = ({ driver }) => {
                                 download
                                 className={styles.driver_fileBox_link}
                             >
-                                Download
+                                Open
                             </a>
                         </>
                         :
@@ -58,7 +58,7 @@ const DriverInfoBox: React.FC<{ driver?: IUser }> = ({ driver }) => {
                                 download
                                 className={styles.driver_fileBox_link}
                             >
-                                Download
+                                Open
                             </a>
                         </>
                         :

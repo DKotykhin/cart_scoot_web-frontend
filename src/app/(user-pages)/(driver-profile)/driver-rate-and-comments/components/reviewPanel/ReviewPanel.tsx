@@ -37,7 +37,6 @@ const ReviewPanel: React.FC<{ driverId?: string }> = ({ driverId }) => {
     const loadMoreClick = () => setPage(page + 1);
 
     const formData = (data: ISearchData) => {
-        // console.log(data);
         const { searchRequestCode, dateFrom, dateTo } = data;
         setSearchData({
             searchRequestCode,
