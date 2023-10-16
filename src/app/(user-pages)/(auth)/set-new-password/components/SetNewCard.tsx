@@ -23,7 +23,7 @@ interface IPasswordData {
 const SetNewCard: React.FC<{ token: string }> = ({ token }) => {
 
     const router = useRouter();
-    const [setNewPassword] = useMutation(SET_NEW_PASSWORD);
+    const [setNewPassword, { loading }] = useMutation(SET_NEW_PASSWORD);
 
     const {
         control,
@@ -123,7 +123,17 @@ const SetNewCard: React.FC<{ token: string }> = ({ token }) => {
             </div>
             <div className={styles.line}></div>
             <div className={styles.lowerBox}>
-                <button type='submit' className='button'>Reset Password</button>
+                <button type='submit' className='button'>
+                    {loading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Reset Password'
+                    }
+                </button>
             </div>
         </form>
     );

@@ -61,11 +61,24 @@
             border: 1px solid $black-tertiary;
             border-radius: 24px;
         }
-        :nth-child(2) {
+        :first-child {
+            background-color: $white;
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $black-quaternary;
+                transition: all 0.3s ease-out;
+            }
+        }
+        :last-child {
             background-color: $green-primary;
             border: none;
             margin-left: 16px;
             box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $green-secondary;
+                transition: all 0.3s ease-out;
+            }
         }
     }
     .authButtons {
@@ -74,6 +87,14 @@
         .user_button {
             position: relative;
             cursor: pointer;
+            img {
+                margin-left: 12px;
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $green-quaternary;
+                    transition: all 0.3s ease-out;
+                }
+            }
             .badge {
                 position: absolute;
                 left: 8px;
@@ -113,6 +134,14 @@
             font-weight: 600;
             line-height: 20px;
             padding: 14px 24px;
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $green-secondary;
+                transition: all 0.3s ease-out;
+            }
+            img {
+                margin-left: 12px;
+            }
         }
     }
     .driver_button {

@@ -35,8 +35,8 @@ const LoginCard = () => {
     const [openConfirmCard, setOpenConfirmCard] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
 
-    const [loginByEmail] = useMutation(LOGIN_BY_EMAIL);
-    const [registerByPhone] = useMutation(REGISTER_BY_PHONE);
+    const [loginByEmail, { loading: emailLoading }] = useMutation(LOGIN_BY_EMAIL);
+    const [registerByPhone, { loading: phoneLoading }] = useMutation(REGISTER_BY_PHONE);
 
     const router = useRouter();
     const { addUser } = useUserStore();
@@ -115,33 +115,10 @@ const LoginCard = () => {
         }
     };
 
-    const resendCode = async () => {
-        if (phoneNumber) {
-            try {
-                await registerByPhone({
-                    variables: {
-                        phone: phoneNumber,
-                    },
-                });
-            } catch (err: any) {
-                toast.warn(err.message, {
-                    bodyClassName: "wrong-toast",
-                    icon: <Image
-                        src={'/icons/wrong-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        }
-    };
-
     const closeModal = () => router.push('/');
 
     return openConfirmCard ?
         <ConfirmCodeCard
-            resendCode={resendCode}
             closeModal={closeModal}
             phoneNumber={phoneNumber}
         />
@@ -219,7 +196,17 @@ const LoginCard = () => {
                     >
                         {mobileLogin ? 'Login with Email and Password' : 'Login with phone number'}
                     </button>
-                    <button type='submit' className='button-green-filled'>Login</button>
+                    <button type='submit' className='button-green-filled'>
+                        {emailLoading || phoneLoading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Login'
+                        }
+                    </button>
                 </div>
                 <p className='link'>Don&apos;t have an account yet?
                     <Link href={'/register'}>

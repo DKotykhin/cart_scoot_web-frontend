@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 
 import Cookies from 'js-cookie';
 import { useMutation } from '@apollo/client';
-import { REGISTER_BY_EMAIL, FULL_REGISTER_BY_PHONE, REGISTER_BY_PHONE } from 'apollo/mutations/user';
+import { REGISTER_BY_EMAIL, FULL_REGISTER_BY_PHONE } from 'apollo/mutations/user';
 
 import ConfirmCodeCard from 'components/confirmCodeCard/ConfirmCodeCard';
 import { EmailInput, PasswordInput, PhoneField, UserNameInput } from 'components/inputs/_index';
@@ -37,10 +37,9 @@ const RegisterCard = () => {
     const [openConfirmCard, setOpenConfirmCard] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
 
-    const [registerByEmail] = useMutation(REGISTER_BY_EMAIL);
-    const [registerByPhone] = useMutation(REGISTER_BY_PHONE);
-    const [fullRegisterByPhone] = useMutation(FULL_REGISTER_BY_PHONE);
-    
+    const [registerByEmail, { loading: emailLoading }] = useMutation(REGISTER_BY_EMAIL);
+    const [fullRegisterByPhone, { loading: phoneFullLoading }] = useMutation(FULL_REGISTER_BY_PHONE);
+
     const router = useRouter();
     const { addUser } = useUserStore();
 
@@ -138,28 +137,6 @@ const RegisterCard = () => {
         });
     };
 
-    const resendCode = async () => {
-        if (phoneNumber) {
-            try {
-                await registerByPhone({
-                    variables: {
-                        phone: phoneNumber,
-                    },
-                });
-            } catch (err: any) {
-                toast.warn(err.message, {
-                    bodyClassName: "wrong-toast",
-                    icon: <Image
-                        src={'/icons/wrong-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        }
-    };
-
     const closeModal = () => router.push('/');
 
     const riderClick = () => {
@@ -171,7 +148,6 @@ const RegisterCard = () => {
 
     return openConfirmCard ?
         <ConfirmCodeCard
-            resendCode={resendCode}
             closeModal={closeModal}
             phoneNumber={phoneNumber}
         />
@@ -277,13 +253,23 @@ const RegisterCard = () => {
                     >
                         {mobileLogin ? 'Register with Email' : 'Register with phone number'}
                     </button>
-                    <button type='submit' className='button-green-filled'>Register</button>
+                    <button type='submit' className='button-green-filled'>
+                        {emailLoading || phoneFullLoading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Register'
+                        }
+                    </button>
                 </div>
-                <p className='link'>Already have an account?
+                <button className='link'>Already have an account?
                     <Link href={'/login'}>
                         <span>&nbsp;Login</span>
                     </Link>
-                </p>
+                </button>
             </div>
         </form>;
 };

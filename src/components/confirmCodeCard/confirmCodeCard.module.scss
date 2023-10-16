@@ -54,5 +54,19 @@
         gap: 24px;
         width: 100%;
         padding: 24px;
+        :first-child {
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $green-secondary;
+                transition: all 0.3s ease-out;
+            }
+        }
+        :last-child {
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $black-quaternary;
+                transition: all 0.3s ease-out;
+            }
+        }
     }
 }

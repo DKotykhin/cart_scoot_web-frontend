@@ -9,24 +9,26 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 
 import { useMutation } from '@apollo/client';
-import { LOGIN_BY_PHONE } from 'apollo/mutations/user';
+import { LOGIN_BY_PHONE, REGISTER_BY_PHONE } from 'apollo/mutations/user';
 import { useUserStore } from 'stores/userStore';
 
 import styles from './confirmCodeCard.module.scss';
 import { userTypes } from 'types/userTypes';
 
 interface IConfirmCodeCard {
-    resendCode: () => void;
     closeModal: () => void;
     phoneNumber: string;
+    loading?: boolean;
 }
 interface IAddCode {
     smsCode: string;
 }
 
-const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, phoneNumber }) => {
+const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ closeModal, phoneNumber }) => {
 
-    const [loginByPhone] = useMutation(LOGIN_BY_PHONE);
+    const [loginByPhone, { loading: loginLoading }] = useMutation(LOGIN_BY_PHONE);
+    const [registerByPhone, { loading: registerLoading }] = useMutation(REGISTER_BY_PHONE);
+
     const { addUser } = useUserStore();
 
     const router = useRouter();
@@ -34,8 +36,6 @@ const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, p
     const {
         control,
         handleSubmit,
-        formState: { errors, isValid },
-        reset,
     } = useForm<IAddCode>({
         defaultValues: {
             smsCode: ""
@@ -84,7 +84,29 @@ const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, p
         }
     };
 
-    const resendClick = () => resendCode();
+    const resendClick = async () => {
+        if (phoneNumber) {
+            try {
+                await registerByPhone({
+                    variables: {
+                        registerByPhoneInput: {
+                            phone: phoneNumber,
+                        }
+                    },
+                });
+            } catch (err: any) {
+                toast.warn(err.message, {
+                    bodyClassName: "wrong-toast",
+                    icon: <Image
+                        src={'/icons/wrong-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            }
+        }
+    };
 
     return (
         <form
@@ -119,15 +141,33 @@ const ConfirmCodeCard: React.FC<IConfirmCodeCard> = ({ resendCode, closeModal, p
                     />
                 </div>
             </div>
-            <div className='line'/>
+            <div className='line' />
             <div className={styles.lowerBox}>
-                <button type='submit' className='button-green-filled'>Login</button>
+                <button type='submit' className='button-green-filled'>
+                    {loginLoading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Login'
+                    }
+                </button>
                 <button
                     type='button'
                     className='button-grey-outlined'
                     onClick={resendClick}
                 >
-                    Resend
+                    {registerLoading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Resend'
+                    }
                 </button>
             </div>
         </form>

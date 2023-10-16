@@ -77,6 +77,11 @@
                 border-radius: 20px;
                 background-color: $white;
                 cursor: pointer;
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $black-quaternary;
+                    transition: all 0.3s ease-out;
+                }
                 img {
                     margin-left: 12px;
                 }

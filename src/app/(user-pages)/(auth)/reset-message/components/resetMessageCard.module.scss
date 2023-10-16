@@ -28,10 +28,15 @@
     .lowerBox {
         width: 100%;
         padding: 0 24px;
-        a p {
+        a button {
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $green-secondary;
+                transition: all 0.3s ease-out;
+            }
         }
     }
 }

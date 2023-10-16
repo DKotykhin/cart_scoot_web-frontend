@@ -118,6 +118,20 @@
             align-items: center;
             gap: 24px;
             margin: 24px 0;
+            :first-child {
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $green-quaternary;
+                    transition: all 0.3s ease-out;
+                }
+            }
+            :last-child {
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $green-secondary;
+                    transition: all 0.3s ease-out;
+                }
+            }
         }
     }
 }

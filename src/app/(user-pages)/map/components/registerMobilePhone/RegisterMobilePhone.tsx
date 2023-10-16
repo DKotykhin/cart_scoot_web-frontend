@@ -29,7 +29,7 @@ const RegisterMobilePhone: React.FC<IRegisterMobilePhone> = ({ handleClose }) =>
     const [openConfirmCard, setOpenConfirmCard] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
 
-    const [registerByPhone] = useMutation(REGISTER_BY_PHONE);
+    const [registerByPhone, { loading }] = useMutation(REGISTER_BY_PHONE);
 
     const {
         control,
@@ -65,35 +65,12 @@ const RegisterMobilePhone: React.FC<IRegisterMobilePhone> = ({ handleClose }) =>
         }
     };
 
-    const resendCode = async () => {
-        if (phoneNumber) {
-            try {
-                await registerByPhone({
-                    variables: {
-                        phone: phoneNumber,
-                    },
-                });
-            } catch (err: any) {
-                toast.warn(err.message, {
-                    bodyClassName: "wrong-toast",
-                    icon: <Image
-                        src={'/icons/wrong-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        }
-    };
-
     const closeModal = () => handleClose();
 
     return (
         <div className={styles.container} onClick={handleClose}>
             {openConfirmCard ?
                 <ConfirmCodeCard
-                    resendCode={resendCode}
                     closeModal={closeModal}
                     phoneNumber={phoneNumber}
                 /> :
@@ -132,9 +109,19 @@ const RegisterMobilePhone: React.FC<IRegisterMobilePhone> = ({ handleClose }) =>
                             <p className={styles.checkbox_error}>{errors.terms?.message}</p>
                         </div>
                     </div>
-                    <div className='line'/>
+                    <div className='line' />
                     <div className={styles.lowerBox}>
-                        <button type='submit' className='button-green-filled'>Send a code</button>
+                        <button type='submit' className='button-green-filled'>
+                            {loading ?
+                                <Image
+                                    src={'/spinner.svg'}
+                                    alt={'spinner'}
+                                    width={48}
+                                    height={48}
+                                />
+                                : 'Send a code'
+                            }
+                        </button>
                         <button type='button' className={styles.button_login}>
                             Already have an email account?
                             <Link href={'/login'}>

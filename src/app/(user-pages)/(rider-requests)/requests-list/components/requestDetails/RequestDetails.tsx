@@ -114,8 +114,8 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
                                 longitude={data.getRequest.request.coordinates?.end?.lon}
                             >
                                 <DriverAvatar
-                                    driverAvatarURL={data.getRequest.request.driverId.avatarURL}
-                                    driverName={data.getRequest.request.driverId.userName}
+                                    driverAvatarURL={data.getRequest.request?.driverId?.avatarURL}
+                                    driverName={data.getRequest.request?.driverId?.userName}
                                     hideName={true}
                                 />
                             </Marker>

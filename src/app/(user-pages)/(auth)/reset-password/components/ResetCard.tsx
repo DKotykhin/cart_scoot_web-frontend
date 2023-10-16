@@ -23,7 +23,7 @@ interface IResetData {
 const ResetCard = () => {
 
     const router = useRouter();
-    const [resetPassword] = useMutation(RESET_PASSWORD);
+    const [resetPassword, { loading }] = useMutation(RESET_PASSWORD);
 
     const {
         control,
@@ -98,7 +98,17 @@ const ResetCard = () => {
             </div>
             <div className={styles.line}></div>
             <div className={styles.lowerBox}>
-                <button type='submit' className='button'>Send</button>
+                <button type='submit' className='button'>
+                    {loading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Send'
+                    }
+                </button>
                 <p className='link'>Don&apos;t have an account yet?
                     <Link href={'/register'}>
                         <span>&nbsp;Register</span>

@@ -68,6 +68,11 @@
         text-align: right;
         button {
             width: 160px;
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $green-secondary;
+                transition: all 0.3s ease-out;
+            }
         }        
     }
 }

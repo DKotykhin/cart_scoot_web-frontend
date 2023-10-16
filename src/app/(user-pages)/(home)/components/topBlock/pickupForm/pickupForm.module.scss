@@ -19,6 +19,11 @@
         color: $black-primary;
         font-weight: 600;
         line-height: 20px;
+        transition: all 0.3s ease-out;
         cursor: pointer;
+        &:hover {
+            background-color: $green-secondary;
+            transition: all 0.3s ease-out;
+        }
     }
 }

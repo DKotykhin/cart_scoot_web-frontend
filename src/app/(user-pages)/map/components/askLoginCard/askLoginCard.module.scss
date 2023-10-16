@@ -42,6 +42,20 @@
             a {
                 width: 100%;
             }
+            :first-child button {
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $green-secondary;
+                    transition: all 0.3s ease-out;
+                }
+            }
+            :last-child {
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $green-quaternary;
+                    transition: all 0.3s ease-out;
+                }
+            }
         }
     }
 }
