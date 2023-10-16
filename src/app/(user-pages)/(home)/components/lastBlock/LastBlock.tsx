@@ -6,7 +6,7 @@ import styles from './lastBlock.module.scss';
 
 const LastBlock = () => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.block}>
                 <div className={styles.text_box}>
                     <h3 className='block-title'>
@@ -48,7 +48,7 @@ const LastBlock = () => {
                     </p>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

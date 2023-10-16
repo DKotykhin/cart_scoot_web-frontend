@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { Metadata } from 'next';
 
 import ContactMap from './components/contactMap/ContactMap';
@@ -14,10 +12,10 @@ export const metadata: Metadata = contactPageMetaData;
 const ContactPage = () => {
 
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <ContactMap />
             <ContactForm />
-        </div>
+        </section>
     );
 };
 

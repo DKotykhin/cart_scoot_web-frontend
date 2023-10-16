@@ -6,7 +6,7 @@ import styles from './firstBlock.module.scss';
 
 const FirstBlock = () => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.block}>
                 <div className={styles.main_box}>
                     <h3 className='block-title'>
@@ -48,7 +48,7 @@ const FirstBlock = () => {
                     <p>Book a car and pay in cash</p>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

@@ -9,7 +9,7 @@ import styles from './secondBlock.module.scss';
 
 const SecondBlock = () => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.text_box}>
                 <h3 className='block-title'>
                     Our Journey<br />
@@ -24,7 +24,7 @@ const SecondBlock = () => {
                 </p>
                 <div className={styles.line}></div>
                 <div className={styles.link_box}>
-                    <div className={styles.link}>
+                    <Link href={'/map'} className={styles.link}>
                         <Image
                             src={'/icons/bell.svg'}
                             alt={'bell'}
@@ -32,8 +32,8 @@ const SecondBlock = () => {
                             height={48}
                         />
                         <span>Book Golf Car</span>
-                    </div>
-                    <div className={styles.link}>
+                    </Link>
+                    <Link href={'/register'} className={styles.link}>
                         <Image
                             src={'/icons/driver.svg'}
                             alt={'bell'}
@@ -41,9 +41,9 @@ const SecondBlock = () => {
                             height={48}
                         />
                         <span>Sign up as Driver</span>
-                    </div>
+                    </Link>
                 </div>
-                <Link href={'/about'}>
+                <Link href={'/about'} className={styles.read_more_link}>
                     <button>
                         Read More
                         <Image
@@ -85,7 +85,7 @@ const SecondBlock = () => {
                     />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

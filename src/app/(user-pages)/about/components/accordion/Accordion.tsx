@@ -8,7 +8,7 @@ import styles from './accordion.module.scss';
 const Accordion = () => {
 
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.text_box}>
                 <h3 className='block-title'>FAQ</h3>
                 <p className='block-subtitle'>
@@ -16,14 +16,14 @@ const Accordion = () => {
                 </p>
             </div>
             {accordionData.map(item => (
-                <div key={item.id} className={styles.accordion_box}>
+                <article key={item.id} className={styles.accordion_box}>
                     <AccordionItem
                         title={item.title}
                         description={item.description}
                     />
-                </div>
+                </article>
             ))}
-        </div>
+        </section>
     );
 };
 

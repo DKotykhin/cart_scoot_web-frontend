@@ -6,7 +6,7 @@ import styles from './forthBlock.module.scss';
 
 const ForthBlock = () => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <h3 className='block-title'>Why Us?</h3>
             <p  className='block-subtitle'>
                 Discover a Golfer&apos;s Haven - Personalized Tee Time Selections
@@ -50,7 +50,7 @@ const ForthBlock = () => {
 
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

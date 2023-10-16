@@ -1,14 +1,9 @@
 import React from 'react';
 
+import { formatTime } from 'utils/formatTime';
 import { IUser } from 'types/userTypes';
 
 import styles from './driverScheduleInfo.module.scss';
-
-const validTime = (time: number) => {
-    if (!time) return null;
-    if (Number.isInteger(time)) return time + '.00';
-    else return time;
-};
 
 const DriverScheduleInfo: React.FC<{ driver: IUser }> = ({ driver }) => {
 
@@ -65,11 +60,11 @@ const DriverScheduleInfo: React.FC<{ driver: IUser }> = ({ driver }) => {
                 <p className={styles.hours_title}>Working Hours</p>
                 <div className={styles.info_box}>
                     <div className={styles.info_box_item}>
-                        <p className={styles.item_text}>{validTime(driver.workingTime.from)}</p>
+                        <p className={styles.item_text}>{formatTime(driver.workingTime.from)}</p>
                         <p className={styles.item_title}>Start time</p>
                     </div>
                     <div className={styles.info_box_item}>
-                        <p className={styles.item_text}>{validTime(driver.workingTime.to)}</p>
+                        <p className={styles.item_text}>{formatTime(driver.workingTime.to)}</p>
                         <p className={styles.item_title}>End time</p>
                     </div>
                 </div>

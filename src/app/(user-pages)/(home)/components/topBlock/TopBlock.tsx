@@ -7,7 +7,7 @@ import PickupForm from './pickupForm/PickupForm';
 
 const TopBlock = () => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.main_box}>
                 <div className={styles.text_box}>
                     <h1>
@@ -47,7 +47,7 @@ const TopBlock = () => {
                     />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

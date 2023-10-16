@@ -202,7 +202,7 @@ const Mapbox = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.wrapper}>
                 <Map
                     mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
@@ -255,7 +255,7 @@ const Mapbox = () => {
             {openAddMobileCard &&
                 <RegisterMobilePhone handleClose={closeMobileCard} />
             }
-        </div>
+        </section>
     );
 };
 

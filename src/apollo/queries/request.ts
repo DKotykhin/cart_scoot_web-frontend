@@ -168,3 +168,11 @@ export const GET_PENDING_REQUESTS = gql`
         }
     }
 `;
+
+export const GET_ACTIVE_REQUESTS_AMOUNT = gql`
+    query GetActiveRequestsAmount($userId: ID) {
+        getActiveRequestsAmount(userId: $userId) {
+            requestAmount
+        }
+    }
+`;

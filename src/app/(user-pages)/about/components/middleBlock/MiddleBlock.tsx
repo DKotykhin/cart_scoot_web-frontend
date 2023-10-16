@@ -1,6 +1,5 @@
-import React from 'react';
-
 import Image from "next/image";
+import Link from "next/link";
 
 import MiniCard from 'components/miniCard/MiniCard';
 
@@ -9,7 +8,7 @@ import styles from './middleBlock.module.scss';
 const MiddleBlock = () => {
     return (
         <>
-            <div className={styles.container}>
+            <section className={styles.container}>
                 <div className={styles.text_box}>
                     <h3 className='block-title'>
                         Your Premier <br />
@@ -28,8 +27,8 @@ const MiddleBlock = () => {
                     width={536}
                     height={536}
                 />
-            </div>
-            <div className={styles.container}>
+            </section>
+            <section className={styles.container}>
                 <div className={styles.miniCard_box}>
                     <div>
                         <MiniCard
@@ -74,7 +73,7 @@ const MiddleBlock = () => {
                     </p>
                     <div className={styles.line}></div>
                     <div className={styles.link_box}>
-                        <div className={styles.link}>
+                        <Link href={'/map'} className={styles.link}>
                             <Image
                                 src={'/icons/bell.svg'}
                                 alt={'bell'}
@@ -82,8 +81,8 @@ const MiddleBlock = () => {
                                 height={48}
                             />
                             <span>Book Golf Car</span>                            
-                        </div>
-                        <div className={styles.link}>
+                        </Link>
+                        <Link href={'/register'} className={styles.link}>
                             <Image
                                 src={'/icons/driver.svg'}
                                 alt={'bell'}
@@ -91,10 +90,10 @@ const MiddleBlock = () => {
                                 height={48}
                             />
                             <span>Sign up as Driver</span>                            
-                        </div>
+                        </Link>
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     );
 };

@@ -13,6 +13,7 @@ import DetailsItem from 'components/detailsItem/DetailsItem';
 import { IMarkerClickData } from '../mapbox/Mapbox';
 import ReviewCard from '../reviewCard/ReviewCard';
 
+import { formatTime } from 'utils/formatTime';
 import { IReviewData } from 'types/reviewTypes';
 
 import styles from './requestDetailedCard.module.scss';
@@ -73,7 +74,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
     );
 
     return detailedCardData ? (
-        <div className={styles.container}>
+        <article className={styles.container}>
             <div className={styles.title_box}>
                 <p className={styles.detail_title}>Details</p>
                 <Image
@@ -137,7 +138,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
                     <DetailsItem
                         imageURL='/icons/clock.svg'
                         title='Working times'
-                        value={`${driver.workingTime.from} - ${driver.workingTime.to}`}
+                        value={`${formatTime(driver.workingTime.from)} - ${formatTime(driver.workingTime.to)}`}
                     />
                 </div>
                 : buttonIndex === 1 ?
@@ -228,7 +229,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
                     Send Request to all
                 </button>
             }
-        </div>
+        </article>
     ) : null;
 };
 

@@ -137,9 +137,9 @@ const Header: React.FC<IHeader> = ({ user }) => {
                             className={styles.user_button}
                             onClick={userPanelClick}
                         >
-                            <div className={styles.badge}>
+                            {/* <div className={styles.badge}>
                                 1
-                            </div>
+                            </div> */}
                             <Image
                                 src={'/icons/user-black.svg'}
                                 alt={'user'}

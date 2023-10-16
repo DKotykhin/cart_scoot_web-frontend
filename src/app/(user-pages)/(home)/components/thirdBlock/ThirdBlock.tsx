@@ -7,7 +7,7 @@ import styles from './thirdBlock.module.scss';
 
 const ThirdBlock = () => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.card_box}>
                 <div className={styles.card}>
                     <Image
@@ -140,7 +140,7 @@ const ThirdBlock = () => {
                         </div>
                     </div>
                 </div>
-                <Link href={'/about'}>
+                <Link href={'/map'}>
                     <button>
                         Book Now
                         <Image
@@ -152,7 +152,7 @@ const ThirdBlock = () => {
                     </button>
                 </Link>
             </div>
-        </div>
+        </section>
     );
 };
 

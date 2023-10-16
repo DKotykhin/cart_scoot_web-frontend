@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Image from "next/image";
 import Link from 'next/link';
 
@@ -7,7 +5,7 @@ import styles from './topBlock.module.scss';
 
 const TopBlock = () => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.titleContainer}>
                 <h4>About us</h4>
                 <h1>Your Golf Cart Booking Solution</h1>
@@ -16,7 +14,7 @@ const TopBlock = () => {
                 </h2>
             </div>
             <div className={styles.cardContainer}>
-                <div className={styles.card}>
+                <article className={styles.card}>
                     <Image
                         src={'/icons/user-green.svg'}
                         alt={'avatar'}
@@ -37,8 +35,8 @@ const TopBlock = () => {
                             />
                         </button>
                     </Link>
-                </div>
-                <div className={styles.card}>
+                </article>
+                <article className={styles.card}>
                     <Image
                         src={'/icons/driver.svg'}
                         alt={'avatar'}
@@ -59,10 +57,9 @@ const TopBlock = () => {
                             />
                         </button>
                     </Link>
-                </div>
+                </article>
             </div>
-
-        </div>
+        </section>
     );
 };
 
