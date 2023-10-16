@@ -96,7 +96,7 @@ const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = 
                                 height={16}
                                 className={styles.addition_details_image}
                             />
-                            <p>{`${Math.ceil(routeData.duration / 60)} min`}</p>
+                            <p>{routeData ? `${Math.ceil(routeData.duration / 60)} min` : '0 min'}</p>
                         </div>
                     </div>
                 </div>
