@@ -22,7 +22,6 @@ a {
 }
 
 body {
-    // position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +41,7 @@ header {
     top: 743px;
     left: 50%;
     transform: translate(-50%);
-    max-width: 2190px;
+    max-width: 2490px;
     width: 100vw;
     height: 280px;
     background: $white;
@@ -52,8 +51,6 @@ header {
     border-bottom-right-radius: 0;
     z-index: -1;
 }
-// main {
-// }
 .title {
     color: $black-primary;
     font-size: 32px;

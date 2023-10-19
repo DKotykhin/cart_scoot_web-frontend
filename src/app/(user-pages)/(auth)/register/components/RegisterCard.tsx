@@ -259,7 +259,7 @@ const RegisterCard = () => {
                                 width={48}
                                 height={48}
                             />
-                            : 'Register'
+                            : userTypeIndex ? 'Register as a driver' : 'Register as a rider'
                         }
                     </button>
                 </div>
