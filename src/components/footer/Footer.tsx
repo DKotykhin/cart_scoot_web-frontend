@@ -9,7 +9,7 @@ import styles from './footer.module.scss';
 const Footer = () => {
 
     return (
-        <div className={styles.container}>
+        <footer className={styles.container}>
             <div className={styles.footer}>
                 <div className={styles.ellipse}></div>
                 <Image
@@ -17,6 +17,7 @@ const Footer = () => {
                     alt={'logo'}
                     width={80}
                     height={80}
+                    priority
                 />
                 <p className={styles.logo}>Cart<span>Scoot</span></p>
                 <p className={styles.subtitle}>Driving Your Golf Adventure!</p>
@@ -56,11 +57,11 @@ const Footer = () => {
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.last_block}>
-                    <p>Designed by <Link href={'https://webxwiz.com'}>WebXwiz</Link></p>
+                    <p>Designed by <a href={'https://webxwiz.com'}>WebXwiz</a></p>
                     <p>2023</p>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 };
 

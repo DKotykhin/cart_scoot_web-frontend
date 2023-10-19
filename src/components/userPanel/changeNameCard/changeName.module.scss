@@ -48,29 +48,8 @@
         .lower_box {
             display: flex;
             padding: 24px;
-            button {
-                width: 175px;
-                height: 48px;
-                padding: 0px 16px;
-                justify-content: center;
-                align-items: center;
-                font-size: 16px;
-                color: $black-primary;
-                font-weight: 600;
-                line-height: 20px;
-                cursor: pointer;
-            }
-            :nth-child(1) {
-                border-radius: 20px;
-                border: 1px solid $black-tertiary;
-                background: $white;
-                margin-right: 24px;
-            }
-            :nth-child(2) {
-                border-radius: 20px;
-                box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
-                background: $green-primary;
-            }
+            width: 100%;
+            gap: 24px;
         }
     }
 }

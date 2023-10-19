@@ -1,0 +1,44 @@
+@import "constants/constants.scss";
+
+.driver_infoBox {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0px 24px;
+    .driver_fileBox_wrapper {
+        display: flex;
+        gap: 24px;
+        .driver_fileBox {
+            display: flex;
+            width: 320px;
+            height: 194px;
+            padding: 10px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            border-radius: 20px;
+            border: 1px dashed $blue-primary;
+            background: $blue-quaternary;
+            .driver_fileBox_title {
+                font-size: 20px;
+                color: $black-secondary;
+                font-weight: 500;
+                line-height: 24px;
+            }
+            .driver_fileBox_title_success {
+                font-size: 20px;
+                color: $black-primary;
+                font-weight: 500;
+                line-height: 24px;
+            }
+            .driver_fileBox_link {
+                font-size: 14px;
+                color: $blue-primary;
+                font-weight: 400;
+                line-height: 18px;
+                text-decoration-line: underline; 
+            }
+        }
+    }
+}

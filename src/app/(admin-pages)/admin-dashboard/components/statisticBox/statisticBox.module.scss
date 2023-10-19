@@ -1,0 +1,44 @@
+@import "constants/constants.scss";
+
+.statistic_wrapper {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    .statistic_box {
+        width: 100%;
+        padding: 24px;
+        border-radius: 20px;
+        box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+        .statistic_amount {
+            font-size: 32px;
+            color: $white;
+            font-weight: 600;
+            line-height: 40px;
+            margin: 24px 0 8px;
+        }
+        .statistic_text {
+            font-size: 18px;
+            color: $black-quaternary;
+            font-weight: 400;
+            line-height: 22px;
+        }
+    }
+    .blue_back {
+        background: url("../../../../../../public/pattern.png"),
+            linear-gradient(76deg, $blue-primary 0%, $blue-secondary 100%),
+            $white;
+        background-size: cover;
+    }
+    .green_back {
+        background: url("../../../../../../public/pattern.png"),
+            linear-gradient(76deg, $green-tertiary 0%, $green-primary 100%),
+            $white;
+        background-size: cover;
+    }
+    .orange_back {
+        background: url("../../../../../../public/pattern.png"),
+            linear-gradient(248deg, #ffad00 2.66%, #ffc03b 93.92%), 
+            $white;
+        background-size: cover;
+    }
+}

@@ -1,0 +1,47 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $black-quaternary;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    min-width: 264px;
+    border-right: 1px solid $black-tertiary;
+    padding: 24px 24px 24px 0px;
+    min-height: 808px;
+    .navLinks {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1 0 0;
+            font-size: 16px;
+            color: $black-primary;
+            font-weight: 600;
+            line-height: 20px;
+            .active {
+                color: $green-primary;
+            }
+        }
+    }
+    .user_logout {
+        display: flex;
+        align-items: center;
+        margin: 0 24px;
+        font-size: 16px;
+        color: $red-primary;
+        font-weight: 600;
+        line-height: 20px;
+        width: 100%;
+        height: 48px;
+        cursor: pointer;
+        :nth-child(1) {
+            margin-right: 12px;
+        }
+    }
+}

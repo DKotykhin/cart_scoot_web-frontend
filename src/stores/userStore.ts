@@ -12,6 +12,7 @@ export const useUserStore = create<UserStore>()((set) => ({
     userData: {
         _id: "",
         createdAt: "",
+        banned: false,
         userName: "",
         email: "",
         avatarURL: "",
@@ -45,6 +46,7 @@ export const useUserStore = create<UserStore>()((set) => ({
         set(() => ({
             userData: {
                 _id: "",
+                banned: false,
                 createdAt: "",
                 userName: "",
                 email: "",

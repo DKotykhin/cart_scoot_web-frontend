@@ -1,0 +1,78 @@
+@import "constants/constants.scss";
+
+.form {
+    padding: 24px;
+    width: 624px;
+    height: 760px;
+    background-color: $black-quaternary;
+    .subject_box {
+        width: 100%;        
+        margin-bottom: 24px;
+        input {
+            width: 100%;
+            height: 48px;
+            border-radius: 20px;
+            border: 1px solid $black-tertiary;
+            padding-left: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-primary;
+        }
+        .active {
+            border: 1px solid $red-primary;
+        }
+        .error {
+            color: $red-primary;
+            font-size: 12px;
+            line-height: 22px;
+        }
+        ::placeholder {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-tertiary;
+        }
+    }
+    .message_box {
+        width: 100%;
+        textarea {
+            resize: none;
+            padding: 16px;
+            width: 100%;
+            height: 420px;
+            border-radius: 20px;
+            border: 1px solid $black-tertiary;            
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-primary;
+        }
+        .active {
+            border: 1px solid $red-primary;
+        }
+        .error {
+            color: $red-primary;
+            font-size: 12px;
+            line-height: 22px;
+        }
+        ::placeholder {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-tertiary;
+        }
+    }
+    .send {
+        width: 100%;
+        text-align: right;
+        button {
+            width: 160px;
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: $green-secondary;
+                transition: all 0.3s ease-out;
+            }
+        }        
+    }
+}

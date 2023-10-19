@@ -1,0 +1,59 @@
+@import "constants/constants.scss";
+
+.wrapper {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: 1272px;
+    width: calc(100% - 48px);
+    display: flex;
+    padding: 24px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    border-radius: 20px;
+    background: $white;
+    box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+    .form_box {
+        position: relative;
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        .pickup_input_box {
+            flex-grow: 1;
+        }
+        .date_input_box {
+            max-width: 200px;
+        }
+        .time_input_box {
+            max-width: 200px;
+        }
+        .dropoff_input_box {
+            flex-grow: 1;
+        }
+    }
+    .submit_button {
+        display: flex;
+        width: 160px;
+        flex-grow: 1;
+        height: 48px;
+        padding: 0px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        border-radius: 20px;
+        border: 1px solid $green-primary;
+        font-size: 16px;
+        color: $green-primary;
+        font-weight: 600;
+        line-height: 20px;
+        background-color: $white;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        &:hover {
+            background-color: $green-quaternary;
+            transition: all 0.3s ease-out;
+        }
+    }
+}

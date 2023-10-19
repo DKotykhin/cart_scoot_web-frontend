@@ -1,0 +1,36 @@
+@import "constants/constants.scss";
+
+.trips_panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .trips_panel_wrapper {
+        padding: 0 24px 24px;
+        .trips_panel {
+            display: flex;
+            max-width: 1008px;
+            width: 100%;
+            min-height: 670px;
+            padding: 24px 0px;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            flex: 1 0 0;
+            border-radius: 24px;
+            border: 1px solid $black-tertiary;
+            background: $white;
+        }
+    }
+    .empty_container {
+        display: flex;
+        width: 100%;
+        min-height: 695px;
+        height: 100%;
+        padding: 24px 0px;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 24px;
+        background: $white;
+        box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+    }    
+}

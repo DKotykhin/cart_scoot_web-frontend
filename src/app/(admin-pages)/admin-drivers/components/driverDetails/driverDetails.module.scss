@@ -1,0 +1,23 @@
+@import "constants/constants.scss";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    max-width: 1056px;
+    width: 100vw;
+    min-height: 950px;
+    background-color: $white;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    .line_box {
+        padding: 0 24px;
+        .line {
+            background-color: $black-tertiary;
+            height: 1px;
+        }
+    }
+    :nth-child(4) {
+        flex-grow: 1;
+    }
+}

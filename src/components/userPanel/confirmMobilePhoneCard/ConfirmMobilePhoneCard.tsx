@@ -21,13 +21,11 @@ interface IAddCode {
 
 const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode, closeModal }) => {
 
-    const [confirm] = useMutation(CONFIRM_MOBILE_PHONE);
+    const [confirm, { loading }] = useMutation(CONFIRM_MOBILE_PHONE);
 
     const {
         control,
         handleSubmit,
-        formState: { errors, isValid },
-        reset,
     } = useForm<IAddCode>({
         defaultValues: {
             smsCode: ""
@@ -103,9 +101,22 @@ const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode,
                     />
                 </div>
             </div>
-            <div className='line'/>
+            <div className='line' />
             <div className={styles.lowerBox}>
-                <button type='submit' className='button-green-filled'>Add phone</button>
+                <button
+                    type='submit'
+                    className='button-green-filled'
+                >
+                    {loading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Add phone'
+                    }
+                </button>
                 <button
                     type='button'
                     className='button-grey-outlined'

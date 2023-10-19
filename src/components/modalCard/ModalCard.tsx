@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { ReactComponentElement, ReactElement } from 'react';
 
 import Image from "next/image";
 
 import styles from './modalCard.module.scss';
+import { JsxElement } from 'typescript';
 
 interface ICancelTripCard {
     title: string;
     subtitle: string;
     button_1: string;
-    button_2: string;
+    button_2: string | ReactElement;
     imageURL: string;
     greenButton: boolean;
     confirmClick: () => void;

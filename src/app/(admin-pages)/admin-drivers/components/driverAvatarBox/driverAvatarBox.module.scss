@@ -1,0 +1,80 @@
+@import "constants/constants.scss";
+
+.profile_box {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 16px;
+    .logo_box {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        img {
+            border-radius: 50%;
+        }
+        .empty_avatar {
+            display: flex;
+            width: 80px;
+            height: 80px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 80px;
+            background-color: $green-quaternary;
+            border: 1px solid $green-primary;
+            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+            font-size: 20px;
+            color: $green-primary;
+            font-weight: 400;
+            line-height: 28px;
+        }
+    }
+    .name_wrapper {
+        flex-grow: 1;
+        .name_title {
+            font-size: 24px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 28px;
+            margin-bottom: 8px;
+        }
+        .status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            height: 40px;
+            width: fit-content;
+            padding: 0px 24px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18px;
+        }
+        .approved {
+            background: $green-quaternary;
+            color: $green-primary;
+        }
+        .waiting {
+            background: $orange-secondary;
+            color: $orange-primary;
+        }
+        .rejected {
+            background: $red-quaternary;
+            color: $red-primary;
+        }
+        .pending {
+            background: $black-quaternary;
+            color: $black-primary;
+        }
+    }
+    .star_box {
+        display: flex;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        border-radius: 48px;
+        background: $black-quaternary;
+    }
+}

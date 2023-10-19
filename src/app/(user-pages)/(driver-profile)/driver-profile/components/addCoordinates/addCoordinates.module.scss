@@ -1,0 +1,23 @@
+@import "constants/constants.scss";
+
+.add_coordinates {
+    .line {
+        background-color: $black-tertiary;
+        height: 1px;
+        margin-bottom: 24px;
+    }
+    .add_coordinates_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .add_coordinates_title {
+            font-size: 28px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 34px;
+        }
+        button {
+            width: 180px;
+        }
+    }
+}

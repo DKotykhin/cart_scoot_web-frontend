@@ -1,0 +1,82 @@
+@import "constants/constants.scss";
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: $black-quaternary;
+    // background: rgba(255, 255, 255, 0.80);
+    max-width: 1440px;
+    padding: 0 60px;
+    margin-bottom: 160px;
+    .text_box {
+        max-width: 536px;
+        width: 100%;
+        height: 424px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .line {
+            width: 100%;
+            border: 1px solid $black-tertiary;
+            margin: 24px 0;
+        }
+        .link_box {
+            display: flex;
+            .link {
+                display: flex;
+                align-items: center;
+                max-width: 256px;
+                width: 100%;
+                height: 48px;
+                img {
+                    padding: 12px;
+                    margin-right: 16px;
+                    border-radius: 12px;
+                    background: $green-quaternary;
+                }
+                span {
+                    font-size: 20px;
+                    color: $black-primary;
+                    font-weight: 500;
+                    line-height: 24px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .read_more_link {
+            margin-top: 50px;
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 20px;
+                color: $green-primary;
+                width: 200px;
+                height: 56px;
+                border: 1px solid $green-primary;
+                border-radius: 20px;
+                background-color: $white;
+                cursor: pointer;
+                img {
+                    margin-left: 12px;
+                }
+            }
+        }
+    }
+    .miniCard_box {
+        display: flex;
+        justify-content: center;
+        max-width: 536px;
+        width: 100%;
+        height: 536px;
+        padding-top: 72px;
+        background: url(../../../../../../public/bg-2.svg) center center/cover
+            no-repeat;
+        .second_box {
+            margin-top: 24px;
+        }
+    }
+}

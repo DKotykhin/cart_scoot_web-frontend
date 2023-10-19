@@ -1,0 +1,28 @@
+@import "constants/constants.scss";
+
+.wrapper {
+    display: flex;
+    height: 48px;
+    padding: 0px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    right: 27px;
+    bottom: 28px;
+    border-radius: 20px;
+    background: $green-primary;
+    box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $green-secondary;
+        transition: all 0.3s ease-out;
+    }
+    .text {
+        font-size: 16px;
+        color: $black-primary;
+        font-weight: 600;
+        line-height: 20px;
+    }
+}

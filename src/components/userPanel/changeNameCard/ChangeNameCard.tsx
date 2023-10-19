@@ -17,9 +17,14 @@ import { useUserStore } from 'stores/userStore';
 
 import styles from './changeName.module.scss';
 
-const ChangeNameCard: React.FC<{ changeNameClick: () => void }> = ({ changeNameClick }) => {
+interface IChangeNameCard {
+    changeNameClick: () => void,
+    userName?: string,
+}
 
-    const [changeName] = useMutation(CHANGE_USER_NAME);
+const ChangeNameCard: React.FC<IChangeNameCard> = ({ changeNameClick, userName }) => {
+
+    const [changeName, { loading }] = useMutation(CHANGE_USER_NAME);
     const { addUser } = useUserStore();
 
     const {
@@ -27,7 +32,12 @@ const ChangeNameCard: React.FC<{ changeNameClick: () => void }> = ({ changeNameC
         handleSubmit,
         formState: { errors, isValid },
         reset,
-    } = useForm<{ userName: string }>(UserNameValidation);
+    } = useForm<{ userName: string }>({
+        ...UserNameValidation,
+        defaultValues: {
+            userName: userName || "",
+        },
+    });
 
     const onSubmit = async (data: { userName: string }): Promise<void> => {
         const { userName } = data;
@@ -88,8 +98,27 @@ const ChangeNameCard: React.FC<{ changeNameClick: () => void }> = ({ changeNameC
                 </div>
                 <div className='line' />
                 <div className={styles.lower_box}>
-                    <button onClick={changeNameClick}>Cancel</button>
-                    <button type='submit'>Change Name</button>
+                    <button
+                        type='button'
+                        onClick={changeNameClick}
+                        className='button-grey-outlined'
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type='submit'
+                        className='button-green-filled'
+                    >
+                        {loading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Change Name'
+                        }
+                    </button>
                 </div>
             </form>
         </div>

@@ -105,6 +105,11 @@ header {
     margin: 24px 0;
     padding: 0px 24px;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $green-secondary;
+        transition: all 0.3s ease-out;
+    }
 }
 .button-green-filled {
     background-color: $green-primary;
@@ -117,6 +122,11 @@ header {
     line-height: 20px;
     padding: 0px 24px;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $green-secondary;
+        transition: all 0.3s ease-out;
+    }
 }
 .button-green-outlined {
     background-color: $white;
@@ -130,6 +140,11 @@ header {
     padding: 0px 24px;
     border: 1px solid $green-primary;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $green-quaternary;
+        transition: all 0.3s ease-out;
+    }
 }
 .button-grey-outlined {
     background-color: $white;
@@ -143,6 +158,11 @@ header {
     padding: 0px 24px;
     border: 1px solid $black-tertiary;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: $black-quaternary;
+        transition: all 0.3s ease-out;
+    }
 }
 .link {
     display: flex;
@@ -167,6 +187,12 @@ header {
     margin-top: 48px;
     box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
 }
+.admin-pages-container {
+    display: flex;
+    margin: 24px 0;
+    // height: 100%;
+    box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
+}
 
 .wrong-toast {
     font-size: 20px;
@@ -176,6 +202,11 @@ header {
 .right-toast {
     font-size: 20px;
     color: $green-primary;
+    font-weight: 500;
+}
+.warn-toast {
+    font-size: 20px;
+    color: $orange-primary;
     font-weight: 500;
 }
 .Toastify__toast-icon {

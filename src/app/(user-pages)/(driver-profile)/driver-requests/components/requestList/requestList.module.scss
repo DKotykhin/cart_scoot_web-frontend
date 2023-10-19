@@ -1,0 +1,42 @@
+@import "constants/constants.scss";
+
+.request_list {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    display: flex;
+    width: 400px;
+    height: calc(100% - 64px);
+    padding: 24px;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1 0 0;
+    border-radius: 16px;
+    background: $black-quaternary;
+    z-index: 2;
+    .request_list_title {
+        font-size: 28px;
+        color: $black-primary;
+        font-weight: 500;
+        line-height: 34px;
+    }
+    .request_card_wrapper {
+        cursor: pointer;
+    }
+    .request_details {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        .title_box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            .request_detail_title {
+                font-size: 28px;
+                color: $black-primary;
+                font-weight: 500;
+                line-height: 34px;
+            }
+        }
+    }
+}

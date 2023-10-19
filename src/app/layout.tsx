@@ -6,10 +6,8 @@ import { Inter } from 'next/font/google';
 import { ToastContainer, Flip } from 'react-toastify';
 
 import { generalMetaData } from 'metadata/metadata';
-import Header from 'components/header/Header';
 
 import ApolloProvider from "apollo/ApolloProvider";
-import { getUserByToken } from "apollo/services/getUserByToken";
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,7 +23,6 @@ export default async function RootLayout({
 }: {
     children: ReactNode
 }) {
-    const data = await getUserByToken();
 
     return (
         <html lang="en" suppressHydrationWarning={true}>
@@ -42,12 +39,7 @@ export default async function RootLayout({
                     pauseOnHover
                 />
                 <ApolloProvider>
-                    <header>
-                        <Header user={data?.getUserByToken} />
-                    </header>
-                    <main>
-                        {children}
-                    </main>
+                    {children}
                 </ApolloProvider>
             </body>
         </html>

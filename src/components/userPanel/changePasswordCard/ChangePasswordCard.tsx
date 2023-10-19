@@ -30,13 +30,34 @@ interface IChangePasswordCard {
 
 const ChangePasswordCard: React.FC<IChangePasswordCard> = ({ changePasswordClick, openChangePasswordClick }) => {
 
-    const [changePassword] = useMutation(CHANGE_PASSWORD);
+    const [changePassword, { loading }] = useMutation(CHANGE_PASSWORD, {
+        onCompleted: (data) => {
+            toast.success(data.changePassword.message, {
+                bodyClassName: "right-toast",
+                icon: <Image
+                    src={'/icons/right-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            changePasswordClick();
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        }),
+    });
 
     const {
         control,
         handleSubmit,
         formState: { errors, isValid },
-        reset,
     } = useForm<IPasswordData>(ChangePasswordFormValidation);
 
     const onSubmit = async (data: IPasswordData): Promise<void> => {
@@ -52,38 +73,14 @@ const ChangePasswordCard: React.FC<IChangePasswordCard> = ({ changePasswordClick
                 />
             });
         } else {
-            try {
-                const { data } = await changePassword({
-                    variables: {
-                        changePasswordInput: {
-                            password,
-                            currentPassword,
-                        }
-                    },
-                });
-                if (data.changePassword.status) {
-                    toast.success(data.changePassword.message, {
-                        bodyClassName: "right-toast",
-                        icon: <Image
-                            src={'/icons/right-code.svg'}
-                            alt='icon'
-                            width={56}
-                            height={56}
-                        />
-                    });
-                    changePasswordClick();
-                }
-            } catch (err: any) {
-                toast.warn(err.message, {
-                    bodyClassName: "wrong-toast",
-                    icon: <Image
-                        src={'/icons/wrong-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
+            await changePassword({
+                variables: {
+                    changePasswordInput: {
+                        password,
+                        currentPassword,
+                    }
+                },
+            });
         }
     };
 
@@ -127,8 +124,27 @@ const ChangePasswordCard: React.FC<IChangePasswordCard> = ({ changePasswordClick
                 </div>
                 <div className='line' />
                 <div className={styles.lower_box}>
-                    <button onClick={openChangePasswordClick}>Cancel</button>
-                    <button type='submit'>Change Password</button>
+                    <button
+                        type='button'
+                        onClick={openChangePasswordClick}
+                        className='button-grey-outlined'
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type='submit'
+                        className='button-green-filled'
+                    >
+                        {loading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Change Password'
+                        }
+                    </button>
                 </div>
             </form>
         </div>

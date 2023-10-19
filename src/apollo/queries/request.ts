@@ -47,34 +47,6 @@ export const GET_REQUEST = gql`
     }
 `;
 
-export const GET_ALL_REQUESTS = gql`
-    query GetAllRequests {
-        getAllRequests {
-            _id
-            createdAt
-            userId
-            driverId
-            description
-            status
-            carType
-            requestedTime
-            coordinates {
-                start {
-                    lat
-                    lon
-                }
-                end {
-                    lat
-                    lon
-                }
-            }
-            requestCode
-            pickupLocation
-            dropoffLocation
-        }
-    }
-`;
-
 export const GET_REQUESTS_BY_RIDER = gql`
     query GetRequestsByRider(
         $getRequestsByFiltersInput: GetRequestsByFiltersInput
@@ -82,35 +54,38 @@ export const GET_REQUESTS_BY_RIDER = gql`
         getRequestsByRider(
             getRequestsByFiltersInput: $getRequestsByFiltersInput
         ) {
-            _id
-            createdAt
-            userId
-            driverId {
+            requests {
                 _id
-                userName
-                avatarURL
-                phone {
-                    confirmed
-                    number
+                createdAt
+                userId
+                driverId {
+                    _id
+                    userName
+                    avatarURL
+                    phone {
+                        confirmed
+                        number
+                    }
                 }
+                description
+                status
+                carType
+                requestedTime
+                coordinates {
+                    start {
+                        lat
+                        lon
+                    }
+                    end {
+                        lat
+                        lon
+                    }
+                }
+                requestCode
+                pickupLocation
+                dropoffLocation
             }
-            description
-            status
-            carType
-            requestedTime
-            coordinates {
-                start {
-                    lat
-                    lon
-                }
-                end {
-                    lat
-                    lon
-                }
-            }
-            requestCode
-            pickupLocation
-            dropoffLocation
+            totalCount
         }
     }
 `;
@@ -122,14 +97,53 @@ export const GET_REQUESTS_BY_DRIVER = gql`
         getRequestsByDriver(
             getRequestsByFiltersInput: $getRequestsByFiltersInput
         ) {
+            requests {
+                _id
+                carType
+                coordinates {
+                    start {
+                        lat
+                        lon
+                    }
+                    end {
+                        lat
+                        lon
+                    }
+                }
+                createdAt
+                description
+                driverId
+                dropoffLocation
+                pickupLocation
+                requestCode
+                requestedTime
+                status
+                userId {
+                    _id
+                    userName
+                    avatarURL
+                    phone {
+                        confirmed
+                        number
+                    }
+                }
+            }
+            totalCount
+        }
+    }
+`;
+
+export const GET_PENDING_REQUESTS_BY_DRIVER = gql`
+    query GetPendingRequestsByDriver {
+        getPendingRequestsByDriver {
             _id
             carType
             coordinates {
-                start {
-                    lat
-                    lon
-                }
                 end {
+                    lon
+                    lat
+                }
+                start {
                     lat
                     lon
                 }
@@ -155,38 +169,10 @@ export const GET_REQUESTS_BY_DRIVER = gql`
     }
 `;
 
-export const GET_PENDING_REQUESTS = gql`
-    query GetPendingRequests {
-        getPendingRequests {
-            _id
-            carType
-            coordinates {
-                end {
-                    lon
-                    lat
-                }
-                start {
-                    lat
-                    lon
-                }
-            }
-            createdAt
-            description
-            driverId
-            dropoffLocation
-            pickupLocation
-            requestCode
-            requestedTime
-            status
-            userId {
-                _id
-                userName
-                avatarURL
-                phone {
-                    confirmed
-                    number
-                }
-            }
+export const GET_ACTIVE_REQUESTS_AMOUNT = gql`
+    query GetActiveRequestsAmount($userId: ID) {
+        getActiveRequestsAmount(userId: $userId) {
+            requestAmount
         }
     }
 `;

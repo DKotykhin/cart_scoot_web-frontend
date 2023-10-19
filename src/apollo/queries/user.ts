@@ -4,25 +4,26 @@ export const GET_USER_BY_TOKEN = gql`
     query GetUserByToken {
         getUserByToken {
             _id
-            email
-            role
-            phone {
-                confirmed
-                number
-            }
-            userName
-            createdAt
             avatarURL
+            banned
+            createdAt
             coordinates {
                 lat
                 lon
             }
             driverRequests
+            email
             license {
                 message
                 status
                 url
             }
+            phone {
+                confirmed
+                number
+            }
+            role
+            userName
             workingDays
             workingTime {
                 from
@@ -48,6 +49,7 @@ export const GET_FREE_DRIVERS = gql`
                     confirmed
                     number
                 }
+                role
                 coordinates {
                     lat
                     lon

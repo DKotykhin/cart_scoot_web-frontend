@@ -64,15 +64,30 @@
             .cancel_button {
                 border: 1px solid $black-tertiary;
                 background: $white;
-                color: $black-primary;                
+                color: $black-primary;
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $black-quaternary;
+                    transition: all 0.3s ease-out;
+                }               
             }
             .confirm_button_green {
                 background: $green-primary;
                 color: $black-primary;
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $green-secondary;
+                    transition: all 0.3s ease-out;
+                }
             }
             .confirm_button_red {
                 background: $red-primary;
                 color: $white;
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $red-secondary;
+                    transition: all 0.3s ease-out;
+                }
             }
         }
     }

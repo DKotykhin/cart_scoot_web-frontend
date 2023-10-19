@@ -1,0 +1,95 @@
+@import "constants/constants.scss";
+
+.container {
+    width: 100%;
+    padding: 0 16px;
+    text-align: center;
+    thead tr {
+        // height: 80px;
+        background-color: $black-quaternary;
+        th {
+            padding: 16px 8px;
+            text-align-last: left;
+            div {
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 16px;
+            }
+        }
+    }
+    tbody tr {
+        height: 80px;
+        td {
+            padding: 16px 8px;
+            max-width: 200px;
+            text-align-last: left;
+            div {
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 400;
+                line-height: 20px;
+                padding: 0 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        :nth-child(6) {
+            span {
+                display: flex;
+                width: 111px;
+                height: 40px;
+                padding: 0px 12px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 16px;
+            }
+        }
+        .status_finished {
+            span {
+                background-color: $black-quaternary;
+                color: $black-primary;
+            }
+        }
+        .status_pending {
+            span {
+                background-color: $orange-secondary;
+                color: $orange-primary;
+            }
+        }
+        .status_active {
+            span {
+                background-color: $blue-quaternary;
+                color: $blue-primary;
+            }
+        }
+        .status_approved {
+            span {
+                background-color: $green-quaternary;
+                color: $green-primary;
+            }
+        }
+        .status_rejected {
+            span {
+                background-color: $red-quaternary;
+                color: $red-primary;
+            }
+        }
+    }
+    .image_box {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        flex-shrink: 0;
+        border-radius: 16px;
+        border: 1px solid $black-tertiary;
+        margin: 24px 0;
+        cursor: pointer;
+    }
+}

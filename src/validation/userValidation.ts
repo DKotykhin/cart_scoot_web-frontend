@@ -167,9 +167,6 @@ export const RegisterMobileValidation: Object = {
 };
 
 export const UserNameValidation: Object = {
-    defaultValues: {
-        userName: "",
-    },
     resolver: yupResolver(changeUserNameSchema),
     mode: "onChange",
 };
