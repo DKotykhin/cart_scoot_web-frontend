@@ -63,5 +63,14 @@
     .request_buttons {
         display: flex;
         gap: 24px;
+        .request_warn_message {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            font-size: 16px;
+            color: $red-primary;
+            font-weight: 500;
+            line-height: 20px;
+        }
     }
 }

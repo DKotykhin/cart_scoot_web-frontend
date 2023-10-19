@@ -55,13 +55,12 @@ const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
                         }>
                             <span>{item.status.charAt(0) + item.status.slice(1).toLowerCase()}</span>
                         </td>
-                        <td className={styles.image_box}>
+                        <td className={styles.image_box} onClick={() => handleClick(item._id)}>
                             <Image
                                 src={'/icons/caretRight-grey.svg'}
                                 alt={'caret'}
                                 width={20}
-                                height={20}
-                                onClick={() => handleClick(item._id)}
+                                height={20}                                
                             />
                         </td>
                     </tr>

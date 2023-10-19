@@ -10,17 +10,15 @@ import { viewport, mapStyle } from 'constants/mapStyle';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import RequestList, { ICoordinates } from '../requestList/RequestList';
 
-import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
 import { IUser } from 'types/userTypes';
 
 import styles from './requestPanel.module.scss';
 
 interface IRequestPanel {
-    requests?: [IRequestWithRiderPopulatedFields],
     driver?: IUser
 }
 
-const RequestPanel: React.FC<IRequestPanel> = ({ requests, driver }) => {
+const RequestPanel: React.FC<IRequestPanel> = ({ driver }) => {
 
     const [coordinates, setCoordinates] = useState<ICoordinates>();
     const markerCoordinates = (coord?: ICoordinates) => setCoordinates(coord);
@@ -91,7 +89,7 @@ const RequestPanel: React.FC<IRequestPanel> = ({ requests, driver }) => {
                 <GeolocateControl />
                 <NavigationControl />
             </ReactMapGl>
-            <RequestList requests={requests} markerCoordinates={markerCoordinates} />
+            <RequestList markerCoordinates={markerCoordinates} />
         </div>
     );
 };

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
+import { GET_PENDING_REQUESTS_BY_DRIVER } from 'apollo/queries/request';
+
 import LocationCard from '../../../components/locationCard/LocationCard';
 import RequestDetailsCard from '../requestDetailsCard/RequestDetailsCard';
 import EmptyList from 'components/emptyList/EmptyList';
@@ -9,7 +12,6 @@ import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
 import styles from './requestList.module.scss';
 
 interface IRequestList {
-    requests?: [IRequestWithRiderPopulatedFields];
     markerCoordinates: (arg?: ICoordinates) => void;
 }
 
@@ -24,14 +26,16 @@ export interface ICoordinates {
     };
 }
 
-const RequestList: React.FC<IRequestList> = ({ requests, markerCoordinates }) => {
+const RequestList: React.FC<IRequestList> = ({ markerCoordinates }) => {
 
     const [showRequestDetails, setShowRequestDetails] = useState(false);
     const [requestDetailsData, setRequestDetailsData] = useState<IRequestWithRiderPopulatedFields>();
 
+    const { data }: { data: { getPendingRequestsByDriver: [IRequestWithRiderPopulatedFields] } } = useSuspenseQuery(GET_PENDING_REQUESTS_BY_DRIVER);
+
     const openLocationClick = (_id: string) => {
         setShowRequestDetails(true);
-        const request = requests?.find(item => item._id === _id);
+        const request = data?.getPendingRequestsByDriver?.find(item => item._id === _id);
         setRequestDetailsData(request);
         markerCoordinates(request?.coordinates);
     };
@@ -43,7 +47,7 @@ const RequestList: React.FC<IRequestList> = ({ requests, markerCoordinates }) =>
 
     return (
         <div className={styles.request_list}>
-            {requests?.length ?
+            {data?.getPendingRequestsByDriver?.length ?
                 showRequestDetails ?
                     <RequestDetailsCard
                         closeDetailsCard={closeDetailsCard}
@@ -52,7 +56,7 @@ const RequestList: React.FC<IRequestList> = ({ requests, markerCoordinates }) =>
                     :
                     <>
                         <p className={styles.request_list_title}>Requests List</p>
-                        {requests?.map(request => (
+                        {data?.getPendingRequestsByDriver?.map(request => (
                             <div
                                 key={request._id}
                                 className={styles.request_card_wrapper}

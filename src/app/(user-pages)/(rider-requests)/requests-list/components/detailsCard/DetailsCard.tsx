@@ -28,107 +28,118 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
     const { request: { _id, driverId, requestedTime, requestCode, status, pickupLocation, dropoffLocation }, avgRating } = data;
 
     const [openDetails, setOpenDetails] = useState(false);
+    const [approveButton, setApproveButton] = useState(false);
 
-    const [finishTrip, { loading: finishLoading }] = useMutation(FINISH_REQUEST);
-    const [cancelTrip, { loading: cancelLoading }] = useMutation(CANCEL_REQUEST);
-    const [riderAnswer, { loading: answerLoading }] = useMutation(RIDER_MULTI_CALL_ANSWER);
+    const [finishTrip, { loading: finishLoading }] = useMutation(FINISH_REQUEST, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getRequest() { }
+                }
+            });
+        },
+        onCompleted: (data) => {
+            OpenFinishedCardFn(driverId._id, requestCode);
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        }),
+    });
+    const [cancelTrip, { loading: cancelLoading }] = useMutation(CANCEL_REQUEST, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getRequest() { }
+                }
+            });
+        },
+        onCompleted: (data) => {
+            toast.success('Your trip cancelled', {
+                bodyClassName: "right-toast",
+                icon: <Image
+                    src={'/icons/right-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        }),
+    });
+    const [riderAnswer, { loading: answerLoading }] = useMutation(RIDER_MULTI_CALL_ANSWER, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getRequest() { }
+                }
+            });
+        },
+        onCompleted: (data) => {
+            toast.success(data.riderMultiCallAnswer.status === statusTypes.active ?
+                'You approved driver request' : 'You rejected driver request', {
+                bodyClassName: "right-toast",
+                icon: <Image
+                    src={'/icons/right-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        }),
+    });
 
     const handleStatusClick = () => setOpenDetails(false);
     const handleDetailsClick = () => setOpenDetails(true);
 
     const finishClick = async () => {
-        try {
-            const { data } = await finishTrip({
-                variables: {
-                    requestId: _id,
-                },
-            });
-            if (data.finishRequest._id) OpenFinishedCardFn(driverId._id, requestCode);
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
+        await finishTrip({
+            variables: {
+                requestId: _id,
+            },
+        });
     };
+
     const cancelClick = async () => {
-        try {
-            const { data } = await cancelTrip({
-                variables: {
-                    requestId: _id,
-                },
-            });
-            if (data.cancelRequest._id) {
-                toast.success('Your trip cancelled', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
+        await cancelTrip({
+            variables: {
+                requestId: _id,
+            },
+        });
     };
 
     const RiderMultiCallAnswer = async (answer: boolean) => {
-        try {
-            const { data } = await riderAnswer({
-                variables: {
-                    riderMultiCallAnswerInput: {
-                        requestId: _id,
-                        answer,
-                    },
+        setApproveButton(answer);
+        await riderAnswer({
+            variables: {
+                riderMultiCallAnswerInput: {
+                    requestId: _id,
+                    answer,
                 },
-            });
-            if (data.riderMultiCallAnswer.status === statusTypes.active) {
-                toast.success('You approved driver request', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            } else if (data.riderMultiCallAnswer.status === statusTypes.pending) {
-                toast.success('You rejected driver request', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
+            },
+        });
     };
 
     return data ? (
@@ -171,16 +182,18 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                             <p>Trip details</p>
                         </div>
                     </div>
-                    <DetailsItem
-                        imageURL='/icons/mapPin.svg'
-                        title='Pickup Location'
-                        value={pickupLocation}
-                    />
-                    <DetailsItem
-                        imageURL='/icons/calendarBlank.svg'
-                        title='Dropoff Location'
-                        value={dropoffLocation}
-                    />
+                    <div className={styles.location_box}>
+                        <DetailsItem
+                            imageURL='/icons/mapPin.svg'
+                            title='Pickup Location'
+                            value={pickupLocation}
+                        />
+                        <DetailsItem
+                            imageURL='/icons/calendarBlank.svg'
+                            title='Dropoff Location'
+                            value={dropoffLocation}
+                        />
+                    </div>
                     <DetailsItem
                         imageURL='/icons/path.svg'
                         title='Distance'
@@ -190,11 +203,6 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                         imageURL='/icons/hourglass.svg'
                         title='Estimated time'
                         value={routeData ? `${Math.ceil(routeData.duration / 60)} min` : '0 min'}
-                    />
-                    <DetailsItem
-                        imageURL='/icons/phone.svg'
-                        title='Phone'
-                        value={<a href={`tel:${driverId.phone?.number}`}>{driverId.phone?.number}</a>}
                     />
                 </div>
                 :
@@ -216,6 +224,11 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                         imageURL='/icons/tagChevron.svg'
                         title='Request Code'
                         value={requestCode}
+                    />
+                    <DetailsItem
+                        imageURL='/icons/phone.svg'
+                        title='Phone'
+                        value={<a href={`tel:${driverId?.phone?.number}`}>{driverId?.phone?.number}</a>}
                     />
                     <div className={styles.tip_box}>
                         <div className={styles.tip_title_box}>
@@ -284,7 +297,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                                 className='button-green-filled'
                                 onClick={() => RiderMultiCallAnswer(true)}
                             >
-                                {answerLoading ?
+                                {answerLoading && approveButton ?
                                     <Image
                                         src={'/spinner.svg'}
                                         alt={'spinner'}
@@ -298,7 +311,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                                 className='button-grey-outlined'
                                 onClick={() => RiderMultiCallAnswer(false)}
                             >
-                                {answerLoading ?
+                                {answerLoading && !approveButton ?
                                     <Image
                                         src={'/spinner.svg'}
                                         alt={'spinner'}

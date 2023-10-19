@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 
 import Image from "next/image";
 import { format } from 'date-fns';
@@ -14,7 +14,7 @@ import DetailsItem from 'components/detailsItem/DetailsItem';
 import { useMapboxApi } from 'hooks/useMapboxApi';
 import { useUserStore } from 'stores/userStore';
 
-import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
+import { IRequestWithRiderPopulatedFields, statusTypes } from 'types/requestTypes';
 import { licenseStatusTypes } from 'types/userTypes';
 
 import styles from './requestDetailsCard.module.scss';
@@ -24,9 +24,11 @@ interface IRequestDetailsCard {
     closeDetailsCard: () => void;
 }
 
-const RequestDetailsCard: React.FC<IRequestDetailsCard> = ({ requestDetailsData, closeDetailsCard }) => {
+const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, closeDetailsCard }) => {
 
     const [driverAnswer, setDriverAnswer] = useState(false);
+
+    const { userData } = useUserStore();
 
     const routeData = useMapboxApi(
         requestDetailsData?.coordinates.start.lat,
@@ -35,124 +37,101 @@ const RequestDetailsCard: React.FC<IRequestDetailsCard> = ({ requestDetailsData,
         requestDetailsData?.coordinates.end.lon
     );
 
-    const [oneCallAnswer, { loading: oneCallLoading }] = useMutation(DRIVER_ONE_CALL_ANSWER);
-    const [multiCallAnswer, { loading: multiCallLoading }] = useMutation(DRIVER_MULTI_CALL_ANSWER);
-
-    const { userData } = useUserStore();
-
-    const cancelClick = async () => {
-        setDriverAnswer(false);
-        try {
-            const { data } = await oneCallAnswer({
-                variables: {
-                    driverOneCallAnswerInput: {
-                        requestId: requestDetailsData?._id,
-                        answer: false,
-                    }
-                },
+    const [oneCallAnswer, { loading: oneCallLoading }] = useMutation(DRIVER_ONE_CALL_ANSWER, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getPendingRequestsByDriver() { }
+                }
             });
-            if (data.driverOneCallAnswer._id) {
-                toast.success('Your canceled the trip', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-                const timer = setTimeout(() => {
-                    location.reload();
-                }, 4000);
-                return () => clearTimeout(timer);
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
+        },
+        onCompleted: (data) => {
+            toast.success(data.driverOneCallAnswer.status === statusTypes.rejected ?
+                'Your canceled the request' : 'Your accepted the request', {
+                bodyClassName: "right-toast",
                 icon: <Image
-                    src={'/icons/wrong-code.svg'}
+                    src={'/icons/right-code.svg'}
                     alt='icon'
                     width={56}
                     height={56}
                 />
             });
-        }
+            closeDetailsCard();
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        }),
+    });
+
+    const [multiCallAnswer, { loading: multiCallLoading }] = useMutation(DRIVER_MULTI_CALL_ANSWER, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getPendingRequestsByDriver() { }
+                }
+            });
+        },
+        onCompleted: (data) => {
+            toast.success('Your accepted the trip', {
+                bodyClassName: "right-toast",
+                icon: <Image
+                    src={'/icons/right-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            closeDetailsCard();
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        }),
+    });
+
+    const cancelClick = async () => {
+        setDriverAnswer(false);
+        await oneCallAnswer({
+            variables: {
+                driverOneCallAnswerInput: {
+                    requestId: requestDetailsData?._id,
+                    answer: false,
+                }
+            },
+        });
     };
 
     const confirmClick = async () => {
         setDriverAnswer(true);
         if (requestDetailsData?.driverId) {
-            try {
-                const { data } = await oneCallAnswer({
-                    variables: {
-                        driverOneCallAnswerInput: {
-                            requestId: requestDetailsData?._id,
-                            answer: true,
-                        }
-                    },
-                });
-                if (data.driverOneCallAnswer._id) {
-                    toast.success('Your accepted the trip', {
-                        bodyClassName: "right-toast",
-                        icon: <Image
-                            src={'/icons/right-code.svg'}
-                            alt='icon'
-                            width={56}
-                            height={56}
-                        />
-                    });
-                    const timer = setTimeout(() => {
-                        location.reload();
-                    }, 4000);
-                    return () => clearTimeout(timer);
-                }
-            } catch (err: any) {
-                toast.warn(err.message, {
-                    bodyClassName: "wrong-toast",
-                    icon: <Image
-                        src={'/icons/wrong-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
+            await oneCallAnswer({
+                variables: {
+                    driverOneCallAnswerInput: {
+                        requestId: requestDetailsData?._id,
+                        answer: true,
+                    }
+                },
+            });
         } else {
-            try {
-                const { data } = await multiCallAnswer({
-                    variables: {
-                        driverMultiCallAnswerInput: {
-                            requestId: requestDetailsData?._id,
-                            answer: true,
-                        }
-                    },
-                });
-                if (data.driverMultiCallAnswer._id) {
-                    toast.success('Your accepted the trip', {
-                        bodyClassName: "right-toast",
-                        icon: <Image
-                            src={'/icons/right-code.svg'}
-                            alt='icon'
-                            width={56}
-                            height={56}
-                        />
-                    });
-                    const timer = setTimeout(() => {
-                        location.reload();
-                    }, 4000);
-                    return () => clearTimeout(timer);
-                }
-            } catch (err: any) {
-                toast.warn(err.message, {
-                    bodyClassName: "wrong-toast",
-                    icon: <Image
-                        src={'/icons/wrong-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
+            await multiCallAnswer({
+                variables: {
+                    driverMultiCallAnswerInput: {
+                        requestId: requestDetailsData?._id,
+                        answer: true,
+                    }
+                },
+            });
         }
     };
 
@@ -214,36 +193,58 @@ const RequestDetailsCard: React.FC<IRequestDetailsCard> = ({ requestDetailsData,
                 </div>
             </div>
             <div className={styles.request_buttons}>
-                {requestDetailsData?.driverId && userData.license.status === licenseStatusTypes.approved &&
-                    <button
-                        className='button-grey-outlined'
-                        onClick={cancelClick}
-                    >
-                        {oneCallLoading && !driverAnswer ?
-                            <Image
-                                src={'/spinner.svg'}
-                                alt={'spinner'}
-                                width={48}
-                                height={48}
-                            />
-                            : 'Decline'
-                        }
-                    </button>
+                {userData.license.status === licenseStatusTypes.approved ?
+                    requestDetailsData?.driverId ?
+                        <>
+                            <button
+                                className='button-grey-outlined'
+                                onClick={cancelClick}
+                            >
+                                {oneCallLoading && !driverAnswer ?
+                                    <Image
+                                        src={'/spinner.svg'}
+                                        alt={'spinner'}
+                                        width={48}
+                                        height={48}
+                                    />
+                                    : 'Decline'
+                                }
+                            </button>
+                            <button
+                                className='button-green-filled'
+                                onClick={confirmClick}
+                            >
+                                {(oneCallLoading || multiCallLoading) && driverAnswer ?
+                                    <Image
+                                        src={'/spinner.svg'}
+                                        alt={'spinner'}
+                                        width={48}
+                                        height={48}
+                                    />
+                                    : 'Accept'
+                                }
+                            </button>
+                        </>
+                        :
+                        <button
+                            className='button-green-filled'
+                            onClick={confirmClick}
+                        >
+                            {(oneCallLoading || multiCallLoading) && driverAnswer ?
+                                <Image
+                                    src={'/spinner.svg'}
+                                    alt={'spinner'}
+                                    width={48}
+                                    height={48}
+                                />
+                                : 'Accept'
+                            }
+                        </button>
+                    :
+                    <p className={styles.request_warn_message}>
+                        You need to approve your documents
+                    </p>
                 }
-                <button
-                    className='button-green-filled'
-                    onClick={confirmClick}
-                >
-                    {(oneCallLoading || multiCallLoading) && driverAnswer ?
-                        <Image
-                            src={'/spinner.svg'}
-                            alt={'spinner'}
-                            width={48}
-                            height={48}
-                        />
-                        : 'Accept'
-                    }
-                </button>
             </div>
         </div>
     );

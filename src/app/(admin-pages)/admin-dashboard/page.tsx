@@ -25,11 +25,12 @@ const AdminDashboardPage = async () => {
             </div>
             <div className={styles.dashboard_box}>
                 <div className={styles.statistic_wrapper}>
-                    <StatisticBox statisticData={statisticData?.getStatistic}/>
-                    <TripsList totalTrips={statisticData?.getStatistic.totalTrips}/>
+                    <StatisticBox statisticData={statisticData?.getStatistic} />
+                    <TripsList totalTrips={statisticData?.getStatistic.totalTrips} />
                 </div>
-                {licensesData?.getWaitingLicenses.length &&
+                {licensesData?.getWaitingLicenses.length ?
                     <LicensesList users={licensesData.getWaitingLicenses} />
+                    : null
                 }
             </div>
         </div>

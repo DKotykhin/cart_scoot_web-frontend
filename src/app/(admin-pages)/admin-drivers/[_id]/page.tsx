@@ -9,7 +9,7 @@ const TripDetailsPage = ({
         _id: string;
     };
 }) => {
-    return <DriverDetails _id={params._id} />;
+    return <DriverDetails driverId={params._id} />;
 };
 
 export default TripDetailsPage;

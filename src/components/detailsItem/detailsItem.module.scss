@@ -2,7 +2,7 @@
 
 .tip_box {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     .tip_title_box {
         display: flex;
@@ -20,9 +20,9 @@
         color: $black-secondary;
         font-weight: 600;
         line-height: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
         max-width: 190px;
     }            
 }

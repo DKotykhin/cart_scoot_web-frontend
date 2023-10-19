@@ -23,7 +23,38 @@ const DriversTable: FC<{ drivers: IUser[] }> = ({ drivers }) => {
     const [driverId, setDriverId] = useState("");
 
     const router = useRouter();
-    const [changeUserStatus] = useMutation(CHANGE_USER_STATUS);
+    const [changeUserStatus] = useMutation(CHANGE_USER_STATUS, {
+        onCompleted: (data) => {
+            if (data.changeUserStatus.banned === false) {
+                toast.success('User activated successfully', {
+                    bodyClassName: "right-toast",
+                    icon: <Image
+                        src={'/icons/right-code.svg'}
+                        alt='icon'
+                        width={56}
+                        height={56}
+                    />
+                });
+            } else toast.success('User was blocked', {
+                bodyClassName: "warn-toast",
+                icon: <Image
+                    src={'/icons/warn-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        })
+    });
 
     const handleClick = (_id: string) => router.push(`/admin-drivers/${_id}`);
 
@@ -34,68 +65,22 @@ const DriversTable: FC<{ drivers: IUser[] }> = ({ drivers }) => {
 
     const confirmUnBanClick = async () => {
         setOpenUnBanModalCard(false);
-        try {
-            const { data } = await changeUserStatus({
-                variables: {
-                    id: driverId,
-                    status: false,
-                },
-            });
-            if (data.changeUserStatus._id) {
-                toast.success('User activated successfully', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
+        await changeUserStatus({
+            variables: {
+                id: driverId,
+                status: false,
+            },
+        });
     };
 
     const confirmBanClick = async () => {
         setOpenBanModalCard(false);
-        try {
-            const { data } = await changeUserStatus({
-                variables: {
-                    id: driverId,
-                    status: true,
-                },
-            });
-            if (data.changeUserStatus._id) {
-                toast.success('User was blocked', {
-                    bodyClassName: "warn-toast",
-                    icon: <Image
-                        src={'/icons/warn-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
+        await changeUserStatus({
+            variables: {
+                id: driverId,
+                status: true,
+            },
+        });
     };
 
     return (
@@ -138,13 +123,12 @@ const DriversTable: FC<{ drivers: IUser[] }> = ({ drivers }) => {
                                             <span>Unverified</span>
                                 }
                             </td>
-                            <td className={styles.image_box}>
+                            <td className={styles.image_box} onClick={() => handleClick(item._id)}>
                                 <Image
                                     src={'/icons/caretRight-grey.svg'}
                                     alt={'caret'}
                                     width={20}
                                     height={20}
-                                    onClick={() => handleClick(item._id)}
                                 />
                             </td>
                         </tr>

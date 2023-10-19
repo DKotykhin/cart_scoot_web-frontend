@@ -1,8 +1,7 @@
 import { FC, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import Image from "next/image";
-
-import { toast } from 'react-toastify';
 
 import { useMutation } from '@apollo/client';
 import { CHANGE_USER_STATUS } from 'apollo/mutations/admin';
@@ -21,23 +20,16 @@ const RidersTable: FC<{ riders?: IRider[] }> = ({ riders }) => {
     const [openBanModalCard, setOpenBanModalCard] = useState(false);
     const [riderId, setRiderId] = useState("");
 
-    const [changeUserStatus] = useMutation(CHANGE_USER_STATUS);
-
-    const banStatusClick = async (id: string, status: boolean) => {
-        setRiderId(id);
-        status ? setOpenUnBanModalCard(true) : setOpenBanModalCard(true);
-    };
-
-    const confirmUnBanClick = async () => {
-        setOpenUnBanModalCard(false);
-        try {
-            const { data } = await changeUserStatus({
-                variables: {
-                    id: riderId,
-                    status: false,
-                },
+    const [changeUserStatus] = useMutation(CHANGE_USER_STATUS, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getAllRiders() { }
+                }
             });
-            if (data.changeUserStatus._id) {
+        },
+        onCompleted: (data) => {
+            if (data.changeUserStatus.banned === false) {
                 toast.success('User activated successfully', {
                     bodyClassName: "right-toast",
                     icon: <Image
@@ -47,59 +39,50 @@ const RidersTable: FC<{ riders?: IRider[] }> = ({ riders }) => {
                         height={56}
                     />
                 });
-                const timer = setTimeout(() => {
-                    location.reload();
-                }, 4000);
-                return () => clearTimeout(timer);
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
+            } else toast.success('User was blocked', {
+                bodyClassName: "warn-toast",
                 icon: <Image
-                    src={'/icons/wrong-code.svg'}
+                    src={'/icons/warn-code.svg'}
                     alt='icon'
                     width={56}
                     height={56}
                 />
             });
-        }
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        })
+    });
+
+    const banStatusClick = async (id: string, status: boolean) => {
+        setRiderId(id);
+        status ? setOpenUnBanModalCard(true) : setOpenBanModalCard(true);
+    };
+
+    const confirmUnBanClick = async () => {
+        setOpenUnBanModalCard(false);
+        await changeUserStatus({
+            variables: {
+                id: riderId,
+                status: false,
+            },
+        });
     };
 
     const confirmBanClick = async () => {
         setOpenBanModalCard(false);
-        try {
-            const { data } = await changeUserStatus({
-                variables: {
-                    id: riderId,
-                    status: true,
-                },
-            });
-            if (data.changeUserStatus._id) {
-                toast.success('User was blocked', {
-                    bodyClassName: "warn-toast",
-                    icon: <Image
-                        src={'/icons/warn-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-                const timer = setTimeout(() => {
-                    location.reload();
-                }, 4000);
-                return () => clearTimeout(timer);
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
-                icon: <Image
-                    src={'/icons/wrong-code.svg'}
-                    alt='icon'
-                    width={56}
-                    height={56}
-                />
-            });
-        }
+        await changeUserStatus({
+            variables: {
+                id: riderId,
+                status: true,
+            },
+        });
     };
 
     return (
@@ -124,7 +107,12 @@ const RidersTable: FC<{ riders?: IRider[] }> = ({ riders }) => {
                                     driverName={item?.userName}
                                 />
                             </td>
-                            <td><div><StatusButton banned={item.banned} banStatusClick={() => banStatusClick(item._id, item.banned)} /></div></td>
+                            <td><div>
+                                <StatusButton
+                                    banned={item.banned}
+                                    banStatusClick={() => banStatusClick(item._id, item.banned)}
+                                />
+                            </div></td>
                             <td><div>{item?.email}</div></td>
                             <td><div>{item?.phone?.number}</div></td>
                         </tr>

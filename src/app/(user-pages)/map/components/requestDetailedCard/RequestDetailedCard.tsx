@@ -25,6 +25,7 @@ interface IRequestDetailedCard {
     closeDriverDetails: () => void;
     sendAllRequestClick: () => void;
     sendOneRequestClick: () => void;
+    driversAmount: number,
 }
 
 const dayOfWeek = (data: number[]) => {
@@ -51,7 +52,7 @@ const dayOfWeek = (data: number[]) => {
     });
 };
 
-const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData, closeDriverDetails, sendAllRequestClick, sendOneRequestClick }) => {
+const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, detailedCardData, closeDriverDetails, sendAllRequestClick, sendOneRequestClick }) => {
 
     const { driver: { driver, rating }, findCarFormData } = detailedCardData;
 
@@ -64,7 +65,6 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
             }
         }
     });
-    // console.log(data.getReviewsByDriverId);
 
     const routeData = useMapboxApi(
         findCarFormData?.locationData?.pickup.lat,
@@ -213,21 +213,32 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ detailedCardData,
                         </div>
                     </div>
             }
-            {findCarFormData?.locationData && findCarFormData?.requestedTime &&
-                <button
-                    className='button-green-filled'
-                    onClick={sendOneRequestClick}
-                >
-                    Send Request
-                </button>
-            }
-            {findCarFormData?.locationData && findCarFormData?.requestedTime &&
-                <button
-                    className='button-green-outlined'
-                    onClick={sendAllRequestClick}
-                >
-                    Send Request to all
-                </button>
+            {findCarFormData?.locationData && findCarFormData?.requestedTime ?
+                driversAmount > 1 ?
+                    <>
+                        <button
+                            className='button-green-filled'
+                            onClick={sendOneRequestClick}
+                        >
+                            Send Request
+                        </button>
+                        <button
+                            className='button-green-outlined'
+                            onClick={sendAllRequestClick}
+                        >
+                            Send Request to all
+                        </button>
+                    </>
+                    :
+
+                    <button
+                        className='button-green-filled'
+                        onClick={sendOneRequestClick}
+                    >
+                        Send Request
+                    </button>
+
+                : null
             }
         </article>
     ) : null;

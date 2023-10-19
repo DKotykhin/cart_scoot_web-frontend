@@ -56,9 +56,9 @@ const Mapbox = () => {
     const [oneDriverRequest] = useMutation(ONE_DRIVER_REQUEST);
 
     useEffect(() => {
-        const driverAmount = data?.getFreeDrivers.length;
-        if (driverAmount > 0) {
-            toast.success(`Founded ${driverAmount} cars`, {
+        const driversAmount = data?.getFreeDrivers.length;
+        if (driversAmount > 0) {
+            toast.success(`Founded ${driversAmount} cars`, {
                 bodyClassName: "right-toast",
                 icon: <Image
                     src={'/icons/right-code.svg'}
@@ -67,7 +67,7 @@ const Mapbox = () => {
                     height={56}
                 />
             });
-        } else if (!driverAmount) {
+        } else if (!driversAmount) {
             toast.warn("Cars not found", {
                 bodyClassName: "wrong-toast",
                 icon: <Image
@@ -83,11 +83,10 @@ const Mapbox = () => {
 
     const closeLoginModal = () => setOpenLoginMobileCard(false);
 
-    // const formData = (data: IFormData) => setSavedFormData(data);
     const markerClick = (driver: IDriverWithRating) => {
-        setDetailedCardData({ 
-            driver, 
-            findCarFormData 
+        setDetailedCardData({
+            driver,
+            findCarFormData
         });
         setOpenDriverDetails(true);
     };
@@ -236,15 +235,19 @@ const Mapbox = () => {
                 {findCarFormData?.locationData &&
                     findCarFormData.requestedTime &&
                     data?.getFreeDrivers.length &&
-                    <SendRequestButton sendAllRequestClick={sendAllRequestClick} />
+                    <SendRequestButton
+                        sendAllRequestClick={sendAllRequestClick}
+                        driversAmount={data?.getFreeDrivers.length || 0}
+                    />
                 }
             </div>
             {detailedCardData && openDriverDetails &&
                 <RequestDetailedCard
-                detailedCardData={detailedCardData}
+                    detailedCardData={detailedCardData}
                     closeDriverDetails={closeDriverDetails}
                     sendAllRequestClick={sendAllRequestClick}
                     sendOneRequestClick={sendOneRequestClick}
+                    driversAmount={data?.getFreeDrivers.length || 0}
                 />}
             {openLoginMobileCard &&
                 <AskLoginCard
