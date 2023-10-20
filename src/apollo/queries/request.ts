@@ -17,7 +17,7 @@ export const GET_REQUEST = gql`
                         lon
                     }
                 }
-                description
+                isReviewed
                 driverId {
                     _id
                     userName
@@ -67,7 +67,7 @@ export const GET_REQUESTS_BY_RIDER = gql`
                         number
                     }
                 }
-                description
+                isReviewed
                 status
                 carType
                 requestedTime
@@ -111,7 +111,7 @@ export const GET_REQUESTS_BY_DRIVER = gql`
                     }
                 }
                 createdAt
-                description
+                isReviewed
                 driverId
                 dropoffLocation
                 pickupLocation
@@ -149,7 +149,7 @@ export const GET_PENDING_REQUESTS_BY_DRIVER = gql`
                 }
             }
             createdAt
-            description
+            isReviewed
             driverId
             dropoffLocation
             pickupLocation

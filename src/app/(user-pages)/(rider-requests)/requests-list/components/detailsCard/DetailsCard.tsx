@@ -25,7 +25,7 @@ const starArray = [1, 2, 3, 4, 5];
 
 const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCardFn }) => {
 
-    const { request: { _id, driverId, requestedTime, requestCode, status, pickupLocation, dropoffLocation }, avgRating } = data;
+    const { request: { _id, driverId, requestedTime, requestCode, status, pickupLocation, dropoffLocation, isReviewed }, avgRating } = data;
 
     const [openDetails, setOpenDetails] = useState(false);
     const [approveButton, setApproveButton] = useState(false);
@@ -283,7 +283,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                     </button>
                 </>
                 :
-                status === statusTypes.finished ?
+                status === statusTypes.finished && !isReviewed ?
                     <button
                         className='button-green-filled'
                         onClick={() => OpenFinishedCardFn(driverId._id, requestCode)}

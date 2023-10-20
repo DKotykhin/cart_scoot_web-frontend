@@ -29,6 +29,13 @@ const FinishedCard: React.FC<IFinishedCard> = ({ handleClose, finishedCardData }
     const [reviewStars, setReviewStars] = useState(0);
 
     const [addReview, { loading }] = useMutation(ADD_REVIEW, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getRequest() { }
+                }
+            });
+        },
         onCompleted: (data) => {
             handleClose();
             toast.success('Review added successfully', {

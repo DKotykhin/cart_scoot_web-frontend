@@ -9,7 +9,7 @@ export enum statusTypes {
 interface IBaseRequest {
     _id: string;
     createdAt: string;
-    description: string;
+    isReviewed: boolean;
     status: statusTypes;
     carType: number;
     requestedTime: string;
