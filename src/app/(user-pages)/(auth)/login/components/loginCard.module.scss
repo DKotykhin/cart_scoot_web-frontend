@@ -12,7 +12,7 @@
     margin-bottom: 30px;
     .upperBox {
         width: 100%;
-        padding: 22px 22px 0 22px;        
+        padding: 22px 22px 0 22px;
         .avatar {
             display: block;
             margin: 48px auto 24px auto;
@@ -71,6 +71,15 @@
             align-items: center;
             gap: 24px;
             margin: 24px 0;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        max-width: 650px;
+        width: 95vw;
+        .lowerBox {
+            .login_button_box {
+                flex-direction: column;
+            }
         }
     }
 }

@@ -128,7 +128,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, de
                     <DetailsItem
                         imageURL='/icons/phone.svg'
                         title='Phone Number'
-                        value={driver.phone.number}
+                        value={<a href={`tel:${driver?.phone?.number}`}>{driver?.phone?.number}</a>}
                     />
                     <DetailsItem
                         imageURL='/icons/calendarBlank.svg'
@@ -154,25 +154,27 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, de
                                 <p>Reviews</p>
                             </div>
                         </div>
-                        <DetailsItem
-                            imageURL='/icons/mapPin.svg'
-                            title='Pickup Location'
-                            value={findCarFormData?.locationData?.pickup.address}
-                        />
+                        <div className={styles.location_box}>
+                            <DetailsItem
+                                imageURL='/icons/mapPin.svg'
+                                title='Pickup Location'
+                                value={findCarFormData?.locationData?.pickup.address}
+                            />
+                            <DetailsItem
+                                imageURL='/icons/calendarBlank.svg'
+                                title='Dropoff Location'
+                                value={findCarFormData?.locationData?.dropoff.address}
+                            />
+                        </div>
                         <DetailsItem
                             imageURL='/icons/telegramLogo.svg'
                             title='Request date & time'
                             value={findCarFormData?.requestedTime ? format(new Date(findCarFormData?.requestedTime), "d LLL h:mm a") : ""}
                         />
                         <DetailsItem
-                            imageURL='/icons/calendarBlank.svg'
-                            title='Dropoff Location'
-                            value={findCarFormData?.locationData?.dropoff.address}
-                        />
-                        <DetailsItem
                             imageURL='/icons/path.svg'
                             title='Distance'
-                            value={routeData ? `${Math.round((routeData.distance / 1000) * 10) / 10} km` : '0 km'}
+                            value={routeData ? `${Math.round((routeData.distance / 1609.344) * 10) / 10} mi` : '0 mi'}
                         />
                         <DetailsItem
                             imageURL='/icons/hourglass.svg'

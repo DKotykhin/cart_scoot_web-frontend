@@ -206,7 +206,7 @@ const LoginCard = () => {
                         }
                     </button>
                 </div>
-                <p className='link'>Don&apos;t have an account yet?
+                <p className='link'>Don&apos;t have an account?
                     <Link href={'/register'}>
                         <span>&nbsp;Register</span>
                     </Link>

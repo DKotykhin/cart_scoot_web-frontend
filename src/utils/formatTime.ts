@@ -5,12 +5,15 @@ export const formatTime = (time: number) => {
 
     const validMinutes =
         splitTime[1] === undefined
-            ? "00"
+            ? ""
             : splitTime[1]?.length === 1
-            ? splitTime[1] + "0"
-            : splitTime[1];
+            ? ":" + splitTime[1] + "0"
+            : ":" + splitTime[1];
 
-    const validTime = splitTime[0] + ":" + validMinutes;
+    const validHour = +splitTime[0] > 12 ? +splitTime[0] - 12 : splitTime[0];
+    const validSuffix = +splitTime[0] > 12 ? "PM" : "AM";
+
+    const validTime = validHour + validMinutes + " " + validSuffix;
 
     return validTime;
 };

@@ -166,9 +166,45 @@
     @media screen and (min-width: $full_bp) {
     }
     @media screen and (max-width: $tablet_bp) {
+        border-radius: 0;
+        height: 80px;
+        .logo {
+            p {
+                display: none;
+            }
+        }
+        .navLinks {
+            a {
+                padding: 0 24px;
+                margin: 0;
+            }
+        }
     }
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
     }
     @media screen and (max-width: $mobile_bp) {
+        .navLinks {
+            display: none;
+        }
+    }
+}
+.mobile_container {
+    display: none;
+    @media screen and (max-width: $mobile_bp) {
+        display: block;
+        .mobile_navLinks {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.08);
+            a {
+                font-size: 16px;
+                color: $white;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 0 16px;
+            }
+        }
     }
 }

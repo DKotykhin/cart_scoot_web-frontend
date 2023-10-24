@@ -178,7 +178,7 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
                             height={16}
                             className={styles.addition_details_image}
                         />
-                        <p>{routeData ? `${Math.round((routeData?.distance / 1000) * 10) / 10} km` : '0 km'}</p>
+                        <p>{routeData ? `${Math.round((routeData?.distance / 1609.344) * 10) / 10} mi` : '0 mi'}</p>
                     </div>
                     <div className={styles.addition_details_inner_box}>
                         <Image
