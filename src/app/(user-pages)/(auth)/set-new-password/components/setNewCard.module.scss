@@ -33,6 +33,17 @@
     }
     .lowerBox {
         width: 100%;
-        padding: 0 22px;
+        padding: 22px;
+   
+    }
+    @media screen and (max-width: $mobile_bp) {
+        max-width: 422px;
+        width: 90vw;
+        .upperBox {
+            padding: 16px 16px 0 16px;
+        }
+        .lowerBox {
+            padding: 16px;
+        }
     }
 }

@@ -120,15 +120,19 @@
     }
     @media screen and (max-width: $mobile_bp) {
         max-width: 650px;
-        width: 95vw;
-        .lowerBox {
-            .login_button_box {
+        width: 90vw;
+        .upperBox {
+            padding: 16px 16px 0 16px;
+            .firstInputLine {
                 flex-direction: column;
             }
         }
-        .upperBox {
-            .firstInputLine {
+        .lowerBox {
+            padding: 0 16px;
+            .login_button_box {
                 flex-direction: column;
+                gap: 16px;
+                margin: 16px 0;
             }
         }
     }

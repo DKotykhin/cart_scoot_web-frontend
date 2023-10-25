@@ -177,6 +177,12 @@
             a {
                 padding: 0 24px;
                 margin: 0;
+                .active::before {
+                    display: none;
+                }
+                .active::after {
+                    display: none;
+                }
             }
         }
     }

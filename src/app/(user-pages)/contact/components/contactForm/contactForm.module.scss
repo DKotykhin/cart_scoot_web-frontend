@@ -2,8 +2,8 @@
 
 .form {
     padding: 24px;
-    width: 624px;
-    height: 760px;
+    width: 100%;
+    // height: 760px;
     background-color: $black-quaternary;
     .subject_box {
         width: 100%;        
@@ -47,6 +47,7 @@
             font-weight: 600;
             line-height: 20px;
             color: $black-primary;
+            font-family: Inter, sans-serif;
         }
         .active {
             border: 1px solid $red-primary;
@@ -66,6 +67,7 @@
     .send {
         width: 100%;
         text-align: right;
+        margin: 24px 0;
         button {
             width: 160px;
             transition: all 0.3s ease-out;
@@ -74,5 +76,24 @@
                 transition: all 0.3s ease-out;
             }
         }        
+    }
+    @media screen and (max-width: $tablet_bp) {
+        padding: 16px;
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        
+
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .subject_box {
+            margin-bottom: 16px;
+        }
+        .send {
+            margin: 16px 0 0;
+            button {
+                width: 100%;
+                transition: all 0.3s ease-out;
+            }        
+        }
     }
 }

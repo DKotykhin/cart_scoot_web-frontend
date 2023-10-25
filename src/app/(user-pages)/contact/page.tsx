@@ -13,8 +13,10 @@ const ContactPage = () => {
 
     return (
         <section className={styles.container}>
-            <ContactMap />
-            <ContactForm />
+            <div className={styles.wrapper}>
+                <ContactMap />
+                <ContactForm />
+            </div>
         </section>
     );
 };

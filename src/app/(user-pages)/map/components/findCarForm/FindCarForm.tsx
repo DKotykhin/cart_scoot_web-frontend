@@ -107,8 +107,16 @@ const FindCarForm: React.FC<IFindCarForm> = ({ closeDriverDetails }) => {
         }
     };
 
+    const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+        if (e.key === 'Enter') e.preventDefault();
+    };
+
     return (
-        <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
+        <form
+            className={styles.wrapper}
+            onSubmit={handleSubmit(onSubmit)}
+            onKeyDown={(e) => checkKeyDown(e)}
+        >
             <div className={styles.form_box}>
                 <div className={styles.pickup_input_box}>
                     <PickupInput

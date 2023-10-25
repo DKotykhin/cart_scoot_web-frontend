@@ -96,7 +96,7 @@ const ContactForm = () => {
                 <p className={styles.error}>{errors.message?.message}</p>
             </div>
             <div className={styles.send}>
-                <button type='submit' className='button'>Send</button>
+                <button type='submit' className='button-green-filled'>Send</button>
             </div>
         </form>
     );

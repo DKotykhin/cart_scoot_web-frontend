@@ -1,14 +1,11 @@
 @import "constants/constants.scss";
 
 .map {
-    width: 624px;
-    // height: 760px;
+    width: 100%;
+    min-height: 560px;
     background: url("../../../../../../public/map.png");
-    margin-right: 24px;
     .contacts {
         margin: 24px;
-        width: 576px;
-        // height: 276px;
         background-color: $white;
         padding: 24px;
         border-radius: 16px;
@@ -32,6 +29,26 @@
         }
         :nth-child(4) {
             margin: 16px 0;
+        }
+    }
+    @media screen and (max-width: $tablet_bp) {
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        .contacts {
+            margin: 16px;
+            padding: 16px;
+            h4 {
+                margin: 0 0 32px 0;
+            }
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .contacts {
+            margin: 8px;
+            padding: 12px;
+            h4 {
+                margin: 0 0 24px 0;
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ header {
     height: 280px;
     background: $white;
     // background: $black-quaternary;
-    border-radius: 100% / 100%;
+    border-radius: 100% / 50%;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     z-index: -1;
@@ -175,6 +175,7 @@ header {
     font-weight: 600;
     line-height: 20px;
     color: $black-secondary;
+    padding: 10px;
     span {
         color: $green-primary;
     }
@@ -218,6 +219,24 @@ header {
     }
 }
 @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+    .ellipse {
+        border-radius: 200% / 50%;
+    }
 }
 @media screen and (max-width: $mobile_bp) {
+    .ellipse {
+        border-radius: 300% / 30%;
+    }
+    .block-title {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28px;
+    }
+    .block-subtitle {
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .link {        
+        margin-bottom: 16px;
+    }
 }

@@ -96,8 +96,16 @@ const PickupForm = () => {
         };
     };
 
+    const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+        if (e.key === 'Enter') e.preventDefault();
+    };
+
     return (
-        <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+        <form
+            className={styles.container}
+            onSubmit={handleSubmit(onSubmit)}
+            onKeyDown={(e) => checkKeyDown(e)}
+        >
             <PickupInput
                 control={control}
                 isLoaded={isLoaded}

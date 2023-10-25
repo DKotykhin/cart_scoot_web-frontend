@@ -1,12 +1,32 @@
 @import "constants/constants.scss";
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1320px;
-    height: 808px;
-    background-color: $white;
-    padding: 24px;
+    max-width: 1440px;
+    padding: 0 60px;
+    width: 100vw;
     margin: 48px 0;
-    border-radius: 24px;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        // height: 808px;
+        background-color: $white;
+        padding: 24px;
+        border-radius: 24px;
+    }
+    @media screen and (max-width: $tablet_bp) {
+        .wrapper {
+            flex-direction: column;
+            padding: 16px;
+            // height: auto;
+        }
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        padding: 0 24px;
+
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 0 16px;
+        margin: 24px 0;
+    }
 }

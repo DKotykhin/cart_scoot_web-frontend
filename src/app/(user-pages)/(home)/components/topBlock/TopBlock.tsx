@@ -11,8 +11,8 @@ const TopBlock = () => {
             <div className={styles.main_box}>
                 <div className={styles.text_box}>
                     <h1>
-                        Tee Up, <br />
-                        Ride On, and <br />
+                        Tee Up,
+                        Ride On, and
                         <span>
                             Play&nbsp;
                             <span>
@@ -27,14 +27,15 @@ const TopBlock = () => {
                         </span>
                     </h1>
                     <h2>
-                        Unleash Your Golfing Passion with Seamless Tee Time <br />
-                        Bookings and Effortless Transportation Services!
+                        Unleash Your Golfing Passion with Seamless Tee Time Bookings and Effortless Transportation Services!
                     </h2>
                 </div>
-                <div className={styles.shadow_1}></div>
-                <div className={styles.shadow_2}></div>
-                <div className={styles.form_box}>
-                    <PickupForm />
+                <div className={styles.form_wrapper}>
+                    <div className={styles.shadow_1} />
+                    <div className={styles.shadow_2} />
+                    <div className={styles.form_box}>
+                        <PickupForm />
+                    </div>
                 </div>
             </div>
             <div className={styles.arrow_box}>

@@ -97,7 +97,7 @@ const ResetCard = () => {
             </div>
             <div className={styles.line}></div>
             <div className={styles.lowerBox}>
-                <button type='submit' className='button'>
+                <button type='submit' className='button-green-filled'>
                     {loading ?
                         <Image
                             src={'/spinner.svg'}

@@ -42,4 +42,7 @@
         line-height: 20px;
         color: $black-tertiary;
     }
+    @media screen and (max-width: $mobile_bp) {
+        margin-bottom: 16px;
+    }
 }
