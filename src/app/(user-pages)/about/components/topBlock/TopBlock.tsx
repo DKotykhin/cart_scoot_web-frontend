@@ -26,7 +26,8 @@ const TopBlock = () => {
                     <p>Book a cart and pay in cash</p>
                     <Link href={'/register'}>
                         <button>
-                            Register as user
+                            <span className={styles.button_title_desktop}>Register as user</span>
+                            <span className={styles.button_title_mobile}>Register</span>
                             <Image
                                 src={'/icons/caretRight.svg'}
                                 alt={'arrow'}
@@ -48,7 +49,8 @@ const TopBlock = () => {
                     <p>Register as driver and earn money</p>
                     <Link href={'/register'}>
                         <button>
-                            Become a driver
+                            <span className={styles.button_title_desktop}>Become a driver</span>
+                            <span className={styles.button_title_mobile}>Register</span>
                             <Image
                                 src={'/icons/caretRight.svg'}
                                 alt={'arrow'}

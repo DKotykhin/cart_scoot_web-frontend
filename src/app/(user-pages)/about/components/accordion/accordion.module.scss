@@ -1,21 +1,17 @@
 @import "constants/constants.scss";
 
 .container {
-    width: 1320px;
+    max-width: 1320px;
+    width: 100%;
     display: block;
     margin: 0 auto;
     margin-bottom: 160px;
     .text_box {
         display: block;
         margin: 0 auto;
-        width: 424px;
-        h3 {
-            text-align: center;
-        }
-        p {
-            text-align: center;
-            margin-bottom: 24px;
-        }
+        max-width: 424px;
+        width: 100%;
+        text-align: center;
     }
     .accordion_box {
         margin: 24px 0;
@@ -44,6 +40,42 @@
             color: $black-secondary;
             font-weight: 400;
             line-height: 22px;
+        }
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        margin-bottom: 80px;
+        padding: 0 35px;
+        .accordion_box {
+            margin: 20px 0;
+            padding: 16px;
+            .accordion_item {
+                .accordion_title {
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+            }
+            .accordion_description {
+                font-size: 14px;
+                line-height: 18px;
+            }
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        margin-bottom: 48px;
+        padding: 0 16px;
+        .accordion_box {
+            margin: 16px 0;
+            padding: 16px;
+            .accordion_item {
+                .accordion_title {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+            }
+            .accordion_description {
+                font-size: 14px;
+                line-height: 18px;
+            }
         }
     }
 }

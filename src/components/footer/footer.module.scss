@@ -1,8 +1,8 @@
 @import "constants/constants.scss";
 
 .container {
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
     .footer {
         display: flex;
         flex-direction: column;
@@ -61,12 +61,15 @@ justify-content: center;
             margin: 24px 0;
         }
         .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
             color: $black-primary;
             font-size: 16px;
             font-weight: 600;
             line-height: 20px;
             a {
-                margin: 0 36px;
+                margin: 12px 36px;
             }
         }
         .last_block {
@@ -84,15 +87,31 @@ justify-content: center;
             }
         }
     }
-}
-
-.footer {
-    @media screen and (min-width: $full_bp) {
-    }
-    @media screen and (max-width: $tablet_bp) {
-    }
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        .footer {
+            padding: 0 35px;
+            .ellipse {
+                height: 100%;
+                border-radius: 200% / 50%;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
     }
     @media screen and (max-width: $mobile_bp) {
+        .footer {
+            padding: 0 16px;
+            .ellipse {
+                height: 100%;
+                border-radius: 300% / 30%;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            .navigation { 
+                a {
+                    margin: 12px 16px;
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,45 @@
+@import "constants/constants.scss";
+
+.container {
+    background: rgba(255, 255, 255, 0.8);
+    max-width: 1440px;
+    width: 100vw;
+    margin-bottom: 160px;
+    padding: 0 60px;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;        
+        .text_box {
+            max-width: 536px;
+            min-width: 339px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    @media screen and (max-width: $tablet_bp) {
+        
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        padding: 0 35px;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        margin-bottom: 48px;
+        padding: 0 16px;
+        .wrapper {
+            flex-direction: column;
+            align-items: center;
+            .text_box {
+                min-width: auto;
+                width: 100%;
+            }
+        } 
+    }
+}
