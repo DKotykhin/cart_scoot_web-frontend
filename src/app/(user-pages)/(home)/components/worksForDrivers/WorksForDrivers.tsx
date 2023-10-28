@@ -2,54 +2,57 @@ import React from 'react';
 
 import Image from 'next/image';
 
-import styles from './firstBlock.module.scss';
+import styles from './worksForDrivers.module.scss';
 
-const FirstBlock = () => {
+const WorksForDrivers = () => {
     return (
         <section className={styles.container}>
             <div className={styles.block}>
                 <div className={styles.main_box}>
                     <h3 className='block-title'>
-                        How it work?
+                        How it works for drivers?
                     </h3>
                     <p className='block-subtitle'>
-                        Discover Effortless Golf Cart Adventures with Car Scoot&apos;s Booking Process.
+                        Like to ride. Meet new people. Provide service. If you legally can operate a golf cart in Florida then read on
                     </p>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.step_box}>
                     <Image
-                        src={'/icons/magnifyingGlass.svg'}
-                        alt={'glass'}
+                        src={'/icons/flag-black.svg'}
+                        alt={'flag'}
                         width={24}
                         height={24}
                     />
-                    <p>1. Search cars</p>
-                    <p>Search and find a car</p>
+                    <p className={styles.step_text}>
+                        Put the destination and time
+                    </p>
                 </div>
                 <div className={styles.step_box}>
                     <Image
                         src={'/icons/cursor.svg'}
-                        alt={'glass'}
+                        alt={'cursor'}
                         width={24}
                         height={24}
                     />
-                    <p>2. Choose a car</p>
-                    <p>Review the driver and choose</p>
+                    <p className={styles.step_text}>
+                        Select and confirm a driver you like
+                    </p>
                 </div>
                 <div className={styles.step_box}>
                     <Image
                         src={'/icons/checkCircle.svg'}
-                        alt={'glass'}
+                        alt={'circle'}
                         width={24}
                         height={24}
                     />
-                    <p>3. Book a car</p>
-                    <p>Book a car and pay in cash</p>
+                    <p className={styles.step_text}>
+                        Take and Enjoy the ride
+                    </p>
                 </div>
             </div>
         </section>
     );
 };
 
-export default FirstBlock;
+export default WorksForDrivers;

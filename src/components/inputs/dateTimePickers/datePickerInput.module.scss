@@ -35,4 +35,14 @@
         top: 12px;
         z-index: -1;
     }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        .picker_input {
+            width: calc(50vw - 71px);
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .picker_input {
+            width: calc(100vw - 64px);
+        }
+    }
 }

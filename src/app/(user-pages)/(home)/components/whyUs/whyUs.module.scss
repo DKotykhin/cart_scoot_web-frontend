@@ -1,0 +1,108 @@
+@import "constants/constants.scss";
+
+.container {
+    margin-bottom: 160px;
+    max-width: 1440px;
+    padding: 0 60px;
+    .title_box {
+        text-align: center;
+        p {
+            display: block;
+            margin: 0 auto;
+            max-width: 424px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+    }
+    .card_box {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        .card {
+            display: flex;
+            align-items: center;
+            max-width: 424px;
+            width: 100%;
+            padding: 24px;
+            img {
+                width: 64px;
+                height: 64px;
+                margin-right: 16px;
+                padding: 16px;
+                box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+            }
+            .text_box {
+                h4 {
+                    font-size: 24px;
+                    color: $black-primary;
+                    font-weight: 500;
+                    line-height: 28px;
+                    margin-bottom: 8px;
+                }
+                h5 {
+                    font-size: 16px;
+                    color: $black-secondary;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: $tablet_bp) {
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        padding: 0 35px;
+        margin-bottom: 80px;
+        .card_box {
+            gap: 20px;
+            .card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                .text_box {
+                    h4 {
+                        font-size: 20px;
+                        line-height: 24px;
+                    }
+                    h5 {
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 0 16px;
+        margin-bottom: 48px;
+        .title_box {
+            h3, p {
+                margin-bottom: 16px;
+            }
+        }
+        .card_box {
+            gap: 16px;
+            flex-direction: column;
+            align-items: center;
+            .card {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                padding: 0;
+                .text_box {
+                    text-align: center;
+                    h4 {
+                        font-size: 16px;
+                        line-height: 20px;
+                        margin-bottom: 4px;
+                    }
+                    h5 {
+                        font-size: 12px;
+                        font-weight: 300;
+                        line-height: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

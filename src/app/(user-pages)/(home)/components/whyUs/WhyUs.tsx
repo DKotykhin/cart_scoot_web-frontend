@@ -2,15 +2,19 @@ import React from 'react';
 
 import Image from "next/image";
 
-import styles from './forthBlock.module.scss';
+import styles from './whyUs.module.scss';
 
-const ForthBlock = () => {
+const WhyUs = () => {
     return (
         <section className={styles.container}>
-            <h3 className='block-title'>Why Us?</h3>
-            <p  className='block-subtitle'>
-                Discover a Golfer&apos;s Haven - Personalized Tee Time Selections
-            </p>
+            <div className={styles.title_box}>
+                <h3 className='block-title'>
+                    Why Us?
+                </h3>
+                <p className='block-subtitle'>
+                    Discover a Golfer&apos;s Haven - Personalized Tee Time Selections
+                </p>
+            </div>
             <div className={styles.card_box}>
                 <div className={styles.card}>
                     <Image
@@ -54,4 +58,4 @@ const ForthBlock = () => {
     );
 };
 
-export default ForthBlock;
+export default WhyUs;

@@ -1,20 +1,33 @@
 import React from 'react';
 
 import Image from 'next/image';
+import PickupForm from './pickupForm/PickupForm';
 
 import styles from './topBlock.module.scss';
-import PickupForm from './pickupForm/PickupForm';
 
 const TopBlock = () => {
     return (
         <section className={styles.container}>
             <div className={styles.main_box}>
                 <div className={styles.text_box}>
-                    <h1>
-                        Tee Up,
-                        Ride On, and
+                    <h1 className={styles.text_box_primary}>
+                        Tee Up, Ride On, and
                         <span>
                             Play&nbsp;
+                            <span>
+                                Like a Pro!
+                                <Image
+                                    src={'/line.svg'}
+                                    alt={'line'}
+                                    width={349}
+                                    height={12}
+                                />
+                            </span>
+                        </span>
+                    </h1>
+                    <h1 className={styles.text_box_secondary}>
+                        Tee Up, Ride On, and Play
+                        <span>
                             <span>
                                 Like a Pro!
                                 <Image

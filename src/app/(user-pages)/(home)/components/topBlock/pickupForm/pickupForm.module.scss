@@ -6,6 +6,7 @@
     justify-content: space-between;
     height: 100%;
     .date_time_box {
+        // width: 100%;
         display: flex;
         justify-content: space-between;
         gap: 24px;
@@ -24,6 +25,12 @@
         &:hover {
             background-color: $green-secondary;
             transition: all 0.3s ease-out;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .date_time_box {
+            flex-direction: column;
+            gap: 16px;
         }
     }
 }

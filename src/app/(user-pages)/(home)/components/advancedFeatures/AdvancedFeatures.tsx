@@ -3,9 +3,9 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 
-import styles from './thirdBlock.module.scss';
+import styles from './advancedFeatures.module.scss';
 
-const ThirdBlock = () => {
+const AdvancedFeatures = () => {
     return (
         <section className={styles.container}>
             <div className={styles.card_box}>
@@ -156,4 +156,4 @@ const ThirdBlock = () => {
     );
 };
 
-export default ThirdBlock;
+export default AdvancedFeatures;

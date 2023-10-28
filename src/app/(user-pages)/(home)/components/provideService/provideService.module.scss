@@ -4,22 +4,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // background-color: $black-quaternary;
-    // background: rgba(255, 255, 255, 0.80);
+    gap: 20px;
     max-width: 1440px;
     padding: 0 60px;
     margin-bottom: 160px;
     .text_box {
         max-width: 536px;
-        width: 100%;
-        height: 424px;
+        width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 24px;
+        h3 {
+            max-width: 265px;
+            margin-bottom: 0;
+        }
         .line {
             width: 100%;
             border: 1px solid $black-tertiary;
-            margin: 24px 0;
+            // margin: 24px 0;
         }
         .link_box {
             display: flex;
@@ -28,7 +31,7 @@
                 align-items: center;
                 max-width: 256px;
                 width: 100%;
-                height: 48px;
+                // height: 48px;
                 img {
                     padding: 12px;
                     margin-right: 16px;
@@ -69,14 +72,73 @@
     .miniCard_box {
         display: flex;
         justify-content: center;
+        gap: 24px;
         max-width: 536px;
-        width: 100%;
-        height: 536px;
-        padding-top: 72px;
+        width: 50%;
+        padding: 72px 24px 24px;
         background: url(../../../../../../public/bg-2.svg) center center/cover
             no-repeat;
+        .first_box {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+        }
         .second_box {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
             margin-top: 24px;
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: $tablet_bp) {
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        padding: 0 35px;
+        margin-bottom: 80px;
+        .text_box {
+            .link_box {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .read_more_link {
+                margin-top: 0;
+            }
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 0 16px;
+        margin: 48px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        .text_box {
+            max-width: 100%;
+            width: 100%;
+            gap: 16px;
+            .link_box {
+                flex-direction: column;
+                gap: 16px;
+                .link {
+                    img {
+                        padding: 8px;
+                        margin-right: 8px;
+                        width: 36px;
+                        height: 36px;
+                    }
+                    span {
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                }
+            }
+            .read_more_link {
+                margin-top: 0;
+            }
+        }
+        .miniCard_box {
+            width: 100%;
+            max-width: 450px;
         }
     }
 }

@@ -1,6 +1,7 @@
 export { default as TopBlock } from "./topBlock/TopBlock";
-export { default as FirstBlock } from "./firstBlock/FirstBlock";
-export { default as SecondBlock } from "./secondBlock/SecondBlock";
-export { default as ThirdBlock } from "./thirdBlock/ThirdBlock";
-export { default as ForthBlock } from "./forthBlock/ForthBlock";
-export { default as LastBlock } from "./lastBlock/LastBlock";
+export { default as WorksForRiders } from "./worksForRiders/WorksForRiders";
+export { default as WorksForDrivers } from "./worksForDrivers/WorksForDrivers";
+export { default as ProvideService } from "./provideService/ProvideService";
+export { default as AdvancedFeatures } from "./advancedFeatures/AdvancedFeatures";
+export { default as WhyUs } from "./whyUs/WhyUs";
+export { default as UsersSaying } from "./usersSaying/UsersSaying";

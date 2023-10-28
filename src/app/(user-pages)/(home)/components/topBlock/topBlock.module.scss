@@ -9,7 +9,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 60px;
+        gap: 40px;
         margin: 91px 0 0 0;
         width: 100%;
         // height: 384px;
@@ -18,6 +18,9 @@
             flex-direction: column;
             justify-content: center;
             max-width: 536px;
+            .text_box_secondary {
+                display: none;
+            }
             h1 {
                 font-size: 64px;
                 font-weight: 800;
@@ -47,10 +50,19 @@
                 line-height: 28px;
                 max-width: 648px;
             }
+            @media screen and (min-width: $tablet_bp) and (max-width: 1130px) {
+                .text_box_primary {
+                    display: none;
+                }
+                .text_box_secondary {
+                    display: inline;
+                }
+            }
         }
         .form_wrapper {
             position: relative;
             margin-top: 45px;
+            min-width: 450px;
             .form_box {
                 max-width: 536px;
                 width: 100%;
@@ -92,7 +104,7 @@
     .arrow_box {
         display: flex;
         justify-content: center;
-        margin: 72px 0;
+        margin: 72px 0 40px;
         .arrow {
             display: flex;
             justify-content: center;
@@ -132,7 +144,47 @@
         }
     }
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        padding: 0 35px;
+        .main_box {
+            margin: 48px 0 0 0;
+            gap: 48px;
+        }
     }
     @media screen and (max-width: $mobile_bp) {
+        padding: 0 16px;
+        .main_box {
+            margin: 24px 0 0 0;
+            gap: 24px;
+            .text_box {
+                align-items: center;
+                max-width: 344px;
+                h1 {
+                    font-size: 32px;
+                    font-weight: 600;
+                    line-height: 40px;
+                    margin-bottom: 16px;
+                    span {
+                        span {
+                            img {
+                                margin-left: -80px;
+                                width: 245px;
+                                height: auto;
+                            }
+                        }
+                    }
+                }
+                h2 {
+                    font-size: 18px;
+                    line-height: 22px;
+                    max-width: 648px;
+                }
+            }
+            .form_wrapper {
+                min-width: auto;
+                .form_box {
+                    padding: 16px;
+                }
+            }
+        }
     }
 }
