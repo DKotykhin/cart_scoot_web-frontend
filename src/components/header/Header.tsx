@@ -72,7 +72,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
 
     useEffect(() => {
         const offset = window.innerWidth - document.body.offsetWidth + 'px';
-        if (openLogoutCard || openChangePasswordCard || openAddMobileCard) {
+        if (openLogoutCard || openChangePasswordCard || openAddMobileCard || openUserPanel) {
             document.body.style.overflowY = 'hidden';
             document.body.style.paddingRight = offset;
         } else {
@@ -80,7 +80,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
             document.body.style.paddingRight = '0px';
         }
 
-    }, [openChangePasswordCard, openLogoutCard, openAddMobileCard]);
+    }, [openChangePasswordCard, openLogoutCard, openAddMobileCard, openUserPanel]);
 
     const logoutModalClick = () => {
         setOpenLogoutCard(true);
@@ -110,102 +110,104 @@ const Header: React.FC<IHeader> = ({ user }) => {
     return (
         <>
             <nav className={styles.container}>
-                <Link href={'/'}>
-                    <div className={styles.logo}>
-                        <Image
-                            src={'/logo.svg'}
-                            alt={'logo'}
-                            width={48}
-                            height={48}
-                            priority
-                        />
-                        <p>Cart<span>Scoot</span></p>
-                    </div>
-                </Link>
-                <div className={styles.navLinks}>
-                    {navLinks.map(item => (
-                        <Link href={item.url} key={item.name}>
-                            <span className={(pathname === item.url) ? `${styles.active} ${styles.active_2}` : ''}>
-                                {item.name}
-                            </span>
-                        </Link>
-                    ))}
-                </div>
-                {userData?._id ?
-                    userData.role === userTypes.rider ?
-                        <div className={styles.authButtons}>
-                            <div
-                                className={styles.user_button}
-                                onClick={userPanelClick}
-                            >
-                                {/* <div className={styles.badge}>
-                                    1
-                                </div> */}
-                                <Image
-                                    src={'/icons/user-black.svg'}
-                                    alt={'user'}
-                                    width={24}
-                                    height={24}
-                                    className={styles.user_avatar}
-                                />
-                            </div>
-                            <Link href={'/map'}>
-                                Book a Cart
-                            </Link>
+                <div className={styles.navbar_wrapper}>
+                    <Link href={'/'}>
+                        <div className={styles.logo}>
+                            <Image
+                                src={'/logo.svg'}
+                                alt={'logo'}
+                                width={48}
+                                height={48}
+                                priority
+                            />
+                            <p>Cart<span>Scoot</span></p>
                         </div>
-                        : userData.role === userTypes.driver ?
-                            <div className={styles.driver_button} onClick={userPanelClick}>
-                                <p>Dashboard</p>
-                                <Image
-                                    src={'/icons/caretDown-bold.svg'}
-                                    alt={'down'}
-                                    width={24}
-                                    height={24}
-                                />
-                            </div>
-                            : null
-                    :
-                    <div className={styles.navButtons}>
-                        {navButtons.map(item => (
+                    </Link>
+                    <div className={styles.navLinks}>
+                        {navLinks.map(item => (
                             <Link href={item.url} key={item.name}>
-                                {item.name}
+                                <span className={(pathname === item.url) ? `${styles.active} ${styles.active_2}` : ''}>
+                                    {item.name}
+                                </span>
                             </Link>
                         ))}
                     </div>
-                }
-                {openUserPanel &&
-                    <UserPanel
-                        logoutModalClick={logoutModalClick}
-                        openChangePasswordClick={openChangePasswordClick}
-                        user={userData}
-                        handleCloseClick={handleCloseClick}
-                        addMobileClick={addMobileClick}
-                        changeNameClick={changeNameClick}
-                    />
-                }
-                {openLogoutCard &&
-                    <LogoutCard
-                        logoutCancelClick={logoutCancelClick}
-                        logoutClick={logoutClick}
-                    />
-                }
-                {openChangePasswordCard &&
-                    <ChangePasswordCard
-                        changePasswordClick={changePasswordClick}
-                        openChangePasswordClick={openChangePasswordClick}
-                    />
-                }
-                {openAddMobileCard &&
-                    <AddMobilePhoneCard
-                        handleClose={handleClose}
-                    />
-                }
-                {openChangeNameCard &&
-                    <ChangeNameCard
-                        changeNameClick={changeNameClick}
-                        userName={user?.userName}
-                    />
-                }
+                    {userData?._id ?
+                        userData.role === userTypes.rider ?
+                            <div className={styles.authButtons}>
+                                <div
+                                    className={styles.user_button}
+                                    onClick={userPanelClick}
+                                >
+                                    {/* <div className={styles.badge}>
+                                    1
+                                </div> */}
+                                    <Image
+                                        src={'/icons/user-black.svg'}
+                                        alt={'user'}
+                                        width={24}
+                                        height={24}
+                                        className={styles.user_avatar}
+                                    />
+                                </div>
+                                <Link href={'/map'}>
+                                    Book a Cart
+                                </Link>
+                            </div>
+                            : userData.role === userTypes.driver ?
+                                <div className={styles.driver_button} onClick={userPanelClick}>
+                                    <p>Dashboard</p>
+                                    <Image
+                                        src={'/icons/caretDown-bold.svg'}
+                                        alt={'down'}
+                                        width={24}
+                                        height={24}
+                                    />
+                                </div>
+                                : null
+                        :
+                        <div className={styles.navButtons}>
+                            {navButtons.map(item => (
+                                <Link href={item.url} key={item.name}>
+                                    {item.name}
+                                </Link>
+                            ))}
+                        </div>
+                    }
+                    {openUserPanel &&
+                        <UserPanel
+                            logoutModalClick={logoutModalClick}
+                            openChangePasswordClick={openChangePasswordClick}
+                            user={userData}
+                            handleCloseClick={handleCloseClick}
+                            addMobileClick={addMobileClick}
+                            changeNameClick={changeNameClick}
+                        />
+                    }
+                    {openLogoutCard &&
+                        <LogoutCard
+                            logoutCancelClick={logoutCancelClick}
+                            logoutClick={logoutClick}
+                        />
+                    }
+                    {openChangePasswordCard &&
+                        <ChangePasswordCard
+                            changePasswordClick={changePasswordClick}
+                            openChangePasswordClick={openChangePasswordClick}
+                        />
+                    }
+                    {openAddMobileCard &&
+                        <AddMobilePhoneCard
+                            handleClose={handleClose}
+                        />
+                    }
+                    {openChangeNameCard &&
+                        <ChangeNameCard
+                            changeNameClick={changeNameClick}
+                            userName={user?.userName}
+                        />
+                    }
+                </div>
             </nav>
             <nav className={styles.mobile_container}>
                 <div className={styles.mobile_navLinks}>

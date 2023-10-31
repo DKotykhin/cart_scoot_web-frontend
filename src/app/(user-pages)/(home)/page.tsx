@@ -14,7 +14,7 @@ const HomePage = () => {
             <TopBlock />
             <WorksForRiders />
             <ProvideService />
-            {/* <AdvancedFeatures /> */}
+            <AdvancedFeatures />
             <WorksForDrivers />
             <WhyUs />
             <UsersSaying />

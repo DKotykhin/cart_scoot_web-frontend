@@ -5,84 +5,113 @@ import Link from 'next/link';
 
 import styles from './advancedFeatures.module.scss';
 
+const starsArray = [1, 2, 3, 4, 5];
+
 const AdvancedFeatures = () => {
     return (
         <section className={styles.container}>
             <div className={styles.card_box}>
                 <div className={styles.card}>
-                    <Image
-                        src={'/avatars/John.svg'}
-                        alt={'John avatar'}
-                        width={56}
-                        height={56}
-                        className={styles.avatar}
-                    />
-                    <Image
-                        src={'/avatars/car.svg'}
-                        alt={'car'}
-                        width={56}
-                        height={56}
-                    />
-                    <div className={styles.text}>
-                        <p>John Smith</p>
-                        <p>Yamaha - White</p>
+                    <div className={styles.avatar_wrapper}>
+                        <Image
+                            src={'/avatars/John.svg'}
+                            alt={'John avatar'}
+                            width={56}
+                            height={56}
+                            className={styles.avatar}
+                        />
+                        <Image
+                            src={'/avatars/car.svg'}
+                            alt={'car'}
+                            width={56}
+                            height={56}
+                        />
                     </div>
-                    <Image
-                        src={'/icons/rate.svg'}
-                        alt={'rate'}
-                        width={135}
-                        height={46}
-                    />
+                    <div className={styles.card_wrapper}>
+                        <div className={styles.text}>
+                            <p>John Smith</p>
+                            <p>Yamaha - White</p>
+                        </div>
+                        <div className={styles.stars_wrapper}>
+                            {starsArray.map(star => (
+                                <Image
+                                    src={'/icons/star-green.svg'}
+                                    alt={'rate'}
+                                    width={20}
+                                    height={20}
+                                    key={star}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.card}>
-                    <Image
-                        src={'/avatars/Emily.svg'}
-                        alt={'Emily avatar'}
-                        width={56}
-                        height={56}
-                        className={styles.avatar}
-                    />
-                    <Image
-                        src={'/avatars/car.svg'}
-                        alt={'car'}
-                        width={56}
-                        height={56}
-                    />
-                    <div className={styles.text}>
-                        <p>Emily Johnson</p>
-                        <p>Yamaha - Red</p>
+                    <div className={styles.avatar_wrapper}>
+                        <Image
+                            src={'/avatars/Emily.svg'}
+                            alt={'Emily avatar'}
+                            width={56}
+                            height={56}
+                            className={styles.avatar}
+                        />
+                        <Image
+                            src={'/avatars/car.svg'}
+                            alt={'car'}
+                            width={56}
+                            height={56}
+                        />
                     </div>
-                    <Image
-                        src={'/icons/rate.svg'}
-                        alt={'rate'}
-                        width={135}
-                        height={46}
-                    />
+                    <div className={styles.card_wrapper}>
+                        <div className={styles.text}>
+                            <p>Emily Johnson</p>
+                            <p>Yamaha - Red</p>
+                        </div>
+                        <div className={styles.stars_wrapper}>
+                            {starsArray.map(star => (
+                                <Image
+                                    src={'/icons/star-green.svg'}
+                                    alt={'rate'}
+                                    width={20}
+                                    height={20}
+                                    key={star}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.card}>
-                    <Image
-                        src={'/avatars/Michael.svg'}
-                        alt={'Michael avatar'}
-                        width={56}
-                        height={56}
-                        className={styles.avatar}
-                    />
-                    <Image
-                        src={'/avatars/car.svg'}
-                        alt={'car'}
-                        width={56}
-                        height={56}
-                    />
-                    <div className={styles.text}>
-                        <p>Michael Brown</p>
-                        <p>Yamaha - Black</p>
+                    <div className={styles.avatar_wrapper}>
+                        <Image
+                            src={'/avatars/Michael.svg'}
+                            alt={'Michael avatar'}
+                            width={56}
+                            height={56}
+                            className={styles.avatar}
+                        />
+                        <Image
+                            src={'/avatars/car.svg'}
+                            alt={'car'}
+                            width={56}
+                            height={56}
+                        />
                     </div>
-                    <Image
-                        src={'/icons/rate.svg'}
-                        alt={'rate'}
-                        width={135}
-                        height={46}
-                    />
+                    <div className={styles.card_wrapper}>
+                        <div className={styles.text}>
+                            <p>Michael Brown</p>
+                            <p>Yamaha - Black</p>
+                        </div>
+                        <div className={styles.stars_wrapper}>
+                            {starsArray.map(star => (
+                                <Image
+                                    src={'/icons/star-green.svg'}
+                                    alt={'rate'}
+                                    width={20}
+                                    height={20}
+                                    key={star}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className={styles.text_box}>

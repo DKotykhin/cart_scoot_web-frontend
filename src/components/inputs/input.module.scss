@@ -44,5 +44,14 @@
     }
     @media screen and (max-width: $mobile_bp) {
         margin-bottom: 16px;
+        input {
+            padding-left: 48px; 
+        }
+        .placeholder_icon {           
+            left: 16px;           
+        }
+        .eye_icon {            
+            right: 16px;            
+        }
     }
 }

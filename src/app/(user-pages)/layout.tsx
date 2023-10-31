@@ -15,7 +15,7 @@ export default async function RootLayout({
 
     return data?.getUserByToken.role === userTypes.admin ? redirect('/admin-dashboard') :
         <>
-            <header>
+            <header style={{ width: '100%' }}>
                 <Header user={data?.getUserByToken} />
             </header>
             <main>

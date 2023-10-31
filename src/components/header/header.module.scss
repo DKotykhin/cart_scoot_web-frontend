@@ -1,187 +1,195 @@
 @import "constants/constants.scss";
 
 .container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 24px;
-    background-color: $white;
-    padding: 24px;
-    width: 100vw;
-    max-width: 1320px;
-    height: 96px;
-    .logo {
+    max-width: 1390px;
+    padding: 0 35px;
+    margin: 0 auto;
+    .navbar_wrapper {
+        position: relative;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        p {
-            margin-left: 16px;
-            color: $blue-primary;
-            font-size: 20px;
-            font-weight: 500;
-            span {
-                color: $green-primary;
+        border-radius: 24px;
+        background-color: $white;
+        padding: 24px;
+        width: 100%;
+        // max-width: 1320px;
+        height: 96px;
+        .logo {
+            display: flex;
+            align-items: center;
+            p {
+                margin-left: 16px;
+                color: $blue-primary;
                 font-size: 20px;
                 font-weight: 500;
+                span {
+                    color: $green-primary;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
             }
         }
-    }
-    .navLinks {
-        a {
-            padding: 0 24px;
-            margin: 0 12px;
-            font-size: 16px;
-            font-weight: 600;
-            position: relative;
-            .active::before {
-                content: "";
-                position: absolute;
-                top: 54px;
-                left: 0;
-                border-top: 4px solid $blue-primary;
-                border-radius: 4px 4px 0 0;
-                width: 100%;
-            }
-            .active::after {
-                content: "";
-                position: absolute;
-                bottom: 54px;
-                left: 0;
-                border-bottom: 4px solid $blue-primary;
-                border-radius: 0 0 4px 4px;
-                width: 100%;
-            }
-        }
-    }
-    .navButtons {
-        a {
-            font-size: 16px;
-            font-weight: 600;
-            padding: 14px 24px;
-            border: 1px solid $black-tertiary;
-            border-radius: 24px;
-        }
-        :first-child {
-            background-color: $white;
-            transition: all 0.3s ease-out;
-            &:hover {
-                background-color: $black-quaternary;
-                transition: all 0.3s ease-out;
+        .navLinks {
+            a {
+                padding: 0 24px;
+                margin: 0 12px;
+                font-size: 16px;
+                font-weight: 600;
+                position: relative;
+                .active::before {
+                    content: "";
+                    position: absolute;
+                    top: 54px;
+                    left: 0;
+                    border-top: 4px solid $blue-primary;
+                    border-radius: 4px 4px 0 0;
+                    width: 100%;
+                }
+                .active::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 54px;
+                    left: 0;
+                    border-bottom: 4px solid $blue-primary;
+                    border-radius: 0 0 4px 4px;
+                    width: 100%;
+                }
             }
         }
-        :last-child {
-            background-color: $green-primary;
-            border: none;
-            margin-left: 16px;
-            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease-out;
-            &:hover {
-                background-color: $green-secondary;
-                transition: all 0.3s ease-out;
+        .navButtons {
+            a {
+                font-size: 16px;
+                font-weight: 600;
+                padding: 14px 24px;
+                border: 1px solid $black-tertiary;
+                border-radius: 24px;
             }
-        }
-    }
-    .authButtons {
-        display: flex;
-        align-items: center;
-        .user_button {
-            position: relative;
-            cursor: pointer;
-            img {
-                margin-left: 12px;
+            :first-child {
+                background-color: $white;
                 transition: all 0.3s ease-out;
                 &:hover {
-                    background-color: $green-quaternary;
+                    background-color: $black-quaternary;
                     transition: all 0.3s ease-out;
                 }
             }
-            .badge {
-                position: absolute;
-                left: 8px;
-                top: -8px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 24px;
-                height: 24px;
-                border-radius: 48px;
-                border: 2px solid $white;
-                background: $red-primary;
-                font-size: 14px;
-                font-weight: 400;
-                color: $white;
-                line-height: 18px;
-            }
-            .user_avatar {
-                width: 48px;
-                height: 48px;
-                padding: 0px 12px;
-                justify-content: center;
-                align-items: center;
-                border-radius: 20px;
-                color: black;
-                border: 1px solid $green-tertiary;
-                background: $green-quaternary;
-            }
-        }
-        :nth-child(2) {
-            background-color: $green-primary;
-            margin-left: 16px;
-            border-radius: 20px;
-            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
-            font-size: 16px;
-            color: $black-primary;
-            font-weight: 600;
-            line-height: 20px;
-            padding: 14px 24px;
-            transition: all 0.3s ease-out;
-            &:hover {
-                background-color: $green-secondary;
+            :last-child {
+                background-color: $green-primary;
+                border: none;
+                margin-left: 16px;
+                box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
                 transition: all 0.3s ease-out;
-            }
-            img {
-                margin-left: 12px;
+                &:hover {
+                    background-color: $green-secondary;
+                    transition: all 0.3s ease-out;
+                }
             }
         }
-    }
-    .driver_button {
-        display: flex;
-        height: 48px;
-        padding: 0px 24px;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        border-radius: 20px;
-        background: $green-primary;
-        box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
-        cursor: pointer;
-        p {
-            font-size: 16px;
-            color: $black-primary;
-            font-weight: 600;
-            line-height: 20px;
+        .authButtons {
+            display: flex;
+            align-items: center;
+            .user_button {
+                position: relative;
+                cursor: pointer;
+                img {
+                    margin-left: 12px;
+                    transition: all 0.3s ease-out;
+                    &:hover {
+                        background-color: $green-quaternary;
+                        transition: all 0.3s ease-out;
+                    }
+                }
+                .badge {
+                    position: absolute;
+                    left: 8px;
+                    top: -8px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 48px;
+                    border: 2px solid $white;
+                    background: $red-primary;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: $white;
+                    line-height: 18px;
+                }
+                .user_avatar {
+                    width: 48px;
+                    height: 48px;
+                    padding: 0px 12px;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 20px;
+                    color: black;
+                    border: 1px solid $green-tertiary;
+                    background: $green-quaternary;
+                }
+            }
+            :nth-child(2) {
+                background-color: $green-primary;
+                margin-left: 16px;
+                border-radius: 20px;
+                box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 14px 24px;
+                transition: all 0.3s ease-out;
+                &:hover {
+                    background-color: $green-secondary;
+                    transition: all 0.3s ease-out;
+                }
+                img {
+                    margin-left: 12px;
+                }
+            }
+        }
+        .driver_button {
+            display: flex;
+            height: 48px;
+            padding: 0px 24px;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border-radius: 20px;
+            background: $green-primary;
+            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            p {
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 600;
+                line-height: 20px;
+            }
         }
     }
 
     @media screen and (min-width: $full_bp) {
     }
     @media screen and (max-width: $tablet_bp) {
-        border-radius: 0;
-        height: 80px;
-        .logo {
-            p {
-                display: none;
-            }
-        }
-        .navLinks {
-            a {
-                padding: 0 24px;
-                margin: 0;
-                .active::before {
+        padding: 0;
+        .navbar_wrapper {
+            border-radius: 0;
+            height: 80px;
+            .logo {
+                p {
                     display: none;
                 }
-                .active::after {
-                    display: none;
+            }
+            .navLinks {
+                a {
+                    padding: 0 24px;
+                    margin: 0;
+                    .active::before {
+                        display: none;
+                    }
+                    .active::after {
+                        display: none;
+                    }
                 }
             }
         }
@@ -189,8 +197,11 @@
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
     }
     @media screen and (max-width: $mobile_bp) {
-        .navLinks {
-            display: none;
+        .navbar_wrapper {
+            position: static;
+            .navLinks {
+                display: none;
+            }
         }
     }
 }

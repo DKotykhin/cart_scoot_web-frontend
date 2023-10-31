@@ -15,7 +15,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 422px;
+        max-width: 422px;
+        width: calc(100% - 32px);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -50,6 +51,18 @@
             padding: 24px;
             width: 100%;
             gap: 24px;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .password_form {
+            .upper_box {
+                padding: 16px;
+            }
+            .lower_box {
+                padding: 16px;
+                flex-direction: column;
+                gap: 16px;
+            }
         }
     }
 }

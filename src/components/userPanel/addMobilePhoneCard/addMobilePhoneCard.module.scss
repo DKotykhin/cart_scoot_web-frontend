@@ -16,7 +16,8 @@
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
-        width: 648px;
+        max-width: 648px;
+        width: calc(100% - 32px);
         flex-direction: column;
         justify-content: center;
         border-radius: 24px;
@@ -75,6 +76,16 @@
         .lowerBox {
             width: 100%;
             padding: 24px;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .form {
+            .upperBox {
+                padding: 16px 16px 0;
+            }
+            .lowerBox {
+                padding: 16px;
+            }
         }
     }
 }
