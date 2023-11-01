@@ -20,6 +20,7 @@
         display: flex;
         gap: 24px;
         flex-wrap: wrap;
+        width: 100%;
         .pickup_input_box {
             flex-grow: 1;
         }
@@ -61,5 +62,13 @@
         gap: 16px;
         padding: 16px;
         width: calc(100% - 32px);
+        .form_box {           
+            .date_input_box {
+                max-width: 100%;
+            }
+            .time_input_box {
+                max-width: 100%;
+            }       
+        }
     }
 }

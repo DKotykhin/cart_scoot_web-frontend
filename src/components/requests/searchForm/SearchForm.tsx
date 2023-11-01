@@ -6,7 +6,7 @@ import Select from 'react-select';
 
 import Image from 'next/image';
 
-import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
+import DatePickerInput from '../dateTimePickers/DatePickerInput';
 import { statusTypes } from 'types/requestTypes';
 
 import styles from './searchForm.module.scss';
