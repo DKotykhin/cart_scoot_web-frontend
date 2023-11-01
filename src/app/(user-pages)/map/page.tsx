@@ -5,10 +5,10 @@ import Mapbox from './components/mapbox/Mapbox';
 
 const MapPage = () => {
     return (
-        <>
+        <div style={{ width: '100vw' }}>
             <Advertisement />
             <Mapbox />
-        </>
+        </div>
     );
 };
 

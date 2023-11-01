@@ -1,9 +1,8 @@
-import React, { ReactComponentElement, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 import Image from "next/image";
 
 import styles from './modalCard.module.scss';
-import { JsxElement } from 'typescript';
 
 interface ICancelTripCard {
     title: string;

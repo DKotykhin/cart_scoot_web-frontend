@@ -152,7 +152,7 @@ const FinishedCard: React.FC<IFinishedCard> = ({ handleClose, finishedCardData }
                 </div>
                 <div className='line' />
                 <div className={styles.lowerBox}>
-                    <button type='submit' className='button'>
+                    <button type='submit' className='button-green-filled'>
                         {loading ?
                             <Image
                                 src={'/spinner.svg'}

@@ -4,8 +4,10 @@ import styles from './advertisement.module.scss';
 
 const Advertisement = () => {
     return (
-        <div className={styles.container}>
-            <h3 className={styles.ads}>Your Ads Is Here</h3>
+        <div className={styles.ads_container}>
+            <div className={styles.ads_wrapper}>
+                <h3 className={styles.ads}>Your Ads Is Here</h3>
+            </div>
         </div>
     );
 };

@@ -1,0 +1,68 @@
+@import "constants/constants.scss";
+
+.driver_box {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    img {
+        border-radius: 50%;
+    }
+    .empty_avatar {
+        display: flex;
+        width: 48px;
+        height: 48px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 80px;
+        background-color: $blue-quaternary;
+        box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+        font-size: 16px;
+        color: $blue-primary;
+        font-weight: 600;
+        line-height: 20px;
+    }
+    .name_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        .star_box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            border-radius: 48px;
+            background: $green-quaternary;
+        }
+        .driver_name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100px;
+        }
+        .driver_bigName {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 170px;
+            font-size: 20px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 24px;
+        }
+        .review_name {
+            font-size: 16px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 200px;
+        }
+    }
+}

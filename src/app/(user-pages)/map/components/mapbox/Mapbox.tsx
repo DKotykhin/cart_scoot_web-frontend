@@ -81,6 +81,18 @@ const Mapbox = () => {
 
     }, [data?.getFreeDrivers.length, findCarFormData.requestedTime]);
 
+    useEffect(() => {
+        const offset = window.innerWidth - document.body.offsetWidth + 'px';
+        if (openLoginMobileCard || openAddMobileCard || (openDriverDetails && window.innerWidth < 998)) {
+            document.body.style.overflowY = 'hidden';
+            document.body.style.paddingRight = offset;
+        } else {
+            document.body.style.overflowY = 'unset';
+            document.body.style.paddingRight = '0px';
+        }
+
+    }, [openLoginMobileCard, openAddMobileCard, openDriverDetails]);
+
     const closeLoginModal = () => setOpenLoginMobileCard(false);
 
     const markerClick = (driver: IDriverWithRating) => {

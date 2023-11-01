@@ -11,8 +11,8 @@ import { toast } from 'react-toastify';
 
 import PickupInput from 'components/inputs/locationInput/PickupInput';
 import DropoffInput from 'components/inputs/locationInput/DropoffInput';
-import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
-import TimePickerInput from 'components/inputs/dateTimePickers/TimePickerInput';
+import DatePickerInput from '../dateTimePickers/DatePickerInput';
+import TimePickerInput from '../dateTimePickers/TimePickerInput';
 
 import { useFormDataStore } from 'stores/findCarFormStore';
 

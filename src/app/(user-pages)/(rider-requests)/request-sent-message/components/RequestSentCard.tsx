@@ -9,8 +9,7 @@ import styles from './requestSentCard.module.scss';
 
 const RequestSentCard: React.FC<{ code: string }> = ({ code }) => {
     return (
-        <div className={styles.container}>
-
+        <div className={styles.requestSentCard}>
             <div className={styles.upperBox}>
                 <Image
                     src={'/avatars/checkAvatar.svg'}
@@ -22,7 +21,7 @@ const RequestSentCard: React.FC<{ code: string }> = ({ code }) => {
                 <p className={styles.first_subtitle}>Your request has been sent successfully and if driver accepts we will notify you</p>
                 <p className={styles.second_subtitle}>Request Number: <span>{code}</span></p>
             </div>
-            <div className='line'/>
+            <div className='line' />
             <div className={styles.lowerBox}>
                 <Link href={'/requests-list'}>
                     <button className='button-green-filled'>Requests</button>
@@ -31,7 +30,6 @@ const RequestSentCard: React.FC<{ code: string }> = ({ code }) => {
                     <button className='button-green-outlined'>Home</button>
                 </Link>
             </div>
-
         </div>
     );
 };

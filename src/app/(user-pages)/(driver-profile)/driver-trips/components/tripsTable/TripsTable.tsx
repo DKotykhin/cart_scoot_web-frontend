@@ -39,7 +39,7 @@ const TripsTable: React.FC<ITripsTable> = ({ trips }) => {
                         <td><div>{item.requestCode}</div></td>
                         <td><div>{item.pickupLocation}</div></td>
                         <td><div>{item.dropoffLocation}</div></td>
-                        <td><div>{format(new Date(item.requestedTime), "d LLL H:mm")}</div></td>
+                        <td><div>{format(new Date(item.requestedTime), "d LLL h:mm a")}</div></td>
                         <td className={item.status === statusTypes.pending ? styles.status_pending
                             : item.status === statusTypes.rejected ? styles.status_rejected
                                 : item.status === statusTypes.active ? styles.status_active

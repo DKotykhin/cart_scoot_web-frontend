@@ -25,8 +25,9 @@ import styles from './requestDetails.module.scss';
 const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
 
     const router = useRouter();
-    
+
     const [openFinishedCard, setOpenFinishedCard] = useState(false);
+    const [openMobileDetailedCard, setOpenMobileDetailedCard] = useState(false);
     const [finishedCardData, setFinishedCardData] = useState({
         driverId: "",
         requestCode: "",
@@ -37,7 +38,7 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
             id: _id
         }
     });
-    
+
     const { coordinates: { start, end } } = data.getRequest.request;
 
     const routeData = useMapboxApi(start.lat, start.lon, end.lat, end.lon);
@@ -137,13 +138,35 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
                         </div>
                     </div>
                 }
-                <div className={styles.details}>
+                {openMobileDetailedCard ?
                     <DetailsCard
                         data={data?.getRequest}
                         routeData={routeData}
                         OpenFinishedCardFn={OpenFinishedCardFn}
+                        closeMobileDetailedCard={() => setOpenMobileDetailedCard(false)}
                     />
-                </div>
+                    :
+                    <>
+                        <div className={styles.mobile_card_wrapper}>
+                            <p>Details</p>
+                            <button onClick={() => setOpenMobileDetailedCard(true)}>
+                                <Image
+                                    src={'/icons/caretUp.svg'}
+                                    alt={'caret'}
+                                    width={24}
+                                    height={24}
+                                />
+                            </button>
+                        </div>
+                        <div className={styles.desktop_card_wrapper}>
+                            <DetailsCard
+                                data={data?.getRequest}
+                                routeData={routeData}
+                                OpenFinishedCardFn={OpenFinishedCardFn}
+                            />
+                        </div>
+                    </>
+                }
             </div>
         </>
     );

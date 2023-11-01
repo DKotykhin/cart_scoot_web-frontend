@@ -1,12 +1,13 @@
 @import "constants/constants.scss";
 
-.container {
+.requestSentCard {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    width: 422px;
+    max-width: 422px;
+    width: calc(100% - 32px);
     flex-direction: column;
     justify-content: center;
     border-radius: 24px;

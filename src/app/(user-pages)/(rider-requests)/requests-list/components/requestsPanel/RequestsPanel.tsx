@@ -15,6 +15,7 @@ import RequestsTable from '../requestsTable/RequestsTable';
 import { IRequestWithDriverPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestsPanel.module.scss';
+import RequestCard from '../requestCard/RequestCard';
 
 const Table = () => {
 
@@ -47,7 +48,14 @@ const Table = () => {
     return data?.getRequestsByRider.totalCount ?
         <div className={styles.container}>
             <SearchForm formData={formData} />
-            <RequestsTable requestData={data?.getRequestsByRider.requests} />
+            <div className={styles.desktopView}>
+                <RequestsTable requestData={data?.getRequestsByRider.requests} />
+            </div>
+            <div className={styles.mobileView}>
+                {data?.getRequestsByRider.requests.map(request => (
+                    <RequestCard request={request} key={request._id} />
+                ))}
+            </div>
             {(data?.getRequestsByRider.totalCount > 6 && data?.getRequestsByRider.totalCount !== data?.getRequestsByRider.requests.length) &&
                 <LoadMoreButton loadMoreClick={loadMoreClick} />}
         </div>

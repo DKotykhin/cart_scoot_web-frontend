@@ -39,7 +39,7 @@ const ReviewTable: React.FC<{ reviews?: IReview[] }> = ({ reviews }) => {
                             />
                         </td>
                         <td><div className={styles.comment_text}>{item.text}</div></td>
-                        <td><div>{format(new Date(item.createdAt), "d LLL H:mm")}</div></td>
+                        <td><div>{format(new Date(item.createdAt), "d LLL h:mm a")}</div></td>
                         <td>
                             <div className={styles.star_box}>
                                 {starArray.map(star => (

@@ -11,10 +11,10 @@ const RequestDetailsPage = ({
     };
 }) => {
     return (
-        <>
+        <div style={{ width: '100vw' }}>
             <Advertisement />
             <RequestDetails _id={params._id} />
-        </>
+        </div>
     );
 };
 

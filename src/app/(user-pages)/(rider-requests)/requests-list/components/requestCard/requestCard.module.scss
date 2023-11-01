@@ -1,0 +1,224 @@
+@import "constants/constants.scss";
+
+.requestCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: $white;
+    border-radius: 20px;
+    border: 1px solid $black-quaternary;
+    box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+    .avatar_box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        .avatar_text {
+            flex-grow: 1;
+            :first-child {
+                font-size: 20px;
+                color: $black-primary;
+                font-weight: 500;
+                line-height: 24px;
+                margin-bottom: 4px;
+            }
+            :last-child {
+                font-size: 16px;
+                color: $black-secondary;
+                font-weight: 400;
+                line-height: 20px;
+            }
+        }
+        :nth-child(3) {
+            span {
+                display: flex;
+                width: 111px;
+                height: 40px;
+                padding: 0px 12px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 16px;
+            }
+        }
+        .status_finished {
+            span {
+                background-color: $black-quaternary;
+                color: $black-primary;
+            }
+        }
+        .status_pending {
+            span {
+                background-color: $orange-secondary;
+                color: $orange-primary;
+            }
+        }
+        .status_active {
+            span {
+                background-color: $blue-quaternary;
+                color: $blue-primary;
+            }
+        }
+        .status_approved {
+            span {
+                background-color: $green-quaternary;
+                color: $green-primary;
+            }
+        }
+        .status_rejected {
+            span {
+                background-color: $red-quaternary;
+                color: $red-primary;
+            }
+        }
+    }
+    .request_line,
+    .request_line_desktop {
+        width: 100%;
+        border: 1px solid $black-quaternary;
+    }
+    .request_line_mobile {
+        display: none;
+    }
+    .location_box {
+        .location_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            .location_image {
+                display: flex;
+                width: 48px;
+                height: 48px;
+                padding: 12px;
+                border-radius: 12px;
+                background: $blue-quaternary;
+            }
+            p {
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 400;
+                line-height: 20px;
+            }
+        }
+        .location_separate_image {
+            margin-left: 23px;
+        }
+    }
+    .time_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            font-size: 16px;
+            color: $black-primary;
+            font-weight: 600;
+            line-height: 20px;
+        }
+        button {
+            display: flex;
+            height: 56px;
+            padding: 0px 24px;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border-radius: 20px;
+            border: 1px solid $green-primary;
+            background-color: $white;
+            span {
+                font-size: 16px;
+                color: $green-primary;
+                font-weight: 600;
+                line-height: 20px;
+            }
+        }
+    }
+    .button_box {
+        display: none;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .request_line_desktop {
+            display: none;
+        }
+        .request_line_mobile {
+            display: block;
+            width: 100%;
+            border: 1px solid $black-quaternary;
+        }
+        .avatar_box {
+            :nth-child(3) {
+                display: none;
+            }
+        }
+        .time_box {
+            button {
+                display: none;
+            }
+        }
+        .button_box {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            width: 100%;
+            :nth-child(1) {
+                span {
+                    display: flex;
+                    width: 111px;
+                    height: 40px;
+                    padding: 0px 12px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    border-radius: 16px;
+                }
+            }
+            .status_finished {
+                span {
+                    background-color: $black-quaternary;
+                    color: $black-primary;
+                }
+            }
+            .status_pending {
+                span {
+                    background-color: $orange-secondary;
+                    color: $orange-primary;
+                }
+            }
+            .status_active {
+                span {
+                    background-color: $blue-quaternary;
+                    color: $blue-primary;
+                }
+            }
+            .status_approved {
+                span {
+                    background-color: $green-quaternary;
+                    color: $green-primary;
+                }
+            }
+            .status_rejected {
+                span {
+                    background-color: $red-quaternary;
+                    color: $red-primary;
+                }
+            }
+            button {
+                display: flex;
+                height: 40px;
+                padding: 0px 24px;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                border-radius: 20px;
+                border: 1px solid $green-primary;
+                background-color: $white;
+                span {
+                    font-size: 16px;
+                    color: $green-primary;
+                    font-weight: 600;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+}

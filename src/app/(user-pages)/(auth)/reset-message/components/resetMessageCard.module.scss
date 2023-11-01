@@ -35,6 +35,6 @@
         }
     }
     @media screen and (max-width: $mobile_bp) {
-        width: 90vw;
+        width: calc(100vw - 32px);
     }
 }

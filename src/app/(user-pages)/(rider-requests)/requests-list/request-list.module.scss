@@ -1,9 +1,11 @@
 @import "constants/constants.scss";
 
 .container {
-    width: 1320px;
+    max-width: 1390px;
+    width: 100vw;
     text-align: left;
     margin-bottom: 50px;
+    padding: 0 35px;
     h2 {
         font-size: 32px;
         font-weight: 600;
@@ -13,5 +15,8 @@
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 0 16px;
     }
 }

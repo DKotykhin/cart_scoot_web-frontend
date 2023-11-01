@@ -47,7 +47,7 @@ const TripsTable: React.FC<{ trips: [IRequestWithAllUsersPopulatedFields] }> = (
                                 driverName={item.driverId?.userName}
                             />
                         </td>
-                        <td><div>{format(new Date(item.requestedTime), "d LLL H:mm")}</div></td>
+                        <td><div>{format(new Date(item.requestedTime), "d LLL h:mm a")}</div></td>
                         <td className={item.status === statusTypes.pending ? styles.status_pending
                             : item.status === statusTypes.rejected ? styles.status_rejected
                                 : item.status === statusTypes.active ? styles.status_active
