@@ -1,16 +1,16 @@
 import { Metadata } from "next";
 
-const viewport = {
-    colorScheme: "light",
-    themeColor: "#ffffff",
-    width: "device-width",
-    initialScale: 1,
-};
-export { viewport };
+// const viewport = {
+//     colorScheme: "light",
+//     themeColor: "#ffffff",
+//     width: "device-width",
+//     initialScale: 1,
+// };
+// export { viewport };
 
 export const generalMetaData: Metadata = {
-    // viewport: "width=device-width, initial-scale=1",
-    // themeColor: "#000000",
+    viewport: "width=device-width, initial-scale=1",
+    themeColor: "#000000",
     authors: [
         {
             name: "webXwiz",
