@@ -36,7 +36,6 @@ const UploadGuide = () => {
                     <p>Correct</p>
                     <p>Wrong</p>
                 </div>
-
             </div>
             <div className={styles.upload_card}>
                 <p className={styles.upload_title}>

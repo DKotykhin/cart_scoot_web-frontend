@@ -103,4 +103,19 @@
         margin-bottom: 24px;
         cursor: pointer;
     }
+    @media screen and (max-width: $tablet_bp) {
+        .card_wrapper {
+            flex-direction: column;
+            gap: 16px;
+            .upload_card {
+                max-width: 100%;
+            }
+        } 
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+     
+    }
+    @media screen and (max-width: $mobile_bp) {
+
+    }
 }

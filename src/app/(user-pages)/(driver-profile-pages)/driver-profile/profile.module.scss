@@ -53,4 +53,20 @@
             line-height: 34px;
         }
     }
+    @media screen and (max-width: $tablet_bp) {
+        border-radius: 24px;
+        gap: 24px;
+        margin-bottom: 150px;
+        border: 1px solid $black-tertiary;
+        .title_box {
+            border-top-left-radius: 24px;
+            .profile_subtitle {
+                margin-top: 0;
+            }
+        }
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+    }
+    @media screen and (max-width: $mobile_bp) {
+    }
 }

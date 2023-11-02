@@ -16,11 +16,10 @@ export default async function AdminLayout({
 }) {
     const data = await getUserByToken();
 
-    if (data?.getUserByToken.role === userTypes.admin) return <div className="admin-pages-container">
-        <SideBar navLinks={adminNavLinks} />
-        <main>
+    return data?.getUserByToken.role === userTypes.admin ?
+        <div className="admin-pages-container">
+            <SideBar navLinks={adminNavLinks} />
             {children}
-        </main>
-    </div>;
-    else redirect('/login');
+        </div>
+        : redirect('/login');
 }
