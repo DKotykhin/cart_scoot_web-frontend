@@ -22,6 +22,6 @@ export async function POST(req: Request) {
         return new Response("ok");
     } catch (error) {
         console.error(error);
-        // return new Error("Can't send email");
+        return new Error("Can't send email");
     }
 }
