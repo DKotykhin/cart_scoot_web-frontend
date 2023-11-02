@@ -5,7 +5,7 @@
     flex-direction: column;
     gap: 48px;
     max-width: 1056px;
-    width: 100vw;
+    width: 100%;
     background-color: $white;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
@@ -46,5 +46,11 @@
         flex-direction: column;
         gap: 24px;
         padding: 0px 24px;
+        .document_title {
+            font-size: 28px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 34px;
+        }
     }
 }

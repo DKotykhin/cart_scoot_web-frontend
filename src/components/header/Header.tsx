@@ -72,7 +72,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
 
     useEffect(() => {
         const offset = window.innerWidth - document.body.offsetWidth + 'px';
-        if (openLogoutCard || openChangePasswordCard || openAddMobileCard || openUserPanel) {
+        if (openLogoutCard || openChangePasswordCard || openAddMobileCard || (openUserPanel)) {
             document.body.style.overflowY = 'hidden';
             document.body.style.paddingRight = offset;
         } else {

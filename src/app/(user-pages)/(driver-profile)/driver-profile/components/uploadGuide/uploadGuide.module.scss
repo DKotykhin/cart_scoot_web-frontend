@@ -22,7 +22,12 @@
         }
         .image_box {
             display: flex;
-            gap: 24px;
+            justify-content: space-between;
+            gap: 12px;
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
         .explain_box {
             display: flex;

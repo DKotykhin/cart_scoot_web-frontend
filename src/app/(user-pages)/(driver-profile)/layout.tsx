@@ -15,9 +15,12 @@ export default async function AuthLayout({
 }) {
     const data = await getUserByToken();
 
-    if (data?.getUserByToken.role === userTypes.driver) return <div className="driver-pages-container">
-        <SideBar navLinks={driverNavLinks} />
-        {children}
-    </div>;
+    if (data?.getUserByToken.role === userTypes.driver)
+        return (
+            <div className="driver-pages-container">
+                <SideBar navLinks={driverNavLinks} />
+                {children}
+            </div>
+        );
     else redirect('/login');
 }

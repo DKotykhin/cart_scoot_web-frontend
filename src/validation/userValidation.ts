@@ -36,8 +36,13 @@ const message = yup
     .max(500, "Maximum 500 characters to fill")
     .required("Required field!");
 
-const phone = yup.string().phone(["US", "PL"], "Please enter a valid phone number").required("Required field!");
-const terms = yup.boolean().oneOf([true], "The terms and conditions must be accepted.");
+const phone = yup
+    .string()
+    .phone(["US", "PL"], "Please enter a valid phone number")
+    .required("Required field!");
+const terms = yup
+    .boolean()
+    .oneOf([true], "The terms and conditions must be accepted.");
 
 const registerSchema = yup.object({
     userName,
@@ -170,4 +175,3 @@ export const UserNameValidation: Object = {
     resolver: yupResolver(changeUserNameSchema),
     mode: "onChange",
 };
-

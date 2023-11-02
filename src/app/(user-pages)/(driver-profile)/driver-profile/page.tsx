@@ -1,16 +1,13 @@
 "use client";
 
-import React from 'react';
-
+import UserInfo from 'components/userInfo/UserInfo';
 import DriverAvatarBox from './components/driverAvatarBox/DriverAvatarBox';
 import UploadGuide from './components/uploadGuide/UploadGuide';
 import UploadService from './components/uploadService/UploadService';
-import UserInfo from '../../../../components/userInfo/UserInfo';
 import UpdateInfoForm from './components/updateInfoForm/UpdateInfoForm';
 import AddCoordinates from './components/addCoordinates/AddCoordinates';
 
 import { useUserStore } from 'stores/userStore';
-
 import { licenseStatusTypes } from 'types/userTypes';
 
 import styles from './profile.module.scss';

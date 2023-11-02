@@ -51,11 +51,12 @@
             color: $black-primary;
             font-weight: 500;
             line-height: 34px;
+            min-width: 200px;
         }
     }
     .button_box {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         button {
             width: fit-content;
         }
