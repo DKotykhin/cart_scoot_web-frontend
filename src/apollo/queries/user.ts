@@ -59,3 +59,19 @@ export const GET_FREE_DRIVERS = gql`
         }
     }
 `;
+
+export const GET_PAGE_ADVERTISEMENT = gql`
+    query GetPageAdvertisement($position: PageTypes) {
+        getPageAdvertisement(position: $position) {
+            _id
+            createdAt
+            title
+            description
+            imageURL
+            link
+            position
+            from
+            to
+        }
+    }
+`;

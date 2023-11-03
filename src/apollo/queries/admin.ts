@@ -225,3 +225,19 @@ export const GET_REVIEW_BY_REQUEST_CODE = gql`
         }
     }
 `;
+
+export const GET_ALL_ADVERTISEMENT = gql`
+    query GetAllAdvertisements {
+        getAllAdvertisements {
+            _id
+            createdAt
+            description
+            from
+            imageURL
+            link
+            position
+            title
+            to
+        }
+    }
+`;

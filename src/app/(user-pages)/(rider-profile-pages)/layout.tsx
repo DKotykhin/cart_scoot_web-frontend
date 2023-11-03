@@ -13,6 +13,8 @@ export default async function AuthLayout({
     const data = await getUserByToken();
 
     return data?.getUserByToken.role === userTypes.rider ?
-        { children }
+        <div>
+            {children}
+        </div>
         : redirect('/');
 }

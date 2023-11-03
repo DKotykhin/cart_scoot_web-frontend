@@ -34,8 +34,12 @@ export const CHANGE_USER_STATUS = gql`
 `;
 
 export const ANSWER_DRIVER_LICENSE = gql`
-    mutation AnswerDriverLicense($answerDriverLicenseInput: AnswerDriverLicenseInput) {
-        answerDriverLicense(answerDriverLicenseInput: $answerDriverLicenseInput) {
+    mutation AnswerDriverLicense(
+        $answerDriverLicenseInput: AnswerDriverLicenseInput
+    ) {
+        answerDriverLicense(
+            answerDriverLicenseInput: $answerDriverLicenseInput
+        ) {
             _id
             avatarURL
             banned
@@ -62,6 +66,22 @@ export const ANSWER_DRIVER_LICENSE = gql`
                 from
                 to
             }
+        }
+    }
+`;
+
+export const ADD_ADVERTISEMENT = gql`
+    mutation AddAdvertisement($addAdvertisementInput: AddAdvertisementInput) {
+        addAdvertisement(addAdvertisementInput: $addAdvertisementInput) {
+            _id
+            createdAt
+            description
+            from
+            imageURL
+            link
+            position
+            title
+            to
         }
     }
 `;
