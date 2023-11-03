@@ -12,15 +12,12 @@ const ProvideService = () => {
         <section className={styles.container}>
             <div className={styles.text_box}>
                 <h3 className='block-title'>
-                    Provide
-                    excellent service
-                    and have fun
+                    Our Journey <br />
+                    from Fairway Dreams <br />
+                    to Car Scoot&apos;s Tee-rrific Vision
                 </h3>
                 <p className='block-subtitle'>
-                    At Car Scoot, We Pave the Way for Boundless Golfing
-                    Excursions, Guided by Passion, Fueled by Precision, and
-                    Driven by the Desire to Elevate Every Swing into an
-                    Unparalleled Journey of Joy and Discovery.
+                    With Car Scoot, We Lay The Path For Limitless Road And Golf Adventures, Led by Enthusiasm, Powered By Accuracy, Motivated by The Aim to Transform Each Swing Into Happiness!
                 </p>
                 <div className={styles.line} />
                 <div className={styles.link_box}>
@@ -40,7 +37,7 @@ const ProvideService = () => {
                             width={48}
                             height={48}
                         />
-                        <span>Sign up as Driver</span>
+                        <span>Signup as Driver</span>
                     </Link>
                 </div>
                 <Link href={'/about'} className={styles.read_more_link}>
@@ -60,13 +57,13 @@ const ProvideService = () => {
                     <MiniCard
                         src='/icons/driver.svg'
                         alt='driver'
-                        title='260 +'
+                        title='100 +'
                         subtitle='Drivers'
                     />
                     <MiniCard
                         src='/icons/carSimple.svg'
                         alt='car'
-                        title='6 +'
+                        title='2'
                         subtitle='Type of Cars'
                     />
                 </div>
@@ -74,13 +71,13 @@ const ProvideService = () => {
                     <MiniCard
                         src='/icons/user-green-thin.svg'
                         alt='user'
-                        title='32.5k +'
+                        title='5k +'
                         subtitle='Active users'
                     />
                     <MiniCard
                         src='/icons/mapPin-green.svg'
                         alt='location'
-                        title='60 +'
+                        title='10 +'
                         subtitle='Locations & Cities'
                     />
                 </div>

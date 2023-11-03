@@ -10,7 +10,7 @@ const TopBlock = () => {
                 <h4>About us</h4>
                 <h1>Your Golf Cart Booking Solution</h1>
                 <h2>
-                    Discover the Story Behind the Greens: A Commitment to Exceptional Golf Cart Journeys, Crafted Just For You
+                    Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.
                 </h2>
             </div>
             <div className={styles.cardContainer}>

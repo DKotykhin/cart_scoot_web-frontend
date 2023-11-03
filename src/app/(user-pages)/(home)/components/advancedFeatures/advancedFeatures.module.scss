@@ -13,7 +13,6 @@
     .text_box {
         max-width: 536px;
         width: 100%;
-        // height: 440px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -24,18 +23,18 @@
         .line {
             width: 100%;
             border: 1px solid $black-tertiary;
-            // margin: 12px 0;
         }
         .link_wrapper {
             display: flex;
             justify-content: space-between;
+            gap: 10px;
             .link_box {
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 gap: 16px;
                 .link {
                     display: flex;
-                    align-items: center;
                     img {
                         margin-right: 16px;
                     }
@@ -98,12 +97,6 @@
                 display: flex;
                 .avatar {
                     z-index: 2;
-                    // box-shadow: 0px 4px 36px -4px rgba(0, 0, 0, 0.4);
-                    // border-radius: 50%;
-                    // border-radius: 36px;
-                    // background: url('../../../../../public/ellipse_1.png'),
-                    //     lightgray 50% / cover no-repeat;
-                    // filter: blur(12px);
                 }
                 :nth-child(2) {
                     z-index: 1;
@@ -119,7 +112,6 @@
                     max-width: 204px;
                     width: 100%;
                     margin-left: 8px;
-                    // flex-grow: 1;
                     :nth-child(1) {
                         font-size: 20px;
                         color: $black-primary;

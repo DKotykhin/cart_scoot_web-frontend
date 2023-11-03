@@ -14,13 +14,13 @@ const JourneyBlock = () => {
                         <MiniCard
                             src='/icons/driver.svg'
                             alt='driver'
-                            title='260 +'
+                            title='100 +'
                             subtitle='Drivers'
                         />
                         <MiniCard
                             src='/icons/carSimple.svg'
                             alt='car'
-                            title='6 +'
+                            title='2'
                             subtitle='Type of Cars'
                         />
                     </div>
@@ -28,13 +28,13 @@ const JourneyBlock = () => {
                         <MiniCard
                             src='/icons/user-green-thin.svg'
                             alt='user'
-                            title='32.5k +'
+                            title='5k +'
                             subtitle='Active users'
                         />
                         <MiniCard
                             src='/icons/mapPin-green.svg'
                             alt='location'
-                            title='60 +'
+                            title='10 +'
                             subtitle='Locations & Cities'
                         />
                     </div>

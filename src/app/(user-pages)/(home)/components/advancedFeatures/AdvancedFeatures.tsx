@@ -136,7 +136,7 @@ const AdvancedFeatures = () => {
                                 width={24}
                                 height={24}
                             />
-                            <span>Safe Cars</span>
+                            <span>Safe and Modern cars</span>
                         </div>
                         <div className={styles.link}>
                             <Image
@@ -145,7 +145,7 @@ const AdvancedFeatures = () => {
                                 width={24}
                                 height={24}
                             />
-                            <span>Modern Cars</span>
+                            <span>Super Convenience</span>
                         </div>
                     </div>
                     <div className={styles.link_box}>

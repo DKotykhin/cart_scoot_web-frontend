@@ -1,0 +1,57 @@
+@import "constants/constants.scss";
+
+.error_container {
+    max-width: 1390px;
+    width: 100vw;
+    padding: 24px 35px;
+    .error_wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+        width: 100%;
+        min-height: 650px;
+        height: 100%;
+        background-color: $white;
+        border-radius: 20px;
+        padding: 24px;
+        border: 1px solid $black-tertiary; 
+        .error_title {
+            font-size: 28px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 34px;
+        }
+        .error_subtitle {
+            font-size: 18px;
+            color: $black-tertiary;
+            font-weight: 400;
+            line-height: 22px;
+            margin-top: -8px;
+        }
+        a {
+            display: flex;
+            width: 154px;
+            height: 48px;
+            padding: 0px 24px;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border-radius: 20px;
+            background: $green-primary;
+            box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+            font-size: 16px;
+            color: $black-primary;
+            font-weight: 600;
+            line-height: 20px;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 16px;
+        .error_wrapper {
+            padding: 16px;
+        }
+    }
+}
