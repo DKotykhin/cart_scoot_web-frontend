@@ -37,7 +37,12 @@
     }
     @media screen and (max-width: $mobile_bp) {
         .picker_input {
-            width: calc(100vw - 64px);
+            min-width: 96px;
+            width: calc(50vw - 78px);
+            padding-left: 16px;
+        }
+        .start_icon {
+            display: none;
         }
     }
 }

@@ -4,7 +4,7 @@ import React from 'react';
 
 import Image from "next/image";
 
-import StarsBox from '../../../../../../components/starsBox/StarsBox';
+import StarsBox from 'components/starsBox/StarsBox';
 import { useUserStore } from 'stores/userStore';
 import { uploadAvatar } from 'apollo/services/uploadAvatar';
 import { avatarLetters } from 'utils/avatarLetters';
@@ -20,7 +20,10 @@ const DriverAvatarBox: React.FC = () => {
 
     const { addUser, userData } = useUserStore();
 
-    const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING);
+    const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING, {
+        fetchPolicy: 'no-cache',
+        refetchWritePolicy: 'overwrite',
+    });
 
     const onChange = async (e: any) => {
         const formData = new FormData();

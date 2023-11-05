@@ -1,6 +1,5 @@
 @import "constants/constants.scss";
 
-
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -10,13 +9,13 @@
     background-color: $white;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
-    // padding: 0 24px 24px;
+    border: 1px solid $black-tertiary;
     .review_panel_wrapper {
         padding: 0 24px 24px;
         background-color: $white;
         .review_panel {
             display: flex;
-            width: 1008px;
+            width: 100%;
             min-height: 670px;
             padding: 24px 0px;
             flex-direction: column;
@@ -26,19 +25,61 @@
             border-radius: 24px;
             border: 1px solid $black-tertiary;
             background: $white;
+            .mobile_review {
+                display: none;
+                padding: 0 16px;
+                width: 100%;
+            }
+            @media screen and (max-width: 1400px) {
+                .desktop_review {
+                    display: none;
+                }
+                .mobile_review {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    margin-bottom: 142px;
+                }
+            }
         }
     }
-    
     .empty_container {
         display: flex;
-        width: 100%;
-        // min-height: 670px;
-        height: 100%;
-        padding: 24px 0px;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 24px 0px;
         border-radius: 24px;
-        background: $white;
+        background: $white; 
         box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+    }
+    @media screen and (max-width: $tablet_bp) {
+        border-radius: 24px;
+        .review_panel_wrapper {
+            padding: 0;
+            .review_panel {
+                border: none;
+                padding: 0;
+                gap: 16px;
+            }
+        }
+        .empty_container {
+            padding: 0px;
+            min-height: 550px;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        gap: 16px;
+        .empty_container {
+            min-height: 450px;
+        }
+        .review_panel_wrapper {
+            .review_panel {
+                .mobile_review {
+                    margin-bottom: 100px;
+                }
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@
     .map {
         position: relative;
         width: 100%;
+        min-height: 515px;
         height: 100%;
         background-color: $white;
         border-radius: 20px;
@@ -52,6 +53,44 @@
                 color: $black-secondary;
                 font-weight: 600;
                 line-height: 20px;
+            }
+        }
+    }
+    @media screen and (max-width: $tablet_bp) {
+        border-radius: 24px;
+        .map {
+            .desktop_details_card {
+                display: none;
+            }
+            .mobile_card_wrapper {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                display: flex;
+                padding: 35px;
+                justify-content: space-between;
+                align-items: center;
+                background-color: $white;
+                z-index: 2;
+                p {
+                    font-size: 28px;
+                    color: $black-primary;
+                    font-weight: 500;
+                    line-height: 34px;
+                }
+                button {
+                    display: flex;
+                    width: 48px;
+                    height: 48px;
+                    padding: 0px 24px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 12px;
+                    border-radius: 20px;
+                    background: $green-primary;
+                    box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
+                }
             }
         }
     }

@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 
 import Image from 'next/image';
 
-import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
+import DatePickerInput from '../dateTimePickers/DatePickerInput';
 
 import styles from './searchForm.module.scss';
 
@@ -60,16 +60,18 @@ const SearchForm: React.FC<ISearchForm> = ({ formData }) => {
                         className={styles.search_icon}
                     />
                 </div>
-                <DatePickerInput
-                    control={control}
-                    placeholder='From'
-                    name='dateFrom'
-                />
-                <DatePickerInput
-                    control={control}
-                    placeholder='To'
-                    name='dateTo'
-                />
+                <div className={styles.date_picker_box}>
+                    <DatePickerInput
+                        control={control}
+                        placeholder='From'
+                        name='dateFrom'
+                    />
+                    <DatePickerInput
+                        control={control}
+                        placeholder='To'
+                        name='dateTo'
+                    />
+                </div>
                 <button
                     type='submit'
                     className={styles.submit_button}
@@ -82,7 +84,7 @@ const SearchForm: React.FC<ISearchForm> = ({ formData }) => {
                     />
                 </button>
             </div>
-        </form>
+        </form >
     );
 };
 

@@ -71,14 +71,15 @@
             }
         }
     }
-    @media screen and (max-width: $tablet_bp) {
+    @media screen and (max-width: 1300px) {
         .form_box {
             flex-wrap: wrap;
+            justify-content: flex-end;
         }       
     }
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
     }
     @media screen and (max-width: $mobile_bp) {
-       
+        padding: 0 16px;
     }
 }

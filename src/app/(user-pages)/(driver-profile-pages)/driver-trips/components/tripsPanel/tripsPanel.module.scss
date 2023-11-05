@@ -19,6 +19,21 @@
             border-radius: 24px;
             border: 1px solid $black-tertiary;
             background: $white;
+            .mobile_trips {
+                display: none;
+                padding: 0 16px;
+                width: 100%;
+            }
+            @media screen and (max-width: 1400px) {
+                .desktop_trips {
+                    display: none;
+                }
+                .mobile_trips {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                }
+            }
         }
     }
     .empty_container {
@@ -32,5 +47,17 @@
         border-radius: 24px;
         background: $white;
         box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+    }
+    @media screen and (max-width: $tablet_bp) {
+        .trips_panel_wrapper {
+            padding: 0;
+            .trips_panel {
+                border: none;
+                padding: 0;
+            }
+        }
+        .empty_container {
+            padding: 0px;
+        }
     }    
 }

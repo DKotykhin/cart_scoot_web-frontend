@@ -35,4 +35,19 @@
             line-height: 20px;
         }
     }
+    @media screen and (max-width: $tablet_bp) {
+        border-top-left-radius: 24px;
+        flex-direction: column;
+        padding: 16px 16px 8px;
+        gap: 8px;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .title_box {
+            .profile_title {
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 28px;
+            }
+        }
+    }
 }

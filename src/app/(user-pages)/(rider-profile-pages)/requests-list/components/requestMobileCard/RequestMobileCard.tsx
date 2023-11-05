@@ -7,9 +7,9 @@ import { format } from "date-fns";
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import { IRequestWithDriverPopulatedFields, statusTypes } from 'types/requestTypes';
 
-import styles from './requestCard.module.scss';
+import styles from './requestMobileCard.module.scss';
 
-const RequestCard: React.FC<{ request: IRequestWithDriverPopulatedFields }> = ({ request }) => {
+const RequestMobileCard: React.FC<{ request: IRequestWithDriverPopulatedFields }> = ({ request }) => {
 
     const router = useRouter();
     const handleClick = (_id: string) => router.push(`/requests-list/${_id}`);
@@ -106,4 +106,4 @@ const RequestCard: React.FC<{ request: IRequestWithDriverPopulatedFields }> = ({
     );
 };
 
-export default RequestCard;
+export default RequestMobileCard;

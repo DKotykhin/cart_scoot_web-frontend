@@ -18,7 +18,12 @@ import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestT
 
 import styles from './detailsCard.module.scss';
 
-const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = ({ request }) => {
+interface IDetailsCard {
+    request: IRequestWithAllUsersPopulatedFields;
+    closeMobileDetailsCard?: () => void;
+}
+
+const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }) => {
 
     const [openCancelTripCard, setOpenCancelTripCard] = useState(false);
 
@@ -62,7 +67,18 @@ const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = 
     return (
         <>
             <div className={styles.card_container}>
-                <p className={styles.card_title}>Trip Details</p>
+                <div className={styles.detail_title_box}>
+                    <p className={styles.detail_title}>
+                        Trip Details
+                    </p>
+                    <Image
+                        src={'/icons/close.svg'}
+                        alt={'close'}
+                        width={24}
+                        height={24}
+                        onClick={closeMobileDetailsCard}
+                    />
+                </div>
                 <LocationCard pickupLocation={pickupLocation} dropoffLocation={dropoffLocation} />
                 <div className={styles.user_details_wrapper}>
                     <DriverAvatar
@@ -101,12 +117,14 @@ const DetailsCard: React.FC<{ request: IRequestWithAllUsersPopulatedFields }> = 
                     </div>
                 </div>
                 {(status === statusTypes.pending || status === statusTypes.approved) &&
-                    <button
-                        className='button-grey-outlined'
-                        onClick={() => setOpenCancelTripCard(true)}
-                    >
-                        Cancel Trip
-                    </button>
+                    <div className={styles.button_box}>
+                        <button
+                            className='button-grey-outlined'
+                            onClick={() => setOpenCancelTripCard(true)}
+                        >
+                            Cancel Trip
+                        </button>
+                    </div>
                 }
             </div>
             {openCancelTripCard &&

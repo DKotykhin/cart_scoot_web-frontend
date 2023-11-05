@@ -25,7 +25,10 @@ interface IUserPanel {
 
 const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePasswordClick, handleCloseClick, addMobileClick, changeNameClick }) => {
 
-    const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING);
+    const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING, {
+        fetchPolicy: 'no-cache',
+        refetchWritePolicy: 'overwrite',
+    });
 
     const { addUser } = useUserStore();
 

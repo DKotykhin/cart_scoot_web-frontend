@@ -14,11 +14,19 @@
     border-radius: 16px;
     background: $black-quaternary;
     z-index: 2;
-    .card_title {
-        font-size: 28px;
-        color: $black-primary;
-        font-weight: 500;
-        line-height: 34px;
+    .detail_title_box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .detail_title {
+            font-size: 28px;
+            color: $black-primary;
+            font-weight: 500;
+            line-height: 34px;
+        }
+        img {
+            display: none;
+        }
     }
     .user_details_wrapper {
         flex-grow: 1;
@@ -54,6 +62,33 @@
                     background: $black-quaternary;
                 }
             }
+        }
+    }
+    @media screen and (max-width: $tablet_bp) {
+        position: fixed;
+        top: auto;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: 630px;
+        height: 100%;
+        .button_box {
+            text-align: center;
+            button {
+                max-width: 50%;
+            }
+        }
+        .detail_title_box {
+            img {
+                display: inline;
+            }
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 16px;
+        gap: 16px;
+        .user_details_wrapper {
+            padding: 16px;
         }
     }
 }

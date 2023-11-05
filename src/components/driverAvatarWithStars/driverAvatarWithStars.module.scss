@@ -29,15 +29,6 @@
         align-items: center;
         flex-wrap: wrap;
         width: 100%;
-        .star_box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            padding: 8px;
-            border-radius: 48px;
-            background: $green-quaternary;
-        }
         .driver_name {
             overflow: hidden;
             text-overflow: ellipsis;

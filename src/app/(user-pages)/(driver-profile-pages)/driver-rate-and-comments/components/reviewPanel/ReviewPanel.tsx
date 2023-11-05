@@ -14,6 +14,7 @@ import TitleBox from '../titleBox/TitleBox';
 import { IReviewData } from 'types/reviewTypes';
 
 import styles from './reviewPanel.module.scss';
+import ReviewMobile from 'components/rateAndComments/reviewMobile/ReviewMobile';
 
 const ReviewPanel: React.FC<{ driverId?: string }> = ({ driverId }) => {
 
@@ -52,7 +53,14 @@ const ReviewPanel: React.FC<{ driverId?: string }> = ({ driverId }) => {
                 <div className={styles.review_panel_wrapper}>
                     <div className={styles.review_panel}>
                         <SearchForm formData={formData} />
-                        <ReviewTable reviews={data?.getReviewsByDriverId.reviews} />
+                        <div className={styles.desktop_review}>
+                            <ReviewTable reviews={data?.getReviewsByDriverId.reviews} />
+                        </div>
+                        <div className={styles.mobile_review}>
+                            {data?.getReviewsByDriverId.reviews.map(review => (
+                                <ReviewMobile review={review} key={review._id} />
+                            ))}
+                        </div>
                         {(data?.getReviewsByDriverId.totalCount > 6 && data?.getReviewsByDriverId.totalCount !== data?.getReviewsByDriverId.reviews.length) &&
                             <LoadMoreButton loadMoreClick={loadMoreClick} />}
                     </div>

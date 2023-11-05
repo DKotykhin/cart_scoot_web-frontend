@@ -1,16 +1,14 @@
 "use client";
 
 import React from 'react';
-import Image from "next/image";
 import { format } from 'date-fns';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
+import StarsArray from 'components/starsArray/StarsArray';
 
 import { IReview } from 'types/reviewTypes';
 
 import styles from './reviewTable.module.scss';
-
-const starArray = [1, 2, 3, 4, 5];
 
 const ReviewTable: React.FC<{ reviews?: IReview[] }> = ({ reviews }) => {
 
@@ -41,26 +39,7 @@ const ReviewTable: React.FC<{ reviews?: IReview[] }> = ({ reviews }) => {
                         <td><div className={styles.comment_text}>{item.text}</div></td>
                         <td><div>{format(new Date(item.createdAt), "d LLL h:mm a")}</div></td>
                         <td>
-                            <div className={styles.star_box}>
-                                {starArray.map(star => (
-                                    <div key={star}>
-                                        {Math.round(item.rating) >= star ?
-                                            <Image
-                                                src={'/icons/star-green.svg'}
-                                                alt={'star'}
-                                                width={20}
-                                                height={20}
-                                            /> :
-                                            <Image
-                                                src={'/icons/star-empty.svg'}
-                                                alt={'star'}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        }
-                                    </div>
-                                ))}
-                            </div>
+                            <StarsArray rating={item?.rating} />
                         </td>
                     </tr>
                 ))}

@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMapGl, { Marker, FullscreenControl, GeolocateControl, NavigationControl } from "react-map-gl";
 
 import Image from "next/image";
@@ -17,6 +17,8 @@ import { IRequestWithRating } from 'types/requestTypes';
 import styles from './tripDetail.module.scss';
 
 const TripDetail: React.FC<{ _id: string }> = ({ _id }) => {
+
+    const [openMobileDetailsCard, setOpenMobileDetailsCard] = useState(false);
 
     const { data }: { data: { getRequest: IRequestWithRating } } = useSuspenseQuery(GET_REQUEST, {
         variables: {
@@ -82,7 +84,29 @@ const TripDetail: React.FC<{ _id: string }> = ({ _id }) => {
                     <GeolocateControl />
                     <NavigationControl />
                 </ReactMapGl>
-                <DetailsCard request={data?.getRequest.request}/>
+                {openMobileDetailsCard ?
+                    <DetailsCard
+                        request={data?.getRequest.request}
+                        closeMobileDetailsCard={() => setOpenMobileDetailsCard(false)}
+                    />
+                    :
+                    <>
+                        <div className={styles.desktop_details_card}>
+                            <DetailsCard request={data?.getRequest.request} />
+                        </div>
+                        <div className={styles.mobile_card_wrapper}>
+                            <p>Details</p>
+                            <button onClick={() => setOpenMobileDetailsCard(true)}>
+                                <Image
+                                    src={'/icons/caretUp.svg'}
+                                    alt={'caret'}
+                                    width={24}
+                                    height={24}
+                                />
+                            </button>
+                        </div>
+                    </>
+                }
             </div>
         </div>
     );

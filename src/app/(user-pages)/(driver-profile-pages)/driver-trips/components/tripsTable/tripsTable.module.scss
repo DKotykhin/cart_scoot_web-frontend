@@ -7,6 +7,12 @@
     thead tr {
         // height: 80px;
         background-color: $black-quaternary;
+        :nth-child(5) {
+            min-width: 180px;
+            // div {
+            //     min-width: 180px;
+            // }
+        }
         th {
             padding: 16px 8px;
             text-align-last: left;
@@ -15,7 +21,7 @@
                 color: $black-primary;
                 font-weight: 600;
                 line-height: 20px;
-                padding: 16px;
+                padding: 14px;
             }
         }
     }
@@ -30,7 +36,7 @@
                 color: $black-primary;
                 font-weight: 400;
                 line-height: 20px;
-                padding: 0 16px;
+                padding: 0 14px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;

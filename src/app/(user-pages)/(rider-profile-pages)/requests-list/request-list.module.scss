@@ -18,5 +18,8 @@
     }
     @media screen and (max-width: $mobile_bp) {
         padding: 0 16px;
+        h2 {
+            margin: 24px 0;  
+        }
     }
 }

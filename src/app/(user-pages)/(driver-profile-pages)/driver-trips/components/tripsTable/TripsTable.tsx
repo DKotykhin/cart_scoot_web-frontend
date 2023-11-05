@@ -11,7 +11,7 @@ import { IRequestWithRiderPopulatedFields, statusTypes } from 'types/requestType
 import styles from './tripsTable.module.scss';
 
 interface ITripsTable {
-    trips: [IRequestWithRiderPopulatedFields];
+    trips: IRequestWithRiderPopulatedFields[];
 }
 
 const TripsTable: React.FC<ITripsTable> = ({ trips }) => {

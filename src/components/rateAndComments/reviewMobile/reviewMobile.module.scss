@@ -1,0 +1,72 @@
+@import "constants/constants.scss";
+
+.mobile_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: stretch;
+    gap: 16px;
+    padding: 16px;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid $black-quaternary;
+    background: $white;
+    box-shadow: 0px 4px 48px -4px rgba(0, 0, 0, 0.08);
+    .avatar_box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        .avatar_text {
+            flex-grow: 1;
+            :first-child {
+                font-size: 20px;
+                color: $black-primary;
+                font-weight: 500;
+                line-height: 24px;
+                margin-bottom: 4px;
+            }
+            :last-child {
+                font-size: 16px;
+                color: $black-secondary;
+                font-weight: 400;
+                line-height: 20px;
+            }
+        }
+    }
+    .review_line {
+        width: 100%;
+        border: 1px solid $black-quaternary;
+    }
+    .review_date {
+        font-size: 14px;
+        color: $black-secondary;
+        font-weight: 400;
+        line-height: 18px;
+    }
+    .review_text {
+        font-size: 16px;
+        color: $black-primary;
+        font-weight: 400;
+        line-height: 20px;
+    }
+    .review_mobile_view {
+        display: none;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .review_tablet_view {
+            display: none;
+        }
+        .review_mobile_view {
+            max-width: 123px;
+            display: block;
+        }
+        .avatar_box {
+            .avatar_text {
+                :last-child {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

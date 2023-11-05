@@ -11,11 +11,11 @@ import { GET_REQUESTS_BY_RIDER } from 'apollo/queries/request';
 import SearchForm, { ISearchData } from 'components/requests/searchForm/SearchForm';
 import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
 import RequestsTable from '../requestsTable/RequestsTable';
+import RequestMobileCard from '../requestMobileCard/RequestMobileCard';
 
 import { IRequestWithDriverPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestsPanel.module.scss';
-import RequestCard from '../requestCard/RequestCard';
 
 const Table = () => {
 
@@ -53,7 +53,7 @@ const Table = () => {
             </div>
             <div className={styles.mobileView}>
                 {data?.getRequestsByRider.requests.map(request => (
-                    <RequestCard request={request} key={request._id} />
+                    <RequestMobileCard request={request} key={request._id} />
                 ))}
             </div>
             {(data?.getRequestsByRider.totalCount > 6 && data?.getRequestsByRider.totalCount !== data?.getRequestsByRider.requests.length) &&

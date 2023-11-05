@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 
-import Image from "next/image";
-
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_REQUESTS_BY_DRIVER } from 'apollo/queries/request';
 
@@ -12,6 +10,7 @@ import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
 import TitleWithAmount from 'components/titleWithAmount/TitleWithAmount';
 import EmptyList from 'components/emptyList/EmptyList';
 import TripsTable from '../tripsTable/TripsTable';
+import TripMobileCard from '../tripMobileCard/TripMobileCard';
 
 import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
 
@@ -52,7 +51,14 @@ const TripsPanel = () => {
                 <div className={styles.trips_panel_wrapper}>
                     <div className={styles.trips_panel}>
                         <SearchForm formData={formData} />
-                        <TripsTable trips={data?.getRequestsByDriver.requests} />
+                        <div className={styles.desktop_trips}>
+                            <TripsTable trips={data?.getRequestsByDriver.requests} />
+                        </div>
+                        <div className={styles.mobile_trips}>
+                            {data?.getRequestsByDriver.requests.map(request => (
+                                <TripMobileCard request={request} key={request._id} />
+                            ))}
+                        </div>
                         {(data?.getRequestsByDriver.totalCount > 6 && data?.getRequestsByDriver.totalCount !== data?.getRequestsByDriver.requests.length) &&
                             <LoadMoreButton loadMoreClick={loadMoreClick} />}
                     </div>

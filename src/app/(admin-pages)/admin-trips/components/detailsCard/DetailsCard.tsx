@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
+import StarsArray from 'components/starsArray/StarsArray';
 
 import { useMapboxApi } from 'hooks/useMapboxApi';
 import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestTypes';
@@ -25,7 +26,7 @@ interface IDetailsCard {
 const starArray = [1, 2, 3, 4, 5];
 
 const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
-
+    console.log(reviewData?.rating);
     const [buttonIndex, setButtonIndex] = useState(0);
 
     const routeData = useMapboxApi(
@@ -43,26 +44,7 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                     driverName={requestData?.request.driverId.userName}
                     bigName={true}
                 />
-                <div className={styles.star_box}>
-                    {starArray.map(star => (
-                        <div key={star}>
-                            {Math.round(requestData?.avgRating || 0) >= star ?
-                                <Image
-                                    src={'/icons/star-green.svg'}
-                                    alt={'star'}
-                                    width={20}
-                                    height={20}
-                                /> :
-                                <Image
-                                    src={'/icons/star-empty.svg'}
-                                    alt={'star'}
-                                    width={20}
-                                    height={20}
-                                />
-                            }
-                        </div>
-                    ))}
-                </div>
+                <StarsArray rating={requestData?.avgRating} />
             </div>
             {buttonIndex === 0 ?
                 <div className={styles.details_wrapper}>
@@ -138,15 +120,23 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                             title='User rate to driver'
                             value={starArray.map(star => (
                                 <div key={star}>
-                                    {Math.round(reviewData?.rating || 0) >= star ?
+                                    {reviewData?.rating ?
+                                        Math.round(reviewData?.rating) >= star ?
+                                            <Image
+                                                src={'/icons/star-green.svg'}
+                                                alt={'star'}
+                                                width={20}
+                                                height={20}
+                                            /> :
+                                            <Image
+                                                src={'/icons/star-empty.svg'}
+                                                alt={'star'}
+                                                width={20}
+                                                height={20}
+                                            />
+                                        :
                                         <Image
-                                            src={'/icons/star-green.svg'}
-                                            alt={'star'}
-                                            width={20}
-                                            height={20}
-                                        /> :
-                                        <Image
-                                            src={'/icons/star-empty.svg'}
+                                            src={'/icons/star-grey.svg'}
                                             alt={'star'}
                                             width={20}
                                             height={20}
@@ -154,6 +144,7 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                                     }
                                 </div>
                             ))}
+                        // value={<StarsArray rating={reviewData?.rating} />}
                         />
                         <div className={styles.comment_box}>
                             <div className={styles.comment_title_box}>

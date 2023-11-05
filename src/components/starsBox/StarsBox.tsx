@@ -1,10 +1,8 @@
 import React from 'react';
 
-import Image from "next/image";
+import StarsArray from 'components/starsArray/StarsArray';
 
 import styles from './starsBox.module.scss';
-
-const starArray = [1, 2, 3, 4, 5];
 
 interface IStarsBox {
     avgRating?: number,
@@ -20,34 +18,7 @@ const StarsBox: React.FC<IStarsBox> = ({ avgRating, totalCount }) => {
                 :
                 <p>No reviews</p>
             }
-            <div className={styles.star_box}>
-                {starArray.map(star => (
-                    <div key={star}>
-                        {avgRating !== 0 ?
-                            Math.round(avgRating || 0) >= star ?
-                                <Image
-                                    src={'/icons/star-green.svg'}
-                                    alt={'star'}
-                                    width={20}
-                                    height={20}
-                                /> :
-                                <Image
-                                    src={'/icons/star-empty.svg'}
-                                    alt={'star'}
-                                    width={20}
-                                    height={20}
-                                />
-                            :
-                            <Image
-                                src={'/icons/star-grey.svg'}
-                                alt={'star'}
-                                width={20}
-                                height={20}
-                            />
-                        }
-                    </div>
-                ))}
-            </div>
+            <StarsArray rating={avgRating} />
         </div>
     );
 };

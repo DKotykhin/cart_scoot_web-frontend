@@ -2,6 +2,7 @@ import React from 'react';
 
 import Image from "next/image";
 
+import StarsArray from 'components/starsArray/StarsArray';
 import { avatarLetters } from 'utils/avatarLetters';
 
 import styles from './driverAvatarWithStars.module.scss';
@@ -13,8 +14,6 @@ interface IDriverAvatar {
     reviewName?: boolean;
     rating?: number;
 }
-
-const starArray = [1, 2, 3, 4, 5];
 
 const DriverAvatarWithStars: React.FC<IDriverAvatar> = ({ driverAvatarURL, driverName, bigName, reviewName, rating }) => {
     return (
@@ -36,26 +35,7 @@ const DriverAvatarWithStars: React.FC<IDriverAvatar> = ({ driverAvatarURL, drive
                     className={bigName ? styles.driver_bigName : reviewName ? styles.review_name : styles.driver_name}>
                     {driverName || "CartScootWeb Driver"}
                 </span>
-                <div className={styles.star_box}>
-                    {starArray.map(star => (
-                        <div key={star}>
-                            {Math.round(rating || 0) >= star ?
-                                <Image
-                                    src={'/icons/star-green.svg'}
-                                    alt={'star'}
-                                    width={20}
-                                    height={20}
-                                /> :
-                                <Image
-                                    src={'/icons/star-empty.svg'}
-                                    alt={'star'}
-                                    width={20}
-                                    height={20}
-                                />
-                            }
-                        </div>
-                    ))}
-                </div>
+                <StarsArray rating={rating} />
             </div>
         </div>
     );

@@ -23,4 +23,8 @@
             bottom: 0;
         }
     }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 0 16px;
+        margin-top: 24px;
+    }
 }

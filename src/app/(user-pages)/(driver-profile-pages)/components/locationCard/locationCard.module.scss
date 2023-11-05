@@ -31,4 +31,7 @@
             }
         }
     }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 16px;
+    }
 }
