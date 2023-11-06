@@ -1,0 +1,33 @@
+@import "constants/constants.scss";
+
+.license_box {
+    p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        gap: 10px;
+        height: 40px;
+        padding: 0px 24px;
+        border-radius: 16px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+    .approved {
+        background: $green-quaternary;
+        color: $green-primary;
+    }
+    .waiting {
+        background: $orange-secondary;
+        color: $orange-primary;
+    }
+    .rejected {
+        background: $red-quaternary;
+        color: $red-primary;
+    }
+    .pending {
+        background: $black-quaternary;
+        color: $black-primary;
+    }
+}

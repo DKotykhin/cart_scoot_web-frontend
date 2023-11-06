@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { format } from "date-fns";
 
-import { IRequestWithDriverPopulatedFields, statusTypes } from 'types/requestTypes';
-
+import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
+import { IRequestWithDriverPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestsTable.module.scss';
 
@@ -47,14 +47,7 @@ const RequestsTable: React.FC<IRequestsTable> = ({ requestData }) => {
                         <td><div>{item.pickupLocation}</div></td>
                         <td><div>{item.dropoffLocation}</div></td>
                         <td><div>{format(new Date(item.requestedTime), "d LLL h:mm a")}</div></td>
-                        <td className={item.status === statusTypes.pending ? styles.status_pending
-                            : item.status === statusTypes.rejected ? styles.status_rejected
-                                : item.status === statusTypes.active ? styles.status_active
-                                    : item.status === statusTypes.approved ? styles.status_approved
-                                        : styles.status_finished
-                        }>
-                            <span>{item.status.charAt(0) + item.status.slice(1).toLowerCase()}</span>
-                        </td>
+                        <td><RequestStatusBox status={item.status} /></td>
                         <td className={styles.image_box} onClick={() => handleClick(item._id)}>
                             <Image
                                 src={'/icons/caretRight-grey.svg'}

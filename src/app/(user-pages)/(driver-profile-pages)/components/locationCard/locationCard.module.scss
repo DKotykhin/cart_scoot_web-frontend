@@ -31,7 +31,12 @@
             }
         }
     }
-    @media screen and (max-width: $mobile_bp) {
+    @media screen and (max-width: $tablet_bp) {
+        min-width: 400px;
         padding: 16px;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 12px;
+        min-width: 260px;
     }
 }

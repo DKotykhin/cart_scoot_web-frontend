@@ -8,21 +8,21 @@
         // height: 80px;
         background-color: $black-quaternary;
         th {
-            padding: 16px 8px;
+            padding: 16px 4px;
             text-align-last: left;
             div {
                 font-size: 16px;
                 color: $black-primary;
                 font-weight: 600;
                 line-height: 20px;
-                padding: 16px;
+                padding: 14px;
             }
         }
     }
     tbody tr {
         height: 80px;
         td {
-            padding: 16px 8px;
+            padding: 16px 4px;
             max-width: 200px;
             text-align-last: left;
             div {
@@ -30,7 +30,7 @@
                 color: $black-primary;
                 font-weight: 400;
                 line-height: 20px;
-                padding: 0 16px;
+                padding: 0 14px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -63,48 +63,6 @@
                 color: $blue-primary;
                 font-weight: 600;
                 line-height: 20px;
-            }
-        }
-        :nth-child(6) {
-            span {
-                display: flex;
-                width: 111px;
-                height: 40px;
-                padding: 0px 12px;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                border-radius: 16px;
-            }
-        }
-        .status_finished {
-            span {
-                background-color: $black-quaternary;
-                color: $black-primary;
-            }
-        }
-        .status_pending {
-            span {
-                background-color: $orange-secondary;
-                color: $orange-primary;
-            }
-        }
-        .status_active {
-            span {
-                background-color: $blue-quaternary;
-                color: $blue-primary;
-            }
-        }
-        .status_approved {
-            span {
-                background-color: $green-quaternary;
-                color: $green-primary;
-            }
-        }
-        .status_rejected {
-            span {
-                background-color: $red-quaternary;
-                color: $red-primary;
             }
         }
     }

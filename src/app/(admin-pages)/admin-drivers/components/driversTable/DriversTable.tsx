@@ -10,9 +10,10 @@ import { CHANGE_USER_STATUS } from 'apollo/mutations/admin';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import ModalCard from 'components/modalCard/ModalCard';
+import LicenseStatusBox from 'components/licenseStatusBox/LicenseStatusBox';
 import StatusButton from '../../../components/statusButton/StatusButton';
 
-import { IUser, licenseStatusTypes } from 'types/userTypes';
+import { IUser } from 'types/userTypes';
 
 import styles from './driversTable.module.scss';
 
@@ -108,21 +109,7 @@ const DriversTable: FC<{ drivers: IUser[] }> = ({ drivers }) => {
                             </td>
                             <td><div><StatusButton banned={item.banned} banStatusClick={() => banStatusClick(item._id, item.banned)} /></div></td>
                             <td><div>{item.email}</div></td>
-                            <td className={item.license.status === licenseStatusTypes.waiting ? styles.status_waiting
-                                : item.license.status === licenseStatusTypes.rejected ? styles.status_rejected
-                                    : item.license.status === licenseStatusTypes.approved ? styles.status_approved
-                                        : styles.status_pending}
-                            >
-                                {item.license.status === licenseStatusTypes.waiting ?
-                                    <span>Wait for Approve</span>
-                                    : item.license.status === licenseStatusTypes.rejected ?
-                                        <span>Rejected</span>
-                                        : item.license.status === licenseStatusTypes.approved ?
-                                            <span>Verified</span>
-                                            :
-                                            <span>Unverified</span>
-                                }
-                            </td>
+                            <td><LicenseStatusBox status={item.license.status} /></td>
                             <td className={styles.image_box} onClick={() => handleClick(item._id)}>
                                 <Image
                                     src={'/icons/caretRight-grey.svg'}

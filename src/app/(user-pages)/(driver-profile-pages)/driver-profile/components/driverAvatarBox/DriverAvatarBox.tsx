@@ -15,6 +15,7 @@ import { GET_DRIVER_RATING } from 'apollo/queries/review';
 import { licenseStatusTypes } from 'types/userTypes';
 
 import styles from './driverAvatarBox.module.scss';
+import LicenseStatusBox from 'components/licenseStatusBox/LicenseStatusBox';
 
 const DriverAvatarBox: React.FC = () => {
 
@@ -62,17 +63,13 @@ const DriverAvatarBox: React.FC = () => {
             </div>
             <div className={styles.name_wrapper}>
                 <p className={styles.name_title}>{userData?.userName}</p>
-                {(userData?.license.status === licenseStatusTypes.approved) ?
-                    <p className={`${styles.status} ${styles.approved}`}>Verified</p>
-                    : (userData?.license.status === licenseStatusTypes.waiting) ?
-                        <p className={`${styles.status} ${styles.waiting}`}>Waiting For Approve</p>
-                        : (userData?.license.status === licenseStatusTypes.rejected) ?
-                            <p className={`${styles.status} ${styles.rejected}`}>Invalid Documents</p>
-                            :
-                            <p className={`${styles.status} ${styles.pending}`}>Unverified</p>
-                }
+                <LicenseStatusBox status={userData?.license.status} />
             </div>
-            <StarsBox avgRating={data?.getDriverRating.avgRating} totalCount={data?.getDriverRating.totalCount}/>
+            <StarsBox
+                rating={data?.getDriverRating.avgRating}
+                totalCount={data?.getDriverRating.totalCount}
+                comment={true}
+            />
         </div>
     );
 };

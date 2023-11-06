@@ -30,4 +30,10 @@
             line-height: 20px;
         }
     }
+    @media screen and (max-width: $tablet_bp) {
+        min-height: 600px;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 16px;
+    }
 }

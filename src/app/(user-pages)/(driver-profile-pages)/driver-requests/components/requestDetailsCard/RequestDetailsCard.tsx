@@ -147,7 +147,15 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
                     width={32}
                     height={32}
                 />
-                <h2 className={styles.request_detail_title}>Requests Details</h2>
+                <h2 className={styles.request_detail_title}>
+                    Requests Details
+                </h2>
+                <Image
+                    src={'/icons/close.svg'}
+                    alt={'caret'}
+                    width={24}
+                    height={24}
+                />
             </div>
             <LocationCard
                 pickupLocation={requestDetailsData?.pickupLocation}

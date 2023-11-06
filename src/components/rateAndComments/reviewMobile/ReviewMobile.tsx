@@ -2,7 +2,7 @@ import React from 'react';
 
 import { format } from 'date-fns';
 
-import StarsArray from 'components/starsArray/StarsArray';
+import StarsBox from 'components/starsBox/StarsBox';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 
 import { IReview } from 'types/reviewTypes';
@@ -22,7 +22,7 @@ const ReviewMobile: React.FC<{ review?: IReview }> = ({ review }) => {
                     <p>Request Code: {review?.requestCode}</p>
                 </div>
                 <div className={styles.review_tablet_view}>
-                    <StarsArray rating={review?.rating} />
+                    <StarsBox rating={review?.rating} />
                 </div>
             </div>
             <div className={styles.review_line} />
@@ -33,7 +33,7 @@ const ReviewMobile: React.FC<{ review?: IReview }> = ({ review }) => {
                 {review?.text}
             </div>
             <div className={styles.review_mobile_view}>
-                <StarsArray rating={review?.rating} />
+                <StarsBox rating={review?.rating} />
             </div>
         </div>
     );

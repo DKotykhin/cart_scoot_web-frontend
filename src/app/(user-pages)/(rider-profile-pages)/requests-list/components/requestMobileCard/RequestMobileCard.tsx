@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import { format } from "date-fns";
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
-import { IRequestWithDriverPopulatedFields, statusTypes } from 'types/requestTypes';
+import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
+import { IRequestWithDriverPopulatedFields } from 'types/requestTypes';
 
 import styles from './requestMobileCard.module.scss';
 
@@ -26,16 +27,7 @@ const RequestMobileCard: React.FC<{ request: IRequestWithDriverPopulatedFields }
                     <p>{request?.driverId?.userName}</p>
                     <p>Request Code: {request?.requestCode}</p>
                 </div>
-                <div className={request.status === statusTypes.pending ? styles.status_pending
-                    : request.status === statusTypes.rejected ? styles.status_rejected
-                        : request.status === statusTypes.active ? styles.status_active
-                            : request.status === statusTypes.approved ? styles.status_approved
-                                : styles.status_finished
-                }>
-                    <span>
-                        {request.status.charAt(0) + request.status.slice(1).toLowerCase()}
-                    </span>
-                </div>
+                <RequestStatusBox status={request.status} />
             </div>
             <div className={styles.request_line} />
             <div className={styles.location_box}>
@@ -82,16 +74,7 @@ const RequestMobileCard: React.FC<{ request: IRequestWithDriverPopulatedFields }
             </div>
             <div className={styles.request_line_mobile} />
             <div className={styles.button_box} >
-                <div className={request.status === statusTypes.pending ? styles.status_pending
-                    : request.status === statusTypes.rejected ? styles.status_rejected
-                        : request.status === statusTypes.active ? styles.status_active
-                            : request.status === statusTypes.approved ? styles.status_approved
-                                : styles.status_finished
-                }>
-                    <span>
-                        {request.status.charAt(0) + request.status.slice(1).toLowerCase()}
-                    </span>
-                </div>
+                <RequestStatusBox status={request.status} />
                 <button onClick={() => handleClick(request._id)}>
                     <span>Details</span>
                     <Image

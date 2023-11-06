@@ -34,4 +34,7 @@
     @media screen and (max-width: $tablet_bp) {
         border-top-left-radius: 24px;
     }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 16px;
+    }
 }

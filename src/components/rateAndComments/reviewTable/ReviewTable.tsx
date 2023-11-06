@@ -4,11 +4,11 @@ import React from 'react';
 import { format } from 'date-fns';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
-import StarsArray from 'components/starsArray/StarsArray';
 
 import { IReview } from 'types/reviewTypes';
 
 import styles from './reviewTable.module.scss';
+import StarsBox from 'components/starsBox/StarsBox';
 
 const ReviewTable: React.FC<{ reviews?: IReview[] }> = ({ reviews }) => {
 
@@ -39,7 +39,7 @@ const ReviewTable: React.FC<{ reviews?: IReview[] }> = ({ reviews }) => {
                         <td><div className={styles.comment_text}>{item.text}</div></td>
                         <td><div>{format(new Date(item.createdAt), "d LLL h:mm a")}</div></td>
                         <td>
-                            <StarsArray rating={item?.rating} />
+                            <StarsBox rating={item?.rating} />
                         </td>
                     </tr>
                 ))}

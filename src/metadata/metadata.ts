@@ -24,9 +24,9 @@ export const generalMetaData: Metadata = {
 };
 
 export const mainPageMetaData: Metadata = {
-    title: "CartScoot Web - Home",
-    description: "",
-    keywords: [],
+    title: "Cart Scoot Web: Your Golf Cart Booking Solution - Home",
+    description: "Ignite your love for transportation with our services that make your trip much more convenient! Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.",
+    keywords: ["golfs", "golfs America", "golfs riding", "cart scoot web", "Golf adventure", "golf trip", "golf chill"],
     metadataBase: new URL("https://google.com"),
     openGraph: {
         type: "website",
@@ -38,9 +38,9 @@ export const mainPageMetaData: Metadata = {
 };
 
 export const aboutPageMetaData: Metadata = {
-    title: "CartScoot Web - About Us",
-    description: "",
-    keywords: [],
+    title: "Cart Scoot Web: Your Golf Cart Booking Solution - About Us",
+    description: "Ignite your love for transportation with our services that make your trip much more convenient! Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.",
+    keywords: ["golfs", "golfs America", "golfs riding", "cart scoot web", "Golf adventure", "golf trip", "golf chill"],
     metadataBase: new URL("https://google.com"),
     openGraph: {
         type: "website",
@@ -51,9 +51,9 @@ export const aboutPageMetaData: Metadata = {
     },
 };
 export const contactPageMetaData: Metadata = {
-    title: "CartScoot Web - Contact",
-    description: "",
-    keywords: [],
+    title: "Cart Scoot Web: Your Golf Cart Booking Solution - Contact",
+    description: "Ignite your love for transportation with our services that make your trip much more convenient! Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.",
+    keywords: ["golfs", "golfs America", "golfs riding", "cart scoot web", "Golf adventure", "golf trip", "golf chill"],
     metadataBase: new URL("https://google.com"),
     openGraph: {
         type: "website",

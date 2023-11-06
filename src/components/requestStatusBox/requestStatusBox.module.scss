@@ -1,0 +1,34 @@
+@import "constants/constants.scss";
+
+.status_box {
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 111px;
+        height: 40px;
+        padding: 0px 12px;
+        border-radius: 16px;
+    }
+    .status_finished {
+        background-color: $black-quaternary;
+        color: $black-primary;
+    }
+    .status_pending {
+        background-color: $orange-secondary;
+        color: $orange-primary;
+    }
+    .status_active {
+        background-color: $blue-quaternary;
+        color: $blue-primary;
+    }
+    .status_approved {
+        background-color: $green-quaternary;
+        color: $green-primary;
+    }
+    .status_rejected {
+        background-color: $red-quaternary;
+        color: $red-primary;
+    }
+}

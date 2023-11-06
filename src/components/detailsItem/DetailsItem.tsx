@@ -21,9 +21,9 @@ const DetailsItem: React.FC<IDetailsItem> = ({ imageURL, title, value }) => {
                 />
                 <p>{title}</p>
             </div>
-            <p className={styles.tip_value}>
+            <div className={styles.tip_value}>
                 {value}
-            </p>
+            </div>
         </div>
     );
 };

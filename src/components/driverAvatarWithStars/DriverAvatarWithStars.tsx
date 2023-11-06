@@ -2,7 +2,7 @@ import React from 'react';
 
 import Image from "next/image";
 
-import StarsArray from 'components/starsArray/StarsArray';
+import StarsBox from 'components/starsBox/StarsBox';
 import { avatarLetters } from 'utils/avatarLetters';
 
 import styles from './driverAvatarWithStars.module.scss';
@@ -35,7 +35,7 @@ const DriverAvatarWithStars: React.FC<IDriverAvatar> = ({ driverAvatarURL, drive
                     className={bigName ? styles.driver_bigName : reviewName ? styles.review_name : styles.driver_name}>
                     {driverName || "CartScootWeb Driver"}
                 </span>
-                <StarsArray rating={rating} />
+                <StarsBox rating={rating} />
             </div>
         </div>
     );

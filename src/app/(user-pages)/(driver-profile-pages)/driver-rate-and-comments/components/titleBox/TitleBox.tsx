@@ -22,7 +22,11 @@ const TitleBox: React.FC<{ totalCount?: number }> = ({ totalCount }) => {
                 <h2 className={styles.profile_title}>Rate & comments</h2>
                 <div className={styles.review_amount}>{totalCount}</div>
             </div>
-            <StarsBox totalCount={data?.getDriverRating?.totalCount} avgRating={data?.getDriverRating?.avgRating} />
+            <StarsBox 
+                totalCount={data?.getDriverRating?.totalCount} 
+                rating={data?.getDriverRating?.avgRating}
+                comment={true}
+            />
         </div>
     );
 };

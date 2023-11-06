@@ -10,6 +10,7 @@ import { FINISH_REQUEST, CANCEL_REQUEST, RIDER_MULTI_CALL_ANSWER } from 'apollo/
 import DriverAvatarWithStars from 'components/driverAvatarWithStars/DriverAvatarWithStars';
 import DetailsItem from 'components/detailsItem/DetailsItem';
 import ModalCard from 'components/modalCard/ModalCard';
+import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
 
 import { IRouteData } from 'hooks/useMapboxApi';
 import { IRequestWithRating, statusTypes } from 'types/requestTypes';
@@ -235,14 +236,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                                 />
                                 <p>Status</p>
                             </div>
-                            <div className={status === statusTypes.pending ? styles.status_pending
-                                : status === statusTypes.rejected ? styles.status_rejected
-                                    : status === statusTypes.active ? styles.status_active
-                                        : status === statusTypes.approved ? styles.status_approved
-                                            : styles.status_finished
-                            }>
-                                <p>{status.charAt(0) + status.slice(1).toLowerCase()}</p>
-                            </div>
+                            <RequestStatusBox status={status} />
                         </div>
                     </div>
                 }

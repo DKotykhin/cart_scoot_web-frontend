@@ -65,42 +65,6 @@
                 line-height: 20px;
             }
         }
-        :nth-child(5) {
-            span {
-                display: flex;
-                width: 160px;
-                height: 40px;
-                padding: 0px 12px;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                border-radius: 16px;
-            }
-        }
-        .status_pending {
-            span {
-                background-color: $black-quaternary;
-                color: $black-primary;
-            }
-        }
-        .status_waiting {
-            span {
-                background-color: $orange-secondary;
-                color: $orange-primary;
-            }
-        }
-        .status_approved {
-            span {
-                background-color: $green-quaternary;
-                color: $green-primary;
-            }
-        }
-        .status_rejected {
-            span {
-                background-color: $red-quaternary;
-                color: $red-primary;
-            }
-        }
     }
     .image_box {
         display: flex;

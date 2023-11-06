@@ -110,40 +110,6 @@
                     white-space: nowrap;
                     max-width: 190px;
                 }
-                > :nth-child(2) {
-                    border-radius: 16px;
-                    p {
-                        display: flex;
-                        font-size: 14px;
-                        font-weight: 400;
-                        line-height: 18px;
-                        height: 40px;
-                        padding: 0px 12px;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px;
-                    }
-                }
-                .status_finished {
-                    background-color: $black-quaternary;
-                    color: $black-primary;
-                }
-                .status_pending {
-                    background-color: $orange-secondary;
-                    color: $orange-primary;
-                }
-                .status_active {
-                    background-color: $blue-quaternary;
-                    color: $blue-primary;
-                }
-                .status_approved {
-                    background-color: $green-quaternary;
-                    color: $green-primary;
-                }
-                .status_rejected {
-                    background-color: $red-quaternary;
-                    color: $red-primary;
-                }
             }
         }
         .button_wrapper {

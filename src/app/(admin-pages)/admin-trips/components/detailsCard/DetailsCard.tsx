@@ -7,10 +7,11 @@ import { format } from 'date-fns';
 
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
-import StarsArray from 'components/starsArray/StarsArray';
+import StarsBox from 'components/starsBox/StarsBox';
+import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
 
 import { useMapboxApi } from 'hooks/useMapboxApi';
-import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestTypes';
+import { IRequestWithAllUsersPopulatedFields } from 'types/requestTypes';
 import { IReview } from 'types/reviewTypes';
 
 import styles from './detailsCard.module.scss';
@@ -26,7 +27,7 @@ interface IDetailsCard {
 const starArray = [1, 2, 3, 4, 5];
 
 const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
-    console.log(reviewData?.rating);
+
     const [buttonIndex, setButtonIndex] = useState(0);
 
     const routeData = useMapboxApi(
@@ -40,11 +41,11 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
             <p className={styles.detail_title}>Details</p>
             <div className={styles.driver_box}>
                 <DriverAvatar
-                    driverAvatarURL={requestData?.request.driverId.avatarURL}
-                    driverName={requestData?.request.driverId.userName}
+                    driverAvatarURL={requestData?.request.driverId?.avatarURL}
+                    driverName={requestData?.request.driverId?.userName}
                     bigName={true}
                 />
-                <StarsArray rating={requestData?.avgRating} />
+                <StarsBox rating={requestData?.avgRating} />
             </div>
             {buttonIndex === 0 ?
                 <div className={styles.details_wrapper}>
@@ -79,14 +80,7 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                             />
                             <p>Status</p>
                         </div>
-                        <div className={requestData?.request.status === statusTypes.pending ? styles.status_pending
-                            : requestData?.request.status === statusTypes.rejected ? styles.status_rejected
-                                : requestData?.request.status === statusTypes.active ? styles.status_active
-                                    : requestData?.request.status === statusTypes.approved ? styles.status_approved
-                                        : styles.status_finished
-                        }>
-                            <p>{requestData?.request.status.charAt(0)! + requestData?.request.status.slice(1).toLowerCase()}</p>
-                        </div>
+                        <RequestStatusBox status={requestData?.request.status} />
                     </div>
                 </div>
                 : buttonIndex === 1 ?
@@ -103,15 +97,15 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                             </div>
                         </div>
                         <DriverAvatar
-                            driverAvatarURL={requestData?.request.userId.avatarURL}
-                            driverName={requestData?.request.userId.userName}
+                            driverAvatarURL={requestData?.request.userId?.avatarURL}
+                            driverName={requestData?.request.userId?.userName}
                             bigName={true}
                         />
                         {requestData?.request.userId.phone.number ?
                             <DetailsItem
                                 imageURL='/icons/phone.svg'
                                 title='Phone Number'
-                                value={requestData?.request.userId.phone.number}
+                                value={requestData?.request.userId?.phone?.number}
                             />
                             : null
                         }
@@ -144,7 +138,6 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                                     }
                                 </div>
                             ))}
-                        // value={<StarsArray rating={reviewData?.rating} />}
                         />
                         <div className={styles.comment_box}>
                             <div className={styles.comment_title_box}>

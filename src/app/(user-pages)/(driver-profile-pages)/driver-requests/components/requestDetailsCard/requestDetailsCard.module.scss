@@ -6,16 +6,21 @@
     justify-content: space-between;
     height: 100%;
     gap: 24px;
+    background-color: $white;
     .title_box {
         display: flex;
         align-items: center;
         gap: 16px;
         cursor: pointer;
         .request_detail_title {
+            flex-grow: 1;
             font-size: 28px;
             color: $black-primary;
             font-weight: 500;
             line-height: 34px;
+        }
+        :last-child {
+            display: none;
         }
     }
     .user_details_wrapper {
@@ -71,6 +76,38 @@
             color: $red-primary;
             font-weight: 500;
             line-height: 20px;
+        }
+    }
+    @media screen and (max-width: $tablet_bp) {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        gap: 16px;
+        border-radius: 24px 24px 0px 0px; 
+        padding: 24px;
+        .title_box {
+            .request_detail_title {
+                font-size: 24px;
+                line-height: 28px;
+            }
+            :first-child {
+                display: none;
+            }
+            :last-child {
+                display: inline;
+            }
+        }
+        .user_details_wrapper {
+            padding: 16px;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        padding: 16px;
+        .request_buttons {
+            flex-direction: column;
+            gap: 16px;
         }
     }
 }

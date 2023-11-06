@@ -5,7 +5,9 @@ import React from 'react';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { format } from "date-fns";
-import { IRequestWithRiderPopulatedFields, statusTypes } from 'types/requestTypes';
+
+import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
+import { IRequestWithRiderPopulatedFields } from 'types/requestTypes';
 
 import styles from './tripMobileCard.module.scss';
 
@@ -22,16 +24,7 @@ const TripMobileCard: React.FC<{ request: IRequestWithRiderPopulatedFields }> = 
                     <p>Req Date & Time: {format(new Date(request?.requestedTime), "d LLL h:mm a")}</p>
                 </div>
                 <div className={styles.button_box}>
-                    <div className={request.status === statusTypes.pending ? styles.status_pending
-                        : request.status === statusTypes.rejected ? styles.status_rejected
-                            : request.status === statusTypes.active ? styles.status_active
-                                : request.status === statusTypes.approved ? styles.status_approved
-                                    : styles.status_finished
-                    }>
-                        <span>
-                            {request.status.charAt(0) + request.status.slice(1).toLowerCase()}
-                        </span>
-                    </div>
+                    <RequestStatusBox status={request.status} bigSize={true} />
                     <button onClick={() => handleClick(request._id)}>
                         <span>Details</span>
                         <Image
@@ -75,16 +68,7 @@ const TripMobileCard: React.FC<{ request: IRequestWithRiderPopulatedFields }> = 
             </div>
             <div className={styles.mobile_request_line} />
             <div className={styles.mobile_button_box}>
-                <div className={request.status === statusTypes.pending ? styles.status_pending
-                    : request.status === statusTypes.rejected ? styles.status_rejected
-                        : request.status === statusTypes.active ? styles.status_active
-                            : request.status === statusTypes.approved ? styles.status_approved
-                                : styles.status_finished
-                }>
-                    <span>
-                        {request.status.charAt(0) + request.status.slice(1).toLowerCase()}
-                    </span>
-                </div>
+                <RequestStatusBox status={request.status} bigSize={true} />
                 <button onClick={() => handleClick(request._id)}>
                     <span>Details</span>
                     <Image

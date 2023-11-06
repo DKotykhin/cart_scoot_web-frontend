@@ -9,7 +9,8 @@ import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_ALL_REQUESTS } from 'apollo/queries/admin';
 
 import LoadMoreButton from 'components/loadMoreButton/LoadMoreButton';
-import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestTypes';
+import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
+import { IRequestWithAllUsersPopulatedFields } from 'types/requestTypes';
 
 import styles from './tripsTable.module.scss';
 
@@ -52,14 +53,7 @@ const TripsTable = () => {
                             <td><div>{item.requestCode}</div></td>
                             <td><div>{item.pickupLocation}</div></td>
                             <td><div>{item.dropoffLocation}</div></td>
-                            <td className={item.status === statusTypes.pending ? styles.status_pending
-                                : item.status === statusTypes.rejected ? styles.status_rejected
-                                    : item.status === statusTypes.active ? styles.status_active
-                                        : item.status === statusTypes.approved ? styles.status_approved
-                                            : styles.status_finished
-                            }>
-                                <span>{item.status.charAt(0) + item.status.slice(1).toLowerCase()}</span>
-                            </td>
+                            <td><RequestStatusBox status={item.status} /></td>
                             <td className={styles.image_box} onClick={() => handleClick(item._id)}>
                                 <Image
                                     src={'/icons/caretRight-grey.svg'}
