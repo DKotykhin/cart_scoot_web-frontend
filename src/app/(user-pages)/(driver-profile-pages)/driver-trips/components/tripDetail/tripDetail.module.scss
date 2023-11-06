@@ -59,6 +59,7 @@
     @media screen and (max-width: $tablet_bp) {
         border-radius: 24px;
         .map {
+            padding: 16px;
             .desktop_details_card {
                 display: none;
             }

@@ -136,88 +136,105 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
     };
 
     return (
-        <div className={styles.request_details}>
-            <div
-                className={styles.title_box}
-                onClick={() => closeDetailsCard()}
-            >
-                <Image
-                    src={'/icons/caretLeft-big.svg'}
-                    alt={'caret'}
-                    width={32}
-                    height={32}
+        <div className={styles.blur_wrapper}>
+            <div className={styles.request_details}>
+                <div
+                    className={styles.title_box}
+                    onClick={() => closeDetailsCard()}
+                >
+                    <Image
+                        src={'/icons/caretLeft-big.svg'}
+                        alt={'caret'}
+                        width={32}
+                        height={32}
+                    />
+                    <h2 className={styles.request_detail_title}>
+                        Requests Details
+                    </h2>
+                    <Image
+                        src={'/icons/close.svg'}
+                        alt={'caret'}
+                        width={24}
+                        height={24}
+                    />
+                </div>
+                <LocationCard
+                    pickupLocation={requestDetailsData?.pickupLocation}
+                    dropoffLocation={requestDetailsData?.dropoffLocation}
                 />
-                <h2 className={styles.request_detail_title}>
-                    Requests Details
-                </h2>
-                <Image
-                    src={'/icons/close.svg'}
-                    alt={'caret'}
-                    width={24}
-                    height={24}
-                />
-            </div>
-            <LocationCard
-                pickupLocation={requestDetailsData?.pickupLocation}
-                dropoffLocation={requestDetailsData?.dropoffLocation}
-            />
-            <div className={styles.user_details_wrapper}>
-                <DriverAvatar
-                    driverAvatarURL={requestDetailsData?.userId.avatarURL}
-                    driverName={requestDetailsData?.userId.userName}
-                    bigName={true}
-                />
-                <div className='line' />
-                <DetailsItem
-                    imageURL='/icons/clock.svg'
-                    title='Request date & time'
-                    value={requestDetailsData?.requestedTime ? format(new Date(requestDetailsData?.requestedTime), "d LLL h:mm a") : ""}
-                />
-                {requestDetailsData?.driverId &&
-                    <p className={styles.user_details_personal}>Personal request</p>
-                }
-                <div className='line' />
-                <div className={styles.addition_details_box}>
-                    <div className={styles.addition_details_inner_box}>
-                        <Image
-                            src={'/icons/path-black.svg'}
-                            alt={'path'}
-                            width={16}
-                            height={16}
-                            className={styles.addition_details_image}
-                        />
-                        <p>{routeData ? `${Math.round((routeData?.distance / 1609.344) * 10) / 10} mi` : '0 mi'}</p>
-                    </div>
-                    <div className={styles.addition_details_inner_box}>
-                        <Image
-                            src={'/icons/hourglass-black.svg'}
-                            alt={'hour'}
-                            width={16}
-                            height={16}
-                            className={styles.addition_details_image}
-                        />
-                        <p>{routeData ? `${Math.ceil(routeData?.duration / 60)} min` : '0 min'}</p>
+                <div className={styles.user_details_wrapper}>
+                    <DriverAvatar
+                        driverAvatarURL={requestDetailsData?.userId.avatarURL}
+                        driverName={requestDetailsData?.userId.userName}
+                        bigName={true}
+                    />
+                    <div className='line' />
+                    <DetailsItem
+                        imageURL='/icons/clock.svg'
+                        title='Request date & time'
+                        value={requestDetailsData?.requestedTime ? format(new Date(requestDetailsData?.requestedTime), "d LLL h:mm a") : ""}
+                    />
+                    {requestDetailsData?.driverId &&
+                        <p className={styles.user_details_personal}>Personal request</p>
+                    }
+                    <div className='line' />
+                    <div className={styles.addition_details_box}>
+                        <div className={styles.addition_details_inner_box}>
+                            <Image
+                                src={'/icons/path-black.svg'}
+                                alt={'path'}
+                                width={16}
+                                height={16}
+                                className={styles.addition_details_image}
+                            />
+                            <p>{routeData ? `${Math.round((routeData?.distance / 1609.344) * 10) / 10} mi` : '0 mi'}</p>
+                        </div>
+                        <div className={styles.addition_details_inner_box}>
+                            <Image
+                                src={'/icons/hourglass-black.svg'}
+                                alt={'hour'}
+                                width={16}
+                                height={16}
+                                className={styles.addition_details_image}
+                            />
+                            <p>{routeData ? `${Math.ceil(routeData?.duration / 60)} min` : '0 min'}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className={styles.request_buttons}>
-                {userData.license.status === licenseStatusTypes.approved ?
-                    requestDetailsData?.driverId ?
-                        <>
-                            <button
-                                className='button-grey-outlined'
-                                onClick={cancelClick}
-                            >
-                                {oneCallLoading && !driverAnswer ?
-                                    <Image
-                                        src={'/spinner.svg'}
-                                        alt={'spinner'}
-                                        width={48}
-                                        height={48}
-                                    />
-                                    : 'Decline'
-                                }
-                            </button>
+                <div className={styles.request_buttons}>
+                    {userData.license.status === licenseStatusTypes.approved ?
+                        requestDetailsData?.driverId ?
+                            <>
+                                <button
+                                    className='button-grey-outlined'
+                                    onClick={cancelClick}
+                                >
+                                    {oneCallLoading && !driverAnswer ?
+                                        <Image
+                                            src={'/spinner.svg'}
+                                            alt={'spinner'}
+                                            width={48}
+                                            height={48}
+                                        />
+                                        : 'Decline'
+                                    }
+                                </button>
+                                <button
+                                    className='button-green-filled'
+                                    onClick={confirmClick}
+                                >
+                                    {(oneCallLoading || multiCallLoading) && driverAnswer ?
+                                        <Image
+                                            src={'/spinner.svg'}
+                                            alt={'spinner'}
+                                            width={48}
+                                            height={48}
+                                        />
+                                        : 'Accept'
+                                    }
+                                </button>
+                            </>
+                            :
                             <button
                                 className='button-green-filled'
                                 onClick={confirmClick}
@@ -232,27 +249,12 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
                                     : 'Accept'
                                 }
                             </button>
-                        </>
                         :
-                        <button
-                            className='button-green-filled'
-                            onClick={confirmClick}
-                        >
-                            {(oneCallLoading || multiCallLoading) && driverAnswer ?
-                                <Image
-                                    src={'/spinner.svg'}
-                                    alt={'spinner'}
-                                    width={48}
-                                    height={48}
-                                />
-                                : 'Accept'
-                            }
-                        </button>
-                    :
-                    <p className={styles.request_warn_message}>
-                        You need to approve your documents
-                    </p>
-                }
+                        <p className={styles.request_warn_message}>
+                            You need to approve your documents
+                        </p>
+                    }
+                </div>
             </div>
         </div>
     );

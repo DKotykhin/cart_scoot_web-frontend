@@ -1,113 +1,127 @@
 @import "constants/constants.scss";
 
-.request_details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    gap: 24px;
-    background-color: $white;
-    .title_box {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        cursor: pointer;
-        .request_detail_title {
-            flex-grow: 1;
-            font-size: 28px;
-            color: $black-primary;
-            font-weight: 500;
-            line-height: 34px;
-        }
-        :last-child {
-            display: none;
-        }
-    }
-    .user_details_wrapper {
-        flex-grow: 1;
+.blur_wrapper {
+    .request_details {
         display: flex;
         flex-direction: column;
-        border-radius: 24px;
-        padding: 24px;
-        gap: 16px;
-        background: $white;
-        box-shadow: 0px 4px 36px -4px rgba(0, 0, 0, 0.04);
-        .user_details_personal {
-            font-size: 16px;
-            color: $green-primary;
-            font-weight: 500;
-            line-height: 20px;
-        }
-        .addition_details_box {
+        justify-content: space-between;
+        height: 100%;
+        gap: 24px;
+        .title_box {
             display: flex;
-            gap: 24px;
-            .addition_details_inner_box {
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            .request_detail_title {
+                flex-grow: 1;
+                font-size: 28px;
+                color: $black-primary;
+                font-weight: 500;
+                line-height: 34px;
+            }
+            :last-child {
+                display: none;
+            }
+        }
+        .user_details_wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            border-radius: 24px;
+            padding: 24px;
+            gap: 16px;
+            background: $white;
+            box-shadow: 0px 4px 36px -4px rgba(0, 0, 0, 0.04);
+            .user_details_personal {
+                font-size: 16px;
+                color: $green-primary;
+                font-weight: 500;
+                line-height: 20px;
+            }
+            .addition_details_box {
                 display: flex;
-                height: 36px;
-                padding: 0px 16px 0px 4px;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                border-radius: 16px;
-                background: $black-quaternary;
-                .addition_details_image {
+                gap: 24px;
+                .addition_details_inner_box {
                     display: flex;
-                    width: 28px;
-                    height: 28px;
-                    padding: 6px;
+                    height: 36px;
+                    padding: 0px 16px 0px 4px;
                     justify-content: center;
                     align-items: center;
                     gap: 10px;
-                    border-radius: 20px;
-                    border: 0.5px solid $black-tertiary;
+                    border-radius: 16px;
                     background: $black-quaternary;
+                    .addition_details_image {
+                        display: flex;
+                        width: 28px;
+                        height: 28px;
+                        padding: 6px;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        border-radius: 20px;
+                        border: 0.5px solid $black-tertiary;
+                        background: $black-quaternary;
+                    }
                 }
             }
         }
-    }
-    .request_buttons {
-        display: flex;
-        gap: 24px;
-        .request_warn_message {
+        .request_buttons {
             display: flex;
-            justify-content: center;
-            width: 100%;
-            font-size: 16px;
-            color: $red-primary;
-            font-weight: 500;
-            line-height: 20px;
+            gap: 24px;
+            .request_warn_message {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                font-size: 16px;
+                color: $red-primary;
+                font-weight: 500;
+                line-height: 20px;
+            }
         }
     }
     @media screen and (max-width: $tablet_bp) {
         position: fixed;
+        top: 0;
         left: 0;
-        bottom: 0;
         width: 100%;
-        height: auto;
-        gap: 16px;
-        border-radius: 24px 24px 0px 0px; 
-        padding: 24px;
-        .title_box {
-            .request_detail_title {
-                font-size: 24px;
-                line-height: 28px;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.64);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        .request_details {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: auto;
+            gap: 16px;
+            border-radius: 24px 24px 0px 0px;
+            padding: 24px;
+            background: $black-quaternary;
+            .title_box {
+                .request_detail_title {
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+                :first-child {
+                    display: none;
+                }
+                :last-child {
+                    display: inline;
+                }
             }
-            :first-child {
-                display: none;
+            .user_details_wrapper {
+                padding: 16px;
             }
-            :last-child {
-                display: inline;
-            }
-        }
-        .user_details_wrapper {
-            padding: 16px;
         }
     }
     @media screen and (max-width: $mobile_bp) {
-        padding: 16px;
-        .request_buttons {
-            flex-direction: column;
-            gap: 16px;
+        .request_details {
+            padding: 16px;
+            .request_buttons {
+                flex-direction: column;
+                gap: 16px;
+            }
         }
     }
 }

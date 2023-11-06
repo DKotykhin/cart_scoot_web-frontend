@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMapGl, { Marker, FullscreenControl, GeolocateControl, NavigationControl } from "react-map-gl";
 
 import Image from "next/image";
@@ -25,6 +25,18 @@ const TripDetail: React.FC<{ _id: string }> = ({ _id }) => {
             id: _id
         }
     });
+
+    useEffect(() => {
+        const offset = window.innerWidth - document.body.offsetWidth + 'px';
+        if (openMobileDetailsCard && (window.innerWidth < 998)) {
+            document.body.style.overflowY = 'hidden';
+            document.body.style.paddingRight = offset;
+        } else {
+            document.body.style.overflowY = 'unset';
+            document.body.style.paddingRight = '0px';
+        }
+
+    }, [openMobileDetailsCard]);
 
     return (
         <div className={styles.wrapper}>

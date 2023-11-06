@@ -1,94 +1,107 @@
 @import "constants/constants.scss";
 
-.card_container {
-    position: absolute;
-    top: 32px;
-    left: 32px;
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    // height: 679px;
-    height: calc(100% - 64px);
-    padding: 24px;
-    gap: 24px;
-    border-radius: 16px;
-    background: $black-quaternary;
+.blur_wrapper {
     z-index: 2;
-    .detail_title_box {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .detail_title {
-            font-size: 28px;
-            color: $black-primary;
-            font-weight: 500;
-            line-height: 34px;
-        }
-        img {
-            display: none;
-        }
-    }
-    .user_details_wrapper {
-        flex-grow: 1;
+    .card_container {
+        position: absolute;
+        top: 32px;
+        left: 32px;
         display: flex;
         flex-direction: column;
-        border-radius: 24px;
+        width: 400px;
+        height: calc(100% - 64px);
         padding: 24px;
-        gap: 16px;
-        background: $white;
-        box-shadow: 0px 4px 36px -4px rgba(0, 0, 0, 0.04);
-        .addition_details_box {
+        gap: 24px;
+        border-radius: 16px;
+        background: $black-quaternary;
+        .detail_title_box {
             display: flex;
-            gap: 24px;
-            .addition_details_inner_box {
+            justify-content: space-between;
+            align-items: center;
+            .detail_title {
+                font-size: 28px;
+                color: $black-primary;
+                font-weight: 500;
+                line-height: 34px;
+            }
+            img {
+                display: none;
+            }
+        }
+        .user_details_wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            border-radius: 24px;
+            padding: 24px;
+            gap: 16px;
+            background: $white;
+            box-shadow: 0px 4px 36px -4px rgba(0, 0, 0, 0.04);
+            .addition_details_box {
                 display: flex;
-                height: 36px;
-                padding: 0px 16px 0px 4px;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                border-radius: 16px;
-                background: $black-quaternary;
-                .addition_details_image {
+                gap: 24px;
+                .addition_details_inner_box {
                     display: flex;
-                    width: 28px;
-                    height: 28px;
-                    padding: 6px;
+                    height: 36px;
+                    padding: 0px 16px 0px 4px;
                     justify-content: center;
                     align-items: center;
                     gap: 10px;
-                    border-radius: 20px;
-                    border: 0.5px solid $black-tertiary;
+                    border-radius: 16px;
                     background: $black-quaternary;
+                    .addition_details_image {
+                        display: flex;
+                        width: 28px;
+                        height: 28px;
+                        padding: 6px;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        border-radius: 20px;
+                        border: 0.5px solid $black-tertiary;
+                        background: $black-quaternary;
+                    }
                 }
             }
         }
     }
     @media screen and (max-width: $tablet_bp) {
         position: fixed;
-        top: auto;
+        top: 0;
         left: 0;
-        bottom: 0;
         width: 100%;
-        max-height: 630px;
         height: 100%;
-        .button_box {
-            text-align: center;
-            button {
-                max-width: 50%;
+        background: rgba(0, 0, 0, 0.64);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        .card_container {
+            position: fixed;
+            top: auto;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            max-height: 610px;
+            height: auto;
+            .button_box {
+                text-align: center;
+                button {
+                    width: fit-content;
+                }
             }
-        }
-        .detail_title_box {
-            img {
-                display: inline;
+            .detail_title_box {
+                img {
+                    display: inline;
+                }
             }
         }
     }
     @media screen and (max-width: $mobile_bp) {
-        padding: 16px;
-        gap: 16px;
-        .user_details_wrapper {
+        .card_container {
             padding: 16px;
+            gap: 16px;
+            .user_details_wrapper {
+                padding: 16px;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
@@ -32,6 +32,18 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
         driverId: "",
         requestCode: "",
     });
+
+    useEffect(() => {
+        const offset = window.innerWidth - document.body.offsetWidth + 'px';
+        if ((openMobileDetailedCard || openFinishedCard) && (window.innerWidth < 998)) {
+            document.body.style.overflowY = 'hidden';
+            document.body.style.paddingRight = offset;
+        } else {
+            document.body.style.overflowY = 'unset';
+            document.body.style.paddingRight = '0px';
+        }
+
+    }, [openMobileDetailedCard, openFinishedCard]);
 
     const { data }: { data: { getRequest: IRequestWithRating } } = useSuspenseQuery(GET_REQUEST, {
         variables: {

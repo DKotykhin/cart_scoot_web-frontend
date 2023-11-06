@@ -65,7 +65,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
     };
 
     return (
-        <>
+        <div className={styles.blur_wrapper}>
             <div className={styles.card_container}>
                 <div className={styles.detail_title_box}>
                     <p className={styles.detail_title}>
@@ -139,7 +139,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
                     confirmClick={confirmClick}
                 />
             }
-        </>
+        </div>
     );
 };
 

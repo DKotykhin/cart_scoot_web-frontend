@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_PENDING_REQUESTS_BY_DRIVER } from 'apollo/queries/request';
@@ -32,6 +32,18 @@ const RequestList: React.FC<IRequestList> = ({ markerCoordinates }) => {
     const [requestDetailsData, setRequestDetailsData] = useState<IRequestWithRiderPopulatedFields>();
 
     const { data }: { data: { getPendingRequestsByDriver: [IRequestWithRiderPopulatedFields] } } = useSuspenseQuery(GET_PENDING_REQUESTS_BY_DRIVER);
+
+    useEffect(() => {
+        const offset = window.innerWidth - document.body.offsetWidth + 'px';
+        if (showRequestDetails && (window.innerWidth < 998)) {
+            document.body.style.overflowY = 'hidden';
+            document.body.style.paddingRight = offset;
+        } else {
+            document.body.style.overflowY = 'unset';
+            document.body.style.paddingRight = '0px';
+        }
+
+    }, [showRequestDetails]);
 
     const openLocationClick = (_id: string) => {
         setShowRequestDetails(true);
@@ -67,7 +79,7 @@ const RequestList: React.FC<IRequestList> = ({ markerCoordinates }) => {
                                     dropoffLocation={request?.dropoffLocation}
                                 />
                             </div>
-                        ))}                        
+                        ))}
                     </>
                 :
                 <EmptyList
