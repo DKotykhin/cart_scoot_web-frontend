@@ -226,9 +226,28 @@ export const GET_REVIEW_BY_REQUEST_CODE = gql`
     }
 `;
 
-export const GET_ALL_ADVERTISEMENT = gql`
-    query GetAllAdvertisements {
-        getAllAdvertisements {
+export const GET_ALL_ADVERTISEMENTS = gql`
+    query GetAllAdvertisements($pageNumber: Int) {
+        getAllAdvertisements(pageNumber: $pageNumber) {
+            advertisements {
+                _id
+                createdAt
+                description
+                from
+                imageURL
+                link
+                position
+                title
+                to
+            }
+            totalCount
+        }
+    }
+`;
+
+export const GET_ADVERTISEMENT_BY_ID = gql`
+    query GetAdvertisementById($adsId: ID!) {
+        getAdvertisementById(adsId: $adsId) {
             _id
             createdAt
             description

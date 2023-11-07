@@ -1,15 +1,10 @@
 import React from 'react';
 
-import TitleWithAmount from 'components/titleWithAmount/TitleWithAmount';
-
-import styles from './adminAdvertisement.module.scss';
+import AdsPanel from './components/adsPanel/AdsPanel';
 
 const AdminAdvertisementPage = () => {
     return (
-        <div className={styles.wrapper}>
-            <TitleWithAmount title='Advertisement' hideAmount={true} />
-
-        </div>
+        <AdsPanel />
     );
 };
 

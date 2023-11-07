@@ -1,0 +1,12 @@
+@import "constants/constants.scss";
+
+.add_ads_container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1056px;
+    width: 100vw;
+    .add_ads {
+        padding: 24px;
+        background-color: $white;
+    }
+}

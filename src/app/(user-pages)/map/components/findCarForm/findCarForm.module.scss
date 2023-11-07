@@ -7,10 +7,6 @@
     transform: translate(-50%);
     max-width: 1272px;
     width: calc(100% - 48px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
     padding: 24px;
     border-radius: 20px;
     background: $white;
@@ -59,16 +55,16 @@
     }
     @media screen and (max-width: $tablet_bp) {
         top: 16px;
-        gap: 16px;
         padding: 16px;
         width: calc(100% - 32px);
-        .form_box {           
+        .form_box {
+            gap: 16px;
             .date_input_box {
                 max-width: 100%;
             }
             .time_input_box {
                 max-width: 100%;
-            }       
+            }
         }
     }
 }

@@ -1,0 +1,63 @@
+@import "constants/constants.scss";
+
+.container {
+    width: 100%;
+    text-align: center;
+    border-radius: 24px;
+    border: 1px solid $black-tertiary;
+    thead tr {
+        background-color: $black-quaternary;
+        :first-child {
+            border-radius: 24px; 
+        }
+        :last-child {
+            border-radius: 24px; 
+            min-width: 20px;
+        }
+        th {
+            padding: 16px 4px;
+            text-align-last: left;
+            div {
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 14px;
+            }
+        }
+    }
+    tbody tr {
+        height: 80px;
+        td {
+            padding: 16px 4px;
+            text-align-last: left;
+            div {
+                max-width: 200px;
+                font-size: 16px;
+                color: $black-primary;
+                font-weight: 400;
+                line-height: 20px;
+                padding: 0 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        :nth-child(4) div a {
+            color: $blue-primary;
+        }
+    }
+    .image_box {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        flex-shrink: 0;
+        border-radius: 16px;
+        border: 1px solid $black-tertiary;
+        margin: 24px 0;
+        cursor: pointer;
+    }
+}
