@@ -7,8 +7,7 @@
     max-width: 1056px;
     width: 100vw;
     background-color: $white;
-    border-top-right-radius: 24px;
-    border-bottom-right-radius: 24px;
+    border-radius: 0 24px 24px 0;
     border: 1px solid $black-tertiary;
     .review_panel_wrapper {
         padding: 0 24px 24px;

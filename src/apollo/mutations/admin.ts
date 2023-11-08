@@ -85,3 +85,23 @@ export const ADD_ADVERTISEMENT = gql`
         }
     }
 `;
+
+export const UPDATE_ADVERTISEMENT = gql`
+    mutation UpdateAdvertisement(
+        $updateAdvertisementInput: UpdateAdvertisementInput
+    ) {
+        updateAdvertisement(
+            updateAdvertisementInput: $updateAdvertisementInput
+        ) {
+            _id
+            createdAt
+            description
+            from
+            imageURL
+            link
+            position
+            title
+            to
+        }
+    }
+`;

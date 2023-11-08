@@ -7,8 +7,7 @@
     max-width: 1056px;
     width: 100%;
     background-color: $white;
-    border-top-right-radius: 24px;
-    border-bottom-right-radius: 24px;
+    border-radius: 0 24px 24px 0;
     margin-bottom: 24px;
     .title_box {
         display: flex;

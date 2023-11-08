@@ -6,7 +6,70 @@
     max-width: 1056px;
     width: 100vw;
     .add_ads {
+        height: 100%;
         padding: 24px;
         background-color: $white;
+        .ads_form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            .input_box {
+                display: flex;
+                gap: 24px;
+                .select_box {
+                    position: relative;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 20px;
+                    p {
+                        position: absolute;
+                        top: -9px;
+                        left: 16px;
+                        font-size: 12px;
+                        color: $black-secondary;
+                        background-color: $white;
+                        font-weight: 400;
+                        padding: 0 5px;
+                        z-index: 5;
+                    }
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        font-weight: 600;
+                        color: $black-tertiary;
+                    }                    
+                }
+                .date_picker_box {
+                    position: relative;
+                    z-index: 5;
+                    .input_title {
+                        position: absolute;
+                        top: -9px;
+                        left: 16px;
+                        font-size: 12px;
+                        color: $black-secondary;
+                        background-color: $white;
+                        font-weight: 400;
+                        padding: 0 5px;
+                        z-index: 5;
+                    }
+                }
+            }
+            .ads_line {
+                width: 100%;
+                border: 1px solid $black-tertiary;
+            }
+            .button_box {
+                display: flex;
+                justify-content: flex-end;
+                gap: 24px;
+                :first-child {
+                    width: 100px;
+                }
+                :last-child {
+                    width: 160px;
+                }
+            }
+        }
     }
 }

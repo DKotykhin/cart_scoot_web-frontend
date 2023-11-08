@@ -8,8 +8,7 @@
     width: 100vw;
     min-height: 950px;
     background-color: $white;
-    border-top-right-radius: 24px;
-    border-bottom-right-radius: 24px;
+    border-radius: 0 24px 24px 0;
     .line_box {
         padding: 0 24px;
         .line {

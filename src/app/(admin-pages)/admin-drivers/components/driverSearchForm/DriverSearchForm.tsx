@@ -21,10 +21,10 @@ interface IDriverSearchForm {
 
 const options = [
     { value: null, label: '-- All --' },
-    { value: 'PENDING', label: 'Pending', color: '#15161a', backgroundColor: '#f7f8fa' },
-    { value: 'WAITING', label: 'Waiting', color: '#ffa74d', backgroundColor: '#fffaf4' },
-    { value: 'APPROVED', label: 'Approved', color: '#42da6e', backgroundColor: '#f3fdf6' },
-    { value: 'REJECTED', label: 'Rejected', color: '#f6584e', backgroundColor: '#fef5f4' },
+    { value: licenseStatusTypes.pending, label: 'Pending', color: '#15161a', backgroundColor: '#f7f8fa' },
+    { value: licenseStatusTypes.waiting, label: 'Waiting', color: '#ffa74d', backgroundColor: '#fffaf4' },
+    { value: licenseStatusTypes.approved, label: 'Approved', color: '#42da6e', backgroundColor: '#f3fdf6' },
+    { value: licenseStatusTypes.rejected, label: 'Rejected', color: '#f6584e', backgroundColor: '#fef5f4' },
 ];
 
 const stylesOptions = {
