@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from "next/image";
 
-import useScreenSize from 'hooks/useScreenWidth';
+// import useScreenSize from 'hooks/useScreenWidth';
 import { IAdvertisement } from 'types/advertisementTypes';
 
 import styles from './advertisement.module.scss';
@@ -14,14 +14,14 @@ const Advertisement: React.FC<{ advertisement?: IAdvertisement }> = ({ advertise
 
     const [imageURL, setImageURL] = useState<string | undefined>('');
 
-    const width = useScreenSize();
+    // const width = useScreenSize();
 
     useEffect(() => {
-        // const width = window.innerWidth;
+        const width = window.innerWidth;
         if (width < 768) setImageURL(advertisement?.imageURL.mobile);
         else if (width > 999) setImageURL(advertisement?.imageURL.desktop);
         else setImageURL(advertisement?.imageURL.tablet);
-    }, [advertisement?.imageURL.desktop, advertisement?.imageURL.mobile, advertisement?.imageURL.tablet, width]);
+    }, [advertisement?.imageURL.desktop, advertisement?.imageURL.mobile, advertisement?.imageURL.tablet]);
 
     return (
         <div className={styles.ads_container}>
