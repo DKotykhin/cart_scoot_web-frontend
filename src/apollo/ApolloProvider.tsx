@@ -17,7 +17,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 
 const makeClient = () => {
     const authLink = setContext(async (_, { headers }) => {
-        const token = await Cookies.get('token');
+        const token = Cookies.get('token');
 
         return {
             headers: {
