@@ -97,6 +97,7 @@ const SetNewCard: React.FC<{ token: string }> = ({ token }) => {
                         alt={'avatar'}
                         width={120}
                         height={120}
+                        className={styles.avatar}
                     />
                     <Image
                         src={'/icons/button.svg'}

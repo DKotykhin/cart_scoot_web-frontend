@@ -52,7 +52,9 @@ const stylesOptions = {
 
 const AddAdvertisement = () => {
 
-    const [imageURL, setImageURL] = useState("");
+    const [desktopImage, setDesktopImage] = useState({ bannerURL: '', fileName: '' });
+    const [tabletImage, setTabletImage] = useState({ bannerURL: '', fileName: '' });
+    const [mobileImage, setMobileImage] = useState({ bannerURL: '', fileName: '' });
     const router = useRouter();
 
     const [addAdvertisement, { loading }] = useMutation(ADD_ADVERTISEMENT, {
@@ -102,7 +104,11 @@ const AddAdvertisement = () => {
 
     const onSubmit = async (data: IAdsFormData): Promise<void> => {
         const fullData = {
-            imageURL,
+            imageURL: {
+                desktop: desktopImage?.bannerURL,
+                tablet: tabletImage?.bannerURL,
+                mobile: mobileImage?.bannerURL,
+            },
             ...data,
         };
         // console.log(fullData);
@@ -114,8 +120,6 @@ const AddAdvertisement = () => {
             },
         });
     };
-
-    const bannerFn = (url: string) => setImageURL(url);
 
     const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
         if (e.key === 'Enter') e.preventDefault();
@@ -180,8 +184,27 @@ const AddAdvertisement = () => {
                             placeholder='Description'
                         />
                     </div>
-                    <UploadBox bannerFn={bannerFn} />
-                    <div className={styles.ads_line} />
+                    <div className={styles.upload_box_wrapper}>
+                        <UploadBox
+                            imageURL={desktopImage?.bannerURL}
+                            imageName={desktopImage?.fileName}
+                            setImageFile={(data) => setDesktopImage(data)}
+                            title='Desktop'
+                        />
+                        <UploadBox
+                            imageURL={tabletImage?.bannerURL}
+                            imageName={tabletImage?.fileName}
+                            setImageFile={(data) => setTabletImage(data)}
+                            title='Tablet'
+                        />
+                        <UploadBox
+                            imageURL={mobileImage?.bannerURL}
+                            imageName={mobileImage?.fileName}
+                            setImageFile={(data) => setMobileImage(data)}
+                            title='Mobile'
+                        />
+                    </div>
+                    <div className='line' />
                     <div className={styles.button_box}>
                         <button
                             type='button'

@@ -97,9 +97,10 @@ const ChangePasswordCard: React.FC<IChangePasswordCard> = ({ changePasswordClick
                         alt={'key'}
                         width={120}
                         height={120}
+                        className={styles.avatar}
                     />
-                    <p className={styles.password_title}>Change Password</p>
-                    <p className={styles.password_subtitle}>Please enter your Current & new password</p>
+                    <p className='title'>Change Password</p>
+                    <p className='subtitle'>Please enter your Current & new password</p>
                     <PasswordInput
                         error={errors.currentPassword}
                         control={control}

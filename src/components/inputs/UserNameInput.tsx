@@ -8,14 +8,16 @@ import styles from './input.module.scss';
 interface IUserNameInput {
     error?: FieldError;
     control: Control<any>;
+    defaultValue?: string;
 }
 
-const UserNameInput: React.FC<IUserNameInput> = ({ control, error }) => {
+const UserNameInput: React.FC<IUserNameInput> = ({ control, error, defaultValue = "" }) => {
     return (
         <div className={styles.input_box}>
             <Controller
                 name="userName"
                 control={control}
+                defaultValue={defaultValue}
                 render={({ field }) => (
                     <input
                         {...field}

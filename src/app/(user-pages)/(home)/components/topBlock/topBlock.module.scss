@@ -113,6 +113,11 @@
             .text_box {
                 h1 {
                     font-size: 58px;
+                    span {
+                        img {
+                            margin-left: 100px;
+                        }
+                    }
                 }
             }
         }
@@ -154,8 +159,8 @@
             margin: 24px 0 0 0;
             gap: 24px;
             .text_box {
-                align-items: center;
-                max-width: 300px;
+                // align-items: center;
+                max-width: 420px;
                 h1 {
                     font-size: 32px;
                     font-weight: 600;

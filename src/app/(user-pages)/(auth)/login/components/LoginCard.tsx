@@ -130,7 +130,9 @@ const LoginCard = () => {
                     className={styles.avatar}
                 />
                 <p className='title'>Welcome Back!</p>
-                <p className='subtitle'>Please enter your Phone number</p>
+                <p className='subtitle'>
+                    {mobileLogin ? "Please enter your Phone number" : "Please enter your email and password"}
+                </p>
                 {mobileLogin ?
                     <>
                         <PhoneField

@@ -40,7 +40,7 @@ const DriverProfilePage = () => {
                 <div className={styles.document_box}>
                     <UserInfo user={userData} title='Your Information'/>
                     <UploadService user={userData} />
-                    <AddCoordinates />
+                    <AddCoordinates coordinates={userData.coordinates} />
                     <UpdateInfoForm user={userData} />
                 </div>
             }

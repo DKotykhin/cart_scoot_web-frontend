@@ -4,12 +4,13 @@
     .line {
         background-color: $black-tertiary;
         height: 1px;
-        margin-bottom: 24px;
+        margin-bottom: 48px;
     }
     .add_coordinates_box {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 16px;
         .add_coordinates_title {
             font-size: 28px;
             color: $black-primary;
@@ -17,7 +18,24 @@
             line-height: 34px;
         }
         button {
-            width: 180px;
+            width: fit-content;
+        }
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        .line {
+            margin-bottom: 24px;
+        }
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .line {
+            margin-bottom: 16px;
+        }
+        .add_coordinates_box {
+            flex-wrap: wrap;
+            .add_coordinates_title {
+                font-size: 20px;
+                line-height: 24px;
+            }
         }
     }
 }

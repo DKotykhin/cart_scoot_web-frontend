@@ -4,12 +4,9 @@ import React, { useEffect, useState } from 'react';
 
 import Image from "next/image";
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
-import Cookies from 'js-cookie';
-
-import LogoutCard from 'components/userPanel/logoutCard/LogoutCard';
-import { useUserStore } from 'stores/userStore';
+import ChangePasswordCard from 'components/userPanel/changePasswordCard/ChangePasswordCard';
 
 import styles from './mobileSideBar.module.scss';
 
@@ -24,14 +21,12 @@ interface ISideBar {
 
 const MobileSideBar: React.FC<ISideBar> = ({ navLinks }) => {
 
-    const [openLogoutCard, setOpenLogoutCard] = useState(false);
+    const [openChangePasswordCard, setOpenChangePasswordCard] = useState(false);
     const pathname = usePathname();
-    const router = useRouter();
-    const { setUserEmpty } = useUserStore();
 
     useEffect(() => {
         const offset = window.innerWidth - document.body.offsetWidth + 'px';
-        if (openLogoutCard) {
+        if (openChangePasswordCard) {
             document.body.style.overflowY = 'hidden';
             document.body.style.paddingRight = offset;
         } else {
@@ -39,16 +34,7 @@ const MobileSideBar: React.FC<ISideBar> = ({ navLinks }) => {
             document.body.style.paddingRight = '0px';
         }
 
-    }, [openLogoutCard]);
-
-    const logoutOpenClick = () => setOpenLogoutCard(true);
-    const logoutCancelClick = () => setOpenLogoutCard(false);
-    const logoutClick = () => {
-        setOpenLogoutCard(false);
-        Cookies.remove('token');
-        router.push('/login');
-        setUserEmpty();
-    };
+    }, [openChangePasswordCard]);
 
     return (
         <>
@@ -68,23 +54,23 @@ const MobileSideBar: React.FC<ISideBar> = ({ navLinks }) => {
                         </Link>
                     ))}
                     <div
-                        className={styles.user_logout}
-                        onClick={logoutOpenClick}
+                        className={styles.change_password}
+                        onClick={() => setOpenChangePasswordCard(true)}
                     >
                         <Image
-                            src={'/icons/signOut.svg'}
-                            alt={'out'}
+                            src={'/icons/key-black.svg'}
+                            alt={'key'}
                             width={24}
                             height={24}
                         />
-                        <span>Logout</span>
+                        <span>Password</span>
                     </div>
                 </div>
             </div>
-            {openLogoutCard &&
-                <LogoutCard
-                    logoutCancelClick={logoutCancelClick}
-                    logoutClick={logoutClick}
+            {openChangePasswordCard &&
+                <ChangePasswordCard
+                    changePasswordClick={() => setOpenChangePasswordCard(false)}
+                    openChangePasswordClick={() => setOpenChangePasswordCard(false)}
                 />
             }
         </>

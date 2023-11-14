@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddAdvertisement from './components/addAdvertisement/AddAdvertisement';
+import AddAdvertisement from '../components/addAdvertisement/AddAdvertisement';
 
 const AdminAddAdvertisementPage = () => {
     return (

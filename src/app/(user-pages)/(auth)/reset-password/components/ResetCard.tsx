@@ -80,6 +80,7 @@ const ResetCard = () => {
                         alt={'avatar'}
                         width={120}
                         height={120}
+                        className={styles.avatar}
                     />
                     <Image
                         src={'/icons/button.svg'}

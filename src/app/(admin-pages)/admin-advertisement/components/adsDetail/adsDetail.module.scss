@@ -56,9 +56,9 @@
                     }
                 }
             }
-            .ads_line {
-                width: 100%;
-                border: 1px solid $black-tertiary;
+            .upload_box_wrapper {
+                display: flex;
+                gap: 24px;
             }
             .button_box {
                 display: flex;

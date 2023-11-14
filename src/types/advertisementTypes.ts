@@ -9,9 +9,13 @@ export interface IAdvertisement {
     createdAt: string;
     title: string;
     description: string;
-    imageURL: string;
     link: string;
     from: string;
     to: string;
     position: PageTypes;
+    imageURL: {
+        desktop: string,
+        tablet: string,
+        mobile: string,
+    };
 }

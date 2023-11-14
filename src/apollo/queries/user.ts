@@ -67,7 +67,11 @@ export const GET_PAGE_ADVERTISEMENT = gql`
             createdAt
             title
             description
-            imageURL
+            imageURL {
+                desktop
+                tablet
+                mobile
+            }
             link
             position
             from

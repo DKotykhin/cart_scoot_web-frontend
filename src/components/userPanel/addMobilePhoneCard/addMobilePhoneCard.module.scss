@@ -29,7 +29,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            img {
+            .avatar {
+                display: block;
                 margin: 0 auto 24px;
             }
             .checkbox_wrapper {
@@ -82,6 +83,14 @@
         .form {
             .upperBox {
                 padding: 16px 16px 0;
+                .avatar {
+                    margin: 0 auto 16px;
+                    width: 80px;
+                    height: auto;
+                }
+                .checkbox_wrapper {
+                    margin-bottom: 24px;
+                }
             }
             .lowerBox {
                 padding: 16px;

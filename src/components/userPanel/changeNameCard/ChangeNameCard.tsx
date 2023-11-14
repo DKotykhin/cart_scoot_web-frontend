@@ -3,7 +3,6 @@
 import React from 'react';
 
 import Image from "next/image";
-import Link from 'next/link';
 
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
@@ -88,12 +87,14 @@ const ChangeNameCard: React.FC<IChangeNameCard> = ({ changeNameClick, userName }
                         alt={'key'}
                         width={120}
                         height={120}
+                        className={styles.avatar}
                     />
-                    <p className={styles.password_title}>Change Name</p>
-                    <p className={styles.password_subtitle}>Please enter your name</p>
+                    <p className='title'>Change Name</p>
+                    <p className='subtitle'>Please enter your name</p>
                     <UserNameInput
                         control={control}
                         error={errors.userName}
+                        defaultValue={userName}
                     />
                 </div>
                 <div className='line' />

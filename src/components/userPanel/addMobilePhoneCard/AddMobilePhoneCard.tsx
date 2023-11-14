@@ -101,6 +101,7 @@ const AddMobilePhoneCard: React.FC<IAddMobilePhoneCard> = ({ handleClose }) => {
                             alt={'avatar'}
                             width={120}
                             height={120}
+                            className={styles.avatar}
                         />
                         <h2 className='title'>Add Mobile Phone</h2>
                         <p className='subtitle'>Enter your phone number</p>

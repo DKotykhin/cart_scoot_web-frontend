@@ -31,7 +31,7 @@ const UsersSaying = () => {
                             <p>Sarah Thompson</p>
                         </div>
                         <p>
-                            Car Scoot has truly elevated my golfing experiences! As an avid golfer, I appreciate their seamless booking process and the wide selection of golf carts available.
+                            My trip was super fun! I enjoyed the comfort and I didn&apos;t have to worry about anything because I know that CartScoot&apos;s services are extremely safe.
                         </p>
                     </div>
                     <div className={styles.card}>
@@ -45,7 +45,7 @@ const UsersSaying = () => {
                             <p>Sarah Thompson</p>
                         </div>
                         <p>
-                            Car Scoot has truly elevated my golfing experiences! As an avid golfer, I appreciate their seamless booking process and the wide selection of golf carts available.
+                            My journey was amazing. The driver was amicable and kind to me. The car was modern and really comfortable, I could relax. Highly recommend.
                         </p>
                     </div>
                 </div>

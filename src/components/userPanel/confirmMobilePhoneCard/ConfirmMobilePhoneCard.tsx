@@ -80,6 +80,7 @@ const ConfirmMobilePhoneCard: React.FC<IConfirmMobilePhoneCard> = ({ resendCode,
                     alt={'avatar'}
                     width={120}
                     height={120}
+                    className={styles.avatar}
                 />
                 <h2 className='title'>Confirm Mobile Phone</h2>
                 <p className='subtitle'>Enter your code</p>

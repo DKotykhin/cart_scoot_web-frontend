@@ -19,7 +19,7 @@ const ProvideService = () => {
                 <p className='block-subtitle'>
                     With Car Scoot, We Lay The Path For Limitless Road And Golf Adventures, Led by Enthusiasm, Powered By Accuracy, Motivated by The Aim to Transform Each Swing Into Happiness!
                 </p>
-                <div className={styles.line} />
+                <div className='line' />
                 <div className={styles.link_box}>
                     <Link href={'/map'} className={styles.link}>
                         <Image
@@ -37,7 +37,7 @@ const ProvideService = () => {
                             width={48}
                             height={48}
                         />
-                        <span>Signup as Driver</span>
+                        <span>Become a Driver</span>
                     </Link>
                 </div>
                 <Link href={'/about'} className={styles.read_more_link}>

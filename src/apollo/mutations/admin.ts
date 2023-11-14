@@ -77,7 +77,11 @@ export const ADD_ADVERTISEMENT = gql`
             createdAt
             description
             from
-            imageURL
+            imageURL {
+                desktop
+                tablet
+                mobile
+            }
             link
             position
             title
@@ -97,7 +101,11 @@ export const UPDATE_ADVERTISEMENT = gql`
             createdAt
             description
             from
-            imageURL
+            imageURL {
+                desktop
+                tablet
+                mobile
+            }
             link
             position
             title

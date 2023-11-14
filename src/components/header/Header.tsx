@@ -204,7 +204,7 @@ const Header: React.FC<IHeader> = ({ user }) => {
                     {openChangeNameCard &&
                         <ChangeNameCard
                             changeNameClick={changeNameClick}
-                            userName={user?.userName}
+                            userName={userData?.userName}
                         />
                     }
                 </div>

@@ -126,7 +126,7 @@ const AdvancedFeatures = () => {
                     Elevating Every Golfer&apos;s Journey into a Seamlessly Secure and <br />
                     Unforgettable Experience on the Green.
                 </p>
-                <div className={styles.line}></div>
+                <div className='line'></div>
                 <div className={styles.link_wrapper}>
                     <div className={styles.link_box}>
                         <div className={styles.link}>

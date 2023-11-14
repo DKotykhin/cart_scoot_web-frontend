@@ -28,8 +28,8 @@
     }
     .line {
         width: 100%;
-        border: 1px solid $black-tertiary;
-        margin-top: 30px;
+        border-top: 1px solid $black-tertiary;
+        margin-top: 26px;
     }
     .lowerBox {
         width: 100%;
@@ -42,6 +42,15 @@
     @media screen and (max-width: $mobile_bp) {
         .upperBox {
             padding: 16px 16px 0 16px;
+            .imageBox {
+                .avatar {
+                    width: 80px;
+                    height: auto;
+                }
+            }
+        }
+        .line {
+            margin-top: 8px;
         }
         .lowerBox {
             text-align: center;

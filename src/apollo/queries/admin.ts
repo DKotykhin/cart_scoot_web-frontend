@@ -234,7 +234,11 @@ export const GET_ALL_ADVERTISEMENTS = gql`
                 createdAt
                 description
                 from
-                imageURL
+                imageURL {
+                    desktop
+                    tablet
+                    mobile
+                }
                 link
                 position
                 title
@@ -252,7 +256,11 @@ export const GET_ADVERTISEMENT_BY_ID = gql`
             createdAt
             description
             from
-            imageURL
+            imageURL {
+                desktop
+                tablet
+                mobile
+            }
             link
             position
             title

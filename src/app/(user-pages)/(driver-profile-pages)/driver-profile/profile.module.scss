@@ -43,8 +43,8 @@
     .document_box {
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        padding: 0px 24px;
+        gap: 48px;
+        padding: 0px 24px 24px;
         .document_title {
             font-size: 28px;
             color: $black-primary;
@@ -65,7 +65,17 @@
         }
     }
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        gap: 24px;
+        .document_box {
+            gap: 24px;
+        }
     }
     @media screen and (max-width: $mobile_bp) {
+        gap: 16px;
+        margin-bottom: 100px;
+        .document_box {
+            gap: 16px;
+            padding: 0px 16px 16px;
+        }
     }
 }

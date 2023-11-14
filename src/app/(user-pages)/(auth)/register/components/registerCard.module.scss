@@ -7,10 +7,9 @@
     max-width: 655px;
     width: calc(100vw - 32px);
     background-color: $white;
-    margin-top: 48px;
+    margin: 48px 0;
     border-radius: 24px;
     border: 1px solid $black-tertiary;
-    margin-bottom: 30px;
     .upperBox {
         width: 100%;
         padding: 24px 24px 0 24px;
@@ -56,9 +55,8 @@
             }
         }
         .avatar {
-            display: flex;
-            justify-content: center;
-            margin: 48px auto 24px auto;
+            display: block;
+            margin: 48px auto 24px;
         }
         .firstInputLine {
             display: flex;
@@ -120,10 +118,19 @@
         }
     }
     @media screen and (max-width: $mobile_bp) {
+        margin: 24px 0;
         .upperBox {
             padding: 16px 16px 0 16px;
+            .avatar {
+                margin: 24px auto 16px;
+                width: 80px;
+                height: auto;
+            }
             .firstInputLine {
                 flex-direction: column;
+            }
+            .checkbox {
+                margin-bottom: 24px;
             }
         }
         .lowerBox {

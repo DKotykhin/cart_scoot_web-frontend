@@ -12,6 +12,8 @@ import { PageTypes } from 'types/advertisementTypes';
 
 export const metadata: Metadata = mainPageMetaData;
 
+import styles from './homePage.module.scss';
+
 const HomePage = async () => {
 
     const advertisement = await getPageAdvertisement(PageTypes.main);
@@ -23,7 +25,7 @@ const HomePage = async () => {
             <ProvideService />
             <AdvancedFeatures />
             <WorksForDrivers />
-            <div style={{ marginBottom: '160px' }}>
+            <div className={styles.advertisement}>
                 <Advertisement advertisement={advertisement?.getPageAdvertisement} />
             </div>
             <WhyUs />

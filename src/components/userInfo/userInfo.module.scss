@@ -11,7 +11,7 @@
     .info_box {
         display: flex;
         justify-content: space-between;
-        gap: 12px;
+        gap: 16px;
         .info_item {
             position: relative;
             display: flex;
@@ -19,7 +19,7 @@
             padding: 16px;
             align-items: center;
             gap: 10px;
-            max-width: 320px;
+            max-width: calc(50% - 8px);
             // min-width: fit-content;
             width: 100%;
             border-radius: 20px;
@@ -41,6 +41,29 @@
                 color: $black-secondary;
                 font-weight: 300;
                 line-height: 16px;
+            }
+        }
+    }
+    @media screen and (max-width: 1200px) {
+        .info_box {
+            flex-wrap: wrap;
+            > :first-child {
+                max-width: 100%;
+            }
+        }
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+    }
+    @media screen and (max-width: $mobile_bp) {
+        .userInfo_title {
+            font-size: 20px;
+            line-height: 24px;
+            margin-bottom: 16px;
+        }
+        .info_box {
+            flex-wrap: wrap;
+            .info_item {
+                max-width: 100%;
             }
         }
     }

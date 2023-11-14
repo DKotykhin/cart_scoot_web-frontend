@@ -20,7 +20,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        img {
+        .avatar {
             margin: 0 auto 24px;
         }
         .smsCode {
@@ -59,6 +59,16 @@
     @media screen and (max-width: $mobile_bp) {
         .upperBox {
             padding: 16px 16px 0;
+            .avatar {
+                margin: 0 auto 16px;
+                width: 80px;
+                height: auto;
+            }
+            .smsCode {
+                input {
+                    margin-bottom: 24px;
+                }
+            }
         }
         .lowerBox {
             padding: 16px;

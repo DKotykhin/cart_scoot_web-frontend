@@ -36,7 +36,7 @@ export const mainPageMetaData: Metadata = {
         "golf trip",
         "golf chill",
     ],
-    metadataBase: new URL("https://cart-scoot-web-frontend-three.vercel.app"),
+    metadataBase: new URL("https://cartscoot.com"),
     openGraph: {
         type: "website",
         url: "",
@@ -50,7 +50,7 @@ export const mainPageMetaData: Metadata = {
         title: "Cart Scoot Web: Your Golf Cart Booking Solution",
         description:
             "Ignite your love for transportation with our services that make your trip much more convenient! Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.",
-        images: ["https://cart-scoot-web-frontend-three.vercel.app/cart-cover.webp"],
+        images: ["https://cartscoot.com/cart-cover.webp"],
     },
 };
 
@@ -67,7 +67,7 @@ export const aboutPageMetaData: Metadata = {
         "golf trip",
         "golf chill",
     ],
-    metadataBase: new URL("https://cart-scoot-web-frontend-three.vercel.app"),
+    metadataBase: new URL("https://cartscoot.com"),
     openGraph: {
         type: "website",
         url: "",
@@ -81,7 +81,7 @@ export const aboutPageMetaData: Metadata = {
         title: "Cart Scoot Web: Your Golf Cart Booking Solution",
         description:
             "Ignite your love for transportation with our services that make your trip much more convenient! Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.",
-        images: ["https://cart-scoot-web-frontend-three.vercel.app/cart-cover.webp"],
+        images: ["https://cartscoot.com/cart-cover.webp"],
     },
 };
 export const contactPageMetaData: Metadata = {
@@ -97,7 +97,7 @@ export const contactPageMetaData: Metadata = {
         "golf trip",
         "golf chill",
     ],
-    metadataBase: new URL("https://cart-scoot-web-frontend-three.vercel.app"),
+    metadataBase: new URL("https://cartscoot.com"),
     openGraph: {
         type: "website",
         url: "",
@@ -111,6 +111,6 @@ export const contactPageMetaData: Metadata = {
         title: "Cart Scoot Web: Your Golf Cart Booking Solution",
         description:
             "Ignite your love for transportation with our services that make your trip much more convenient! Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.",
-        images: ["https://cart-scoot-web-frontend-three.vercel.app/cart-cover.webp"],
+        images: ["https://cartscoot.com/cart-cover.webp"],
     },
 };

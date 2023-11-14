@@ -10,7 +10,8 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_WORKING_TIME } from 'apollo/mutations/user';
 import { useUserStore } from 'stores/userStore';
 
-import TimePickerInput from 'components/inputs/dateTimePickers/TimePickerInput';
+import TimePickerInput from '../dateTimePickers/TimePickerInput';
+
 import { IUser } from 'types/userTypes';
 
 import styles from './updateInfoForm.module.scss';

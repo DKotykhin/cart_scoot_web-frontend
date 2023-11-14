@@ -4,18 +4,17 @@ import React from 'react';
 
 import Image from "next/image";
 
-import StarsBox from 'components/starsBox/StarsBox';
-import { useUserStore } from 'stores/userStore';
-import { uploadAvatar } from 'apollo/services/uploadAvatar';
-import { avatarLetters } from 'utils/avatarLetters';
-
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_DRIVER_RATING } from 'apollo/queries/review';
+import { uploadAvatar } from 'apollo/services/uploadAvatar';
 
-import { licenseStatusTypes } from 'types/userTypes';
+import StarsBox from 'components/starsBox/StarsBox';
+import LicenseStatusBox from 'components/licenseStatusBox/LicenseStatusBox';
+
+import { useUserStore } from 'stores/userStore';
+import { avatarLetters } from 'utils/avatarLetters';
 
 import styles from './driverAvatarBox.module.scss';
-import LicenseStatusBox from 'components/licenseStatusBox/LicenseStatusBox';
 
 const DriverAvatarBox: React.FC = () => {
 

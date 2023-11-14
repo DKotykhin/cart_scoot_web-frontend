@@ -21,8 +21,8 @@ const LogoutCard: React.FC<ILogoutCard> = ({ logoutClick, logoutCancelClick }) =
                     height={120}
                     className={styles.logout_avatar}
                 />
-                <p className={styles.logout_title}>Logout</p>
-                <p className={styles.logout_subtitle}>Are you sure to logout?</p>
+                <p className='title'>Logout</p>
+                <p className='subtitle'>Are you sure to logout?</p>
                 <div className='line'/>
                 <div className={styles.logout_buttons}>
                     <button

@@ -21,10 +21,7 @@
             flex-grow: 1;
         }
         .date_input_box {
-            max-width: 200px;
-        }
-        .time_input_box {
-            max-width: 200px;
+            z-index: 3;
         }
         .dropoff_input_box {
             flex-grow: 1;

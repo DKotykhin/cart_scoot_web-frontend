@@ -79,7 +79,7 @@ const RequestList: React.FC<IRequestList> = ({ markerCoordinates }) => {
                                     dropoffLocation={request?.dropoffLocation}
                                 />
                             </div>
-                        ))}
+                        ))}                        
                     </>
                 :
                 <EmptyList

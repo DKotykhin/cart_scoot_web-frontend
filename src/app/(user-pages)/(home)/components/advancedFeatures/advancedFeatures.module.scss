@@ -20,10 +20,6 @@
         h3 {
             margin: 0;
         }
-        .line {
-            width: 100%;
-            border: 1px solid $black-tertiary;
-        }
         .link_wrapper {
             display: flex;
             justify-content: space-between;
@@ -35,9 +31,8 @@
                 gap: 16px;
                 .link {
                     display: flex;
-                    img {
-                        margin-right: 16px;
-                    }
+                    align-items: center;
+                    gap: 16px;
                     span {
                         font-size: 20px;
                         color: $black-primary;
@@ -193,6 +188,15 @@
             .link_wrapper {
                 flex-direction: column;
                 gap: 16px;
+                .link_box {
+                    .link {
+                        gap: 8px;
+                        span {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+                    }
+                }
             }
         }
         .card_box {

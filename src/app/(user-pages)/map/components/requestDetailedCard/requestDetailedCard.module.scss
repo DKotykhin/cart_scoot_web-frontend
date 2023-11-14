@@ -9,7 +9,6 @@
         width: 424px;
         height: 680px;
         background-color: $white;
-        margin-top: 28px;
         border-radius: 20px;
         padding: 24px;
         z-index: 3;
@@ -51,6 +50,19 @@
             display: flex;
             flex-direction: column;
             gap: 24px;
+            ::-webkit-scrollbar {
+                width: 5px;
+            }
+            ::-webkit-scrollbar-track {
+                border-radius: 34px;
+                background: $black-quaternary;
+                margin-top: 10px;
+            }
+            ::-webkit-scrollbar-thumb {
+                border-radius: 34px;
+                background: $blue-primary;
+                transition: background-color 200ms linear;
+            }
             .location_box {
                 display: flex;
                 flex-direction: column;

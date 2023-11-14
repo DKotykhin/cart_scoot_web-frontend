@@ -17,42 +17,36 @@
         transform: translate(-50%, -50%);
         max-width: 422px;
         width: calc(100% - 32px);
-        height: 364px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        gap: 24px;
         background-color: $white;
         border-radius: 24px;
         z-index: 10;
         .logout_avatar {
             margin-top: 24px;
         }
-        .logout_title {
-            font-size: 32px;
-            color: $black-primary;
-            font-weight: 600;
-            line-height: 40px;
+        p {
+            margin: 0;
         }
-        .logout_subtitle {
-            font-size: 18px;
-            color: $black-secondary;
-            font-weight: 400;
-            line-height: 22px;
+        :nth-child(3) {
+            margin-top: -8px;
         }
         .logout_buttons {
             display: flex;
             justify-content: center;
+            gap: 24px;
             padding: 0 24px 24px;
             width: 100%;
             button {
                 display: flex;
-                max-width: 175px;
+                justify-content: center;
+                align-items: center;
                 width: 100%;
                 height: 48px;
                 padding: 0px 24px;
-                justify-content: center;
-                align-items: center;
                 border-radius: 20px;
                 font-size: 16px;
                 font-weight: 600;
@@ -64,7 +58,6 @@
                 border: 1px solid $black-tertiary;
                 background: $white;
                 color: $black-primary;
-                margin-right: 24px;
                 transition: all 0.3s ease-out;
                 &:hover {
                     background-color: $black-quaternary;
@@ -79,6 +72,18 @@
                     background-color: $red-secondary;
                     transition: all 0.3s ease-out;
                 }
+            }
+        }
+        @media screen and (max-width: $mobile_bp) {
+            gap: 16px;
+            .logout_avatar {
+                margin-top: 16px;
+                width: 80px;
+                height: auto;
+            }
+            .logout_buttons {
+                gap: 16px;
+                padding: 0 16px 16px;
             }
         }
     }

@@ -7,6 +7,19 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 34px;
+        background: $black-quaternary;
+        margin-top: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 34px;
+        background: $blue-primary;
+        transition: background-color 200ms linear;
+    }
     .user_panel {
         position: absolute;
         top: 120px;

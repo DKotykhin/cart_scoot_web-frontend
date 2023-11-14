@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import Image from "next/image";
@@ -13,7 +13,7 @@ import { IUser } from 'types/userTypes';
 
 import styles from './addCoordinates.module.scss';
 
-const AddCoordinates = () => {
+const AddCoordinates: React.FC<{ coordinates: { lat: number, lon: number } }> = ({ coordinates }) => {
 
     const [location, setLocation] = useState<{ latitude: number, longitude: number }>();
 
@@ -91,7 +91,7 @@ const AddCoordinates = () => {
                             width={48}
                             height={48}
                         />
-                        : 'Add Coordinates'
+                        : coordinates.lat || coordinates.lon ? 'Change Coordinates' : 'Add Coordinates'
                     }
                 </button>
             </div>

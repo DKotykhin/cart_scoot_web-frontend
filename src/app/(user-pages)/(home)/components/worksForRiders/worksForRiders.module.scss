@@ -9,8 +9,7 @@
     .block {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap: 24px;
+        gap: 16px;
         background-color: $black-quaternary;
         border-radius: 24px;
         padding: 24px;
@@ -26,8 +25,8 @@
             }
         }
         .line {
-            min-height: 198px;
-            border: 1px solid $black-tertiary;
+            min-height: 160px;
+            border-left: 1px solid $black-tertiary;
         }
         .step_box {
             display: flex;
@@ -35,7 +34,7 @@
             gap: 16px;
             max-width: 258px;
             width: 100%;
-            padding: 8px;
+            padding: 16px;
             img {
                 width: 48px;
                 height: 48px;
@@ -51,8 +50,6 @@
                 line-height: 28px;
             }
         }
-    }
-    @media screen and (max-width: $tablet_bp) {
     }
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
         padding: 0 35px;

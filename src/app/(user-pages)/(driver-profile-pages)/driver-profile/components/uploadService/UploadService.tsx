@@ -277,9 +277,12 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                         }
                     </div>
                 </div>
-                <button className={styles.upload_button} onClick={completeProfileClick}>
-                    Complete Profile
-                </button>
+                {fileArray.length || user?.license.status === licenseStatusTypes.pending ?
+                    <button className={styles.upload_button} onClick={completeProfileClick}>
+                        Complete Profile
+                    </button>
+                    : null
+                }
             </div>
             {openModalCard &&
                 <ModalCard

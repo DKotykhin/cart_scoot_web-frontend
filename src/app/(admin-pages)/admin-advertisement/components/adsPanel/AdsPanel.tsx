@@ -37,7 +37,7 @@ const AdsPanel = () => {
                         {data?.getAllAdvertisements.totalCount || 0}
                     </div>
                 </div>
-                <button onClick={() => router.push('/admin-add-advertisement')}>
+                <button onClick={() => router.push('/admin-advertisement/add')}>
                     <Image
                         src={'/icons/plus.svg'}
                         alt={'plus'}

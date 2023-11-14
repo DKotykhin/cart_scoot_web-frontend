@@ -19,7 +19,8 @@
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 48px;
+        gap: 24px;
+        padding: 16px 24px;
         .checkbox {
             display: flex;
             align-items: center;
@@ -59,6 +60,29 @@
         justify-content: flex-end;
         button {
             width: fit-content;
+        }
+    }
+    @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
+        gap: 24px;
+    }
+    @media screen and (max-width: $mobile_bp) {
+        gap: 16px;
+        .form_title {
+            font-size: 20px;
+            line-height: 24px;
+        }
+        .checkbox_wrapper {
+            gap: 16px;
+            padding: 16px;
+        }
+        .hours_box {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+            .form_hour_title {
+                font-size: 20px;
+                line-height: 24px;
+            }
         }
     }
 }

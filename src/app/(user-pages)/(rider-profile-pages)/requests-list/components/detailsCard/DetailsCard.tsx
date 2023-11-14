@@ -36,7 +36,8 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
         update(cache) {
             cache.modify({
                 fields: {
-                    getRequest() { }
+                    getRequest() { },
+                    getRequestsByRider() { }
                 }
             });
         },
@@ -57,7 +58,8 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
         update(cache) {
             cache.modify({
                 fields: {
-                    getRequest() { }
+                    getRequest() { },
+                    getRequestsByRider() { }
                 }
             });
         },
@@ -71,6 +73,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                     height={56}
                 />
             });
+            setOpenCancelTripCard(false);
         },
         onError: (err) => toast.warn(err.message, {
             bodyClassName: "wrong-toast",
@@ -86,7 +89,8 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
         update(cache) {
             cache.modify({
                 fields: {
-                    getRequest() { }
+                    getRequest() { },
+                    getRequestsByRider() { }
                 }
             });
         },

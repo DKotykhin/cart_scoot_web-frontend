@@ -3,6 +3,7 @@
 .map {
     width: 100%;
     min-height: 560px;
+    border-radius: 16px; 
     background: url("../../../../../../public/map.png");
     .contacts {
         margin: 24px;
@@ -30,8 +31,6 @@
         :nth-child(4) {
             margin: 16px 0;
         }
-    }
-    @media screen and (max-width: $tablet_bp) {
     }
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
         .contacts {

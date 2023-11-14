@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Image from "next/image";
 import { uploadBanner } from 'apollo/services/uploadBanner';
@@ -7,50 +7,47 @@ import styles from './uploadBox.module.scss';
 
 interface IUploadBox {
     imageURL?: string,
-    bannerFn: (arg0: string) => void;
+    imageName?: string,
+    setImageFile: (arg0: { bannerURL: string, fileName: string }) => void;
+    title?: string;
 }
 
-const UploadBox: React.FC<IUploadBox> = ({ imageURL, bannerFn }) => {
-
-    const [bannerFileName, setBannerFileName] = useState('');
-    const [bannerFileURL, setBannerFileURL] = useState('');
+const UploadBox: React.FC<IUploadBox> = ({ imageURL = '', imageName = '', setImageFile, title = '' }) => {
 
     const onChangeBanner = async (e: any) => {
-        setBannerFileName(e.target.files[0].name);
         const formData = new FormData();
         formData.append("banner", e.target.files[0], e.target.files[0].name);
         const bannerURL = await uploadBanner(formData);
-        setBannerFileURL(bannerURL);
-        bannerFn(bannerURL);
+        setImageFile({ bannerURL, fileName: e.target.files[0].name });
     };
 
     return (
         <div className={styles.upload_box_container}>
-            <label htmlFor='banner' onChange={onChangeBanner}>
+            <label htmlFor={title} onChange={onChangeBanner}>
                 <Image
                     src={"/icons/file-arrow-up.svg"}
                     alt={'upload'}
                     width={20}
                     height={20}
                 />
-                <p>{imageURL || bannerFileName ? 'Change file' : 'Upload File'}</p>
-                <input type="file" id="banner" name="banner" accept="image/*" hidden />
+                <p>{imageURL ? 'Change file' : 'Upload File'}</p>
+                <input type="file" id={title} name={title} accept="image/*" hidden />
             </label>
             <div className={styles.text_box}>
                 <p className={styles.upload_box_title}>
-                    {bannerFileName ? 'Banner Uploaded' : 'Banner Image'}
+                    {imageName ? `Uploaded for ${title}` : `${title} Banner`}
                 </p>
                 <p className={styles.upload_box_subtitle}>
-                    {bannerFileName ? bannerFileName : 'Choose a file to upload'}
+                    {imageName ? imageName : 'Choose a file to upload'}
                 </p>
                 <p className={styles.upload_box_text}>
-                    {bannerFileName ? '' : 'PNG or JPEG, Maximum 2 MB'}
+                    {imageName ? '' : 'PNG or JPEG, Maximum 2 MB'}
                 </p>
             </div>
-            {bannerFileURL || imageURL ?
+            {imageURL ?
                 <div className={styles.background_box}>
                     <Image
-                        src={bannerFileURL || imageURL || ""}
+                        src={imageURL}
                         alt={'upload'}
                         width={320}
                         height={194}

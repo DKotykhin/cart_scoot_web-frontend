@@ -7,9 +7,11 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 import LogoutCard from 'components/userPanel/logoutCard/LogoutCard';
 import { useUserStore } from 'stores/userStore';
+import { userTypes } from 'types/userTypes';
 
 import styles from './sideBar.module.scss';
 
@@ -27,7 +29,7 @@ const SideBar: React.FC<ISideBar> = ({ navLinks }) => {
     const [openLogoutCard, setOpenLogoutCard] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
-    const { setUserEmpty } = useUserStore();
+    const { userData, setUserEmpty } = useUserStore();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleKeydown = (e: { code: string }) => {
@@ -53,8 +55,21 @@ const SideBar: React.FC<ISideBar> = ({ navLinks }) => {
 
     }, [openLogoutCard]);
 
-    const logoutOpenClick = () => setOpenLogoutCard(true);
-    const logoutCancelClick = () => setOpenLogoutCard(false);
+    useEffect(() => {
+        const width = window.innerWidth;
+        if ((width < 1300) && userData?.role === userTypes.admin) {
+            toast.warn('Please use a desktop for an access', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+        }
+    }, [userData?.role]);
+
     const logoutClick = () => {
         setOpenLogoutCard(false);
         Cookies.remove('token');
@@ -97,7 +112,7 @@ const SideBar: React.FC<ISideBar> = ({ navLinks }) => {
                 </div>
                 <div
                     className={styles.user_logout}
-                    onClick={logoutOpenClick}
+                    onClick={() => setOpenLogoutCard(true)}
                 >
                     <Image
                         src={'/icons/signOut.svg'}
@@ -110,7 +125,7 @@ const SideBar: React.FC<ISideBar> = ({ navLinks }) => {
             </div>
             {openLogoutCard &&
                 <LogoutCard
-                    logoutCancelClick={logoutCancelClick}
+                    logoutCancelClick={() => setOpenLogoutCard(false)}
                     logoutClick={logoutClick}
                 />
             }

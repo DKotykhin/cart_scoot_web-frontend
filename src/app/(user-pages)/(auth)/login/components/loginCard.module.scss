@@ -7,16 +7,15 @@
     max-width: 650px;
     width: calc(100vw - 32px);
     background-color: $white;
-    margin-top: 50px;
+    margin: 48px 0;
     border-radius: 24px;
     border: 1px solid $black-tertiary;
-    margin-bottom: 30px;
     .upperBox {
         width: 100%;
         padding: 22px 22px 0 22px;
         .avatar {
             display: block;
-            margin: 48px auto 24px auto;
+            margin: 48px auto 24px;
         }
         .box {
             display: flex;
@@ -75,8 +74,17 @@
         }
     }
     @media screen and (max-width: $mobile_bp) {
+        margin: 24px 0;
         .upperBox {
             padding: 16px 16px 0 16px;
+            .avatar {
+                margin: 24px auto;
+                width: 80px;
+                height: auto;
+            }
+            .box {
+                margin-bottom: 24px;
+            }
         }
         .lowerBox {
             padding: 0 16px;
