@@ -25,7 +25,6 @@
         gap: 10px;
         border-radius: 24px;
         background: $blue-quaternary;
-        margin-top: 48px;
         text-align: center;
         .ads {
             font-size: 32px;
@@ -51,8 +50,5 @@
     }
     @media screen and (max-width: $mobile_bp) {
         padding: 0 16px;
-        .ads_empty_wrapper {
-            margin-top: 24px;
-        }
     }
 }
