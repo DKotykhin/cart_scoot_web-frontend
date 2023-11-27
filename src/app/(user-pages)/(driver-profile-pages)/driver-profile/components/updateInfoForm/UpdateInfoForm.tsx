@@ -54,6 +54,42 @@ const UpdateInfoForm: React.FC<{ user?: IUser }> = ({ user }) => {
         // console.log(data);
         let workingDays = [];
         const { startTime, endTime, monday, tuesday, wednesday, thursday, friday, saturday, sunday } = data;
+        if (!monday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday) {
+            toast.warn('Choose the working days', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        };
+        if (!startTime) {
+            toast.warn('Fill the start time of your working hours', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        };
+        if (!endTime) {
+            toast.warn('Fill the end time of your working hours', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        };
         if (monday) workingDays.push(1);
         if (tuesday) workingDays.push(2);
         if (wednesday) workingDays.push(3);
@@ -67,8 +103,8 @@ const UpdateInfoForm: React.FC<{ user?: IUser }> = ({ user }) => {
                     updateWorkingTimeInput: {
                         workingDays,
                         workingTime: {
-                            from: +`${startTime.getHours()}.${startTime.getMinutes()}`,
-                            to: +`${endTime.getHours()}.${endTime.getMinutes()}`,
+                            from: +`${startTime?.getHours()}.${startTime?.getMinutes()}`,
+                            to: +`${endTime?.getHours()}.${endTime?.getMinutes()}`,
                         }
                     }
                 },

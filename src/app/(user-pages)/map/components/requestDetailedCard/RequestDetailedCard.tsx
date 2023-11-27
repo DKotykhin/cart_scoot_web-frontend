@@ -62,6 +62,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, de
             }
         }
     });
+    // console.log('findCarFormData: ', findCarFormData);
 
     const routeData = useMapboxApi(
         findCarFormData?.locationData?.pickup.lat,
@@ -69,6 +70,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, de
         findCarFormData?.locationData?.dropoff.lat,
         findCarFormData?.locationData?.dropoff.lon
     );
+    // console.log('routeData', routeData);
 
     return detailedCardData ? (
         <article className={styles.container}>

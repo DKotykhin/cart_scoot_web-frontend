@@ -30,38 +30,44 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
     const { _id, pickupLocation, dropoffLocation, requestedTime, coordinates: { start, end }, status } = request;
     const routeData = useMapboxApi(start.lat, start.lon, end.lat, end.lon);
 
-    const [cancelTrip] = useMutation(CANCEL_REQUEST);
-
-    const confirmClick = async () => {
-        try {
-            const { data } = await cancelTrip({
-                variables: {
-                    requestId: _id,
-                },
+    const [cancelTrip, { loading }] = useMutation(CANCEL_REQUEST, {
+        update(cache) {
+            cache.modify({
+                fields: {
+                    getRequestsByDriver() { },
+                    getRequest() { }
+                }
             });
-            if (data.cancelRequest._id) {
-                setOpenCancelTripCard(false);
-                toast.success('Your trip cancelled', {
-                    bodyClassName: "right-toast",
-                    icon: <Image
-                        src={'/icons/right-code.svg'}
-                        alt='icon'
-                        width={56}
-                        height={56}
-                    />
-                });
-            }
-        } catch (err: any) {
-            toast.warn(err.message, {
-                bodyClassName: "wrong-toast",
+        },
+        onCompleted: (data) => {
+            setOpenCancelTripCard(false);
+            toast.success('Your trip cancelled', {
+                bodyClassName: "right-toast",
                 icon: <Image
-                    src={'/icons/wrong-code.svg'}
+                    src={'/icons/right-code.svg'}
                     alt='icon'
                     width={56}
                     height={56}
                 />
             });
-        }
+        },
+        onError: (err) => toast.warn(err.message, {
+            bodyClassName: "wrong-toast",
+            icon: <Image
+                src={'/icons/wrong-code.svg'}
+                alt='icon'
+                width={56}
+                height={56}
+            />
+        })
+    });
+
+    const confirmClick = async () => {
+        await cancelTrip({
+            variables: {
+                requestId: _id,
+            },
+        });
     };
 
     return (
@@ -132,7 +138,14 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
                     title='Cancel the trip'
                     subtitle='Are you sure to cancel the trip?'
                     button_1='Back'
-                    button_2='Cancel Trip'
+                    button_2={loading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        />
+                        : 'Cancel Trip'}
                     imageURL='/avatars/warningAvatar.svg'
                     greenButton={false}
                     cancelClick={() => setOpenCancelTripCard(false)}
