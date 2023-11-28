@@ -74,6 +74,10 @@ const LoginCard = () => {
             addUser(data?.loginByEmail.user!);
             if (data?.loginByEmail.user.role === userTypes.admin) {
                 router.push('/admin-dashboard');
+            } else if (data?.loginByEmail.user.role === userTypes.driver) {
+                router.push('/driver-requests');
+            } else if (data?.loginByEmail.user.role === userTypes.rider) {
+                router.push('/requests-list');
             } else router.push('/');
         } catch (err: any) {
             toast.warn(err.message, {

@@ -23,6 +23,8 @@ interface IReviewData {
     comment: string;
 }
 
+const starsArray = [1, 2, 3, 4, 5];
+
 const FinishedCard: React.FC<IFinishedCard> = ({ handleClose, finishedCardData }) => {
 
     const { driverId, requestCode } = finishedCardData;
@@ -96,49 +98,20 @@ const FinishedCard: React.FC<IFinishedCard> = ({ handleClose, finishedCardData }
                         height={120}
                     />
                     <h2 className='title'>Trip Finished</h2>
-                    <p className={styles.subtitle}>Your trip has been finished, please submit your comment about you experience in the trip and driver.</p>
-                    <div className={styles.emoji_box}>
-                        <Image
-                            src={'/emoji/frowning-face.webp'}
-                            alt={'star'}
-                            width={56}
-                            height={56}
-                            className={reviewStars >= 1 ? "" : styles.emoji}
-                            onClick={() => setReviewStars(1)}
-                        />
-                        <Image
-                            src={'/emoji/confused-face.webp'}
-                            alt={'star'}
-                            width={56}
-                            height={56}
-                            className={reviewStars >= 2 ? "" : styles.emoji}
-                            onClick={() => setReviewStars(2)}
-                        />
-                        <Image
-                            src={'/emoji/neutral-face.webp'}
-                            alt={'star'}
-                            width={56}
-                            height={56}
-                            className={reviewStars >= 3 ? "" : styles.emoji}
-                            onClick={() => setReviewStars(3)}
-                        />
-                        <Image
-                            src={'/emoji/smiling-face.webp'}
-                            alt={'star'}
-                            width={56}
-                            height={56}
-                            className={reviewStars >= 4 ? "" : styles.emoji}
-                            onClick={() => setReviewStars(4)}
-                        />
-                        <Image
-                            src={'/emoji/star-struck.webp'}
-                            alt={'star'}
-                            width={56}
-                            height={56}
-                            className={reviewStars === 5 ? "" : styles.emoji}
-                            onClick={() => setReviewStars(5)}
-                        />
-
+                    <p className={styles.subtitle}>
+                        Your trip has been finished, please submit your comment about you experience in the trip and driver.
+                    </p>
+                    <div className={styles.stars_box}>
+                        {starsArray.map(star => (
+                            <Image
+                                src={reviewStars >= star ? '/icons/star-green.svg' : '/icons/star-grey.svg'}
+                                alt={'star'}
+                                width={56}
+                                height={56}
+                                onClick={() => setReviewStars(star)}
+                                key={star}
+                            />
+                        ))}
                     </div>
                     <div className={styles.textarea}>
                         <Controller

@@ -56,13 +56,9 @@
                     background-color: $white;
                 }
             }
-            .emoji_box {
+            .stars_box {
                 display: flex;
                 justify-content: space-between;
-                .emoji {
-                    background: lightgray 50% / cover no-repeat;
-                    mix-blend-mode: luminosity;
-                }
                 img {
                     cursor: pointer;
                 }

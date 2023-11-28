@@ -131,7 +131,7 @@ const PickupForm = () => {
                 type='submit'
                 className={styles.button}
             >
-                Find Car
+                Find Cart
             </button>
         </form>
     );

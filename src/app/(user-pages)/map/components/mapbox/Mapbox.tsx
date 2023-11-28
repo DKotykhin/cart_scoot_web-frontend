@@ -167,6 +167,19 @@ const Mapbox = () => {
             setOpenLoginMobileCard(true);
             return;
         };
+
+        if (!findCarFormData?.locationData && !findCarFormData?.requestedTime) {
+            toast.warn("Please fill out this form!", {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        }
         try {
             const { data } = await allDriversRequest({
                 variables: {
@@ -244,14 +257,12 @@ const Mapbox = () => {
                     ))}
                 </Map>
                 <FindCarForm closeDriverDetails={closeDriverDetails} />
-                {findCarFormData?.locationData &&
-                    findCarFormData.requestedTime &&
-                    data?.getFreeDrivers.length &&
-                    <SendRequestButton
-                        sendAllRequestClick={sendAllRequestClick}
-                        driversAmount={data?.getFreeDrivers.length || 0}
-                    />
-                }
+                <SendRequestButton
+                    sendAllRequestClick={sendAllRequestClick}
+                    active={Boolean(findCarFormData?.locationData &&
+                        findCarFormData.requestedTime &&
+                        data?.getFreeDrivers.length)}
+                />
             </div>
             {detailedCardData && openDriverDetails &&
                 <RequestDetailedCard

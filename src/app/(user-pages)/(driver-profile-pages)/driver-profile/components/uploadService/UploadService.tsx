@@ -32,11 +32,13 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
         warning: false,
     });
     const [openModalCard, setOpenModalCard] = useState(false);
+    const [buttonLoading, setButtonLoading] = useState(false);
+    const [modalLoading, setModalLoading] = useState(false);
 
     const { addUser } = useUserStore();
 
     const onChangeSelfie = async (e: any) => {
-        if (e.target.files[0].size > 2097152) {
+        if (e.target.files[0].size > 15728640) {
             setSelfieFile({ warning: true, fileName: "", fileSize: 0 });
             toast.warn('File is too big', {
                 bodyClassName: "wrong-toast",
@@ -53,7 +55,7 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
         }
     };
     const onChangeInsurance = async (e: any) => {
-        if (e.target.files[0].size > 2097152) {
+        if (e.target.files[0].size > 15728640) {
             setInsuranceFile({ warning: true, fileName: "", fileSize: 0 });
             toast.warn('File is too big', {
                 bodyClassName: "wrong-toast",
@@ -70,7 +72,7 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
         }
     };
     const onChangeGolfCard = async (e: any) => {
-        if (e.target.files[0].size > 2097152) {
+        if (e.target.files[0].size > 15728640) {
             setGolfCartFile({ warning: true, fileName: "", fileSize: 0 });
             toast.warn('File is too big', {
                 bodyClassName: "wrong-toast",
@@ -98,9 +100,10 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                     height={56}
                 />
             });
-        } else if (user?.license.status === licenseStatusTypes.waiting) {
+        } else if (user?.license.status === licenseStatusTypes.waiting || user?.license.status === licenseStatusTypes.approved) {
             setOpenModalCard(true);
         } else {
+            setButtonLoading(true);
             const formData = new FormData();
             for (const file of fileArray) {
                 formData.append("license", file, file.name);
@@ -108,6 +111,8 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
             const newUser = await uploadImages(formData);
             if (newUser) {
                 addUser(newUser);
+                setButtonLoading(false);
+                fileArray = [];
                 toast.success('Files has been uploaded successfully', {
                     bodyClassName: "right-toast",
                     icon: <Image
@@ -118,6 +123,7 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                     />
                 });
             } else {
+                setButtonLoading(false);
                 toast.warn('Please, load all documents again', {
                     bodyClassName: "wrong-toast",
                     icon: <Image
@@ -132,6 +138,7 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
     };
 
     const confirmClick = async () => {
+        setModalLoading(true);
         const formData = new FormData();
         for (const file of fileArray) {
             formData.append("license", file, file.name);
@@ -139,6 +146,9 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
         const newUser = await uploadImages(formData);
         if (newUser) {
             addUser(newUser);
+            setModalLoading(false);
+            setOpenModalCard(false);
+            fileArray = [];
             toast.success('Files has been uploaded successfully', {
                 bodyClassName: "right-toast",
                 icon: <Image
@@ -149,6 +159,8 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                 />
             });
         } else {
+            setModalLoading(false);
+            setOpenModalCard(false);
             toast.warn('Please, load all documents again', {
                 bodyClassName: "wrong-toast",
                 icon: <Image
@@ -279,7 +291,14 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                 </div>
                 {fileArray.length || user?.license.status === licenseStatusTypes.pending ?
                     <button className={styles.upload_button} onClick={completeProfileClick}>
-                        Complete Profile
+                        {buttonLoading ?
+                            <Image
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
+                            />
+                            : 'Complete Profile'}
                     </button>
                     : null
                 }
@@ -289,7 +308,13 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                     title='Save Changes'
                     subtitle='Are you sure to save change and update your docs? it may will takes 24 hrs to verify your new documents'
                     button_1='Cancel'
-                    button_2='Save'
+                    button_2={modalLoading ?
+                        <Image
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
+                        /> : 'Save'}
                     imageURL='/avatars/warningAvatar.svg'
                     greenButton={true}
                     cancelClick={() => setOpenModalCard(false)}

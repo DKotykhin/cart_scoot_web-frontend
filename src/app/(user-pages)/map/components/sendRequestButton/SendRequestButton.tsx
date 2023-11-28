@@ -3,17 +3,21 @@ import React from 'react';
 import styles from './sendRequestButton.module.scss';
 
 interface ISendRequestButton {
-    driversAmount: number,
+    active: boolean,
     sendAllRequestClick: () => void,
 }
 
-const SendRequestButton: React.FC<ISendRequestButton> = ({ driversAmount, sendAllRequestClick }) => {
+const SendRequestButton: React.FC<ISendRequestButton> = ({ active, sendAllRequestClick }) => {
 
-    return driversAmount > 1 ? (
-        <div className={styles.wrapper} onClick={sendAllRequestClick}>
-            <p className={styles.text}>Send Request to all</p>
-        </div>
-    ) : null;
+    return (
+        <button
+            className={active ? styles.wrapper : `${styles.wrapper} ${styles.disabled}`}
+            onClick={sendAllRequestClick}
+            disabled={active ? false : true}
+        >
+            Send Request to all
+        </button>
+    );
 };
 
 export default SendRequestButton;

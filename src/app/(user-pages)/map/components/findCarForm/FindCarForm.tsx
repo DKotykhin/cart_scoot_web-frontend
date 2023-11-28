@@ -106,6 +106,9 @@ const FindCarForm: React.FC<IFindCarForm> = ({ closeDriverDetails }) => {
             onSubmit={handleSubmit(onSubmit)}
             onKeyDown={(e) => checkKeyDown(e)}
         >
+            <p className={styles.form_title}>
+                Please check to make sure your destination is reachable by a Golf Cart
+            </p>
             <div className={styles.form_box}>
                 <div className={styles.pickup_input_box}>
                     <PickupInput
@@ -138,7 +141,7 @@ const FindCarForm: React.FC<IFindCarForm> = ({ closeDriverDetails }) => {
                     type='submit'
                     className={styles.submit_button}
                 >
-                    Find Car
+                    Find Cart
                 </button>
             </div>
         </form>

@@ -15,14 +15,25 @@
     box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease-out;
     cursor: pointer;
+    font-size: 16px;
+    color: $black-primary;
+    font-weight: 600;
+    line-height: 20px;
+
     &:hover {
         background-color: $green-secondary;
         transition: all 0.3s ease-out;
     }
-    .text {
-        font-size: 16px;
-        color: $black-primary;
-        font-weight: 600;
-        line-height: 20px;
+}
+
+.disabled {
+    background-color: $black-tertiary;
+    color: $black-secondary;
+    opacity: 0.9;
+    cursor: auto;
+
+    &:hover {
+        background-color: $black-tertiary;
+        transition: all 0.3s ease-out;
     }
 }
