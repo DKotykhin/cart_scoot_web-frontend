@@ -24,11 +24,11 @@ interface ISearchForm {
 
 const options = [
     { value: null, label: '-- All --' },
-    { value: 'PENDING', label: 'Pending', color: '#ffa74d', backgroundColor: '#fffaf4' },
-    { value: 'APPROVED', label: 'Approved', color: '#42da6e', backgroundColor: '#f3fdf6' },
-    { value: 'ACTIVE', label: 'Active', color: '#4e7cf6', backgroundColor: '#f4f7fe' },
-    { value: 'REJECTED', label: 'Rejected', color: '#f6584e', backgroundColor: '#fef5f4' },
-    { value: 'FINISHED', label: 'Finished', color: '#15161a', backgroundColor: '#f7f8fa' },
+    { value: statusTypes.pending, label: 'Pending', color: '#ffa74d', backgroundColor: '#fffaf4' },
+    { value: statusTypes.approved, label: 'Approved', color: '#42da6e', backgroundColor: '#f3fdf6' },
+    { value: statusTypes.active, label: 'Active', color: '#4e7cf6', backgroundColor: '#f4f7fe' },
+    { value: statusTypes.cancelled, label: 'Cancelled', color: '#f6584e', backgroundColor: '#fef5f4' },
+    { value: statusTypes.finished, label: 'Finished', color: '#15161a', backgroundColor: '#f7f8fa' },
 ];
 
 const stylesOptions = {

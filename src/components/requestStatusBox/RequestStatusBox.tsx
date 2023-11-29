@@ -12,7 +12,7 @@ const RequestStatusBox: React.FC<IRequestStatusBox> = ({ status = statusTypes.pe
     return (
         <div className={styles.status_box}>
             <div className={status === statusTypes.pending ? styles.status_pending
-                : status === statusTypes.rejected ? styles.status_rejected
+                : status === statusTypes.cancelled ? styles.status_cancelled
                     : status === statusTypes.active ? styles.status_active
                         : status === statusTypes.approved ? styles.status_approved
                             : styles.status_finished

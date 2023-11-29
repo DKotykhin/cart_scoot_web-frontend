@@ -46,7 +46,7 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
             });
         },
         onCompleted: (data) => {
-            toast.success(data.driverOneCallAnswer.status === statusTypes.rejected ?
+            toast.success(data.driverOneCallAnswer.status === statusTypes.cancelled ?
                 'Your canceled the request' : 'Your accepted the request', {
                 bodyClassName: "right-toast",
                 icon: <Image

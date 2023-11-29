@@ -2,7 +2,7 @@ export enum statusTypes {
     "pending" = "PENDING",
     "active" = "ACTIVE",
     "approved" = "APPROVED",
-    "rejected" = "REJECTED",
+    "cancelled" = "CANCELLED",
     "finished" = "FINISHED",
 }
 

@@ -96,7 +96,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
         },
         onCompleted: (data) => {
             toast.success(data.riderMultiCallAnswer.status === statusTypes.active ?
-                'You approved driver request' : 'You rejected driver request', {
+                'You approved driver request' : 'You cancelled driver request', {
                 bodyClassName: "right-toast",
                 icon: <Image
                     src={'/icons/right-code.svg'}
