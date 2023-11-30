@@ -23,8 +23,8 @@ const PhoneField: React.FC<IPhoneField> = ({ error, control }) => {
                     <PhoneInput
                         {...field}
                         country={'us'}
-                        regions={['eu-union', 'north-america']}
-                        // masks={{us: '(..) ...-..-..'}}
+                        regions={['north-america']}
+                        // regions={['eu-union', 'north-america']}                        
                         countryCodeEditable={false}
                         inputClass={styles.field__phone}
                         buttonClass={styles.field__index}
