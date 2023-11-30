@@ -9,15 +9,19 @@
         height: 48px;
         border-radius: 20px;
         border: 1px solid $black-tertiary;
-        padding-left: 52px;
+        padding: 0 12px 0 44px;
         font-size: 16px;
         font-weight: 600;
         line-height: 20px;
         color: $black-primary;
+        // appearance: none;
+        // background-image: url('../../../../public/icons/mapPin.svg');
+        // background-repeat: no-repeat;
+        // background-position: left 12px center;
     }
     .start_icon {
         position: absolute;
-        left: 20px;
+        left: 12px;
         top: 12px;
     }  
     ::placeholder {

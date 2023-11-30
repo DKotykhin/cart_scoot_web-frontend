@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 type FindCarFormDataStore = {
     findCarFormData: IFindCarFormData;
@@ -8,6 +8,8 @@ type FindCarFormDataStore = {
 
 export interface IFindCarFormData {
     requestedTime?: string;
+    pickupDate?: Date;
+    pickupTime?: Date;
     locationData?: {
         pickup: {
             address: string;
@@ -19,12 +21,16 @@ export interface IFindCarFormData {
             lat: number;
             lon: number;
         };
+        distance: number;
+        duration: number;
     };
 }
 
 export const useFormDataStore = create<FindCarFormDataStore>()((set) => ({
     findCarFormData: {
         requestedTime: undefined,
+        pickupDate: undefined,
+        pickupTime: undefined,
         locationData: undefined,
     },
     addFindCarFormData: (newData: IFindCarFormData) =>
@@ -36,6 +42,8 @@ export const useFormDataStore = create<FindCarFormDataStore>()((set) => ({
         set(() => ({
             findCarFormData: {
                 requestedTime: undefined,
+                pickupDate: undefined,
+                pickupTime: undefined,
                 locationData: undefined,
             },
         })),

@@ -26,6 +26,7 @@ import { mapStyle, viewport } from 'constants/mapStyle';
 import { IDriverWithRating } from 'types/userTypes';
 
 import styles from './mapbox.module.scss';
+import FindCartForm from '../findCartForm/FindCartForm';
 
 export interface IMarkerClickData {
     driver: IDriverWithRating,
@@ -256,7 +257,7 @@ const Mapbox = () => {
                         </Marker>
                     ))}
                 </Map>
-                <FindCarForm closeDriverDetails={closeDriverDetails} />
+                <FindCartForm closeDriverDetails={closeDriverDetails} />
                 <SendRequestButton
                     sendAllRequestClick={sendAllRequestClick}
                     active={Boolean(findCarFormData?.locationData &&

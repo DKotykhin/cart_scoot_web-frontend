@@ -81,7 +81,7 @@ const PickupForm = () => {
         // console.log('requestedTime: ', requestedTime);
         // console.log('locationData: ', locationData);
         if (requestedTime && locationData) {
-            addFindCarFormData({ requestedTime, locationData });
+            addFindCarFormData({ requestedTime, pickupDate: date, pickupTime: time, locationData });
             router.push('/map');
         } else {
             toast.warn("Please fill out this form!", {

@@ -1,0 +1,34 @@
+@import "constants/constants.scss";
+
+.picker_wrapper {
+    .picker_input {
+        min-width: 160px;
+        width: 100%;
+        height: 48px;
+        border-radius: 20px;
+        border: 1px solid $black-tertiary;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        color: $black-primary;
+        background-color: transparent;
+        padding-left: 52px;
+        background-image: url('../../../../../public/icons/calendarBlank.svg'), url('../../../../../public/icons/bxs-chevron-down.svg');
+        background-repeat: no-repeat;
+        background-position: left 12px center, right 12px center;
+    }
+
+    ::placeholder {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        color: $black-tertiary;
+    }
+
+    @media screen and (max-width: $mobile_bp) {
+        .picker_input {
+            width: calc(100vw - 96px);
+        }
+    }
+}

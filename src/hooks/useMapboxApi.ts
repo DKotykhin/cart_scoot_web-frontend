@@ -29,7 +29,7 @@ export const useMapboxApi = (
         if (startLat && startLon && endLat && endLon) {
             const startPoint = `${startLat},${startLon}`;
             const endPoint = `${endLat},${endLon}`;
-            const mapboxApiUrl = `https://api.mapbox.com/directions/v5/mapbox/walking/${startPoint};${endPoint}?geometries=geojson&access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`;
+            const mapboxApiUrl = `https://api.mapbox.com/directions/v5/mapbox/cycling/${startPoint};${endPoint}?geometries=geojson&access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`;
 
             const config = {
                 method: "GET",
