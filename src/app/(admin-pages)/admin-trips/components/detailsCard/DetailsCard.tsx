@@ -185,7 +185,7 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                         <DetailsItem
                             imageURL='/icons/hourglass.svg'
                             title='Estimated time'
-                            value={routeData ? `${Math.ceil(routeData.duration / 60 / 5 / 4.05)} min` : '0 min'}
+                            value={routeData ? `${Math.ceil(routeData.duration / 60 / 4.05)} min` : '0 min'}
                         />
                         {requestData?.request.driverId?.phone.number ?
                             <DetailsItem

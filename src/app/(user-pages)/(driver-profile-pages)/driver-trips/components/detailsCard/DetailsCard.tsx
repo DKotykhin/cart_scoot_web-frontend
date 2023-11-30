@@ -118,7 +118,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
                                 height={16}
                                 className={styles.addition_details_image}
                             />
-                            <p>{routeData ? `${Math.ceil(routeData.duration / 60 / 5)} min` : '0 min'}</p>
+                            <p>{routeData ? `${Math.ceil(routeData.duration / 60 / 4.05)} min` : '0 min'}</p>
                         </div>
                     </div>
                 </div>
