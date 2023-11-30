@@ -13,7 +13,7 @@ import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { GET_FREE_DRIVERS } from 'apollo/queries/user';
 
 import SendRequestButton from '../sendRequestButton/SendRequestButton';
-import FindCarForm from '../findCarForm/FindCarForm';
+import FindCartForm from '../findCartForm/FindCartForm';
 import RequestDetailedCard from '../requestDetailedCard/RequestDetailedCard';
 import AskLoginCard from '../askLoginCard/AskLoginCard';
 import RegisterMobilePhone from '../registerMobilePhone/RegisterMobilePhone';
@@ -26,7 +26,6 @@ import { mapStyle, viewport } from 'constants/mapStyle';
 import { IDriverWithRating } from 'types/userTypes';
 
 import styles from './mapbox.module.scss';
-import FindCartForm from '../findCartForm/FindCartForm';
 
 export interface IMarkerClickData {
     driver: IDriverWithRating,
@@ -135,6 +134,7 @@ const Mapbox = () => {
                         },
                         pickupLocation: findCarFormData?.locationData?.pickup.address,
                         dropoffLocation: findCarFormData?.locationData?.dropoff.address,
+                        carType: findCarFormData?.carType,
                     }
                 },
             });
@@ -198,6 +198,7 @@ const Mapbox = () => {
                         },
                         pickupLocation: findCarFormData?.locationData?.pickup.address,
                         dropoffLocation: findCarFormData?.locationData?.dropoff.address,
+                        carType: findCarFormData?.carType,
                     }
                 },
             });

@@ -10,6 +10,7 @@ export interface IFindCarFormData {
     requestedTime?: string;
     pickupDate?: Date;
     pickupTime?: Date;
+    carType: number;
     locationData?: {
         pickup: {
             address: string;
@@ -32,6 +33,7 @@ export const useFormDataStore = create<FindCarFormDataStore>()((set) => ({
         pickupDate: undefined,
         pickupTime: undefined,
         locationData: undefined,
+        carType: 4,
     },
     addFindCarFormData: (newData: IFindCarFormData) =>
         set(() => ({
@@ -45,6 +47,7 @@ export const useFormDataStore = create<FindCarFormDataStore>()((set) => ({
                 pickupDate: undefined,
                 pickupTime: undefined,
                 locationData: undefined,
+                carType: 4,
             },
         })),
 }));

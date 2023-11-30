@@ -32,13 +32,14 @@
 
         .pickup_input_box {
             flex-grow: 1;
+            min-width: 40%;
 
             input {
                 width: 100%;
                 height: 48px;
                 border-radius: 20px;
                 border: 1px solid $black-tertiary;
-                padding: 0 12px 0 44px;
+                padding: 0 12px 0 52px;
                 font-size: 16px;
                 font-weight: 600;
                 line-height: 20px;
@@ -63,13 +64,14 @@
 
         .dropoff_input_box {
             flex-grow: 1;
+            min-width: 40%;
 
             input {
                 width: 100%;
                 height: 48px;
                 border-radius: 20px;
                 border: 1px solid $black-tertiary;
-                padding: 0 12px 0 44px;
+                padding: 0 12px 0 52px;
                 font-size: 16px;
                 font-weight: 600;
                 line-height: 20px;
@@ -87,14 +89,35 @@
                 color: $black-tertiary;
             }
         }
+
+        .select_input_box {
+            flex-grow: 1;
+
+            select {
+                width: 100%;
+                height: 48px;
+                border-radius: 20px;
+                border: 1px solid $black-tertiary;
+                padding: 0 12px 0 52px;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 20px;
+                // color: $black-primary;
+                appearance: none;
+                background-image: url('../../../../../../public/icons/carSimple-grey.svg'), url('../../../../../../public/icons/bxs-chevron-down.svg');
+                background-repeat: no-repeat;
+                background-position: left 12px center, right 12px center;
+                color: $black-tertiary;
+            }
+        }
     }
 
     .submit_button {
         display: flex;
-        width: 160px;
+        width: fit-content;
         flex-grow: 1;
         height: 48px;
-        padding: 0px 24px;
+        padding: 0px 16px;
         justify-content: center;
         align-items: center;
         gap: 12px;

@@ -25,6 +25,7 @@ const FindCartForm: React.FC<IFindCartForm> = ({ closeDriverDetails }) => {
 
     const [pickupDate, setPickupDate] = useState<any>(null);
     const [pickupTime, setPickupTime] = useState<any>(null);
+    const [carType, setCarType] = useState<number>(4);
 
     const { addFindCarFormData, findCarFormData } = useFormDataStore();
 
@@ -73,7 +74,7 @@ const FindCartForm: React.FC<IFindCartForm> = ({ closeDriverDetails }) => {
             // console.log(locationData);
 
             if (requestedTime && locationData) {
-                addFindCarFormData({ requestedTime, pickupDate, pickupTime, locationData });
+                addFindCarFormData({ requestedTime, pickupDate, pickupTime, locationData, carType });
                 closeDriverDetails();
             }
 
@@ -135,6 +136,13 @@ const FindCartForm: React.FC<IFindCartForm> = ({ closeDriverDetails }) => {
                         pickupTime={pickupTime}
                         setPickupTime={(time) => setPickupTime(time)}
                     />
+                </div>
+                <div className={styles.select_input_box}>
+                    <select onChange={(e) => setCarType(+e.target.value)} defaultValue={""}>
+                        <option value="" disabled hidden>Cart Type</option>
+                        <option value={4}>4</option>
+                        <option value={6}>6</option>
+                    </select>
                 </div>
                 <button
                     type='submit'
