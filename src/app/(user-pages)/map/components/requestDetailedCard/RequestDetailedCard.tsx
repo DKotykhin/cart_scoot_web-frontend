@@ -161,7 +161,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, de
                             <DetailsItem
                                 imageURL='/icons/hourglass.svg'
                                 title='Estimated time'
-                                value={routeData ? `${Math.ceil(routeData.duration / 60)} min` : '0 min'}
+                                value={routeData ? `${Math.ceil(routeData.duration / 60 / 4.05)} min` : '0 min'}
                             />
                         </div>
                         :

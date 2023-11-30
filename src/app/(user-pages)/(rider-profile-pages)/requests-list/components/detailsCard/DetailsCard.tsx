@@ -202,7 +202,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                         <DetailsItem
                             imageURL='/icons/hourglass.svg'
                             title='Estimated time'
-                            value={routeData ? `${Math.ceil(routeData.duration / 60)} min` : '0 min'}
+                            value={routeData ? `${Math.ceil(routeData.duration / 60 / 5 / 4.05)} min` : '0 min'}
                         />
                     </div>
                     :
