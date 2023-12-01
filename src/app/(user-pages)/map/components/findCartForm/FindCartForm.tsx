@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Autocomplete, Libraries, useLoadScript } from '@react-google-maps/api';
 import { toast } from 'react-toastify';
+import Select from 'react-select';
 
 import Image from "next/image";
 
@@ -15,6 +16,29 @@ import styles from './findCartForm.module.scss';
 interface IFindCartForm {
     closeDriverDetails: () => void;
 }
+
+const options = [
+    { value: 4, label: '4-seats cart' },
+    { value: 6, label: '6-seats cart' },
+];
+
+const stylesOptions = {
+    control: (styles: any) => ({
+        ...styles,
+        width: '100%',
+        height: '48px',
+        border: '1px solid #afb2be',
+        borderRadius: '20px',
+        paddingLeft: '44px',
+        cursor: 'pointer',
+        backgroundImage: "url('../../../../../../icons/carSimple-grey.svg')",
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'left 16px center',
+    }),
+    option: (styles: any) => {
+        return { ...styles };
+    }
+};
 
 const libraries: Libraries = ['places'];
 
@@ -138,11 +162,12 @@ const FindCartForm: React.FC<IFindCartForm> = ({ closeDriverDetails }) => {
                     />
                 </div>
                 <div className={styles.select_input_box}>
-                    <select onChange={(e) => setCarType(+e.target.value)} defaultValue={""}>
-                        <option value="" disabled hidden>Cart Type</option>
-                        <option value={4}>4</option>
-                        <option value={6}>6</option>
-                    </select>
+                    <Select
+                        options={options}
+                        onChange={(value) => setCarType(value?.value || 4)}
+                        placeholder="Cart Type"
+                        styles={stylesOptions}
+                    />
                 </div>
                 <button
                     type='submit'
