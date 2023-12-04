@@ -58,7 +58,7 @@ const Footer = () => {
                 <div className={styles.line}></div>
                 <div className={styles.last_block}>
                     <p>Designed by <a href={'https://webxwiz.com'}>WebXwiz</a></p>
-                    <p>2023</p>
+                    <p>Privacy policy - 2023</p>
                 </div>
             </div>
         </footer>
