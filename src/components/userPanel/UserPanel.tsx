@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Image from "next/image";
 import Link from 'next/link';
@@ -25,6 +25,8 @@ interface IUserPanel {
 
 const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePasswordClick, handleCloseClick, addMobileClick, changeNameClick }) => {
 
+    const [avatarLoading, setAvatarLoading] = useState(false);
+
     const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING, {
         fetchPolicy: 'no-cache',
         refetchWritePolicy: 'overwrite',
@@ -33,9 +35,11 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePas
     const { addUser } = useUserStore();
 
     const onChange = async (e: any) => {
+        setAvatarLoading(true);
         const formData = new FormData();
         formData.append("avatar", e.target.files[0], e.target.files[0].name);
         const newUser = await uploadAvatar(formData);
+        if (newUser) setAvatarLoading(false);
         addUser(newUser);
     };
 
@@ -57,17 +61,25 @@ const UserPanel: React.FC<IUserPanel> = ({ user, logoutModalClick, openChangePas
                 </div>
                 <div className={styles.user_logo_wrapper}>
                     <div className={styles.logo_box}>
-                        {user?.avatarURL ?
+                        {avatarLoading ?
                             <Image
-                                src={user?.avatarURL}
-                                alt={'avatar'}
-                                width={56}
-                                height={56}
+                                src={'/spinner.svg'}
+                                alt={'spinner'}
+                                width={48}
+                                height={48}
                             />
                             :
-                            <div className={styles.empty_avatar}>
-                                {avatarLetters(user?.userName || 'C S')}
-                            </div>
+                            user?.avatarURL ?
+                                <Image
+                                    src={user?.avatarURL}
+                                    alt={'avatar'}
+                                    width={56}
+                                    height={56}
+                                />
+                                :
+                                <div className={styles.empty_avatar}>
+                                    {avatarLetters(user?.userName || 'C S')}
+                                </div>
                         }
                     </div>
                     <label htmlFor='avatar' onChange={onChange}>

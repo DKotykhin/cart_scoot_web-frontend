@@ -3,6 +3,7 @@
 .container {
     display: flex;
     justify-content: center;
+
     .footer {
         display: flex;
         flex-direction: column;
@@ -12,6 +13,7 @@
         max-width: 1440px;
         padding: 0 60px;
         position: relative;
+
         .ellipse {
             position: absolute;
             top: 0;
@@ -25,25 +27,30 @@
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
+
         img {
             margin-top: 60px;
         }
+
         .logo {
             font-size: 28px;
             font-weight: 500;
             line-height: 34px;
             color: $blue-primary;
             margin-top: 16px;
+
             span {
                 color: $green-primary;
             }
         }
+
         .subtitle {
             font-size: 18px;
             color: $black-primary;
             line-height: 22px;
             margin-top: 8px;
         }
+
         .social {
             img {
                 width: 56px;
@@ -56,11 +63,13 @@
                 box-shadow: 0px 12px 28px -4px rgba(0, 0, 0, 0.08);
             }
         }
+
         .line {
             width: 100%;
             border-top: 1px solid $black-tertiary;
             margin: 24px 0;
         }
+
         .navigation {
             display: flex;
             flex-wrap: wrap;
@@ -69,28 +78,34 @@
             font-size: 16px;
             font-weight: 600;
             line-height: 20px;
+
             a {
                 margin: 12px 36px;
             }
         }
+
         .last_block {
             display: flex;
             justify-content: space-between;
             width: 100%;
             margin-bottom: 60px;
+
             p {
                 font-size: 18px;
                 line-height: 22px;
                 color: $black-primary;
+
                 a {
                     color: $blue-primary;
                 }
             }
         }
     }
+
     @media screen and (min-width: $mobile_bp) and (max-width: $tablet_bp) {
         .footer {
             padding: 0 35px;
+
             .ellipse {
                 height: 100%;
                 border-radius: 200% / 50%;
@@ -99,18 +114,28 @@
             }
         }
     }
+
     @media screen and (max-width: $mobile_bp) {
         .footer {
             padding: 0 16px;
+
             .ellipse {
                 height: 100%;
                 border-radius: 300% / 30%;
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }
-            .navigation { 
+
+            .navigation {
                 a {
-                    margin: 12px 16px;
+                    margin: 12px;
+                }
+            }
+
+            .last_block {
+                p {
+                    font-size: 14px;
+                    line-height: 18px;
                 }
             }
         }

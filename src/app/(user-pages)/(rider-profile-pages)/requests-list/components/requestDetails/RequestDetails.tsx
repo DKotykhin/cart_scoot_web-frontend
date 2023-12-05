@@ -152,8 +152,7 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
                 }
                 {openMobileDetailedCard ?
                     <DetailsCard
-                        data={data?.getRequest}
-                        routeData={routeData}
+                        data={data?.getRequest}                        
                         OpenFinishedCardFn={OpenFinishedCardFn}
                         closeMobileDetailedCard={() => setOpenMobileDetailedCard(false)}
                     />
@@ -172,8 +171,7 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
                         </div>
                         <div className={styles.desktop_card_wrapper}>
                             <DetailsCard
-                                data={data?.getRequest}
-                                routeData={routeData}
+                                data={data?.getRequest}                                
                                 OpenFinishedCardFn={OpenFinishedCardFn}
                             />
                         </div>
@@ -185,29 +183,3 @@ const RequestDetails: React.FC<{ _id: string }> = ({ _id }) => {
 };
 
 export default RequestDetails;
-
-
-
-// {
-//     type: 'Feature', geometry: {
-//         "type": "LineString",
-//         "coordinates": [
-//             [49.999984, 36.000324],
-//             [50.038327, 36.00078],
-//             [50.071596, 35.998135],
-//             [50.072099, 35.9895],
-//             [50.072587, 35.989433],
-//             [50.06912, 36.020265],
-//             [50.058627, 36.051555],
-//             [50.06174, 36.062982],
-//             [50.057082, 36.07443],
-//             [50.048834, 36.085711],
-//             [50.037372, 36.124637],
-//             [50.053535, 36.143367],
-//             [50.068855, 36.142753],
-//             [50.075505, 36.135476],
-//             [50.080113, 36.120836],
-//             [50.083688, 36.115693]
-//         ]
-//     }
-// }

@@ -12,8 +12,7 @@ import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
 import ModalCard from 'components/modalCard/ModalCard';
 
-import { useMapboxApi } from 'hooks/useMapboxApi';
-
+import { useGoogleDirections } from 'hooks/useGoogleDirections';
 import { IRequestWithAllUsersPopulatedFields, statusTypes } from 'types/requestTypes';
 
 import styles from './detailsCard.module.scss';
@@ -27,8 +26,9 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
 
     const [openCancelTripCard, setOpenCancelTripCard] = useState(false);
 
-    const { _id, pickupLocation, dropoffLocation, requestedTime, coordinates: { start, end }, status } = request;
-    const routeData = useMapboxApi(start.lat, start.lon, end.lat, end.lon);
+    const { _id, pickupLocation, dropoffLocation, requestedTime, status } = request;
+
+    const { direction } = useGoogleDirections(pickupLocation, dropoffLocation);
 
     const [cancelTrip, { loading }] = useMutation(CANCEL_REQUEST, {
         update(cache) {
@@ -39,7 +39,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
                 }
             });
         },
-        onCompleted: (data) => {
+        onCompleted: () => {
             setOpenCancelTripCard(false);
             toast.success('Your trip cancelled', {
                 bodyClassName: "right-toast",
@@ -108,7 +108,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
                                 height={16}
                                 className={styles.addition_details_image}
                             />
-                            <p>{routeData ? `${Math.round((routeData?.distance / 1609.344) * 10) / 10} mi` : '0 mi'}</p>
+                            <p>{direction ? `${Math.round((direction?.distance.value / 1609.344) * 10) / 10} mi` : '0 mi'}</p>
                         </div>
                         <div className={styles.addition_details_inner_box}>
                             <Image
@@ -118,7 +118,7 @@ const DetailsCard: React.FC<IDetailsCard> = ({ request, closeMobileDetailsCard }
                                 height={16}
                                 className={styles.addition_details_image}
                             />
-                            <p>{routeData ? `${Math.ceil(routeData.duration / 60 / 4.05)} min` : '0 min'}</p>
+                            <p>{direction ? `${Math.ceil(direction.duration.value / 60 / 4.05)} min` : '0 min'}</p>
                         </div>
                     </div>
                 </div>

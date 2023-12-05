@@ -11,8 +11,8 @@ import LocationCard from '../../../components/locationCard/LocationCard';
 import DriverAvatar from 'components/driverAvatar/DriverAvatar';
 import DetailsItem from 'components/detailsItem/DetailsItem';
 
-import { useMapboxApi } from 'hooks/useMapboxApi';
 import { useUserStore } from 'stores/userStore';
+import { useGoogleDirections } from 'hooks/useGoogleDirections';
 
 import { IRequestWithRiderPopulatedFields, statusTypes } from 'types/requestTypes';
 import { licenseStatusTypes } from 'types/userTypes';
@@ -30,12 +30,7 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
 
     const { userData } = useUserStore();
 
-    const routeData = useMapboxApi(
-        requestDetailsData?.coordinates.start.lat,
-        requestDetailsData?.coordinates.start.lon,
-        requestDetailsData?.coordinates.end.lat,
-        requestDetailsData?.coordinates.end.lon
-    );
+    const { direction } = useGoogleDirections(requestDetailsData?.pickupLocation!, requestDetailsData?.dropoffLocation!);
 
     const [oneCallAnswer, { loading: oneCallLoading }] = useMutation(DRIVER_ONE_CALL_ANSWER, {
         update(cache) {
@@ -187,7 +182,7 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
                                 height={16}
                                 className={styles.addition_details_image}
                             />
-                            <p>{routeData ? `${Math.round((routeData?.distance / 1609.344) * 10) / 10} mi` : '0 mi'}</p>
+                            <p>{direction ? `${Math.round((direction?.distance.value / 1609.344) * 10) / 10} mi` : '0 mi'}</p>
                         </div>
                         <div className={styles.addition_details_inner_box}>
                             <Image
@@ -197,7 +192,7 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
                                 height={16}
                                 className={styles.addition_details_image}
                             />
-                            <p>{routeData ? `${Math.ceil(routeData?.duration / 60 / 5 / 4.05)} min` : '0 min'}</p>
+                            <p>{direction ? `${Math.ceil(direction?.duration.value / 60 / 5 / 4.05)} min` : '0 min'}</p>
                         </div>
                     </div>
                 </div>

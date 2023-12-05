@@ -5,12 +5,64 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+
+    .pickup_input_box {
+        input {
+            width: 100%;
+            height: 48px;
+            border-radius: 20px;
+            border: 1px solid $black-tertiary;
+            padding: 0 12px 0 52px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-primary;
+            appearance: none;
+            background-image: url('../../../../../../../public/icons/mapPin.svg');
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+        }
+
+        ::placeholder {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-tertiary;
+        }
+    }
+
     .date_time_box {
-        // width: 100%;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         gap: 24px;
     }
+
+    .dropoff_input_box {
+        input {
+            width: 100%;
+            height: 48px;
+            border-radius: 20px;
+            border: 1px solid $black-tertiary;
+            padding: 0 12px 0 52px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-primary;
+            appearance: none;
+            background-image: url('../../../../../../../public/icons/flag.svg');
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+        }
+
+        ::placeholder {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: $black-tertiary;
+        }
+    }
+
     .button {
         height: 48px;
         border-radius: 20px;
@@ -22,11 +74,13 @@
         line-height: 20px;
         transition: all 0.3s ease-out;
         cursor: pointer;
+
         &:hover {
             background-color: $green-secondary;
             transition: all 0.3s ease-out;
         }
     }
+
     @media screen and (max-width: $mobile_bp) {
         .date_time_box {
             flex-direction: column;

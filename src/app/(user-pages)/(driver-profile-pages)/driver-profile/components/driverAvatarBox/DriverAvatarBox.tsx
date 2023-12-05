@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import Image from "next/image";
 
@@ -18,6 +18,8 @@ import styles from './driverAvatarBox.module.scss';
 
 const DriverAvatarBox: React.FC = () => {
 
+    const [avatarLoading, setAvatarLoading] = useState(false);
+
     const { addUser, userData } = useUserStore();
 
     const { data }: { data: { getDriverRating: { avgRating: number, totalCount: number } } } = useSuspenseQuery(GET_DRIVER_RATING, {
@@ -26,9 +28,11 @@ const DriverAvatarBox: React.FC = () => {
     });
 
     const onChange = async (e: any) => {
+        setAvatarLoading(true);
         const formData = new FormData();
         formData.append("avatar", e.target.files[0], e.target.files[0].name);
         const newUser = await uploadAvatar(formData);
+        if (newUser) setAvatarLoading(false);
         addUser(newUser);
     };
 
@@ -36,17 +40,25 @@ const DriverAvatarBox: React.FC = () => {
         <div className={styles.profile_box}>
             <div className={styles.logo_wrapper}>
                 <div className={styles.logo_box}>
-                    {userData?.avatarURL ?
+                    {avatarLoading ?
                         <Image
-                            src={userData?.avatarURL}
-                            alt={'avatar'}
-                            width={80}
-                            height={80}
+                            src={'/spinner.svg'}
+                            alt={'spinner'}
+                            width={48}
+                            height={48}
                         />
                         :
-                        <div className={styles.empty_avatar}>
-                            {avatarLetters(userData?.userName || 'C S')}
-                        </div>
+                        userData?.avatarURL ?
+                            <Image
+                                src={userData?.avatarURL}
+                                alt={'avatar'}
+                                width={80}
+                                height={80}
+                            />
+                            :
+                            <div className={styles.empty_avatar}>
+                                {avatarLetters(userData?.userName || 'C S')}
+                            </div>
                     }
                 </div>
                 <label htmlFor='avatar' onChange={onChange}>

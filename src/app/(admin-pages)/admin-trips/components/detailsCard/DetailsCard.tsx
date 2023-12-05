@@ -10,7 +10,8 @@ import DetailsItem from 'components/detailsItem/DetailsItem';
 import StarsBox from 'components/starsBox/StarsBox';
 import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
 
-import { useMapboxApi } from 'hooks/useMapboxApi';
+import { useGoogleDirections } from 'hooks/useGoogleDirections';
+
 import { IRequestWithAllUsersPopulatedFields } from 'types/requestTypes';
 import { IReview } from 'types/reviewTypes';
 
@@ -30,11 +31,7 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
 
     const [buttonIndex, setButtonIndex] = useState(0);
 
-    const routeData = useMapboxApi(
-        requestData?.request.coordinates.start.lat,
-        requestData?.request.coordinates.start.lon,
-        requestData?.request.coordinates.end.lat,
-        requestData?.request.coordinates.end.lon);
+    const { direction } = useGoogleDirections(requestData?.request.pickupLocation!, requestData?.request.dropoffLocation!);
 
     return (
         <div className={styles.details_card}>
@@ -180,12 +177,12 @@ const DetailsCard: FC<IDetailsCard> = ({ requestData, reviewData }) => {
                         <DetailsItem
                             imageURL='/icons/path.svg'
                             title='Distance'
-                            value={routeData ? `${Math.round((routeData.distance / 1609.344) * 10) / 10} mi` : '0 mi'}
+                            value={direction ? `${Math.round((direction.distance.value / 1609.344) * 10) / 10} mi` : '0 mi'}
                         />
                         <DetailsItem
                             imageURL='/icons/hourglass.svg'
                             title='Estimated time'
-                            value={routeData ? `${Math.ceil(routeData.duration / 60 / 4.05)} min` : '0 min'}
+                            value={direction ? `${Math.ceil(direction.duration.value / 60 / 4.05)} min` : '0 min'}
                         />
                         {requestData?.request.driverId?.phone.number ?
                             <DetailsItem

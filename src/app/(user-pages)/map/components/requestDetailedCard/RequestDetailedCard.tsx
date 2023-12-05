@@ -11,7 +11,7 @@ import DriverAvatarWithStars from 'components/driverAvatarWithStars/DriverAvatar
 import { IMarkerClickData } from '../mapbox/Mapbox';
 import ReviewCard from '../reviewCard/ReviewCard';
 
-import { useMapboxApi } from 'hooks/useMapboxApi';
+import { useGoogleDirections } from 'hooks/useGoogleDirections';
 import { formatTime } from 'utils/formatTime';
 import { IReviewData } from 'types/reviewTypes';
 
@@ -64,13 +64,7 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, de
     });
     // console.log('findCarFormData: ', findCarFormData);
 
-    const routeData = useMapboxApi(
-        findCarFormData?.locationData?.pickup.lat,
-        findCarFormData?.locationData?.pickup.lon,
-        findCarFormData?.locationData?.dropoff.lat,
-        findCarFormData?.locationData?.dropoff.lon
-    );
-    // console.log('routeData', routeData);
+    const { direction } = useGoogleDirections(findCarFormData?.locationData?.pickup.address!, findCarFormData?.locationData?.dropoff.address!);
 
     return detailedCardData ? (
         <article className={styles.container}>
@@ -156,12 +150,12 @@ const RequestDetailedCard: React.FC<IRequestDetailedCard> = ({ driversAmount, de
                             <DetailsItem
                                 imageURL='/icons/path.svg'
                                 title='Distance'
-                                value={routeData ? `${Math.round((routeData.distance / 1609.344) * 10) / 10} mi` : '0 mi'}
+                                value={direction ? `${Math.round((direction.distance.value / 1609.344) * 10) / 10} mi` : '0 mi'}
                             />
                             <DetailsItem
                                 imageURL='/icons/hourglass.svg'
                                 title='Estimated time'
-                                value={routeData ? `${Math.ceil(routeData.duration / 60 / 4.05)} min` : '0 min'}
+                                value={direction ? `${Math.ceil(direction.duration.value / 60 / 4.05)} min` : '0 min'}
                             />
                         </div>
                         :

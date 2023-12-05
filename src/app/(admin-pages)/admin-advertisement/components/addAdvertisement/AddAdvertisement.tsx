@@ -12,7 +12,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_ADVERTISEMENT } from 'apollo/mutations/admin';
 
 import TitleWithBackButton from 'components/titleWithBackButton/TitleWithBackButton';
-import DatePickerInput from 'components/inputs/dateTimePickers/DatePickerInput';
+import DatePickerInput from '../dateTimePickers/DatePickerInput';
 import TextInput from 'app/(admin-pages)/components/textInput/TextInput';
 import UploadBox from 'app/(admin-pages)/components/uploadBox/UploadBox';
 

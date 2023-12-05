@@ -1,33 +1,30 @@
 "use client";
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
-import { useForm } from "react-hook-form";
-import { useLoadScript } from '@react-google-maps/api';
+import { Autocomplete, Libraries, useLoadScript } from '@react-google-maps/api';
 
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import { toast } from 'react-toastify';
 
-import PickupInput from 'components/inputs/locationInput/PickupInput';
-import DropoffInput from 'components/inputs/locationInput/DropoffInput';
-import DatePickerInput from '../dateTimePickers/DatePickerInput';
-import TimePickerInput from '../dateTimePickers/TimePickerInput';
+import DatePickerInput from '../dateTimePickers/datePickerInput/DatePickerInput';
+import TimePickerInput from '../dateTimePickers/timePickerInput/TimePickerInput';
 
 import { useFormDataStore } from 'stores/findCarFormStore';
+import { googleDirection } from 'utils/googleDirection';
 
 import styles from './pickupForm.module.scss';
 
-interface IPickupData {
-    date: Date,
-    time: Date,
-    pickup: any,
-    dropoff: any,
-}
-
-const libraries: any = ['places'];
+const libraries: Libraries = ['places'];
 
 const PickupForm = () => {
+
+    const pickupRef = useRef<any>();
+    const dropoffRef = useRef<any>();
+
+    const [pickupDate, setPickupDate] = useState<any>(null);
+    const [pickupTime, setPickupTime] = useState<any>(null);
 
     const router = useRouter();
     const { addFindCarFormData } = useFormDataStore();
@@ -37,52 +34,40 @@ const PickupForm = () => {
         libraries,
     });
 
-    const {
-        control,
-        handleSubmit,
-        formState: { errors, isValid },
-        reset,
-    } = useForm<IPickupData>({
-        defaultValues: {
-            date: undefined,
-            time: undefined,
-            pickup: '',
-            dropoff: '',
-        }
-    });
 
-    const onSubmit = (data: IPickupData): void => {
-        const { date, time, pickup, dropoff } = data;
+    const onSubmit = async (event: { preventDefault: () => void; }): Promise<void> => {
+        event.preventDefault();
+        if (pickupRef.current?.value && dropoffRef.current?.value && pickupDate && pickupTime) {
 
-        let requestedTime;
-        if (date && time) {
-            const requestHours = new Date(time).getHours();
-            const requestMinutes = new Date(time).getMinutes();
-            requestedTime = new Date(new Date(date).setHours(requestHours, requestMinutes)).toJSON();
-        }
+            let requestedTime;
+            const requestHours = new Date(pickupTime).getHours();
+            const requestMinutes = new Date(pickupTime).getMinutes();
+            requestedTime = new Date(new Date(pickupDate).setHours(requestHours, requestMinutes)).toJSON();
+            console.log(requestedTime);
 
-        let locationData;
-        if (pickup.getPlaces() && dropoff.getPlaces()) {
-            const [pickupPlace] = pickup.getPlaces();
-            const [dropoffPlace] = dropoff.getPlaces();
+            const result = await googleDirection(pickupRef.current?.value, dropoffRef.current?.value);
+
+            let locationData;
             locationData = {
                 pickup: {
-                    address: pickupPlace.formatted_address,
-                    lat: pickupPlace.geometry.location.lat(),
-                    lon: pickupPlace.geometry.location.lng(),
+                    address: result.start_address,
+                    lat: result.start_location.lat(),
+                    lon: result.start_location.lng(),
                 },
                 dropoff: {
-                    address: dropoffPlace.formatted_address,
-                    lat: dropoffPlace.geometry.location.lat(),
-                    lon: dropoffPlace.geometry.location.lng(),
+                    address: result.end_address,
+                    lat: result.end_location.lat(),
+                    lon: result.end_location.lng(),
                 },
+                distance: result.distance?.value,
+                duration: result.duration?.value,
             };
-        }
-        // console.log('requestedTime: ', requestedTime);
-        // console.log('locationData: ', locationData);
-        if (requestedTime && locationData) {
-            addFindCarFormData({ requestedTime, pickupDate: date, pickupTime: time, locationData });
-            router.push('/map');
+            console.log(locationData);
+
+            if (requestedTime && locationData) {
+                addFindCarFormData({ requestedTime, pickupDate, pickupTime, locationData });
+                router.push('/map');
+            }
         } else {
             toast.warn("Please fill out this form!", {
                 bodyClassName: "wrong-toast",
@@ -100,33 +85,40 @@ const PickupForm = () => {
         if (e.key === 'Enter') e.preventDefault();
     };
 
-    return (
+    return isLoaded ? (
         <form
             className={styles.container}
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={onSubmit}
             onKeyDown={(e) => checkKeyDown(e)}
         >
-            <PickupInput
-                control={control}
-                isLoaded={isLoaded}
-            />
+            <div className={styles.pickup_input_box}>
+                <Autocomplete>
+                    <input
+                        type='text'
+                        placeholder='Pickup Location'
+                        ref={pickupRef}
+                    />
+                </Autocomplete>
+            </div>
             <div className={styles.date_time_box}>
                 <DatePickerInput
-                    control={control}
-                    placeholder='Pickup Date'
-                    name='date'
-                    minDate={true}
+                    pickupDate={pickupDate}
+                    setPickupDate={(date) => setPickupDate(date)}
                 />
                 <TimePickerInput
-                    control={control}
-                    name='time'
-                    placeholder='Pickup Time'
+                    pickupTime={pickupTime}
+                    setPickupTime={(time) => setPickupTime(time)}
                 />
             </div>
-            <DropoffInput
-                control={control}
-                isLoaded={isLoaded}
-            />
+            <div className={styles.dropoff_input_box}>
+                <Autocomplete>
+                    <input
+                        type='text'
+                        placeholder='Dropoff Location'
+                        ref={dropoffRef}
+                    />
+                </Autocomplete>
+            </div>
             <button
                 type='submit'
                 className={styles.button}
@@ -134,7 +126,7 @@ const PickupForm = () => {
                 Find Cart
             </button>
         </form>
-    );
+    ) : null;
 };
 
 export default PickupForm;

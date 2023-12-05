@@ -12,25 +12,27 @@ import DetailsItem from 'components/detailsItem/DetailsItem';
 import ModalCard from 'components/modalCard/ModalCard';
 import RequestStatusBox from 'components/requestStatusBox/RequestStatusBox';
 
-import { IRouteData } from 'hooks/useMapboxApi';
 import { IRequestWithRating, statusTypes } from 'types/requestTypes';
+import { useGoogleDirections } from 'hooks/useGoogleDirections';
 
 import styles from './detailsCard.module.scss';
 
+
 interface IDetailsCard {
     data: IRequestWithRating;
-    routeData: IRouteData;
     OpenFinishedCardFn: (arg0: string, arg1: string) => void;
     closeMobileDetailedCard?: () => void;
 }
 
-const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCardFn, closeMobileDetailedCard }) => {
+const DetailsCard: React.FC<IDetailsCard> = ({ data, OpenFinishedCardFn, closeMobileDetailedCard }) => {
 
     const { request: { _id, driverId, requestedTime, requestCode, status, pickupLocation, dropoffLocation, isReviewed }, avgRating } = data;
 
     const [openDetails, setOpenDetails] = useState(false);
     const [approveButton, setApproveButton] = useState(false);
     const [openCancelTripCard, setOpenCancelTripCard] = useState(false);
+
+    const { direction } = useGoogleDirections(pickupLocation, dropoffLocation);
 
     const [finishTrip, { loading: finishLoading }] = useMutation(FINISH_REQUEST, {
         update(cache) {
@@ -197,12 +199,12 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, routeData, OpenFinishedCard
                         <DetailsItem
                             imageURL='/icons/path.svg'
                             title='Distance'
-                            value={routeData ? `${Math.round((routeData.distance / 1609.344) * 10) / 10} mi` : '0 mi'}
+                            value={direction ? `${Math.round((direction.distance.value / 1609.344) * 10) / 10} mi` : '0 mi'}
                         />
                         <DetailsItem
                             imageURL='/icons/hourglass.svg'
                             title='Estimated time'
-                            value={routeData ? `${Math.ceil(routeData.duration / 60 / 4.05)} min` : '0 min'}
+                            value={direction ? `${Math.ceil(direction.duration.value / 60 / 4.05)} min` : '0 min'}
                         />
                     </div>
                     :

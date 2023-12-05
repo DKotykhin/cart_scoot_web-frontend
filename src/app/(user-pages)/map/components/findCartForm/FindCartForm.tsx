@@ -7,9 +7,11 @@ import Select from 'react-select';
 
 import Image from "next/image";
 
-import RawDatePicker from 'components/inputs/dateTimePickers/rawDatePicker/RawDatePicker';
-import RawTimePicker from 'components/inputs/dateTimePickers/rawTimePicker/RawTimePicker';
+import RawDatePicker from '../dateTimePickers/rawDatePicker/RawDatePicker';
+import RawTimePicker from '../dateTimePickers/rawTimePicker/RawTimePicker';
+
 import { useFormDataStore } from 'stores/findCarFormStore';
+import { googleDirection } from 'utils/googleDirection';
 
 import styles from './findCartForm.module.scss';
 
@@ -18,8 +20,8 @@ interface IFindCartForm {
 }
 
 const options = [
-    { value: 4, label: '4-seats cart' },
-    { value: 6, label: '6-seats cart' },
+    { value: 4, label: '4-seats Cart' },
+    { value: 6, label: '6-seats Cart' },
 ];
 
 const stylesOptions = {
@@ -30,6 +32,7 @@ const stylesOptions = {
         border: '1px solid #afb2be',
         borderRadius: '20px',
         paddingLeft: '44px',
+        fontWeight: 600,
         cursor: 'pointer',
         backgroundImage: "url('../../../../../../icons/carSimple-grey.svg')",
         backgroundRepeat: 'no-repeat',
@@ -73,27 +76,22 @@ const FindCartForm: React.FC<IFindCartForm> = ({ closeDriverDetails }) => {
             requestedTime = new Date(new Date(pickupDate).setHours(requestHours, requestMinutes)).toJSON();
             // console.log(requestedTime);
 
-            const directionService = new google.maps.DirectionsService();
-            const result = await directionService.route({
-                origin: pickupRef.current?.value,
-                destination: dropoffRef.current?.value,
-                travelMode: google.maps.TravelMode.DRIVING,
-            });
+            const result = await googleDirection(pickupRef.current?.value, dropoffRef.current?.value);
 
             let locationData;
             locationData = {
                 pickup: {
-                    address: result.routes[0].legs[0].start_address,
-                    lat: result.routes[0].legs[0].start_location.lat(),
-                    lon: result.routes[0].legs[0].start_location.lng(),
+                    address: result.start_address,
+                    lat: result.start_location.lat(),
+                    lon: result.start_location.lng(),
                 },
                 dropoff: {
-                    address: result.routes[0].legs[0].end_address,
-                    lat: result.routes[0].legs[0].end_location.lat(),
-                    lon: result.routes[0].legs[0].end_location.lng(),
+                    address: result.end_address,
+                    lat: result.end_location.lat(),
+                    lon: result.end_location.lng(),
                 },
-                distance: result.routes[0].legs[0].distance?.value,
-                duration: result.routes[0].legs[0].duration?.value,
+                distance: result.distance?.value,
+                duration: result.duration?.value,
             };
             // console.log(locationData);
 
