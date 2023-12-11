@@ -25,7 +25,7 @@ const FirstBlock = () => {
                                 width={48}
                                 height={48}
                             />
-                            <span>Book Golf Car</span>
+                            <span>Book Golf Cart</span>
                         </Link>
                         <Link href={'/register'} className={styles.link}>
                             <Image

@@ -116,7 +116,7 @@ const AdvancedFeatures = () => {
             </div>
             <div className={styles.text_box}>
                 <h3 className='block-title'>
-                    Car Scoot&apos;s <br />
+                    Cart Scoot&apos;s <br />
                     Advanced Features and <br />
                     Commitment to Golf Cart Safety
                 </h3>

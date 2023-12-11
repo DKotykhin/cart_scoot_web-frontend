@@ -11,7 +11,7 @@ const TopBlock = () => {
             <div className={styles.main_box}>
                 <div className={styles.text_box}>
                     <h1>
-                        Make An Order, Find A Car,
+                        Make An Order, Find A Cart,
                         <span>
                             Travel Far!
                             <Image

@@ -14,10 +14,10 @@ const ProvideService = () => {
                 <h3 className='block-title'>
                     Our Journey <br />
                     from Fairway Dreams <br />
-                    to Car Scoot&apos;s Tee-rrific Vision
+                    to Cart Scoot&apos;s Tee-rrific Vision
                 </h3>
                 <p className='block-subtitle'>
-                    With Car Scoot, We Lay The Path For Limitless Road And Golf Adventures, Led by Enthusiasm, Powered By Accuracy, Motivated by The Aim to Transform Each Swing Into Happiness!
+                    With Cart Scoot, We Lay The Path For Limitless Road And Golf Adventures, Led by Enthusiasm, Powered By Accuracy, Motivated by The Aim to Transform Each Swing Into Happiness!
                 </p>
                 <div className='line' />
                 <div className={styles.link_box}>
@@ -28,7 +28,7 @@ const ProvideService = () => {
                             width={48}
                             height={48}
                         />
-                        <span>Book Golf Car</span>
+                        <span>Book Golf Cart</span>
                     </Link>
                     <Link href={'/register'} className={styles.link}>
                         <Image

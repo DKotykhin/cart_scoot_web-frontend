@@ -16,7 +16,7 @@ const UsersSaying = () => {
                     <p className='block-subtitle'>
                         Words From Our Delighted
                         Golfers Praises, Smiles, and Unforgettable
-                        Stories Shared by the Car Scoot Community
+                        Stories Shared by the Cart Scoot Community
                     </p>
                 </div>
                 <div className={styles.card_wrapper}>

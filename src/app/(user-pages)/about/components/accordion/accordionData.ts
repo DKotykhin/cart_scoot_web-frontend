@@ -7,7 +7,7 @@ interface IAccordionData {
 export const accordionData: Array<IAccordionData> = [
     {
         id: 1,
-        title: "How do I book a golf cart on Car Scoot?",
+        title: "How do I book a golf cart on Cart Scoot?",
         description:
             "For booking a car, you need to sign up as a rider via email or your mobile phone. Then, go to the page 'map' and choose a driver or send a request for all the drivers.",
     },
@@ -21,7 +21,7 @@ export const accordionData: Array<IAccordionData> = [
         id: 3,
         title: "What safety measures are implemented for the golf carts?",
         description:
-            "At Car Scoot, safety is our top priority. We ensure that all golf carts available for rent meet stringent safety standards. Our partners regularly inspect and maintain their carts to guarantee their reliability. Additionally, we recommend wearing seat belts while driving and adhering to all golf course safety guidelines.",
+            "At Cart Scoot, safety is our top priority. We ensure that all golf carts available for rent meet stringent safety standards. Our partners regularly inspect and maintain their carts to guarantee their reliability. Additionally, we recommend wearing seat belts while driving and adhering to all golf course safety guidelines.",
     },
     {
         id: 4,
