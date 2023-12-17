@@ -116,9 +116,7 @@ const AdvancedFeatures = () => {
             </div>
             <div className={styles.text_box}>
                 <h3 className='block-title'>
-                    Cart Scoot&apos;s <br />
-                    Advanced Features and <br />
-                    Commitment to Golf Cart Safety
+                    At CartScoot your adventure is just one click away. Request your ride and have fun.
                 </h3>
                 <p className='block-subtitle'>
                     Harnessing Cutting-Edge Technology and Embracing Rigorous <br />

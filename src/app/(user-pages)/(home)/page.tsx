@@ -29,7 +29,7 @@ const HomePage = async () => {
                 <Advertisement advertisement={advertisement?.getPageAdvertisement} />
             </div>
             <WhyUs />
-            <UsersSaying />
+            {/* <UsersSaying /> */}
             <Footer />
         </>
     );

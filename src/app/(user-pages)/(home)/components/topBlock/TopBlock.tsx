@@ -11,9 +11,9 @@ const TopBlock = () => {
             <div className={styles.main_box}>
                 <div className={styles.text_box}>
                     <h1>
-                        Make An Order, Find A Cart,
+                        Navigate Life, Share the Ride: Your Journey,
                         <span>
-                            Travel Far!
+                            Your Community
                             <Image
                                 src={'/line.svg'}
                                 alt={'line'}

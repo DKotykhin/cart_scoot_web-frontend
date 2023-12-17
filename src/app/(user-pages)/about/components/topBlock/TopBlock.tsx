@@ -8,7 +8,7 @@ const TopBlock = () => {
         <section className={styles.container}>
             <div className={styles.titleContainer}>
                 <h4>About us</h4>
-                <h1>Your Golf Cart Booking Solution</h1>
+                <h1>Navigate Life, Share the Ride!</h1>
                 <h2>
                     Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.
                 </h2>

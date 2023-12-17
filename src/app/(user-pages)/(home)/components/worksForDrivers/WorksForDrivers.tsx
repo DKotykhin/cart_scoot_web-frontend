@@ -13,19 +13,19 @@ const WorksForDrivers = () => {
                         How it works for drivers?
                     </h3>
                     <p className='block-subtitle'>
-                        Like to ride. Meet new people. Provide service. If you legally can operate a golf cart in Florida then read on
+                        Like to ride. Meet new people. Get to know your neighbors while providing needed and fun service. If you legally can operate a golf cart then read on and click “Register”
                     </p>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.step_box}>
                     <Image
-                        src={'/icons/flag-black.svg'}
-                        alt={'flag'}
+                        src={'/icons/user-black.svg'}
+                        alt={'user'}
                         width={24}
                         height={24}
                     />
                     <p className={styles.step_text}>
-                        Put the destination and time
+                        Register as a driver
                     </p>
                 </div>
                 <div className={styles.step_box}>
@@ -36,7 +36,18 @@ const WorksForDrivers = () => {
                         height={24}
                     />
                     <p className={styles.step_text}>
-                        Select and confirm a driver you like
+                        Provide times you are available
+                    </p>
+                </div>
+                <div className={styles.step_box}>
+                    <Image
+                        src={'/icons/magnifyingGlass.svg'}
+                        alt={'cursor'}
+                        width={24}
+                        height={24}
+                    />
+                    <p className={styles.step_text}>
+                        Connect with the rider
                     </p>
                 </div>
                 <div className={styles.step_box}>
@@ -47,7 +58,7 @@ const WorksForDrivers = () => {
                         height={24}
                     />
                     <p className={styles.step_text}>
-                        Take and Enjoy the ride
+                        Provide excellent service and have fun
                     </p>
                 </div>
             </div>

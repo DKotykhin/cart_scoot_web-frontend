@@ -12,7 +12,7 @@ const Accordion = () => {
             <div className={styles.text_box}>
                 <h3 className='block-title'>FAQ</h3>
                 <p className='block-subtitle'>
-                    Find Answers to Common Questions and Unravel the Mysteries of Cart Scoot&apos;s Rental Service
+                    Find Answers to most Common Questions here
                 </p>
             </div>
             {accordionData.map(item => (

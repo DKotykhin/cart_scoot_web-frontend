@@ -12,7 +12,7 @@ const WhyUs = () => {
                     Why Us?
                 </h3>
                 <p className='block-subtitle'>
-                    Discover a Golfer&apos;s Haven - Personalized Tee Time Selections
+                    We are your community, We are your neighbors
                 </p>
             </div>
             <div className={styles.card_box}>
@@ -28,7 +28,7 @@ const WhyUs = () => {
                         <h5>Your Golf Companion, Always Free to Use</h5>
                     </div>
                 </div>
-                <div className={styles.card}>
+                {/* <div className={styles.card}>
                     <Image
                         src={'/icons/headset.svg'}
                         alt={'money'}
@@ -39,7 +39,7 @@ const WhyUs = () => {
                         <h4>Online support</h4>
                         <h5>24/7 Online Support - Ready to Assist You</h5>
                     </div>
-                </div>
+                </div> */}
                 <div className={styles.card}>
                     <Image
                         src={'/icons/deviceMobile.svg'}
@@ -49,7 +49,7 @@ const WhyUs = () => {
                     />
                     <div className={styles.text_box}>
                         <h4>Mobile friendly</h4>
-                        <h5>Embrace Green Seamlessly with Mobile-Friendly platform</h5>
+                        <h5>Mobile-Friendly Platform for when you on the Go!</h5>
                     </div>
 
                 </div>

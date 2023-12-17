@@ -18,9 +18,9 @@
             justify-content: center;
             max-width: 536px;
             h1 {
-                font-size: 64px;
+                font-size: 58px;
                 font-weight: 800;
-                line-height: 78px;
+                line-height: 70px;
                 margin-bottom: 24px;
                 background: linear-gradient(
                     124deg,
@@ -35,7 +35,7 @@
                     flex-direction: column;
                     font-style: italic;
                     img {
-                        margin-left: 130px;
+                        margin-left: 150px;
                     }
                 }
             }
@@ -107,15 +107,15 @@
             }
         }
     }
-    @media screen and (min-width: $tablet_bp) and (max-width: 1100px) {
+    @media screen and (min-width: $tablet_bp) and (max-width: 1150px) {
         padding: 0 35px;
         .main_box {
             .text_box {
                 h1 {
-                    font-size: 58px;
+                    font-size: 56px;
                     span {
                         img {
-                            margin-left: 100px;
+                            margin-left: 120px;
                         }
                     }
                 }

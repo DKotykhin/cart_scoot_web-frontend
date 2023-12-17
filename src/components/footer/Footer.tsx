@@ -20,7 +20,7 @@ const Footer = () => {
                     priority
                 />
                 <p className={styles.logo}>Cart<span>Scoot</span></p>
-                <p className={styles.subtitle}>Driving Your Golf Adventure!</p>
+                <p className={styles.subtitle}>Share the Ride!</p>
                 <div className={styles.social}>
                     <Link href={'https://google.com'}>
                         <Image

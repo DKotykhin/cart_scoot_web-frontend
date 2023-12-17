@@ -3,7 +3,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 import TopBlock from './components/topBlock/TopBlock';
-import FirstBlock from './components/firstBlock/FirstBlock';
+// import FirstBlock from './components/firstBlock/FirstBlock';
 import SecondBlock from './components/secondBlock/SecondBlock';
 import Accordion from './components/accordion/Accordion';
 import Footer from 'components/footer/Footer';
@@ -16,7 +16,7 @@ const AboutPage = () => {
     return (
         <>
             <TopBlock />
-            <FirstBlock />
+            {/* <FirstBlock /> */}
             <SecondBlock />
             <Accordion />
             <Footer />

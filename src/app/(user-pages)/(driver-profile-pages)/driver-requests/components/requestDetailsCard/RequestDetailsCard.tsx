@@ -192,7 +192,7 @@ const RequestDetailsCard: FC<IRequestDetailsCard> = ({ requestDetailsData, close
                                 height={16}
                                 className={styles.addition_details_image}
                             />
-                            <p>{direction ? `${Math.ceil(direction?.duration.value / 60 / 5 / 4.05)} min` : '0 min'}</p>
+                            <p>{direction ? `${Math.ceil(direction.duration.value / 60 / 4.05)} min` : '0 min'}</p>
                         </div>
                     </div>
                 </div>

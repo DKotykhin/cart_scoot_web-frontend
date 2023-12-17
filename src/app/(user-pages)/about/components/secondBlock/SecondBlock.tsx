@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import MiniCard from 'components/miniCard/MiniCard';
+// import MiniCard from 'components/miniCard/MiniCard';
 
 import styles from './secondBlock.module.scss';
 
@@ -9,7 +8,7 @@ const SecondBlock = () => {
     return (
         <section className={styles.container}>
             <div className={styles.wrapper}>
-                <div className={styles.miniCard_box}>
+                {/* <div className={styles.miniCard_box}>
                     <div className={styles.first_box}>
                         <MiniCard
                             src='/icons/driver.svg'
@@ -38,13 +37,21 @@ const SecondBlock = () => {
                             subtitle='Locations & Cities'
                         />
                     </div>
+                </div> */}
+                <div className={styles.image_box}>
+                    <Image
+                        src={'/about-1.png'}
+                        alt={'carts'}
+                        width={536}
+                        height={400}
+                    />
                 </div>
                 <div className={styles.text_box}>
                     <h3 className='block-title'>
-                        CartScoot has thousands active users who trust us.
+                        Welcome to CartScoot. Your neighborhood Golf Cart Connection.
                     </h3>
                     <p className='block-subtitle'>
-                        You can choose from our 260+ drivers and 6+ types of the cars. We work in 60+ different cities making your golf journey unforgettable and comfortable, led by enthusiasm and happiness.
+                        We provide the service of connecting people in the community who want a golf cart ride and those who would like to provide one. This service is complimentary and the drivers are your friends and neighbors.
                     </p>
                     <div className='line'></div>
                     <div className={styles.link_wrapper}>

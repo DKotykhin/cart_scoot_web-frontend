@@ -13,7 +13,7 @@ const WorksForRiders = () => {
                         How it works for riders?
                     </h3>
                     <p className='block-subtitle'>
-                        The best and fun way to do it is in a golf cart. The best and fun way to do it is in a golf cart.
+                    Need a ride to your local pool, store or school or just need a tour of the neighborhood. The best and fun way to do it is in a golf cart.
                     </p>
                 </div>
                 <div className={styles.line}></div>

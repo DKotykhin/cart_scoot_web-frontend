@@ -194,7 +194,9 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                             <p>{(selfieFile?.fileName || user?.license.url.length) ? 'Change file' : 'Upload File'}</p>
                             <input type="file" id="selfie" name="selfie" accept="image/*" hidden />
                         </label>
-                        <p className={selfieFile.warning ? `${styles.upload_card_title} ${styles.upload_card_title_warning}` : `${styles.upload_card_title}`}>Selfie with License</p>
+                        <p className={selfieFile.warning ? `${styles.upload_card_title} ${styles.upload_card_title_warning}` : `${styles.upload_card_title}`}>
+                            Photo ID
+                        </p>
                         {selfieFile?.warning ?
                             <p className={styles.uploaded_card_subtitle_warning}>File is too big</p>
                             :
@@ -206,7 +208,9 @@ const UploadService: React.FC<{ user?: IUser }> = ({ user }) => {
                                 :
                                 user?.license.url.length && user?.license.status !== licenseStatusTypes.rejected
                                     ?
-                                    <p className={styles.uploaded_card_subtitle}>Selfie uploaded</p>
+                                    <p className={styles.uploaded_card_subtitle}>
+                                        Photo ID uploaded
+                                    </p>
                                     :
                                     <>
                                         <p className={styles.upload_card_subtitle}>Drag & Drop or choose a file to upload</p>
