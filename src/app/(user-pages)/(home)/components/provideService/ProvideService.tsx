@@ -85,8 +85,8 @@ const ProvideService = () => {
                 <Image
                     src={'/home-11.jpg'}
                     alt={'carts'}
-                    width={536}
-                    height={357}
+                    width={800}
+                    height={533}
                 />
             </div>
         </section>

@@ -24,8 +24,8 @@ const Footer = () => {
                 <div className={styles.social}>
                     <Link href={'https://google.com'}>
                         <Image
-                            src={'/icons/youtube.svg'}
-                            alt={'youtube'}
+                            src={'/icons/facebook.svg'}
+                            alt={'facebook'}
                             width={24}
                             height={24}
                         />
@@ -40,8 +40,8 @@ const Footer = () => {
                     </Link>
                     <Link href={'https://google.com'}>
                         <Image
-                            src={'/icons/telegram.svg'}
-                            alt={'telegram'}
+                            src={'/icons/instagram.svg'}
+                            alt={'instagram'}
                             width={24}
                             height={24}
                         />

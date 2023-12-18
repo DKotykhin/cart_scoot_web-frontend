@@ -22,9 +22,9 @@ const TopBlock = () => {
                             />
                         </span>
                     </h1>
-                    <h2>
+                    {/* <h2>
                         Ignite your love for transportation with our services that make your trip much more convenient!
-                    </h2>
+                    </h2> */}
                 </div>
                 <div className={styles.form_wrapper}>
                     <div className={styles.shadow_1} />

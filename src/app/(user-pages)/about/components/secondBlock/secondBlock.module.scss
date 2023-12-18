@@ -10,6 +10,7 @@
     .wrapper {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 20px;
         width: 100%;
 
@@ -38,7 +39,7 @@
         // }
         .image_box {
             width: 100%;
-            max-width: 536px;
+            max-width: 636px;
 
             img {
                 width: 100%;
@@ -95,7 +96,11 @@
         padding: 0 35px;
 
         .wrapper {
+            flex-direction: column-reverse;
+            align-items: center;
             .text_box {
+                width: 100%;
+                max-width: 800px;
                 .link_wrapper {
                     flex-direction: column;
                     gap: 24px;
@@ -104,6 +109,9 @@
                         gap: 24px;
                     }
                 }
+            }
+            .image_box {
+                max-width: 800px;
             }
         }
     }
@@ -119,6 +127,7 @@
             .text_box {
                 min-width: auto;
                 width: 100%;
+                max-width: 636px;
 
                 .link_wrapper {
                     flex-direction: column;

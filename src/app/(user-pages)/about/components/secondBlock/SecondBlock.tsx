@@ -40,7 +40,7 @@ const SecondBlock = () => {
                 </div> */}
                 <div className={styles.image_box}>
                     <Image
-                        src={'/about-1.jpg'}
+                        src={'/about-11.jpg'}
                         alt={'carts'}
                         width={536}
                         height={357}
@@ -51,7 +51,7 @@ const SecondBlock = () => {
                         Welcome to CartScoot. Your neighborhood Golf Cart Connection.
                     </h3>
                     <p className='block-subtitle'>
-                        We provide the service of connecting people in the community who want a golf cart ride and those who would like to provide one. This service is complimentary and the drivers are your friends and neighbors.
+                        We provide the service of connecting people in the community who want a golf cart ride and those who would like to provide one. This service is complimentary and the drivers are your friends and neighbors you might already know, we are just giving a little help of bringing everyone together. Brought to you by your Nocatee, FL neighbor and a proud owner of a Golf Cart. Please check FAQ for more information or contact us directly.
                     </p>
                     <div className='line'></div>
                     <div className={styles.link_wrapper}>

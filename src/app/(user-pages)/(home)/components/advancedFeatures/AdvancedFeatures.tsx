@@ -118,20 +118,20 @@ const AdvancedFeatures = () => {
                 <Image
                     src={'/home-22.jpg'}
                     alt={'carts'}
-                    width={536}
-                    height={357}
+                    width={800}
+                    height={533}
                 />
             </div>
             <div className={styles.text_box}>
                 <h3 className='block-title'>
                     At CartScoot your adventure is just one click away. Request your ride and have fun.
                 </h3>
-                <p className='block-subtitle'>
+                {/* <p className='block-subtitle'>
                     Harnessing Cutting-Edge Technology and Embracing Rigorous <br />
                     Safety Protocols, We Strive to Redefine Golf Cart Rentals, <br />
                     Elevating Every Golfer&apos;s Journey into a Seamlessly Secure and <br />
                     Unforgettable Experience on the Green.
-                </p>
+                </p> */}
                 <div className='line'></div>
                 <div className={styles.link_wrapper}>
                     <div className={styles.link_box}>
