@@ -3,7 +3,7 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 
-import MiniCard from 'components/miniCard/MiniCard';
+// import MiniCard from 'components/miniCard/MiniCard';
 
 import styles from './provideService.module.scss';
 
@@ -51,7 +51,7 @@ const ProvideService = () => {
                     </button>
                 </Link>
             </div>
-            <div className={styles.miniCard_box}>
+            {/* <div className={styles.miniCard_box}>
                 <div className={styles.first_box}>
                     <MiniCard
                         src='/icons/driver.svg'
@@ -80,6 +80,14 @@ const ProvideService = () => {
                         subtitle='Locations & Cities'
                     />
                 </div>
+            </div> */}
+            <div className={styles.image_box}>
+                <Image
+                    src={'/home-11.jpg'}
+                    alt={'carts'}
+                    width={536}
+                    height={357}
+                />
             </div>
         </section>
     );

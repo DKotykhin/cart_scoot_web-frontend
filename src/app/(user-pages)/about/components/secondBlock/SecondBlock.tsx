@@ -40,10 +40,10 @@ const SecondBlock = () => {
                 </div> */}
                 <div className={styles.image_box}>
                     <Image
-                        src={'/about-1.png'}
+                        src={'/about-1.jpg'}
                         alt={'carts'}
                         width={536}
-                        height={400}
+                        height={357}
                     />
                 </div>
                 <div className={styles.text_box}>

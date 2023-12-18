@@ -10,7 +10,7 @@ const starsArray = [1, 2, 3, 4, 5];
 const AdvancedFeatures = () => {
     return (
         <section className={styles.container}>
-            <div className={styles.card_box}>
+            {/* <div className={styles.card_box}>
                 <div className={styles.card}>
                     <div className={styles.avatar_wrapper}>
                         <Image
@@ -113,6 +113,14 @@ const AdvancedFeatures = () => {
                         </div>
                     </div>
                 </div>
+            </div> */}
+            <div className={styles.image_box}>
+                <Image
+                    src={'/home-22.jpg'}
+                    alt={'carts'}
+                    width={536}
+                    height={357}
+                />
             </div>
             <div className={styles.text_box}>
                 <h3 className='block-title'>
