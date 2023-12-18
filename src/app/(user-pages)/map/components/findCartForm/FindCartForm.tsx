@@ -73,8 +73,7 @@ const FindCartForm: React.FC<IFindCartForm> = ({ closeDriverDetails }) => {
             let requestedTime;
             const requestHours = new Date(pickupTime).getHours();
             const requestMinutes = new Date(pickupTime).getMinutes();
-            requestedTime = new Date(new Date(pickupDate).setHours(requestHours, requestMinutes)).toJSON();
-            // console.log(requestedTime);
+            requestedTime = new Date(new Date(pickupDate).setHours(requestHours, requestMinutes));
 
             const result = await googleDirection(pickupRef.current?.value, dropoffRef.current?.value);
 

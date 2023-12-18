@@ -42,7 +42,7 @@ const PickupForm = () => {
             let requestedTime;
             const requestHours = new Date(pickupTime).getHours();
             const requestMinutes = new Date(pickupTime).getMinutes();
-            requestedTime = new Date(new Date(pickupDate).setHours(requestHours, requestMinutes)).toJSON();
+            requestedTime = new Date(new Date(pickupDate).setHours(requestHours, requestMinutes));
             console.log(requestedTime);
 
             const result = await googleDirection(pickupRef.current?.value, dropoffRef.current?.value);
