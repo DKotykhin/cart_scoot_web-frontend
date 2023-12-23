@@ -9,9 +9,9 @@ const TopBlock = () => {
             <div className={styles.titleContainer}>
                 <h4>About us</h4>
                 <h1>Navigate Life, Share the Ride!</h1>
-                <h2>
+                {/* <h2>
                     Explore the Secrets of the Greens: Embark on Unforgettable Golf Cart Expeditions, Tailored For Your Enjoyment.
-                </h2>
+                </h2> */}
             </div>
             <div className={styles.cardContainer}>
                 <article className={styles.card}>
