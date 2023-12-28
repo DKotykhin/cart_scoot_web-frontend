@@ -64,7 +64,7 @@ const AddCoordinates: React.FC<{ coordinates: { lat: number, lon: number } }> = 
                     }
                 },
             });
-        } else toast.warn("Can't define your current coordinates", {
+        } else toast.warn("Please allow to define coordinates in your settings", {
             bodyClassName: "wrong-toast",
             icon: <Image
                 src={'/icons/wrong-code.svg'}
@@ -91,7 +91,7 @@ const AddCoordinates: React.FC<{ coordinates: { lat: number, lon: number } }> = 
                             width={48}
                             height={48}
                         />
-                        : coordinates.lat || coordinates.lon ? 'Change Coordinates' : 'Add Coordinates'
+                        : 'Pin to Map'
                     }
                 </button>
             </div>

@@ -116,6 +116,18 @@ const Mapbox = () => {
             setOpenLoginMobileCard(true);
             return;
         };
+        if (!userData?.phone?.confirmed) {
+            toast.warn('add mobile phone to your account!', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        };
         try {
             const { data } = await oneDriverRequest({
                 variables: {
@@ -168,7 +180,18 @@ const Mapbox = () => {
             setOpenLoginMobileCard(true);
             return;
         };
-
+        if (!userData?.phone?.confirmed) {
+            toast.warn('add mobile phone to your account!', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        };
         if (!findCarFormData?.locationData && !findCarFormData?.requestedTime) {
             toast.warn("Please fill out this form!", {
                 bodyClassName: "wrong-toast",

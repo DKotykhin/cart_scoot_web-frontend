@@ -196,7 +196,7 @@ const RegisterCard = () => {
                                 )}
                             />
                             <label htmlFor='checkbox'>
-                                I&apos;m over <span>16</span> and also I&apos;ve read and accept
+                                I&apos;m over <span>15</span> and also I&apos;ve read and accept
                                 <Link href={'/'}>&nbsp;Terms and condition</Link>
                             </label>
                         </div>
@@ -234,7 +234,7 @@ const RegisterCard = () => {
                                 )}
                             />
                             <label htmlFor='checkbox'>
-                                I&apos;m over <span>16</span> and also I&apos;ve read and accept
+                                I&apos;m over <span>15</span> and also I&apos;ve read and accept
                                 <Link href={'/'}>&nbsp;Terms and condition</Link>
                             </label>
                         </div>

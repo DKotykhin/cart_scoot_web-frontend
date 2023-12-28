@@ -26,7 +26,7 @@ interface IDetailsCard {
 
 const DetailsCard: React.FC<IDetailsCard> = ({ data, OpenFinishedCardFn, closeMobileDetailedCard }) => {
 
-    const { request: { _id, driverId, requestedTime, requestCode, status, pickupLocation, dropoffLocation, isReviewed }, avgRating } = data;
+    const { request: { _id, driverId, requestedTime, requestCode, status, pickupLocation, dropoffLocation, isReviewed, carType }, avgRating } = data;
 
     const [openDetails, setOpenDetails] = useState(false);
     const [approveButton, setApproveButton] = useState(false);
@@ -226,6 +226,11 @@ const DetailsCard: React.FC<IDetailsCard> = ({ data, OpenFinishedCardFn, closeMo
                             imageURL='/icons/tagChevron.svg'
                             title='Request Code'
                             value={requestCode}
+                        />
+                        <DetailsItem
+                            imageURL='/icons/carSimple-grey.svg'
+                            title='Cart seats'
+                            value={`${carType} seats`}
                         />
                         <DetailsItem
                             imageURL='/icons/phone.svg'
