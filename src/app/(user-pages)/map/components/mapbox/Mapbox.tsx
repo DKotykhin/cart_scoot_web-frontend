@@ -128,6 +128,18 @@ const Mapbox = () => {
             });
             return;
         };
+        if (!userData?.avatarURL) {
+            toast.warn('add avatar image to your account!', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        };
         try {
             const { data } = await oneDriverRequest({
                 variables: {
@@ -182,6 +194,18 @@ const Mapbox = () => {
         };
         if (!userData?.phone?.confirmed) {
             toast.warn('add mobile phone to your account!', {
+                bodyClassName: "wrong-toast",
+                icon: <Image
+                    src={'/icons/wrong-code.svg'}
+                    alt='icon'
+                    width={56}
+                    height={56}
+                />
+            });
+            return;
+        };
+        if (!userData?.avatarURL) {
+            toast.warn('add avatar image to your account!', {
                 bodyClassName: "wrong-toast",
                 icon: <Image
                     src={'/icons/wrong-code.svg'}

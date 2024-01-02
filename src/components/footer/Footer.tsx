@@ -22,7 +22,7 @@ const Footer = () => {
                 <p className={styles.logo}>Cart<span>Scoot</span></p>
                 <p className={styles.subtitle}>Share the Ride!</p>
                 <div className={styles.social}>
-                    <Link href={'https://google.com'}>
+                    <Link href={process.env.NEXT_PUBLIC_FACEBOOK || '#'} target='_blank'>
                         <Image
                             src={'/icons/facebook.svg'}
                             alt={'facebook'}
@@ -30,7 +30,7 @@ const Footer = () => {
                             height={24}
                         />
                     </Link>
-                    <Link href={'https://google.com'}>
+                    <Link href={process.env.NEXT_PUBLIC_TWITTER || '#'} target='_blank'>
                         <Image
                             src={'/icons/twitter.svg'}
                             alt={'twitter'}
@@ -38,7 +38,7 @@ const Footer = () => {
                             height={24}
                         />
                     </Link>
-                    <Link href={'https://google.com'}>
+                    <Link href={process.env.NEXT_PUBLIC_INSTAGRAM || '#'} target='_blank'>
                         <Image
                             src={'/icons/instagram.svg'}
                             alt={'instagram'}
@@ -57,8 +57,12 @@ const Footer = () => {
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.last_block}>
-                    <p>Designed by <a href={'https://webxwiz.com'}>WebXwiz</a></p>
-                    <p>Privacy policy - 2023</p>
+                    <p>
+                        Designed by <a href={'https://webxwiz.com'} target='_blank'>WebXwiz</a>
+                    </p>
+                    <Link href={process.env.NEXT_PUBLIC_PRIVACY_POLICY || '#'} target='_blank'>
+                        <p>Privacy policy - 2023</p>
+                    </Link>
                 </div>
             </div>
         </footer>
