@@ -60,7 +60,7 @@ const Footer = () => {
                     <p>
                         Designed by <a href={'https://webxwiz.com'} target='_blank'>WebXwiz</a>
                     </p>
-                    <Link href={process.env.NEXT_PUBLIC_PRIVACY_POLICY || '#'} target='_blank'>
+                    <Link href={'/privacy-policy'}>
                         <p>Privacy policy - 2023</p>
                     </Link>
                 </div>
