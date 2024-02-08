@@ -235,7 +235,7 @@ const RegisterCard = () => {
                             />
                             <label htmlFor='checkbox'>
                                 I&apos;m over <span>15</span> and also I&apos;ve read and accept
-                                <Link href={'/'}>&nbsp;Terms and condition</Link>
+                                <Link href={'/privacy-policy'}>&nbsp;Terms and condition</Link>
                             </label>
                         </div>
                     </>

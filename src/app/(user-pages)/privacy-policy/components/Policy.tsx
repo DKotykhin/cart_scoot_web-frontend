@@ -136,6 +136,14 @@ export const Policy = () => {
                             By using our services, you agree to the terms outlined in this Privacy Notice. Thank you for trusting CartScoot.com.
                         </p>
                     </li>
+                    <li>
+                        <p className={styles.list_title}>
+                            Changes to this Privacy Notice
+                        </p>
+                        <p className={styles.list_text}>
+                            We may update this Privacy Notice periodically. Please review it regularly for any changes. Your continued use of our services after changes are posted implies your acceptance of those changes.
+                        </p>
+                    </li>
                 </ol>
             </div>
         </section>
